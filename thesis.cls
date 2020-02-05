@@ -930,6 +930,7 @@
 \newcommand*{\th@readerThree}{none}	% optional
 \newcommand*{\th@readerFour}{none}	% optional
 \newcommand*{\th@readerFive}{none}	% optional
+\newcommand*{\th@readerSix}{none}	% optional
 \newcommand*{\th@IRBprotocol}{none}	% optional
 \newcommand*{\th@fulldegree}{
 	\ClassError{thesis}{
@@ -1041,7 +1042,7 @@
 	\singlespacing
 	\clearpage
 	\thispagestyle{empty}
-	\vspace*{\fill}
+%	\vspace*{\fill}
 	\begin{center}
 		This thesis entitled:\\
 		\th@title\\
@@ -1051,7 +1052,7 @@
 		\th@deptorg\
 		\th@deptname
 	\end{center}
-	\vspace*{2mm}
+%	\vspace*{2mm}
 	\th@signature{\th@advisortitle\ \th@advisor}
 	\th@signature{\th@reader}		% REQUIRED.
 	\ifthenelse{\equal{\th@readerThree}{none}}{\relax}
@@ -1060,6 +1061,8 @@
                 {\th@signature{\th@readerFour}} % optional
 	\ifthenelse{\equal{\th@readerFive}{none}}{\relax}
                 {\th@signature{\th@readerFive}} % optional
+	\ifthenelse{\equal{\th@readerSix}{none}}{\relax}
+                {\th@signature{\th@readerSix}} % optional
 	\th@dateline
 	\vspace*{\fill}
 	\begin{center}
@@ -1196,6 +1199,7 @@
 \newcommand*{\readerThree}[1]{\th@StoreIn{\th@readerThree}{#1}}
 \newcommand*{\readerFour}[1]{\th@StoreIn{\th@readerFour}{#1}}
 \newcommand*{\readerFive}[1]{\th@StoreIn{\th@readerFive}{#1}}
+\newcommand*{\readerSix}[1]{\th@StoreIn{\th@readerSix}{#1}}
 \newcommand*{\IRBprotocol}[1]{\th@StoreIn{\th@IRBprotocol}{#1}}
 \newcommand*{\degreeyear}[1]{\th@StoreIn{\th@degreeyear}{#1}}
 \newcommand{\otherdegrees}[1]{\th@StoreIn{\th@otherdegrees}{#1}}

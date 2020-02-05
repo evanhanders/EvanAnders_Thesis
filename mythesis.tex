@@ -1,0 +1,98 @@
+\documentclass[defaultstyle,11pt]{thesis}
+
+\usepackage{amsmath}
+\usepackage{amssymb}		% to get all AMS symbols
+\usepackage{graphicx}		% to insert figures
+\usepackage{hyperref}		% PDF hyperreferences??
+\usepackage{bm}
+
+%%%%%%%%%%%%   All the preamble material:   %%%%%%%%%%%%
+
+\title{Fundamental Studies of Stratified Stellar Convection: Simulations and Theory}
+
+\author{Evan~H.}{Anders}
+
+\otherdegrees{B.S., Whitworth University, 2014 \\
+	      M.S., University of Colorado, 2017}
+
+\degree{Doctor of Philosophy}		%  #1 {long descr.}
+	{Ph.D., Astrophysics}		%  #2 {short descr.}
+
+\dept{Department of}			%  #1 {designation}
+	{Astrophysical \& Planetary Sciences}		%  #2 {name}
+
+\advisor{Prof.}				%  #1 {title}
+	{Benjamin P. Brown}			%  #2 {name}
+
+\reader{Prof.~Mark P. Rast}		%  2nd person to sign thesis
+\readerThree{Prof.~Steven Cranmer}		%  3rd person to sign thesis
+\readerFour{Prof.~Ian Grooms}
+\readerFive{Prof.~Keith Julien}
+\readerSix{Dr.~Bradley Hindman}
+
+\abstract{  \OnePageChapter	% because it is very short
+
+	Often the abstract will be long enough to require
+	more than one page, in which case the macro
+	``$\backslash$OnePageChapter'' should {\it not}
+	be used.
+
+	But this one isn't, so it should.
+	}
+
+\dedication[Dedication]{	% NEVER use \OnePageChapter here.
+	To all of the fluffy kitties.
+	}
+
+\acknowledgements{	\OnePageChapter	% *MUST* BE ONLY ONE PAGE!
+EHA acknowledges the support of the University of Colorado's George 
+Ellery Hale Graduate Student Fellowship.
+This work was additionally supported by  NASA LWS grant number NNX16AC92G.  
+Computations were conducted 
+with support by the NASA High End Computing (HEC) Program through the NASA 
+Advanced Supercomputing (NAS) Division at Ames Research Center on Pleiades
+with allocations GID s1647 and GID g26133.
+We thank Jon Aurnou, Axel Brandenburg, Keith Julien, Mark Rast, and Jeff Oishi 
+for many useful discussions. We also thank the three anonymous referees whose
+careful comments greatly improved the quality of this paper.
+
+
+	Here's where you acknowledge folks who helped.
+	But keep it short, i.e., no more than one page,
+	as required by the Grad School Specifications.
+	}
+
+% \IRBprotocol{E927F29.001X}	% optional!
+
+\ToCisShort	% use this only for 1-page Table of Contents
+
+\LoFisShort	% use this only for 1-page Table of Figures
+% \emptyLoF	% use this if there is no List of Figures
+
+\LoTisShort	% use this only for 1-page Table of Tables
+% \emptyLoT	% use this if there is no List of Tables
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%       BEGIN DOCUMENT...         %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\input macros.tex
+\input introduction.tex
+\input numerical_methods.tex
+\input ab17.tex
+
+%%%%%%%%%   then the Bibliography, if any   %%%%%%%%%
+\bibliographystyle{plain}	% or "siam", or "alpha", etc.
+\nocite{*}		% list all refs in database, cited or not
+\bibliography{biblio}		% Bib database in "blblio.bib"
+
+%%%%%%%%%   then the Appendices, if any   %%%%%%%%%
+%\appendix
+%\input appendixA.tex
+%\input appendixB.tex
+
+
+\end{document}
+
