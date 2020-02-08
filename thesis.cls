@@ -1105,7 +1105,7 @@
 \newcommand{\th@Acknowledgementpage}{
 	\if@makeAcknowledgements
 		\clearpage
-		\chapter*{Acknowledgements}
+		\chapter*{\vspace{-1.25in}Acknowledgements}
 		{\doublespacing
 		\th@acknowledgementsStash}
 	\fi

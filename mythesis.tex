@@ -7,6 +7,16 @@
 \usepackage{bm}
 \usepackage{natbib}
 
+\usepackage{xcolor}
+\hypersetup{
+  colorlinks   = true,
+  linkcolor    = gray,
+  citecolor    = gray
+}
+
+
+
+
 %%%%%%%%%%%%   All the preamble material:   %%%%%%%%%%%%
 
 \title{Fundamental Studies of Stratified Stellar Convection: Simulations and Theory}
@@ -31,73 +41,39 @@
 \readerFive{Prof.~Keith Julien}
 \readerSix{Dr.~Bradley Hindman}
 
-\abstract{  \OnePageChapter	% because it is very short
-
-	Often the abstract will be long enough to require
-	more than one page, in which case the macro
-	``$\backslash$OnePageChapter'' should {\it not}
-	be used.
-
-	But this one isn't, so it should.
+\abstract{  \OnePageChapter	% because it is very short, get rid of this if it goes over a page
+		THIS IS AN ABSTRACT
 	}
 
 \dedication[Dedication]{	% NEVER use \OnePageChapter here.
-	To all of the fluffy kitties.
+	To Sami \& Finn.
 	}
 
-\acknowledgements{	\OnePageChapter	% *MUST* BE ONLY ONE PAGE!
-EHA acknowledges the support of the University of Colorado's George 
-Ellery Hale Graduate Student Fellowship.
-This work was additionally supported by  NASA LWS grant number NNX16AC92G.  
-Computations were conducted 
-with support by the NASA High End Computing (HEC) Program through the NASA 
-Advanced Supercomputing (NAS) Division at Ames Research Center on Pleiades
-with allocations GID s1647 and GID g26133.
-We thank Jon Aurnou, Axel Brandenburg, Keith Julien, Mark Rast, and Jeff Oishi 
-for many useful discussions. We also thank the three anonymous referees whose
-careful comments greatly improved the quality of this paper.
+\acknowledgements{	\vspace{-0.5in}\OnePageChapter	% *MUST* BE ONLY ONE PAGE!
+I'd first and foremost like to thank my family (especially Sami), my cohort (Sam [er, Soaring Eagle], Jhett, Nick, Piyush, Tristan, Jessica), and my other friends and colleagues at CU (Avery, Gabo, Ryan, Katie, Tayler, Nicole, Gilly, Hayley, Jennie, many others) who supported me, helped me grow as a person/scientist, or just suffered through horrible committees and meetings with me. 
 
-We thank Geoff Vasil, Daniel Lecoanet, 
-and the two anonymous referees whose careful comments greatly 
-improved the clarity and scientific content of this paper.
-EHA acknowledges the support of the University of Colorado's George 
-Ellery Hale Graduate Student Fellowship.
-This work was additionally supported by  NASA LWS grant number NNX16AC92G.  
-Computations were conducted 
-with the support of the NASA High End Computing (HEC) Program through the NASA 
-Advanced Supercomputing (NAS) Division at Ames Research Center on Pleiades
-with allocation GID s1647.
+I'd like to thank my mentors who have helped me grow as a scientist over the past few years.
+In this, I'd especially like to thank Ben, who helped teach me to be an open-minded, careful scientist while also teaching me that it's important to balance family life.
+Beyond Ben, I'm very grateful for the guidance that Jeff Oishi and Daniel Lecoanet have given me as I navigate the thesis and postdoc process.
+Outside of my academic mentors, I'd also like to thank my mentors who helped me grow as a teacher: Seth Hornstein, and the ISEE staff, especially Austin Barnes.
 
+I'd like to thank my collaborators and co-authors.
+The effort and work that Ben Brown, Jeff Oishi, Daniel Lecoanet, Geoff Vasil, and Katie Manduca put into our manuscripts vastly improved the quality of the science therein.
+I'm also broadly grateful to Mark Rast, Nick Featherstone, Brad Hindman, Jon Aurnou, Nadir Jeevanjee, Ian Grooms, and Axel Brandenburg.
+Discussions with all of these great scientists helped me better understand the problems I was grappling with.
 
-We thank Jon Aurnou and the anonymous referee who independently directed
-us to the work of \cite{king&all2012} during the review process, which greatly
-helped us understand the results of the experiments here. We further thank
-the anonymous referee for other helpful and clarifying suggestions.
-This work was supported by NASA Headquarters under the NASA Earth and Space
-Science Fellowship Program -- Grant 80NSSC18K1199.
-EHA further acknowledges the University of Colorado's George 
-Ellery Hale Graduate Student Fellowship.
-This work was additionally supported by  NASA LWS grant number NNX16AC92G.  
-Computations were conducted 
-with support by the NASA High End Computing (HEC) Program through the NASA 
-Advanced Supercomputing (NAS) Division at Ames Research Center on Pleiades
-with allocation GID s1647.
+For funding, I'm grateful to the APS department for funding my first year of graduate school as a teaching assistant.
+I also gratefully acknowledge the support of CU's George Ellery Hale Graduate Student Fellowship, which supported me in years 2-4, and NASA Earth and Space Science Fellowship 80NSSC18K1199, which supported me in years 5-6.
+I'm also broadly grateful to NASA LWS grant number NNX16AC92G, which has paid for a couple of summer salaries and has enabled quite a bit of travel.
 
-We'd like to thank Brett McKim and Nadir Jeevanjee for discussions about thermals and the laminar entrainment picture.
-We'd like to further thank Nadir Jeevanjee, Axel Brandenburg, Jeremy Goodman, and the anonymous referee whose careful comments greatly improved the scientific quality and clarity of this manuscript.
-This work was supported by NASA Headquarters under the NASA Earth and Space Science Fellowship Program -- Grant 80NSSC18K1199.
-This work was additionally supported by NASA LWS grant NNX16AC92G and by the National Science Foundation under grant No.~1616538. 
-DL is supported by Princeton Center for Theoretical Science and Lyman Spitzer Jr.~postdoctoral fellowships.
-Computations were conducted with support by the NASA High End Computing (HEC) Program through the NASA  Advanced Supercomputing (NAS) Division at Ames Research Center on Pleiades with allocation GID s1647.
-
-
-	Here's where you acknowledge folks who helped.
-	But keep it short, i.e., no more than one page,
-	as required by the Grad School Specifications.
+Without the NASA Pleiades supercomputer, none of this work would have been possible.
+Pleiades is part of the NASA High End Computing (HEC) program through the NASA Advanced Supercomputing (NAS) Division at Ames Research Center.
+All computations were conducted using allocation GIDs s1647 and g26133.
 	}
 
 % \IRBprotocol{E927F29.001X}	% optional!
 
+{\hypersetup{linkcolor=black}
 \ToCisShort	% use this only for 1-page Table of Contents
 
 \LoFisShort	% use this only for 1-page Table of Figures
@@ -106,6 +82,7 @@ Computations were conducted with support by the NASA High End Computing (HEC) Pr
 \LoTisShort	% use this only for 1-page Table of Tables
 % \emptyLoT	% use this if there is no List of Tables
 
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%       BEGIN DOCUMENT...         %%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -121,8 +98,7 @@ Computations were conducted with support by the NASA High End Computing (HEC) Pr
 \input alb19.tex
 
 %%%%%%%%%   then the Bibliography, if any   %%%%%%%%%
-\bibliographystyle{plain}	% or "siam", or "alpha", etc.
-\nocite{*}		% list all refs in database, cited or not
+\bibliographystyle{yahapj}	% or "siam", or "alpha", etc.
 \bibliography{biblio}		% Bib database in "blblio.bib"
 
 %%%%%%%%%   then the Appendices, if any   %%%%%%%%%
@@ -132,4 +108,32 @@ Computations were conducted with support by the NASA High End Computing (HEC) Pr
 
 
 \end{document}
+
+
+%%%% Example of how to do table footnotes
+%\begin{table}[htb]
+%    \caption[Example of a table with its own footnotes]{
+%	Here is an example of a table with its own footnotes.
+%	Don't use the $\backslash${\tt footnote} macro if you
+%	don't want the footnotes at the bottom of the page.
+%	Also, note that in a thesis the caption goes
+%	\emph{above} a table, unlike figures.
+%	}
+%    \begin{center}
+%    \begin{tabular}{||l|c|c|c|c||} \hline
+%	& $S$ & $P$ &   $Q^{\ast}$  & $D^{\dagger}$ \\	% footnote symbols!
+%	wave form & (kVA) & (kW) & (kVAr) & (kVAd) \\  \hline \hline
+%	Fig.  \ref{xfigDiagram}a  & 25.48 & 25.00 & -2.82 & 4.03 \\ \hline
+%	Fig.  \ref{xfigDiagram}b  & 25.11 & 18.02 & -9.75 & 14.52 \\ \hline
+%	Table \ref{pdftable}  & 24.98 & 22.26 & 9.19 & 6.64 \\ \hline
+%	Table \ref{powertable}  & 23.48 & 15.00 & 6.59 & 16.82 \\ \hline
+%	Fig.  \ref{pyramid}  & 24.64 & 22.81 & -0.44 & 9.3 \\ \hline
+%	\end{tabular}
+%   \\ \rule{0mm}{5mm}
+%   ${}^\ast$kVAr means reactive power.		% footnote symbol
+%\\ ${}^\dagger$kVAd means distortion power.	% footnote symbol
+%\end{center}
+%\label{powertable}
+%\end{table}
+
 

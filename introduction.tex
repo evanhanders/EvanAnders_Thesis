@@ -1,124 +1,59 @@
 \chapter{Introduction}
 \label{introchap}
 
-This sample document illustrates how to use the
-{\tt thesis} class, originally written by John P. Weiss.
-Some requirements of the Graduate School are written
-into that file; page size, line spacing, appropriate
-placement of captions for tables and figures, etc.
-Revisions by Hongcheng Ni make it possible to use the
-(optional)
-\verb2\usepackage{hyperref}2 command to enable
-internal hyperlinks in the final PDF document.
-Other tasks of conforming to the requirements are
-left to other existing \LaTeX{} packages.
-For example, a common problem is to insert graphics ---
-figures and tables --- into the body of the thesis.  For
-this one should use the {\tt graphicx} package, which is
-part of the standard \TeX{} distribution.  Likewise, the
-Grad School specs say that a large table may be displayed
-in landscape mode at reduced size, but its caption must
-also be in rotated position, in the same font and size as
-the normal text in the body of the thesis.  To accomplish
-this, the user must invoke the {\tt rotating} package,
-available online.
+\section{Motivation}
+\sectionmark{Motivation}
 
+\paragraph{Asteroseismology}
+\label{sct:asteroseismology}
+The advent of asteroseismic science has closely paralleled that of exoplanetary science.
+Early ground-based observations of stellar pulsations \cite[e.g.,][]{kjeldsen&frandsen1991, bouchy&carrier2001, bedding&all2001} have given way to datasets larger than $10^4$ stars \cite[e.g.,][]{yu&all2018, santos&all2019b} in the age of CoRoT, Kepler, and K2 data.
+Another 20,000 asteroseismically-interesting targets are being observed in the TESS satellite's two-year mission \cite{schofield&all2019}.
+By 2030 we expect to have observed $10^7$ pulsating red giants and $10^5$ dwarfs and subgiants \cite{huber&all2019}.
+In addition to teaching us about the nature of stellar interiors, asteroseismology enables the accurate measurement of stellar ages, masses, and radii, which in turn facilitates studies in galactic archaeology and exoplanetary measurements.
+Asteroseismic measurements generally rely on one-dimensional (1D) stellar structure models, and these models have some known deficiencies \cite{buldgen2019}, in particular their handling of three-dimensional (3D) dynamical phenomena like convection, rotation, and magnetism.
+The exponential rise in asteroseismic targets demands a continued investment in the theory that informs these stellar models and asteroseismic measurements.
 
-Figure \ref{xfigDiagram} shows an image from a PDF file
-imported into this document
-using the \verb2graphicx2 package.
-The command \verb2\usepackage{graphicx}2, which appears
-near the very top of the main \LaTeX{} file, reads in
-this package which defines the
-\verb2\includegraphics{}2 macro.
+State-of-the-art stellar strucuture models are produced by 1D codes like MESA \cite{paxton&all2011}.
+Unfortunately, MESA models necessarily depend on 1D parameterizations of convection and often employ the decades-old mixing length theory \cite[MLT,][]{bohm-vitense1958}.
+While some aspects of convection are adequately described by MLT, it fails in a number of situations.
+For example, 1D stellar models incorrectly produce pulsations in the surface layers of Sun-like stars, while 3D models of convection in these layers fare better \cite{jorgensen&weiss2019}.
+Additionally, 1D models assume spherical symmetry and generally neglect magnetic and rotational effects.
+Observations of stellar flares \cite{kowalski2016} and magnetically-induced pulsational frequency shifts \cite{santos&all2018} suggest that magnetism should not be neglected.
+Furthermore, the Sun exhibits differential rotation characterized by latitudinal variations in angular velocity within the solar convection zone \cite{thompson&all1996, schou&all1998}, and latitudinal differential rotation has now been observed in other stars \cite{benomar&all2018}.
+Together, these observations suggest that 1D parameterizations of convection which neglect complicating effects cannot sufficiently capture the complexities of stars.
+In order to properly and fully utilize abundant asteroseismic data, we must improve the models on which asteroseismic inversions rely.
 
+\paragraph{The Solar Convective Conundrum}
+\label{sct:convective_conundrum}
+The outer 30\% of the Sun is a highly stratified convective envelope, and recent observations reveal that we lack a fundamental understanding of dynamics in this region.
+Various helioseismic observations \cite{hanasoge&all2012, greer&all2015} detect convective velocity magnitudes which vary by two orders of magnitude.
+Furthermore, these observations, as well as measurements of solar surface velocities \cite{hathaway&all2015}, have an unexpected absence of velocity at large spatial scales.
+In short, we do not observe large-scale ``giant cells'' driven by buoyant motions deep in the solar convection zone.
+These measurements, and the absence of giant cells, consitute the Solar Convective Conundrum.
 
-\section{Lists in {\tt thesis} class}
+Two primary hypotheses currently aim to explain the absence of giant cells: ``entropy rain'' and a rotationally constrained solar convective interior.
+The entropy rain hypothesis, first suggested by \cite{spruit1997}, posits many theories over-predict the importance of upflows and that \emph{downflows} are predominantly responsible for carrying the solar luminosity across the solar convection zone.
+Recent theory and simulations, including some of my own work, suggest that small, intense downflows can indeed traverse the entire convection zone intact and may be more important than upflows in solar-like convection \cite{brandenburg2016, kapyla&all2017, andersLB2019}.
+To date, this work neglects magnetism and rotation, and it is unclear how these complicating effects interact with these fast, powerful downflows.
+Meanwhile, the rotationally constrained interior hypothesis suggests that Coriolis forces dominate the dynamics of deep solar convection, and that these forces mask giant cells.
+Simulations by \cite{featherstone&hindman2016} show that as convective flows become more rotationally constrained, dominant convective velocities are pushed to smaller length scales.
+However, rotational effects on simulations can be hard to quantify; some simulations which nominally rotate at the solar rate show \emph{anti-solar} differential rotation \cite{gastine&all2014}, and other rotationally constrained simulations exhibit Jupiter-like bands \cite{brun&all2017}.
+Regardless, current results and hypotheses suggest that the interplay between downflows and rotational effects must be better understood in stellar convection.
 
-In {\tt thesis} class (for Colorado University),
-lists are defined so that nested lists will be
-numbered or marked appropriately.
-First, an itemized (non-enumerated) list
-prefaces each item with a bullet.
-Nested itemized list use asterisks,
-then dashes, then dots.
-These lists are typed between
-the \verb2\begin{itemize}2
-and \verb2\end{itemize}2
-commands.
+\paragraph{Modern convective simulations}
+\label{sct:modern_simulations}
+The earliest simulations in stellar-like convection \cite{graham1975, hurlburt&all1984, cattaneo&all1991, brummell&all1996, brummell&all1998} often sought to study simplified systems.
+Cartesian geometry was employed, and convective flows in the presence of one or more complicating effects (stratification, rotation, magnetism, etc.)~were explored.
+Despite vast modern computational resources, similar studies \cite[e.g.,][]{wood&brummell2012, anders&brown2017, wood&brummell2018} have become rare in the past two decades, and the highly laminar results of simulations from twenty years ago are often the state-of-the-art.
 
-\begin{itemize}
-  \item{} This is ``itemized'' item A.
-  \item{} This is ``itemized'' item B.
-  \item{} This is ``itemized'' item C.
-  \begin{itemize}
-    \item{} This is ``itemized'' subitem A.
-    \begin{itemize}
-      \item{} This is ``itemized'' subsubitem A.
-      \begin{itemize}
-        \item{} This is ``itemized'' subsubsubitem A.
-      \end{itemize}
-      \item{} This is ``itemized'' subsubitem B.
-    \end{itemize}
-    \item{} This is ``itemized'' subitem B.
-  \end{itemize}
-  \item{} This is ``itemized'' item D.
-\end{itemize}
-
-Enumerated lists use the commands
-\verb2\begin{enumerate}2 and
-\verb2\end{enumerate}2,
-and nested enumerations appear like this.
-
-\begin{enumerate}
-  \item{} This is ``enumerated'' item A.
-  \item{} This is ``enumerated'' item B.
-  \item{} This is ``enumerated'' item C.
-  \begin{enumerate}
-    \item{} This is ``enumerated'' subitem A.
-    \begin{enumerate}
-      \item{} This is ``enumerated'' subsubitem A.
-      \begin{enumerate}
-        \item{} This is ``enumerated'' subsubsubitem A.
-      \end{enumerate}
-      \item{} This is ``enumerated'' subsubitem B.
-    \end{enumerate}
-    \item{} This is ``enumerated'' subitem B.
-  \end{enumerate}
-  \item{} This is ``enumerated'' item D.
-\end{enumerate}
-
-
-The work presented
-here\footnote{Footnotes are handled neatly by \LaTeX.}
-is an extension of Lao\cite{lao:thesis}
-and Lao et~al.\cite{lao:paper},
-fictional references that are in the bibliographic
-source file \verb9refs.bib9.
-
-\begin{table}[htb]
-    \caption[Example of a table with its own footnotes]{
-	Here is an example of a table with its own footnotes.
-	Don't use the $\backslash${\tt footnote} macro if you
-	don't want the footnotes at the bottom of the page.
-	Also, note that in a thesis the caption goes
-	\emph{above} a table, unlike figures.
-	}
-    \begin{center}
-    \begin{tabular}{||l|c|c|c|c||} \hline
-	& $S$ & $P$ &   $Q^{\ast}$  & $D^{\dagger}$ \\	% footnote symbols!
-	wave form & (kVA) & (kW) & (kVAr) & (kVAd) \\  \hline \hline
-	Fig.  \ref{xfigDiagram}a  & 25.48 & 25.00 & -2.82 & 4.03 \\ \hline
-	Fig.  \ref{xfigDiagram}b  & 25.11 & 18.02 & -9.75 & 14.52 \\ \hline
-	Table \ref{pdftable}  & 24.98 & 22.26 & 9.19 & 6.64 \\ \hline
-	Table \ref{powertable}  & 23.48 & 15.00 & 6.59 & 16.82 \\ \hline
-	Fig.  \ref{pyramid}  & 24.64 & 22.81 & -0.44 & 9.3 \\ \hline
-	\end{tabular}
-   \\ \rule{0mm}{5mm}
-   ${}^\ast$kVAr means reactive power.		% footnote symbol
-\\ ${}^\dagger$kVAd means distortion power.	% footnote symbol
-\end{center}
-\label{powertable}
-\end{table}
+Recently, numericists have often switched aims from simply understanding convection to trying to reproduce precisely aspects of solar or stellar convection.
+Small scale ``local'' simulations with realistic radiative transfer strikingly visually resemble solar surface convection and sunspots \cite{stein&nordlund1998, rempel&all2009, stein&nordlund2012, rempel2014}.
+Local simulations have shaped how some observational experts interact with simulations, and the raw data of \cite{rempel2014}'s simulations are being used directly as high-resolution observations of solar convection \cite[see e.g.,][and others]{vankooten&cranmer2017, shchukina&trujillo2019}.
+While simulations of solar surface convection reproduce solar features remarkably well, simulations of deep convection fail to reproduce observations  \cite{hanasoge&all2015}.
+These global simulations exhibit giant cells as well as cycling dynamos and latitudinal differential rotation with very different timescales and profiles than those of the Sun \cite{brown&all2010, brown&all2011, guerrero&all2016, hotta&all2016, brun&all2017, strugarek&all2018}.
+Simple simulations, where effects like rotation and magnetism can be well understood, should be utilized to understand why deep global simulations fail to reproduce solar observations.
+This understanding can in turn be used to produce better ``realistic'' simulations which more accurately reflect aspects of true solar convection.
+Realistic simulations built on a more detailed fundamental understanding of stellar convection can produce valuable synthetic observables for helioseismologists, asteroseismologists, and scientists who will soon use the NSF's Daniel K. Inouye Solar Telescope (DKIST) to study the solar surface at high resolution.
 
 

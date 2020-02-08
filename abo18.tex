@@ -208,7 +208,7 @@ Eqs.~(\ref{eqn:incompressible}), (\ref{eqn:bouss_momentum}), and (\ref{eqn:bouss
 forward in time
 using an implicit-explicit (IMEX), third-order, four-stage 
 Runge-Kutta timestepping scheme RK443 \cite{ascher&all1997}. The code used to run the simulations
-in this work is included in the supplemental materials as a zip file \cite{supp}.
+in this work is included in the supplemental materials as a zip file\footnote{See Supplemental Material published with paper for a .zip file of the python run scripts used to perform all simulations in this work. This code was run using the Dedalus mercurial repository (\url{https://bitbucket.org/dedalus-project/dedalus/src/default/}) at commit node ID dab6af2abaab03c059a4e9513f6a4d98320c2f02.}.
 
 Variables are time-evolved on a dealiased Chebyshev (vertical)
 and Fourier (horizontal, periodic) domain in which the
@@ -327,7 +327,7 @@ is reached and the strongly disequilibrium state used to inform the AE process.
 
 \begin{figure}[p!]
 \includegraphics[width=\textwidth]{./figs/time_trace.pdf}
-\caption{(a) Kinetic energy (black) and $\angles{T} - T_{\text{top}}$ (blue)  vs. time are shown
+\caption[Time evolution traces of an AE and SE convective simulation]{(a) Kinetic energy (black) and $\angles{T} - T_{\text{top}}$ (blue)  vs. time are shown
 for a SE run at $S = 10^5$. The mean evolved values of kinetic energy and mean temperature,
 averaged over the time shaded in green,
 are denoted by the horizontal dashed lines. (b) The time- and horizontally-averaged
@@ -433,7 +433,7 @@ the reader to appendix \ref{appendix:recipe}.
 
 \begin{figure}[bt!]
 \includegraphics[width=\textwidth]{./figs/nu_v_time.pdf}
-\caption{The time evolution of Nu (black) and $\angles{T} - T_{\text{top}}$ (blue)
+\caption[Time evolution of the Nusselt number in AE vs SE]{The time evolution of Nu (black) and $\angles{T} - T_{\text{top}}$ (blue)
 are shown for simulations at $S = 10^5$ in SE (a) and AE (b).
 A moving average of Nu, using a centered boxcar with a span of 50 freefall time
 units, is overplotted as a gray line. 
@@ -517,7 +517,7 @@ which this behavior was observed in 2D.
 
 \begin{figure}[ht!]
 \includegraphics[width=\textwidth]{./figs/oscillating_plumes.pdf}
-\caption{The time variation of the Nusselt number is shown for two AE cases at
+\caption[Dynamical description explaining instantaneously negative Nusselt number values]{The time variation of the Nusselt number is shown for two AE cases at
 $S = 10^5$ (top) and $S = 10^7$ (bottom). On the left, the instantaneous value of Nu
 is shown as a function of time. On the right, temperature snapshots are shown for
 Nu maxima (Ia and IIa) and minima (Ib and IIb). The suppressed value of Nu at the
@@ -534,7 +534,8 @@ for IIa\&b was chosen to better display the convective dynamics.
 \begin{figure}[ht!]
 \vspace{-1.5cm}
 \includegraphics[width=\textwidth]{./figs/parameter_space_comparison.pdf}
-\caption{Volume- and time-averaged measurements of the Nusselt number (Nu), the
+\caption[Parameter space comparison of AE and SE values]
+{Volume- and time-averaged measurements of the Nusselt number (Nu), the
 RMS Peclet number ($\angles{\text{Pe}}$), and the mean temperature ($\angles{T}$) for AE runs are shown in (a)-(c).
 Symbols are located at the mean value of
 each measurement and denote 2D (purple circles) and 3D (red stars). 
@@ -612,7 +613,8 @@ the mean temperature in the isothermal interior differs by roughly 0.5\%
 
 \begin{figure}[ht!]
 \includegraphics[width=\textwidth]{./figs/temp_comparison.pdf}
-\caption{Comparisons of the evolved thermodynamic states of an AE and SE run
+\caption[Evolved thermodynamic states of AE and SE simulations.]
+{Comparisons of the evolved thermodynamic states of an AE and SE run
 at $S = 10^{5}$ are shown.  (a) Evolved horizontally- and time-averaged 
 temperature profiles, as a function of height.
 (b) Probability Distribution Functions (PDFs, $P(T)$) and their integrated
@@ -673,7 +675,7 @@ drivers of convective transport, are nearly identical.
 
 \begin{figure}[bt!]
 \includegraphics[width=\textwidth]{./figs/pdf_comparison.pdf}
-\caption{Probability distribution functions (PDFs, $P(q)$) of (a) the vertical velocity ($q = w$), (b) the horizontal velocity ($q = u$), and (c) nonlinear
+\caption[Probability distribution comparison of AE and SE dynamics]{Probability distribution functions (PDFs, $P(q)$) of (a) the vertical velocity ($q = w$), (b) the horizontal velocity ($q = u$), and (c) nonlinear
 convective transport [$q = w(T_1 - \angles{T_1}_{x,y})$] are shown for 2D runs achieved through SE (blue) and AE (red)
 at $S = 10^{5}$.  The cumulative distribution function (CDF) is overplotted for each PDF. 
 (d-f) The $D_{\text{KS}}$ profiles, as defined in Eq.~(\ref{eqn:ks_profile}),
@@ -721,7 +723,7 @@ This migration does not appear to affect the vertical transport appreciably.
 \label{sec:speedups}
 
 \begin{table}[b!]
-\caption{Shown are details regarding the computational cost of select
+\caption[Computational cost of AE and SE]{Shown are details regarding the computational cost of select
 AE and SE runs in 2D and 3D. The supercriticality
 ($S$), coefficient resolution (nz, nx, ny), number of CPUs used
 to perform the calculation ($N_{\text{CPU}}$), number of CPU-hours
@@ -862,7 +864,7 @@ effective in more complex studies of convection.
 In Table \ref{table:run_parameters} we list key properties of all simulations
 conducted in this work.  
 \begin{table}
-\caption{Simulation parameters. We report the supercriticality ($S$), Rayleigh number (Ra), 
+\caption[Simulation information for Anders, Brown \& Oishi 2018.]{Simulation parameters. We report the supercriticality ($S$), Rayleigh number (Ra), 
 and coefficient resolution (nz, nx, and ny are the number of coefficients in the
 z, x, and y directions respectively).
 Simulation run times required to reach convergence
