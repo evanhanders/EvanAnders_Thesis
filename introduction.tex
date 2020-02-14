@@ -79,6 +79,8 @@ In order to improve these models, we must improve the handling of convection in 
 
 
 
+
+
 \subsection{The Solar Convective Conundrum}
 \label{sct:convective_conundrum}
 The outer 30\% of the Sun is a highly stratified convective envelope, and recent observations reveal that we lack a fundamental understanding of dynamics in this region.
@@ -92,11 +94,11 @@ The entropy rain hypothesis, first suggested by \cite{spruit1997}, posits many t
 Recent theory and simulations, including some of my own work, suggest that small, intense downflows can indeed traverse the entire convection zone intact and may be more important than upflows in solar-like convection \citep{brandenburg2016, kapyla&all2017, andersLB2019}.
 To date, this work neglects magnetism and rotation, and it is unclear how these complicating effects interact with these fast, powerful downflows.
 Meanwhile, the rotationally constrained interior hypothesis suggests that Coriolis forces dominate the dynamics of deep solar convection, and that these forces mask giant cells.
-Simulations by \cite{featherstone&hindman2016} show that as convective flows become more rotationally constrained, dominant convective velocities are pushed to smaller length scales.
+Simulations by \cite{featherstone&hindman2016a, featherstone&hindman2016b} show that as convective flows become more rotationally constrained, dominant convective velocities are pushed to smaller length scales.
 However, rotational effects on simulations can be hard to quantify; some simulations which nominally rotate at the solar rate show \emph{anti-solar} differential rotation \citep{gastine&all2014}, and other rotationally constrained simulations exhibit Jupiter-like bands \citep{brun&all2017}.
 Regardless, current results and hypotheses suggest that the interplay between downflows and rotational effects must be better understood in stellar convection.
 
-\begin{figure}[ht]
+\begin{figure}[ht!]
 \includegraphics[width=\textwidth]{./figs/intro/conv_conundrum.pdf}
 \caption[Solar velocity power spectra.]
 {
@@ -122,6 +124,20 @@ Regardless, current results and hypotheses suggest that the interplay between do
 }
 \end{figure}
 
+\begin{figure}[ht!]
+\includegraphics[width=\textwidth]{./figs/intro/conundrum_explanations.pdf}
+\caption[Solar velocity power spectra.]
+{
+	(left, image courtesy of Daniel Lecoanet) The classic model of the solar interior.
+	A deep radiative zone lies beneath a convective envelope; within the convective envelope, large convective cells are driven at the base, small cells are driven near the surface, and there is a gradient of cell sizes with increasing radius.
+	(middle) The entropy rain picture of the solar interior.
+	Beneath a thin surface convection zone, downflows or ``raindrops'' carry the solar luminosity from the solar surface to the base of the convection zone. 
+	\citep[right, Fig.~3c of][]{featherstone&hindman2016b} The picture of the solar convection zone with a low-Rossby number, rotationally constrained interior.
+	Rotational constraint increases with depth; below a certain depth, rotation dominates and convective cells give way to columns aligned with the global solar rotation.
+	\label{fig:asteroseismology} 
+}
+\end{figure}
+
 
 
 
@@ -129,10 +145,15 @@ Regardless, current results and hypotheses suggest that the interplay between do
 
 
 
-\subsection{Laboratory Experiments \& Numerical Simulations}
+\subsection{Laboratory Experiments \& Simple Simulations}
 The first controlled laboratory experiments of convection were performed by B\'{e}nard in 1900.
+Then Rayleigh found the Rayleigh number.
+Most of modern theory came more recently, as in (examples, examples).
+A complete review of \RB convection can be found in \citet{siggia1994}
 
 
+\subsection{Stellar-like Simulations}
+The first study of convective instability in a polytropic atmosphere was by \citet{unnoetall1960}.
 The earliest simulations in stellar-like convection \citep{graham1975, hurlburt&all1984, cattaneo&all1991, brummell&all1996, brummell&all1998} often sought to study simplified systems.
 Cartesian geometry was employed, and convective flows in the presence of one or more complicating effects (stratification, rotation, magnetism, etc.)~were explored.
 Despite vast modern computational resources, similar studies \cite[e.g.,][]{wood&brummell2012, anders&brown2017, wood&brummell2018} have become rare in the past two decades, and the highly laminar results of simulations from twenty years ago are often the state-of-the-art.
@@ -148,39 +169,74 @@ Realistic simulations built on a more detailed fundamental understanding of stel
 
 
 \subsection{Mixing Length Theory \& Stellar Structure Models}
-The first analytical description of convection was performed by \citet{rayleigh1916}.
-The earliest rudimentary Mixing Length Theory was derived by \citet{prandtl1925}.
-One of the earliest formulations of a stellar mixing length theory was formulated by \citet{bohm-vitense1958}.
-Modern MLT has many branches, but the one described in Chapter 14 of \citet{weiss&all2004} and early versions of that book are a fundamental description.
+While the first analytical description of convection was performed by \citet{rayleigh1916}, the earliest formulation of a simple mixing length theory was derived by \citet{prandtl1925}.
+The predecessor to most formulations of stellar mixing length thoery (MLT) used today are those of \citet{vitense1953} and \citet{bohm-vitense1958}.
+Modern MLT has many branches, but the one described in Chapter 14 of \citet{weiss&all2004} and earlier versions of Cox \& Giuli's book provide an excellent and fundamental description of MLT.
 
-State-of-the-art stellar strucuture models are produced by 1D codes like MESA \citep{paxton&all2011}.
-Unfortunately, MESA models necessarily depend on 1D parameterizations of convection and often employ the decades-old mixing length theory \cite[MLT,][]{bohm-vitense1958}.
-While some aspects of convection are adequately described by MLT, it fails in a number of situations.
-For example, 1D stellar models incorrectly produce pulsations in the surface layers of Sun-like stars, while 3D models of convection in these layers fare better \citep{jorgensen&weiss2019}.
-Additionally, 1D models assume spherical symmetry and generally neglect magnetic and rotational effects.
-Observations of stellar flares \citep{kowalski2016} and magnetically-induced pulsational frequency shifts \citep{santos&all2018} suggest that magnetism should not be neglected.
-Furthermore, the Sun exhibits differential rotation characterized by latitudinal variations in angular velocity within the solar convection zone \citep{thompson&all1996, schou&all1998}, and latitudinal differential rotation has now been observed in other stars \citep{benomar&all2018}.
-Together, these observations suggest that 1D parameterizations of convection which neglect complicating effects cannot sufficiently capture the complexities of stars.
-In order to properly and fully utilize abundant asteroseismic data, we must improve the models on which asteroseismic inversions rely.
+MLT serves as a one-dimensional description of complex three-dimensional convective motions.
+MLT assumes that, at a given stellar radius, the complex distribution of convective elements present can be modeled as an average convective element whose properties depend on the star's local structure.
+Each of these elements is assumed to travel the ``mixing length,'' before depositing its thermodynamic signature into the surrounding matter and losing its identity.
+As a result, hot elements transport warm material upward some mixing length, cold elements transport cold material downward some mixing length, and on average heat is transported outward, and a one-dimensional convective flux can be constructed.
+While MLT is obviously an over-simplification of convective processes, it works qualitatively, and until recently it shows few noticeable disagreements with the observations available.
+Furthermore, there is no widely accepted alternative description of convection to MLT, and so it is commonly used in the field as the only widely-accepted parameterization of convection.
+
+State-of-the-art stellar strucuture models are produced by 1D codes like MESA \citep{paxton&all2011}, which depend on convective parameterizations like MLT.
+Stellar structure models produced with MLT have aligned well with helioseismic observations for quite some time \citep{christensen-dalsgaard&all1996}, and disagreements between models and observations are generally less than a few percent \citep{serenelli&all2009}.
+One particular area of weakness for these models has been problems due to ``near-surface effects'' \citep{kjeldsen&all2008}.
+In short, MLT assumes that all convective flows are in perfect pressure equilibrium with their surroundings.
+This assumption breaks down in the high-Mach number, highly superadiabatic surface layers of solar-like stars.
+Recent efforts \citep{jorgensen&weiss2019, mosumgaard&all2020} have successfully coupled 1D stellar evolution models with thin, near-surface, 3D convective shells.
+These studies have found that their realistic treatment of the highly adiabatic surface layers (via real 3D convective simulations) do indeed reduce errors in asteroseismic frequencies between models and observations.
+However, we are still far from an adequate solution to this problem: 3D simulations are expensive, and cannot feasibly be coupled with 1D stellar structure models throughout the entirety of a stellar lifetime.
+Regardless, these recent results do indeed suggest that MLT fails describe stellar convection in at least one situation (surface layers), and lay bare the need for either improved models or more efficient means of coupling simulations of convection with 1D models.
+
+One additional weakness of 1D stellar structure models is that they often neglect complicating effects like magnetism and rotation.
+MESA has incorporated diffusion of angular momentum to enable at least some basic models of rotating stars \citep{paxton&all2013}.
+Furthermore, recent theoretical and simulation work have sought to understand how well mixing length theory describes rotating convection \citep{BDLithwick2014, currie&all2020}, and have shown good agreement between modified rotational MLTs and the results of 3D convective simulations.
+The Sun exhibits differential rotation characterized by latitudinal variations in angular velocity within the solar convection zone \citep{thompson&all1996, schou&all1998}, and latitudinal differential rotation has now been observed in other stars \citep{benomar&all2018}.
+At this time, I am unaware of any work which has sought to understand how differential rotation, but many theorists \citep[e.g.,][]{brun&all2017} are grappling to understand how differential rotation profiles like the Sun's are formed.
+In Chapter~\ref{ch:ro_p19}, I will explore one fundamental study in rotating convection.
+
+The effects of stellar magnetism on convection are less well-understood than rotation.
+Recent theoretical work suggests that the topology of a star's magnetic field can induce variations in pulsational frequencies \citep{santos&all2018}, suggesting that magnetism should not be neglected.
+A deep exploration of dynamo action or magnetoconvection in the stellar context is beyond the scope of this thesis, and I refer the reader to the reviews of \citet{charbonneau2010, charbonneau2014, brun&browning2017}.
 
 
-\section{Numerical Methods}
+
+\section{Numerical Methods: Approaches}
 \label{sct:numerics}
 
-\subsection{Approaches to numerical modeling}
-
-
-\subsubsection{Direct Numerical Simulations vs.~Large Eddy Simulations}
+\subsection{Direct Numerical Simulations vs.~Large Eddy Simulations}
 Direct Numerical Simulations (DNS) are simulations in which the Navier-Stokes equations are evolved in their entirety without any model for the turbulence, and the term was first coined by \citet{orzag1970}.
 Due to the fact that they resolve all spatial scales down to the turbulent viscous cutoff scale, DNS were until recently limited to studies of relatively laminar flows.
 As computational resources have expanded over the past decades, so too have the regions of turbulent parameter space available for probing through DNS.
 
 
 Large Eddy Simulations (LES) were first proposed by \cite{smagorinsky1963}, and first explored numerically by \citet{deardorff1970}.
-Fundamentally, LES are used to study the large-scale motions in systems, such as atmospheres, by neglecting small scale motions (and attempting to model their effects).
-Grid-scale motions are explicitly calculated and evolved according to the Navier Stokes equations while subgrid scale (SGS) motions are filtered out and assumptions for their Reynolds stresses are imposed.
+An excellent argument in favor of the use of LES is laid forth by \citet{miesch&all2015}, and I refer the reader there for a more thorough exploration of this topic than will be undertaken here.
+In short, the central premise of LES is that large scale motions dominate both the turbulent transport and energy budget of a fluid system such as the solar convection zone, so a numerical simulation that captures those scales should realistically describe the real system.
+However, this premise hinges on the fact that the unresolved small scales are realistically taken into account, and these small scale motions are generally either included explicitly as subgrid-scale (SGS) models or handled implicitly through numerical dissipation.
+A given simulation can capture length scales which vary between $L$, the large-scale size of the simulation domain, and $\ell$, a small-scale set by e.g., the grid resolution.
+If $\ell \leq \ell_{\text{diss}}$, the dissipation length scale, then the simulation is a DNS -- it explicitly captures scales down to (and possibly below) the dissipation scales.
+In an LES, the goal is to set $L$ to the largest scales present in the system of interest, and to set $\ell_{\text{diss}} \ll \ell \ll \ell_{\text{max}}$, where $\ell_{\text{max}}$ is the dominant length scale of e.g., convective velocities being modeled in the system.
+By doing so, in theory a realistic description of the sytem is attained while using many fewer computational resources than would be required to resolve the largest scales in a DNS (which also must achieve small enough grid scales to resolve $\ell_{\text{diss}}$).
 
-\subsubsection{Finite Element vs. Spectral Methods}
+DNS and LES are two different tools to be used for different problems.
+In the physics community where \RB convection is studied, DNS are the tool of choice.
+There, simulations are often compared either directly or indirectly with experimental data.
+A great deal of interest is taken in ensuring that the boundary layers are resolved \citep{shishkina&all2010} due to the dominance of boundary layers in suppressing heat transport throughout the parameter space available to DNS and experiments \citep{ahlers&all2009}.
+When applied to astrophysics, DNS generally aim to understand how flow properties behave as turbulence is increased.
+These scaling laws can then be extrapolated out to astrophysical quantities (which are often many decades away from the most turbulent values achievable in DNS).
+In short, in studies of astrophysics, it is acknowledged that DNS cannot achieve a model of the true astrophysical system of interest, but can instead provide insight into the behavior of similar systems at less extreme parameters.
+The goal of LES is to study dynamics in a system which is as close to a realistic model of the astrophysical system of interest as can be achieved.
+However, LES are senitive to choices of how to model SGS effects.
+Some recent studies suggest that these two approaches should not be seen as an ``either or'' choice but a ``both and'' \citep{mellado&all2018}.
+In other words, DNS studies can be used to accurately model small scales, and those results can better inform SGS choices of LES.
+
+Regardless, both DNS and LES have benefits and limitations, and it is important that the simulator be aware of the limitations of their tool of choice.
+All of the simulations conducted in this work are DNS.
+
+\subsection{Finite Element vs. Spectral Methods}
 The simplest and most straightforward way of modeling a physical system numerically is through the use of finite element, finite volume, and finite difference methods.
 In these systems, physical space is discretized into a series of coordinates, and the values of relevant quantiies (velocity, density, etc.) are tracked at each of those locations, and derivatives are computed based on the values of quantities in neighboring grids.
 Finite volume codes can be used to model problems in complex geometries, but can be difficult to implement for complex equations and converge slowly as the simulation resolution is increased \citep{burns&all2019}.
@@ -195,12 +251,215 @@ Nonlinear terms are dealiased, projected onto a finite volume domain, and analyz
 Pseudospectral methods can be much more efficient than spectral methods in the analysis of certain terms.
 Some other modern codes which employ spectral methods are Rayleigh\footnote{\url{https://geodynamics.org/cig/software/rayleigh/}}, MagIC\footnote{\url{https://magic-sph.github.io/}} \citep{wicht&all2017}, SNOOPY\footnote{\url{http://geoffroy-lesur.org/snoopy.html}} \citep{lesur2015}, and ASH (closed source).
 
+A benchmark comparing Dedalus' pseudospectral methods to Athena's finite volume methods for a turbulent, nonlinear Kelvin-Helmholtz instability is explored by \citet{Lecoanet_et_al_2016_KH}.
+
 
 \subsection{Timestepping: Implicit \& Explicit methods}
+\label{sct:intro_timestepping}
+The most common class of timestepping methods used are explicit timestepping methods.
+In these methods, the future state of the system is solved for as a function of the current state of the system and some timestep size, $\Delta t$.
+While these methods are the simplest to implement, they are inefficient at solving stiff problems in which there are two different flows which act on very different timescales.
+Specifically, in order to ensure that timestepping errors remain small, it is important that timesteps which are ``too large'' are not taken.
+Mathematically, the size of the largest possible timestep which can be taken is specified by the Courant-Friedrichs-Lewy (CFL) condition,
+\begin{equation}
+C = \frac{u \Delta t}{\Delta x} \leq C_{\text{max}},
+\end{equation}
+where $C$ is the Courant number, $C_{\text{max}}$ is typically O(1) for explicit methods, $\bm{u}$ is the fluid velocity magnitude, and $\Delta X$ is the grid spacing of a simulation \citep{cfl1967}.
 
-\subsection{Equation Formulation: Complexity or Simplicity}
+Implicit timestepping methods, on the other hand, solve a linear algebraic system that involves both the current and the future timestep.
+These methods are as a general rule more memory intensive than explicit methods and are also more difficult to implement.
+The MUSIC code is one of the first astrophysical codes to offer the capability of studying stellar convection which utilize a fully implicit timestepper.
+Since implicit methods are not bound as strongly by the CFL condition, there has been great optimism that the implementation of implicit methods could allow numericists to simulate convection over many dynamical timescales using a modest number of timesteps.
+Unfortunately, as discovered by \citet{viallet&all2011, viallet&all2013, viallet&all2016}, implicit methods do not achieve an accurate solution if the superstep the CFL of all simulation flows.
+Specifically, it was found that implicit methods must take short enough timesteps in order to resolve nonlinear advective flows.
+
+Mixed implicit-explicit (IMEX) methods have been growing in popularity in recent years.
+These methods utilize the best parts of both implicit and explicit methods.
+Generally, these methods handle linear terms implicitly, thereby superstepping CFL conditions on linear waves or other linear system solutions.
+These methods then handle their nonlinear terms explicitly, using significantly less memory than nonlinear implicit methods.
+All of the simulations presented in this thesis utilze IMEX methods.
+
+
+\subsection{Equation Formulation: From Complexity to Simplicity}
+\label{sct:intro_equations}
+The equations which are the cornerstone of any fluid dynamical study are at some point an approximation.
+Even the fully compressible Navier-Stokes equations,
+\begin{gather}
+\frac{\partial \rho}{\partial t} + \Div{\rho\bm{u}} = 0 
+\label{eqn:intro_fc_continuity}
+\\
+\frac{\partial \bm{u}}{\partial t} + \bm{u}\cdot\grad\bm{u} = -\frac{1}{\rho}\grad P + \bm{g} + \frac{1}{\rho}\Div{\stressT},
+\label{eqn:intro_fc_momentum}
+\end{gather}
+are an approximation upon kinetic theory for how an ensemble of particles behaves.
+Here, $\rho$ is the fluid density, $\bm{u}$ is the bulk fluid velocity, $P$ is the pressure, $\bm{g}$ the gravity, and $\stressT$ the viscous stress tensor.
+It is likely crucial that a simulation studying the near-surface layers of the Sun---where the Mach number is high and compressibility effects are important---use a fully compressible equation set, as formulated above.
+However, in certain limits, it is often useful to approximate these equations even further.
+
+\subsubsection{The Lantz-Braginsky-Roberts (LBR) Anelastic Equations}
+One of the most commonly used approximations of the fully compressible equations in astrophysics is the Anelastic approximation.
+Under this approximation, density fluctuations are assumed to be small such that Eqn.~\ref{eqn:intro_fc_continuity} becomes
+\begin{equation}
+\Div{\rho_0 \bm{u}} = 0,
+\label{eqn:intro_an_continuity}
+\end{equation}
+where here $\rho_0$ is the background atmospheric stratification.
+This approximation essentially says that density fluctuations away from $\rho_0$ are so small that they can be neglected.
+While many formulations of the Anelastic equations have been used, perhaps one of the ``best'' is the Lantz-Braginsky-Roberts (LBR) formulation attributed to \citet{lantz1992} and \citet{braginsky&roberts1995}.
+This formulation both conserves energy \citep{brown&all2012} and can be derived from Lagrangian constraints \citep{vasil&all2013}.
+In this formulation, the momentum equation (Eqn.~\ref{eqn:intro_fc_momentum}) becomes
+\begin{equation}
+\frac{\partial \bm{u}}{\partial t} + \bm{u}\cdot\grad\bm{u} = -\grad \varpi - \frac{S_1}{c_P} \bm{g} + \frac{1}{\rho_0}\Div{\stressT},
+\label{eqn:intro_an_momentum}
+\end{equation}
+where $\varpi \equiv P_1 / \rho_0$ is the reduced pressure (here $P_1$ are pressure fluctuations away from the background pressure profile $P_0$, which is assumed to be in hydrostatic equilibrium) and the specific entropy is given by the linearized ideal gas equation of state,
+$$
+\frac{S_1}{c_P} = \frac{1-\gamma}{\gamma}\frac{P_1}{P_0} + \frac{T_1}{T_0},
+$$
+where $T$ is the temperature.
+
+One benefit of anelastic approximations such as the one here is that they are \emph{soundproof}.
+In other words, these equations are not stiff: acoustic waves are explicitly filtered out of the linear solution of these equations, so simulations of low Mach number flows can be performed using explicit timestepping techniques without having to take prohibatively small timesteps that follow the sound waves.
+Anelastic equation formulations have historically been used in many global simulation models (ASH and Rayleigh both use an anelastic equation formulation).
+More recently, implicit-explicit (IMEX) timestepping methods have enabled low Mach number simulations under the \emph{fully compressible} equations which are not bound by the CFL.
+If these methods become more prevalent, it is possible that Anelastic approximations may become a thing of the past.
+Regardless, some comparisons of fully compressible low Mach number dynamics and Anelastic dynamics have shown remarkable agreement between the two equation sets \citep[see e.g.,][and chapter \ref{ch:alb19}]{lecoanet&all2014, andersLB2019}.
+As such, due to their simplicity, anelastic models will likely continue to find use in theoretical descriptions of low Mach number flows.
+
+\subsubsection{The Boussinesq approximation}
+The simplest possible approximation in which buoyantly driven flows are frequently studied is the Boussinesq approximation.
+The limits of this approximation were famously explored by \citet{spiegel&veronis1960}.
+The Boussinesq approximation applies when thermodynamic and density fluctuations are small compared to the background (as in the Anelastic approximation), \emph{and} when the vertical dimension of the fluid being studied is significantly smaller than the atmospheric scale height.
+In other words, the Boussinesq approximation applies when the fluid is nearly incompressible, but where buoyant forces are still important.
+Under these conditions, the continuity equation (Eqn.~\ref{eqn:intro_fc_continuity}) becomes the incompressibility constraint,
+\begin{equation}
+\DivU = 0,
+\label{eqn:intro_incompressibility}
+\end{equation}
+and the density is assumed to be a constant ($\rho_0$) everywhere except on the gravitational term in the momentum equation, where it is $\rho = \rho_0 + \rho_1$.
+Assuming that the background atmospheric profile is in hydrostatic equilibrium $-\grad P_0 + \rho_0 \bm{g} = 0$, and adopting the boussinesq approximation for density fluctuations on the gravitational term,
+\begin{equation}
+\rho_1 = \rho_0\alpha T_1,
+\end{equation}
+where $\alpha$ is the coefficient of thermal expansion and $T_1$ is temperature fluctuations away from background temperature profile.
+The boussinesq momentum equation is
+\begin{equation}
+\frac{\partial \bm{u}}{\partial t} + \bm{u}\cdot\grad\bm{u} = -\grad \varpi - \alpha T_1 \bm{g} + \nu \grad^2 \bm{u},
+\label{eqn:intro_bouss_momentum}
+\end{equation}
+where $\varpi$ is a reduced pressure as in the anelastic case, $\nu$ is the viscous diffusivity (in units of cm$^2$/s), and the viscous term simplifies into a Laplacian due to the incompressible constraint.
+
+Mathematically, the similarity between Eqns.~\ref{eqn:intro_an_momentum} and \ref{eqn:intro_bouss_momentum} is striking.
+Both have a straightforward buoyant term which makes warm perturbations rise and cool perturbations fall.
+Both have a reduce pressure gradient which acts as a Lagrangian multiplier to enforce a constraint on the flow (Eqns.~\ref{eqn:intro_an_continuity} and \ref{eqn:intro_incompressibility}, see \citet{vasil&all2013} for a more thorough discussion).
+The simplicity of these equations allows for more complete analytical manipulation of the equation, which in turn allows for the development of simple, testable hypothesis for application in DNS.
+
+Throughout this thesis, all three of these levels of approximation will be used.
+In Chs.~\ref{ch:ab17} and \ref{ch:ro_p19}, fully compressible convection will be studied.
+In Ch.~\ref{ch:alb19}, the evolution of low Mach number fluid parcels will be analyzed using both fully compressible and anelastic simulations.
+In Chs.~\ref{ch:abo18} and \ref{ch:FT20}, convection under the Boussinesq approximation will be examined.
 
 \subsection{Dedalus: A pseudospectral toolkit}
 \label{sct:dedalus}
+Dedalus is an open source Python package which allows the user to apply pseudospectral and spectral methods to solve arbitrary partial differential equation sets.
+These equation sets are generally solved in Cartesian domains, although select cylindrical domains are available, and an alpha version of Dedalus in spherical domains has been tested and is available \citep{vasil&all2019, lecoanet&all2019}
+While the full functionality of Dedalus is covered in detail in its recently released methods paper \citep{burns&all2019}, I will briefly cover some of its functionality which enabled the work in this thesis.
+
+\subsubsection{Arbitrary Equation Sets}
+Dedalus users input sets of partial differential equations into Dedalus in a plain text format.
+This means that using any of the the three equation sets covered in Section \ref{sct:intro_equations} is straightforward, and going from initial implementation of a new set of equations, to debugging those equations, to getting science results from those equations is a fast process.
+As an illustrative example, take the boussinesq equations in two dimensions:
+\begin{gather}
+\DivU = 0, \\
+\frac{\partial \bm{u}}{\partial t} + \bm{u}\cdot\grad \bm{u} = -\grad\varpi + \alpha g T_1 \hat{z} + \nu \grad^2\bm{u}, \\
+\frac{\partial T_1}{\partial t} + \bm{u}\cdot\grad T_1 + w\frac{\partial T_0}{\partial z} = \chi \grad^2 T_1.
+\end{gather}
+While these equations \emph{*should*} generally be nondimensionalized before implementation in a computational system in order to better condition the numerical system, I will carry forward with these dimensional values.
+In Dedalus, it is common to use a Chebyshev basis in the vertical direction, allowing for arbitrary boundary condition specification at the top and bottom of the domain.
+The horizontal directions are usually taken to be periodic.
+In the Chebyshev direction, it is crucial that the equations are entered in a first-order formalism.
+For a two-dimensional problem with velocity $\bm{u} = u\hat{x} + w\hat{z}$, the full equation set is
+\begin{align}
+&u_z = \frac{\partial u}{\partial z}, \label{eqn:dedalus1} \\
+&w_z = \frac{\partial w}{\partial z}, \\
+&T_{1,z]} = \frac{\partial T_1}{\partial z}, \\
+&\frac{\partial u}{\partial x} + w_z = 0, \\
+&\frac{\partial u}{\partial t} + u\frac{\partial u}{\partial x} + w u_z = -\frac{\partial \varpi}{\partial x} + \nu \left(\frac{\partial^2 u}{\partial x^2} + \frac{\partial u_z}{\partial z}\right),\\
+&\frac{\partial w}{\partial t} + u\frac{\partial w}{\partial x} + w w_z = -\frac{\partial \varpi}{\partial z} + \alpha g T_1 + \nu \left(\frac{\partial^2 w}{\partial x^2} + \frac{\partial w_z}{\partial z}\right),\\
+&\frac{\partial T_1}{\partial t} + u\frac{\partial T_1}{\partial x} + w T_{1,z}  + w \frac{\partial T_0}{\partial z} = \chi \left(\frac{\partial^2 T_1}{\partial x^2} + \frac{\partial T_{1,z}}{\partial z}\right) \label{eqn:dedalus7}.
+\end{align}
+Given a Dedalus \texttt{problem} object, these equations can straightforwardly specified through text strings as follows:
+\begingroup
+	\fontsize{9.7pt}{9pt}\selectfont
+	\begin{verbatim}
+problem.add_equation("uz  - dz(u)  = 0")
+problem.add_equation("wz  - dz(w)  = 0")
+problem.add_equation("T1z - dz(T1) = 0")
+problem.add_equation("dx(u) + wz   = 0")
+problem.add_equation("dt(u) + dx(p)        - nu*(dx(dx(u))  + dz(uz))  = -u*dx(u)  - w*uz")
+problem.add_equation("dt(w) + dz(p) + C*T1 - nu*(dx(dx(w))  + dz(wz))  = -u*dx(w)  - w*wz")
+problem.add_equation("dt(T1) + w*T0z      - chi*(dx(dx(T1)) + dz(T1z)) = -u*dx(T1) - w*T1z")
+	\end{verbatim}
+\endgroup
+In the above equations, terms are organized such that all linear terms are located on the lefthand side of the equations.
+The righthand side of the equations is reserved for nonlinear terms.
+In the above equations, the constant \texttt{C} is $\alpha g$ in the above equations.
+
+It is clear to see that, from a user perspective, equation entry in Dedalus is straightforward.
+However, the most powerful aspect of this simple equation entry is that is is trivial to add additional pieces of physics to these systems.
+For example, if I wanted to expand this system to study doubly-diffusive convection, I would only have to modify the above equation set by adding a solute evolution equation and by changing the buoyancy term in the vertical momentum equation appropriately.
+Such a modification could be performed in a number of minutes.
+This extreme flexibility has in large part enabled the broad and somewhat disparate scientific applications explored in this thesis.
+
+Throughout the rest of this section, I will use these equations as a representative example of the abilities of Dedalus.
+
+\subsubsection{Three types of solvers}
+One of the benefits of the Dedalus framework is that a block of code that solves a given set of equations, such as those specified in Eqns.~\ref{eqn:dedalus1}-\ref{eqn:dedalus7}, multiple types of solvers can be used.
+Dedalus can solve Initial Value Problems, Eigenvalue problems, and Boundary Value Problems.
+All of these solving capabilities were taken advantage of during this thesis, and I will briefly describe them below.
+
+\paragraph{Initial Value Problems,} or IVPs, are the most common type of solver taken advantage of in this thesis.
+When we solve an IVP in Dedalus, we are solving a DNS.
+These problems take an equation set, and, given a set of initial conditions and boundary value problems, take steps forward in time.
+It is up to the user to determine what an appropriate stop conditon is, and this is typically a quantity of time that it is desired that the simulation runs for.
+
+\paragraph{Eigenvalue Problems,} or EVPs, have also been utilized in this thesis.
+The Rayleigh number, or the ratio of buoyant driving to viscous dissipation, is the primary control parameter in our convective experiments.
+We have primarily used EVPs to find the critical value of the Rayleigh number, Ra$_{\text{crit}}$, for our convective systems.
+Dedalus performs an EVP on our above system of equations in the following steps:
+\begin{enumerate}
+\item It first ensures that the system is a linear system.
+It does this by setting all variables (\texttt{u, uz, w, wz, T1, T1z,} and \texttt{p}) equal to zero and evaluating the RHS of each equation.
+If all of the RHS values evaluate to zero under the assumption that all variables are zero, then the system is assumed to be linear.
+\item The user assumes that each of the variables grows proportionally to $e^{i\omega t}$, and sets a substitution so that \texttt{dt(A)}$\rightarrow$\texttt{i$\omega$ A} for each variable \texttt{A}.
+The user also generally wants to solve the EVP for a specific horizontal wavenumber, assumes that all fields can be expressed as a constant times $e^{i k_x x}$, and sets \texttt{dx(A)}$\rightarrow$\texttt{i$k_x$ A} for each variable \texttt{A}
+\item Under these approximations, the above equation system can be expressed as the linear algebraic system,
+\begin{equation}
+\begin{bmatrix}
+-\partial_z 		& 0 					& 0 					& 1 			& 0 			& 0 				& 0 \\
+0    				& -\partial_z 			& 0 					& 0 			& 1 			& 0 				& 0 \\
+0    				& 0 					& -\partial_z 			& 0 			& 0 			& 1 				& 0 \\
+ik_x 				& 0 					& 0 					& 0 			& 1 			& 0 				& 0 \\
+i\omega + \nu k_x^2 & 0						& 0						& \nu\partial_z & 0				& 0 				& i k_x \\
+0					& i\omega + \nu k_x^2	& -\alpha g				& 0				& \nu\partial_z & 0 				& \partial_z \\
+0					& \partial_z T_0		& i\omega + \chi k_x^2	& 0				& 0				& \chi\partial_z	& 0
+\end{bmatrix}
+\begin{bmatrix}
+u \\ w \\ T_1 \\ u_z \\ w_z \\ T_{1,z} \\ p
+\end{bmatrix}
+= \bm{0},
+\end{equation}
+In this work, the eigenvalue we have always been interested in is $\omega$, describing with its imaginary component whether the solution experiences exponential growth (convection) or exponential decay (not convection).
+In solving for this eigenvalue, Dedalus takes the determinant of the 7x7 matrix displayed above given a set of physical values (e.g., $k_x$, $\nu$, $\chi$), and sets that determinant equal to zero to solve for $\omega$.
+\end{enumerate}
+
+\paragraph{Boundary Value Problems,} or BVPs, have found some use in this thesis.
+Usually we solve one-dimensional boundary value problems in the $z$ direction, and therefore use a simpler set of equations than the aforementioned equation set.
+In Dedalus, BVPs are solved using a newton solver.
+Given an initial guess for the answer as a function of height, Dedalus iteratively attempts to shoot the solution closer to one which satisfies both the equations and boundary conditions.
+
+
+
+
 
 
