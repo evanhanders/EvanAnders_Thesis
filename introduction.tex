@@ -142,30 +142,74 @@ Regardless, current results and hypotheses suggest that the interplay between do
 
 
 \section{A historical perspective on studies of convection}
+Historically, experiments into the nature of convection have come from two distinct lines of motivation.
+As is the case of the studies presented in this thesis, many studies into convection are motivated by the prevelance of convection in the natural world.
+Convective experiments are also an ideal system in which to study driven turbulent flows.
+These two motivations have led to a large variety of studies into the nature of convection, which I will attempt to briefly summarize here.
+Generally, studies of \emph{turbulence} have focused on simple convective laboratory experiments or simulations in the Boussinesq regime, whereas astrophysically or geophysically motivated span from the same simple experimental setups to magnetohydrodynamic, global ``dynamo'' simulations in spherical domains.
 
+\subsection{\RB convection}
+The first controlled laboratory experiments of convection (or, a fluid layer heated from below and cooled from above) were performed by B\'{e}nard in 1900.
+Over a decade later, the first \emph{theoretical} description of that convective layer was performed by Lord Rayleigh in 1916, at who first derived the Rayleigh number,
+\begin{equation}
+\text{Ra} = \frac{\alpha g L^3 (\Delta T)}{\nu \kappa},
+\end{equation}
+where $\alpha$ is the coefficient of thermal expansion (describing how temperature and density fluctuations are related), $g$ is the gravitational acceleration, $L$ is the depth of the fluid layer, and $\Delta T$ is the temperature difference across the fluid layer domain, and $\nu$ and $\kappa$ are respectively the viscous and thermal diffusivities.
+Ra is roughly the ratio of buoyant convective driving to viscous dissipation, and the pioneering work of these scientists in the field are the reason that Boussinesq thermal convection is widely known as \RB convection (RBC).
+Together with geometric factors (the size and shape of the experimental domain), boundary conditions, and the Prandtl number (Pr = $\nu/\kappa$), the Rayleigh number fully describes a convective system.
+Ra is an ideal control parameter for a convective system, because it is a straightforward knob for convective driving: above some ``critical value,'' $\text{Ra} > \text{Ra}_{\text{crit}}$, a fluid layer should convect, and the more ``supercritical'' ($S = \text{Ra}/\text{Ra}_{\text{crit}}$) a layer is, the more turbulent the convection should be.
+Furthermore, the value of $\text{Ra}_{\text{crit}}$ is independent of $\text{Pr}$ and is therefore independent of the specific fluid used in a convective experiment (e.g., in air Pr = 0.7 and in water Pr = 7).
 
+Historical reviews of the development of studies of RBC can be found throughout the decades in e.g., \citet{busse1978, siggia1994, ahlers&all2009}.
+In the simplest of terms, much of the research into RBC focuses on the behavior of heat transfer across a convective domain, quantified by the nondimensional Nusselt number (Nu),
+\begin{equation}
+\text{Nu} = \frac{\text{Evolved Convective Flux}}{\text{Comparison Hydrostatic Flux}} = \frac{\angles{w T - \kappa \partial_z T}}{|\kappa \Delta T / L|},
+\end{equation}
+where $w$ is the vertical velocity, and $T$ is the temperature field, and $\angles{}$ are a volume average over the convective domain.
+The key historical question that has been asked is: how does Nu (and also the Reynolds number, Re) scale as Ra and Pr are changed?
+The earliest theoretical description developed by \citet{malkus1954} asserts that the boundary layers of convective domains are always in a marginally stable state, and thus when the Rayleigh number is defined with $L = \delta$, the boundary layer thickness, it should always have a value of Ra$_{\text{crit}}$.
+Such arguments lead to a classical scaling law of $\text{Nu} \propto \text{Ra}^{1/3}$, and similar scalings have been seen in experiments for decades.
+More recently, in \citet{grossman&lohse2000} and following papers, a unifying theory of scaling behavior has been developed that is based around the dissipation of kinetic and thermal energy.
+Each of these energy dissipations is split into a bulk and boundary layer component, due to the different force balances at work in the bulk or the boundary layers.
+Scaling laws are then determined by where in the domain each type of energy is primarily dissipated, and this results in four regimes in parameter space (e.g., where kinetic energy is dissipated in the boundaries but thermal is dissipated in the bulk, and other permutations).
+This theory, and a comparison to experimental and numerical results, are described in detail by \citet{ahlers&all2009}.
+Regardless, a great number of studies have historically sought out the so-called ``ultimate regime'' of convection, which is the regime in which boundary layer dissipation is unimportant compared to the bulk, and some authors have recently claimed to have achieved such scalings \citep[see e.g.,][]{zhu&all2018}.
 
-\subsection{Laboratory Experiments \& Simple Simulations}
-The first controlled laboratory experiments of convection were performed by B\'{e}nard in 1900.
-Then Rayleigh found the Rayleigh number.
-Most of modern theory came more recently, as in (examples, examples).
-A complete review of \RB convection can be found in \citet{siggia1994}
+\subsection{Convective experiments that are closer to nature}
+While modern and historical studies of RBC have allowed the community of convective modelers to understand convective experiments to a much greater degree, they do not contain all of the ``ingredients'' which are important to astrophysical or geophysical convection.
+Numerous studies exist which aim to understand these additional complexities, ranging from studies which essentially study RBC with one extra component to studies with realistic radiiative transfer, magnetism, etc.
 
+On the simpler end of this spectrum, the effects of rotation, and to a lesser extent magnetism, have been studied in the RBC context to great detail.
+\citet{plumley&julien2019} provide an excellent overview of these fields.
+In general, the presence of global rotation or a strong background magnetic field suppress convection, and thus increase the value of Ra$_{\text{crit}}$.
+At low supercriticalities above Ra$_{\text{crit}}$, rotational (e.g., Coriolis) or magnetic forces dominant the convective flow balances.
+As $S$ is increased, these forces become less important until eventually convective scaling laws return to their nonrotating or nonmagnetic forms.
+Theoretical descriptions of these models often focus on understanding scaling laws in the rotationally- \citep[e.g.,][]{julien&all2012} or magnetically- \citep[e.g.,][]{cioni&all2000} dominated regime.
+In this thesis (Ch.~\ref{ch:ro_p19}), we focus on the effects of rotationally-influenced convection in stratified atmospheres.
 
-\subsection{Stellar-like Simulations}
-The first study of convective instability in a polytropic atmosphere was by \citet{unnoetall1960}.
-The earliest simulations in stellar-like convection \citep{graham1975, hurlburt&all1984, cattaneo&all1991, brummell&all1996, brummell&all1998} often sought to study simplified systems.
-Cartesian geometry was employed, and convective flows in the presence of one or more complicating effects (stratification, rotation, magnetism, etc.)~were explored.
-Despite vast modern computational resources, similar studies \cite[e.g.,][]{wood&brummell2012, anders&brown2017, wood&brummell2018} have become rare in the past two decades, and the highly laminar results of simulations from twenty years ago are often the state-of-the-art.
+Outside of the realm of RBC, the field of convective research is less systematic and focused.
+Atmospheric density stratification is one key ingredient of convection in geophysical and astrophysical applications.
+The simplest stratified convection studies utilize a polytropic stratification, which has a linear temperatur profile and is therefore at least somewhat comparable to RBC.
+The first study which determined how to find Ra$_{\text{crit}}$ in a polytropic atmosphere was \citet{unnoetall1960}, but the first dynamical simulations of polytropic convections could not be performed until those of \citet{graham1975}.
+These early works focused on similar questions to those studied in the RBC community (how does Nu behave as Ra increases?) but were limited to a very small range of supercriticalities.
+Subsequent studies into polytropic convection \citep[e.g.,][]{hurlburt&all1984, cattaneo&all1991} often focused more on the morphology of overall convective flows and the emergent nonlinear phenomena.
+This trend continued as complicating physics were added in addition to stratification (e.g., rotation in \citet{brummell&all1996, brummell&all1998}, stably stratified layers in \citet{hurlburt&all1986, singh&all1995, brummell&all2002}, or magnetism/dynamo action in \citep{nordlund&all1992, brandenburg&all1996, tobias&all1998}).
 
-Recently, numericists have often switched aims from simply understanding convection to trying to reproduce precisely aspects of solar or stellar convection.
+As computational resources have continued to increase, so too have the complexity of convective simulations.
+Modern ``dynamo simulations'' examine the evolution of rotating magnetohydrodynamic convection in spherical domains and have produced fascinating phenomenon.
+These dynamo simulations regularly produce self-consistent differential rotation \citep{strugarek&all2018}, ``wreaths'' of magnetism \citep{brown&all2010}, magnetic cycles \citep{brown&all2011}, and more phenomenon.
+These emergent phenomena parallel observed phenomena on the Sun and suggest that our fundamental understanding of the Sun's dynamo (that it is driven by turbulent motions in the convective zone) are correct.
+However, these simulations are difficult to run and are so complex in and of themselves that they are essentially like observations in that it is easy to see what they produce, but hard to understand and predict how those phenomena occurred.
+
+Dynamo simulations are not the only class of simulations which face this problem.
 Small scale ``local'' simulations with realistic radiative transfer strikingly visually resemble solar surface convection and sunspots \citep{stein&nordlund1998, rempel&all2009, stein&nordlund2012, rempel2014}.
-Local simulations have shaped how some observational experts interact with simulations, and the raw data of \cite{rempel2014}'s simulations are being used directly as high-resolution observations of solar convection \cite[see e.g.,][and others]{vankooten&cranmer2017, shchukina&trujillo2019}.
-While simulations of solar surface convection reproduce solar features remarkably well, simulations of deep convection fail to reproduce observations  \citep{hanasoge&all2015}.
-These global simulations exhibit giant cells as well as cycling dynamos and latitudinal differential rotation with very different timescales and profiles than those of the Sun \citep{brown&all2010, brown&all2011, guerrero&all2016, hotta&all2016, brun&all2017, strugarek&all2018}.
-Simple simulations, where effects like rotation and magnetism can be well understood, should be utilized to understand why deep global simulations fail to reproduce solar observations.
-This understanding can in turn be used to produce better ``realistic'' simulations which more accurately reflect aspects of true solar convection.
-Realistic simulations built on a more detailed fundamental understanding of stellar convection can produce valuable synthetic observables for helioseismologists, asteroseismologists, and scientists who will soon use the NSF's Daniel K. Inouye Solar Telescope (DKIST) to study the solar surface at high resolution.
+These simulations are visually resemble solar surface convection so convincingly that the raw data of e.g., \cite{rempel2014}'s simulations are being used directly as high-resolution observations of solar convection \cite[see e.g.,][and others]{vankooten&cranmer2017, shchukina&trujillo2019}.
+While we study the flows in these simulations in great detail, they ultimately mostly just tell us the same thing that observations do: the solar surface convects, the photosphere is where the solar atmosphere becomes optically thin, and sunspots are regions of large magnetic field in the presence of this convection.
+
+The ultimate goal of convective models in the context of solar or stellar convection is to understand how the solar dynamo operates so that we can eventually, hopefully, \emph{predict} its behavior.
+The great numerical resources available to modern numericists have proven that we can simulate impressive things.
+It is now crucial to simplify our simulations to conduct \emph{experiments} in which we study how specific pieces of convection behave \citep[such as in the studies of tachocline interactions of][]{wood&brummell2018}.
+Through the knowledge gained in more focused studies, we can better predict the results of global simulations, and better build up a model of dynamo action, or other complex behavior in geo- or astrophysical convection.
 
 
 \subsection{Mixing Length Theory \& Stellar Structure Models}
@@ -199,7 +243,7 @@ In Chapter~\ref{ch:ro_p19}, I will explore one fundamental study in rotating con
 
 The effects of stellar magnetism on convection are less well-understood than rotation.
 Recent theoretical work suggests that the topology of a star's magnetic field can induce variations in pulsational frequencies \citep{santos&all2018}, suggesting that magnetism should not be neglected.
-A deep exploration of dynamo action or magnetoconvection in the stellar context is beyond the scope of this thesis, and I refer the reader to the reviews of \citet{charbonneau2010, charbonneau2014, brun&browning2017}.
+A deep exploration of dynamo action or magnetoconvection in the stellar context is beyond the scope of this thesis, and I refer the reader to the reviews of \citet{brandenburg&subramian2005, charbonneau2010, charbonneau2014, brun&browning2017}.
 
 
 

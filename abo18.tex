@@ -2,8 +2,20 @@
 \label{ch:abo18}
 
 \section{Preamble}
+The following work was published in Physical Review Fluids \citep{anders&all2018}.
+The text in section \ref{sec:abo18_published} is the text of the paper as it was accepted for publication.
+Following the published work, in section \ref{sec:abo18_postscript}, I comment on a few lessons that have been learned since we published these results.
+
+This work was motivated by some preliminary simulation work that was being performed in internally heated, compressible atmospheres (see \ref{sec:internally_heated}).
+In these domains, a stable layer lay below a convective layer, and the evolutionary timescales at the bottom of that thermal layer were infeasibly long in the regime of highly turbulent, astrophysical convection.
+Initial ``Accelerated Evolution'' (AE) procedures were created and tested (to seemingly a great deal of success) in those internally heated simulations.
+However, we did not trust that our AE techniques were necessarily giving us the ``correct'' answer, and we didn't feel comfortable using a numerical technique that we hadn't verified could work.
+Due to the complexity of those internally heated systems, we decided to test AE mechanisms in the simplest possible simulation setup: Boussinesq, \RB convection.
+
+In this work, we develop a basic AE procedure and verify that it produces the ``correct'' convective state.
 
 \section{Published work}
+\ref{sec:abo18_published}
 
 \subsection{Introduction}
 \label{sec:abo18_intro}
@@ -13,7 +25,7 @@ Stiffness in astrophysical systems can manifest in multiple ways, some of which 
 For example, flows in the convection zones of stars like the Sun are characteristically low Mach number (Ma) in the deep interior. 
 Initial value problems solved using explicit timestepping methods are bound by the Courant-Friedrich-Lewy (CFL) timestep limit corresponding to the fastest motions (sound waves), resulting in timesteps which are prohibitively small for studies of the deep, low-Ma motions. 
 These systems are numerically stiff, and the difference between the sound crossing time and the convective overturn time has made studies of low-Ma stellar convection difficult. 
-This stiffness can be avoided using approximations such as the anelastic approximation, in which sound waves are explicitly filtered out \cite{brown&all2010, featherstone&hindman2016}.
+This stiffness can be avoided using approximations such as the anelastic approximation, in which sound waves are explicitly filtered out \cite{brown&all2010, featherstone&hindman2016a}.
 Recently, advanced numerical techniques which use fully implicit \cite{viallet&all2011, viallet&all2013, viallet&all2016} or mixed implicit-explicit \cite{lecoanet&all2014, anders&brown2017, bordwell&all2018} timestepping mechanisms have made it possible to study convection in the fully compressible equations at low Mach numbers, and careful studies of deep convection which would have been impossible a decade ago are now widely accessible.
 
 Unfortunately, astrophysical convective systems are stiff in more than one timescale. 
@@ -42,7 +54,7 @@ In other systems, particularly when convective zones are adjacent to stable regi
 Rather, either through knowledge of low-Ra solutions \cite{couston&all2017} or broader convective theories such as Mixing Length Theory \cite{brandenburg&all2005}, initial conditions can be adjusted such that the stratification within the convective domain is closer to a relaxed state than the largely unstable hydrostatic state.
 
 Despite the numerous methods that have been used, the most straightforward way to achieve a thermally relaxed solution is to evolve a convective simulation through a thermal timescale. 
-Some modern studies do just that \cite{featherstone&hindman2016}.
+Some modern studies do just that \cite{featherstone&hindman2016a}.
 Such evolution is computationally \emph{expensive}, and state-of-the-art simulations at the highest values of Ra can only reasonably be run for hundreds of freefall timescales \cite{stevens&all2011}, much less the thousands or millions of freefall times required for thermal relaxation.
 
 In this work, we study a method of achieving accelerated evolution of convective simulations. 
@@ -451,7 +463,6 @@ At $S = 10^7$, the AE solve immediately improved the timestep size by nearly a f
 %%%%%%%%%%%
 %%%%%%%%%%%%
 
-\newpage
 \subsection{Discussion \& Conclusions}
 \label{sec:abo18_extensions}
 In this work we have studied a method of Accelerated Evolution (AE) which can be employed to achieve rapid thermal relaxation of convective simulations.  
@@ -567,5 +578,7 @@ In this work, we chose our number of AE iterations such that $f \approx 10^{-2}$
 In general, the user of AE could set $f$ smaller, and in doing so reduce the separation between the AE and SE solutions, which can be seen in e.g., Fig.~\ref{fig:temp_comparison}a\&b. 
 However, smaller values of $f$ require additional AE BVP solves, and likely require smaller values of $P$, resulting in longer wait times while the horizontal averages are computed.
 
-
+\newpage
 \section{Postscript and lessons learned since publication}
+\label{sec:abo18_postscript}
+
