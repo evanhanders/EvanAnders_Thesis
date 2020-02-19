@@ -3,38 +3,31 @@
 
 \section{Flywheel modes in 2D convection}
 \label{sec:flywheels}
-This would be a short (letter?) length paper that studies \RB convection at \textbf{high aspect ratio with stress free boundaries}.
-In this paper, we would show:
+This project \emph{almost} became a paper, but we couldn't find an angle in which to make it sufficiently interesting.
+Our goal was to study \RB convection at \textbf{high aspect ratio with stress free boundaries}, and show:
 \begin{enumerate}
-\item An argument for how the enstrophy should scale as a function of Ra (see section \ref{sec:enstrophy_scaling}).
+\item An argument for how the average system enstrophy should scale as a function of Ra (see section \ref{sec:enstrophy_scaling}).
 \item A description of the physical mechanism that creates this enstrophy (see section \ref{sec:enstrophy_generation}).
-\item A description of the timescale that it occurs for the flywheel to fully spin up (or down, depending on boundary condition choice), including a note that this gets long at large timescales.
-\item A comparison to no-slip sims, and whether they have a similar spin-up (and if not, what's the mechanism?)
-\item A demonstration of what you get wrong if you take your measurements before the spin-up is done at high Ra.
-\item (possibly) An Accelerated Evolution simulation that shows that the thermal relaxation we talked about there is separate from this spinup.
-\item (possibly) Is this a 2D only phenomenon or does something like it happen in 3D?
+\item A description of the timescales over which flywheels spin up (or down, depending on thermal boundary condition choice).
+Presumably this is related to the viscous diffusion timescale, but it's a bit unclear what it is.
+\item A comparison to no-slip sims, and whether they have a similar spin-up (how do they avoid these modes?).
+\item A demonstration of what you get wrong if you take your measurements before the spin-up is done at high Ra (I think you probably get quantities like Nu right but Re wrong).
 \end{enumerate}
-
-There's a bit of a problem of ``well, OK, but who cares?'' with this paper.
-Probably one of the best ways we can spin it is that in our 2018 AE paper, we studied thermal relaxation.
-But that's not the only type of relaxation in convective systems, because things like global spherical simulations build up differential rotation profiles, etc. over time.
-So here we're studying one type of velocity-based system relaxation, and it just happens to be one that we didn't understand well a couple of years ago, and it's also REALLY clean.
 
 \subsection{An argument for the scaling of enstrophy in a boussinesq, convective system}
 \label{sec:enstrophy_scaling}
-Starting with our friend the momentum equation in the Boussinesq limit,
+The Boussinesq momentum equation is
 \begin{equation}
 \pderiv{\bu}{t} = -\grad\varpi + T_1\hat{z} - \mR \dotp{\bu}{\curl{\bV}} + \cross{\bu}{\bV},
 \label{eqn:momentum}
 \end{equation}
-where $\bu$ is the velocity vector, $\varpi$ is the pressure (but actually a lagrange multiplier), $T_1$ is the temperature deviation from background, $\mR = \sqrt{\text{Pr}/\text{Ra}}$, and $\bV = \curl{\bu}$ is the vorticity.
+where $\bu$ is the velocity vector, $\varpi$ is the reduced pressure (a Lagrange multiplier that enforces incompressibility), $T_1$ is the temperature deviation from background, $\mR = \sqrt{\text{Pr}/\text{Ra}}$, and $\bV = \curl{\bu}$ is the vorticity.
 We dot $\bu$ into this equation in order to get the kinetic energy equation,
 \begin{equation}
 \pderiv{u^2/2}{t} + \Div{\varpi \bm{u} + \mR \cross{\bV}{\bu}} = w T_1 - \mR \omega^2.
 \end{equation}
-If we define the volume average as $\angles = \mathcal{V}^{-1}\int_{\mathcal{V}} dV$, where $\mathcal{V}$ is the volume of our domain, and we take the volume average of this equation, we can gain some insight.
-We will at this point assume that the boundaries are impenetrable ($w = 0$), and allow for otherwise general boundary conditions (stress free or no slip, not yet specified).
-Under the assumption that we have one of these boundaries (stress free [$\bV = 0$ at boundaries] or no slip [$\bu = 0$ at boundaries]), we get
+Under the assumption of impenetrable boundaries ($w = 0$, so $w\varpi = 0$), coupled with no-slip ($\bu = 0$) or stress-free boundaries ($\bV = 0$), the fluxes disappear at the top and bottom plate.
+If we define the volume average as $\angles{} = \mathcal{V}^{-1}\int_{\mathcal{V}} dV$, where $\mathcal{V}$ is the volume of our domain, and we take the volume average of this equation, we get
 \begin{equation}
 \angles{\pderiv{u^2/2}{t}} = \angles{w T_1} - \mR \angles{\omega^2}.
 \end{equation}
@@ -63,13 +56,15 @@ Or, through a straightforward substitution, we expect
 \text{Pr}^{-1} (1 - \text{Nu}^{-1}) & \text{fixed Flux boundary}
 \end{cases}.
 \end{equation}
-We find that, at least for stress free boundary conditions, this is indeed a good description of the enstrophy contained in the evolved flywheels, see Fig. \ref{fig:enstrophy}.
+We find that this is indeed a good description of the enstrophy contained in the evolved flywheels for stress-free simulations, see Fig. \ref{fig:enstrophy}.
+Note, these scalings hold up for no-slip boundary conditions, as well.
+In the case of no-slip boundaries, the enstrophy is localized near the boundary (where the bulk velocities must go to zero over a small lengthscale).
 
-\begin{figure}
-    \includegraphics[width=\columnwidth]{figs/unpublished/enstrophy_v_ra.pdf}
+\begin{figure}[t!]
+    \includegraphics[width=\textwidth]{figs/unpublished/enstrophy_v_ra.pdf}
     \caption{
-	(left) Enstrophy in freefall time units nondimensionalized by the evolved temperature jump across the domain, and normalized by the supercriticality to the third power.
-	(right) Enstrophy in freffall time units nondimensionalized by the evolved system flux.
+	(left) Enstrophy in inverse freefall time units nondimensionalized by the evolved temperature jump across the domain, and normalized by the supercriticality to the third power.
+	(right) Enstrophy in inverse freefall time units nondimensionalized by the evolved system flux.
 	Simulation measurements are shown from simulations run with fixed flux boundaries (red stars), fixed temperature boundaries (orange crosses), and the expected value of enstrophy as a function of Nu is overplotted.
     \label{fig:enstrophy} }
 \end{figure}
@@ -80,46 +75,56 @@ In order to determine where the enstrophy comes from, we first curl Eqn.~\ref{eq
 \begin{equation}
 \pderiv{\bV}{t} = -(\dotp{\bu}{\grad})\bV + (\dotp{\bV}{\grad})\bu + \curl{T_1\hat{z}} + \mR \grad^2 \bV.
 \end{equation}
-As before, we now dot $\bV$ into this equation and find
+We now dot $\bV$ into this equation to retrieve the enstrophy evolution equation,
 \begin{equation}
 \pderiv{\omega^2/2}{t} + \Div{\cross{\bV}{\left(T_1\hat{z} - \mR\curl{\bV} + \cross{\bu}{\bV}\right)}} = \dotp{\left(T_1\hat{z} - \mR\curl{\bV} + \cross{\bu}{\bV}\right)}{\curl{\bV}}.
 \end{equation}
-While generally interesting, we are specifically interested in the 2D case where $\bu = u\hat{x} + w\hat{z}$ and $\bV = \omega\hat{y}$.
+We are specifically interested in the 2D case where $\bu = u\hat{x} + w\hat{z}$ and $\bV = \omega\hat{y}$.
 In this limit, the enstrophy equation is
 \begin{equation}
+\begin{split}
 \pderiv{\omega^2/2}{t} + \Div{\omega\left[\left(T_1 + u\omega - \mR\pderiv{\omega}{x}\right)\hat{x} + \left(w\omega - \mR\pderiv{\omega}{z}\right)\hat{z}\right]} 
-= T_1\pderiv{\omega}{x} + \frac{1}{2}\left(w\pderiv{\omega^2}{z} + u\pderiv{\omega^2}{x}\right) - \mR \left(\left[\pderiv{\omega}{z}\right]^2 + \left[\pderiv{\omega}{x}\right]^2\right).
+=\\ T_1\pderiv{\omega}{x} + \frac{1}{2}\left(w\pderiv{\omega^2}{z} + u\pderiv{\omega^2}{x}\right) - \mR \left(\left[\pderiv{\omega}{z}\right]^2 + \left[\pderiv{\omega}{x}\right]^2\right).
+\end{split}
 \end{equation}
-We can see immediately that all enstrophy fluxes vanish at the boundaries for stress-free boundary conditions.
+We can see immediately that all enstrophy fluxes vanish at the boundaries for stress-free boundary conditions (where $\bV = 0$ at the boundaries).
 For this case, we take a volume average and find:
 \begin{equation}
 \angles{\pderiv{\omega^2}{t}} = 2\angles{T_1\pderiv{\omega}{x}} + \angles{w\pderiv{\omega^2}{z} + u\pderiv{\omega^2}{x}} - 2\mR \angles{\left[\pderiv{\omega}{z}\right]^2 + \left[\pderiv{\omega}{x}\right]^2}.
 \end{equation}
-There are, on the RHS, three source terms for the enstrophy: one from buoyancy, one from advection, and one from viscosity.
+On the RHS, there are three source terms for the enstrophy.
+From left to right, they are the baroclinic term (from buoyancy), a term from advection (vortex stretching), and viscous dissipation.
 Viscosity acts in a straightforward way: it aims to reduce enstrophy anywhere there is a gradient of the vorticity.
-Buoyancy also acts in a fairly straightforward way: Downflows ($T_1 < 0$) separate areas of positive vorticity (on the left) and negative vorticity (on the right), meaning $\pderiv{\omega}{x} < 0$, and the overall productive is positive.
+Buoyancy also acts in a fairly straightforward way: Downflows ($T_1 < 0$) separate areas of positive vorticity (on the left) and negative vorticity (on the right), meaning $\pderiv{\omega}{x} < 0$, and produce a net positive enstrophy.
 Upflows act in the same way, where the signs on both terms are switched and the product remains positive.
 The advective term is more complicated.
 The $u \pderiv{\omega^2}{x}$ term seems to destroy enstrophy at plume generation sites and produce it at plume impacting sites.
 The $w \pderiv{\omega^2}{z}$ term seems to both generate and destroy enstrophy at  impacting sites (probably canceling out), but it generates enstrophy at plume launching sites.
 
-From some initial simulations, it seems that the buoyant term generates enstrophy and the viscous term destroys it, and that the advective term cancels out due to symmetry in the systems I've studied.
+Initial simulation results suggest that the advective generation terms are unimportant.
+It seems that the baroclinic term generates enstrophy and the viscous term destroys it.
+When these two terms come into balance, the flywheel is fully developed.
+
+\subsection{Next steps}
+Unfortunately, this was as far as this work progressed.
+Logical next steps would be to figure out the timescales over which the flywheels develop (from theoretical efforts such as those laid out above, and from simulations).
+Furthermore, carrying out a similar procedure for the compressible equations to understand if the flywheels are as simple to understand there would be crucial in understanding why our Mach number increases with Ra in 2D polytropic convection sims (in Fig.~\ref{fig:ma_v_eps}).
 
 \section{Viscous Heating (and flux in shear flows)}
 
 \section{Internally Heated, Fully Compressible Convection}
 \label{sec:internally_heated}
+Convective systems in nature (e.g., in stars) are generally not as simple as the purely boundary-driven convection generally examined in simple convective simulations.
+The next step up in complexity from boundary driven convection is \emph{internally heated} convection, in which the convection is driven through the bulk deposition of energy in the convective domain.
+The increasing opacity within the solar convection zone (and subsequend divergence of radiative flux) can be seen as an internal heating term, and so understanding how these systems fundamentally behave is important in understanding astrophysical convection.
+Inspired by the work of \citet{goluskin&spiegel2012} and the concise review of \citet{goluskin2015}, we wanted to develop very simple internally heated, fully compressible systems.
+Just as polytropic atmospheres have linear temperature profiles and can be compared to \RB convection easily, our goal was to develop and study stratified atmospheres driven by a constant internal heating term (resulting in a quadratic temperature profile).
 
-%%%%%%%%%%%%
-%%%%%%%%%%%
-% Stability and F_avail 
-%%%%%%%%%%%
-%%%%%%%%%%%%
-\subsection{Convective stability and available flux}
+\subsection{Preliminaries: Convective stability and available flux}
 \label{sec:stability}
 In Boussinesq convection, convective stability is entirely determined by the temperature gradient.
 There, negative temperature gradients drive convective motions, and positive temperature gradients are stable.
-When compressibility is taken into account, atmospheres can maintain stability even in the presence of a large, negative temperature gradient \cite{spiegel&veronis1960}.
+When compressibility is taken into account, atmospheres can maintain stability even in the presence of a large, negative temperature gradient \citep{spiegel&veronis1960}.
 In such atmospheres, it is the gradient of \emph{entropy} which determines stability.
 In an ideal gas, the specific entropy gradient is defined
 \begin{equation}
@@ -131,28 +136,29 @@ Regions with $\grad S < 0$ are unstable to convection, and regions with $\grad S
 
 Assuming that the convective system remains, to first order, in hydrostatic equilibrium, $\grad P = \rho \bm{g}$, the temperature gradient which characterizes a perfectly adiabatic state is:
 \begin{equation}
-\grad_{\text{ad}} T = \bm{g}/c_P,
+\grad_{\text{ad}} = \bm{g}/c_P,
 \end{equation}
 where $\bm{g}$ is the gravity and $c_P$ is the specific heat at constant pressure.
-The ``adiabatic temperature gradient,'' $\grad_{\text{ad}} T$, can in general have a large magnitude.
-This decreases the simplicity of interpreting the conductive (or radiative) flux in convective systems,
+The ``adiabatic temperature gradient,'' $\grad_{\text{ad}}$, can in general have a large magnitude, which makes the interpretation of the conductive (or radiative) flux in a system a bit harder to understand.
+The conductive flux is
 \begin{equation}
 \bm{F}_{\text{cond}} = -\kappa \grad T,
 \end{equation}
 where $\kappa$ is the conductivity.
-If a system is driven by some flux, $\bm{F}_{\text{drive}}$, we define the available flux as
+If a system is driven by some quantity of flux, $\bm{F}_{\text{drive}}$, we define the ``available flux'' as
 \begin{equation}
-\bm{F}_{\text{avail}} = \bm{F}_{\text{drive}} - \bm{F}_{\text{ad}},
+\bm{F}_{\text{avail}} \equiv \bm{F}_{\text{drive}} - \bm{F}_{\text{ad}},
 \end{equation}
-where $\bm{F}_{\text{ad}} = -\kappa\grad_{\text{ad}} T$ is the conductive flux carried by the adiabatic temperature gradient.
-In regions where the system is being driven with more flux than the adiabatic gradient can carry, $\bm{F}_{\text{avail}} > 0$ and that region of the system is unstable to convection.
-Likewise, in stable regions, the system is carrying an amount of flux equal to or less than what can be conducted along the adiabatic temperature gradient, and $\bm{F}_{\text{avail}} \leq 0$.
-In this way, $\text{F}_{\text{avail}}$ is a direct analog to the \emph{total} flux carried through a Boussinesq system.
+where the ``adiabatic flux,'' $\bm{F}_{\text{ad}} = -\kappa\grad_{\text{ad}}$, is flux that can be conducted across an adiabatically stratified atmosphere.
+If $\bm{F}_{\text{avail}} \leq 0$, the system is stable to convection.
+If $\bm{F}_{\text{avail}} > 0$, the system is unstable to convection.
+Importantly, $\bm{F}_{\text{avail}}$ is the \emph{only portion} of the flux that the convection is able to ``tap'' into.
+Any amount of $\bm{F}_{\text{drive}}$ that is conducted down the adiabatic gradient will not be carried by convection.
+Thus, $\bm{F}_{\text{avail}}$ is a direct analog in compressible systems to the \emph{total} flux carried through a Boussinesq system.
 
-In this work, we will study two systems: polytropic, boundary-driven convection, and convection driven by internal heating and cooling.
-Simple polytropic convection is characterized by $\bm{F}_{\text{avail}} = \text{const} > 0$ throughout the domain, and is thus analagous to \RB convection.
-Internally heated and cooled convection is characterized by having both regions where $\bm{F}_{\text{avail}}$ is positive and negative.
-We expect that accelerated evolution should straightforwardly work in polytropic convection, but that it will require modifications in internally heated convection in order to account for the zero-crossings of $\bm{F}_{\text{avail}}$ in the domain.
+Internally heated (or cooled) convection in which the domain has a convecting region and a stable region is characterized by a heating (or cooling) profile that changes the sign of $\bm{F}_{\text{avail}}$.
+
+\subsection{Disappearance of internal heating term from perturbation equations}
 
 
 %%%%%%%%%%%%
@@ -160,46 +166,55 @@ We expect that accelerated evolution should straightforwardly work in polytropic
 % Atmospheres
 %%%%%%%%%%%
 %%%%%%%%%%%%
-\subsection{Atmospheric models for accelerated evolution}
+\subsection{Two internally heated/cooled basic atmospheric models}
 \label{sec:atmospheres}
-In this work, we study convection driven by two different mechanisms in two different atmospheres.
-Sample dynamics in disequilibrium states and in relaxed states are shown for both atmospheres in Fig. \ref{fig:atmospheres}.
-In the left panels of Fig.~\ref{fig:atmospheres}, the character of boundary-driven convection in a polytropic atmosphere is shown.
-In the right panels of Fig.~\ref{fig:atmospheres}, the character of convection driven by a smooth profile of internal heating and cooling is shown.
-In all cases, we study a fluid which is a monatomic ideal gas with an adiabatic index of $\gamma = 5/3$ and whose equation of state is $P = R \rho T$, with $P$ the presssure, $\rho$ the density, $T$ the temperature, and $R$ the ideal gas constant.
+The length scale is nondimensionalized on the \emph{adiabatic} temperature gradient length scale, $\grad_{\text{ad}} = -g/c_P = -1$, where $g$ is the (uniform) gravity and $c_P$ is the specific heat at constant pressure.
+The nondimensional timescale is again the isothermal sound crossing time of that unit length at the top of the atmosphere.
 
-The initial equilibrium stratification of the polytropic atmospheres is
+\subsubsection{A two-layer atmosphere}
+A two-layer, internally heated atmosphere can be simply constructed.
+These atmospheres have an unstable layer of depth $L_C$ overlying a stable layer of depth $L_R$; the total atmospheric depth is $L_z = L_R + L_C$.
+These atmospheres are constructed around a constant internal heating term,
 \begin{equation}
-\begin{split}
-T_0 = 1 - (z - L_z), \\
-\rho_0 = T_0^{m},
-\end{split}
+Q = \kappa \epsilon,
 \end{equation}
-where $z$ is the vertical coordinate, $L_z$ is the atmospheric depth, and the polytropic index is $m = m_{\text{ad}} - \epsilon$, where $m_{\text{ad}} = (\gamma-1)^{-1}$ is the value of $m$ which produces an adiabatic stratification.
-Thermodynamics are nondimensionalized so that $P_0 = \rho_0 = T_0 = R = 1$ at the top of the atmosphere, $z = L_z$.
-The length scale is nondimensionalized by the temperature gradient length, and thus the nondimensional timescale is the isothermal sound crossing time of this unit length at the top of the atmosphere.
-The Mach number of the convective flows scales with $\epsilon$, the superadiabatic excess, like $\text{Ma} \propto \epsilon^{1/2}$.
-We studied these atmospheres previously \cite{anders&brown2017}, and found that their dynamics have many similarities to boundary-driven \RB convection, making them a perfect entry point into studying accelerated evolution in stratified domains.
+where $\kappa$ is the thermal conductivity, and this heating term is an O($\epsilon$) source term compared to a nondimensional flux ($-\kappa\grad T \sim \kappa$).
+We assume that the atmosphere satisfies thermal equilibrium,
+$$
+-\kappa \grad^2 T = Q.
+$$
+We integrate this equation such that the flux is perfectly adiabatic at $z = L_R$ ($\partial_z T = -1$ there), and such that $T = 1$ at the top of the atmosphere.
+Under these assumptions,
+\begin{equation}
+T_0 = 1 - (z - L_z) + \epsilon\left(\frac{1}{2} z^2 + L_R z + L_z \left[L_R - \frac{1}{2}L_z\right]\right),
+\end{equation}
+is the thermally equilibrated profile.
 
-While many computational and experimental studies of convection maintain convective instability through boundary condition specification, this is not generally the case in nature.
-Natural convection is generally internally heated -- driven by the gradual deposition of energy.
-Internally heated convection can be studied in well-posed Boussinesq systems \cite{goluskin&spiegel2012, goluskin&all2016}, and has even been recently studied in the laboratory \cite{lepot&all2018, bouillaut&all2019}.
-In this work, we extend setups similar to these boussinesq studies to the compressible case.
 
-The internally heated and cooled atmospheres are broken up into three different layers: a stable layer at the top of the atmosphere with depth $L_{RT}$, a convective layer with depth $L_C$, and a stable layer at the base of the atmophere with depth $L_{RB}$; the total atmospheric depth is $L_z = L_{RB} + L_C + L_{RT}$.
-The initial temperature stratification of these atmospheres is
+
+\subsubsection{A three-layer atmosphere}
+A three-layer, internally heated \& cooled atmosphere can also be constructed.
+These atmospheres have a stable layer at the top of the atmosphere with depth $L_{RT}$, a convective layer with depth $L_C$, and a stable layer at the base of the atmophere with depth $L_{RB}$; the total atmospheric depth is $L_z = L_{RB} + L_C + L_{RT}$.
+These atmospheres are constructed around an internal heating/cooling profile with the shape
+\begin{equation}
+Q(z) = -\kappa \epsilon(z - L_{RB} - L_C/2),
+\end{equation}
+where $\kappa$ is the thermal conductivity, $z$ is height, and this heating profile is an O($\epsilon$) source term compared to a nondimensional flux ($-\kappa\grad T \sim \kappa$).
+This profile transitions from positive (heating) to negative (cooling) halfway through the convection zone.
+The thermally equilibrated temperature profile which accompanies this heating term is a cubic perturbation from a linear polytropic profile,
 \begin{equation}
 T_0 = 1 - (z - L_z) + \epsilon(A z^3 + B z^2 + Cz + D),
 \end{equation}
 where $A = \frac{1}{6}$, $B = -\frac{1}{2}(L_{RB} + L_C/2)$, $C = \frac{1}{2}L_{RB}(L_{RB} + L_C)$, and $D = (-AL_z^3 + BL_z^2 + CL_z)$.
-This profile maintains thermal equilibrium with an internal heating profile $Q(z) = \kappa \epsilon(z + 2B)$, where $\kappa$, the thermal conductivity, is described shortly.
-The density profile is obtained by numerically solving for hydrostatic equilibrium.
-Thermodynamics are nondimensionalized in the same manner as in the polytropes.
 The length scale is nondimensionalized on the \emph{adiabatic} temperature gradient length scale, $\grad_{\text{ad}} = -g/c_P = -1$, where $g$ is the (uniform) gravity and $c_P$ is the specific heat at constant pressure.
 The nondimensional timescale is again the isothermal sound crossing time of that unit length at the top of the atmosphere.
 
-In all atmospheres, the thermal conductivity, $\kappa$ and the dynamic viscosity, $\mu$ are constant in time and uniform in space.
-By these choices, the kinematic viscosity, $\nu = \mu/\rho$ and the thermal diffusivity, $\chi = \kappa/\rho$ vary inversely with density.
+\subsection{Density profile construction}
+For both atmospheres, the density profile is constructed numerically by solving a boundary value problem for hydrostatic equilibrium
+\begin{equation}
+\grad P = \rho \bm{g},
+\end{equation}
+under the constraint that the nondimensional density is 1 at the top of the atmosphere.
 
 
 \section{Stratified Accelerated Evolution}
