@@ -7,15 +7,15 @@ The text in section \ref{sec:abo18_published} is the text of the paper as it was
 Following the published work, in section \ref{sec:abo18_postscript}, I comment on a few lessons that have been learned since we published these results.
 
 This work was motivated by some preliminary simulation work that was being performed in internally heated, compressible atmospheres (see \ref{sec:internally_heated}).
-In these domains, a stable layer lay below a convective layer, and the evolutionary timescales at the bottom of that thermal layer were infeasibly long in the regime of highly turbulent, astrophysical convection.
+In these domains, the convecting region sits above a stable layer.
+The evolutionary timescale of the stratification of these atmospheres was so long that it was computationally infeasible to relax them in the regime of turbulent, astrophysical convection.
 Initial ``Accelerated Evolution'' (AE) procedures were created and tested (to seemingly a great deal of success) in those internally heated simulations.
-However, we did not trust that our AE techniques were necessarily giving us the ``correct'' answer, and we didn't feel comfortable using a numerical technique that we hadn't verified could work.
-Due to the complexity of those internally heated systems, we decided to test AE mechanisms in the simplest possible simulation setup: Boussinesq, \RB convection.
-
+Those atmospheres were, unfortunately, completely new and unstudied in the literature, and so we decided that they were not the best testing ground of these AE techniques.
+We decided that AE should be tested in the simplest possible simulation setup: Boussinesq, \RB convection.
 In this work, we develop a basic AE procedure and verify that it produces the ``correct'' convective state.
 
 \section{Published work}
-\ref{sec:abo18_published}
+\label{sec:abo18_published}
 
 \subsection{Introduction}
 \label{sec:abo18_intro}
@@ -581,4 +581,22 @@ However, smaller values of $f$ require additional AE BVP solves, and likely requ
 \newpage
 \section{Postscript and lessons learned since publication}
 \label{sec:abo18_postscript}
+This work was initially motivated by studies of stratified convection which included stable regions, but we have not yet had the chance to robustly test a similar method in those more complex atmospheres.
+We have performed some initial work to expand AE to convection in polytropes, and the changes to the procedure that we described here can be found in Sct.~\ref{sec:stratified_ae}.
+
+In the years since we have published this work, we have learned a great deal more about our choice of thermal boundary conditions that we used in this work (``FT'' boundaries, where we fix the flux at the bottom and the temperature at the top).
+This knowledge is largely synthesized in work that has been submitted for publication in Ch.~\ref{ch:FT20}.
+I would like to note two specific lessons learned that perhaps conflict with the results presented here:
+\begin{enumerate}
+\item The value of Nu \emph{does not} necessarily converge quickly in simulations with FT boundary conditions.
+The rapid convergence in Fig.~2 actually suggests that the case we studied in this AE paper has a fairly short evolutionary timescale compared to our estimate for the timescale of thermal relaxation ($\tau_{\text{th}} \sim \sqrt{\text{Ra}}$).
+It is probably more accurate to say roughly $\tau_{\text{th}} \sim \sqrt{\text{Ra}/\text{Ra}_{\text{crit}}}$.
+We show time traces of more supercritical (e.g., flux Ra$\,= 10^{10.5}$) simulations in our subsequent work, and show that Nu (and most quantities) converge slowly.
+\item The somewhat bizarre scaling laws for Nu in Fig.~\ref{fig:parameter_space_comparison} arise as a result of the fact that we report the \emph{flux} Ra (Ra$_{\partial_z T}$) rather than the \emph{temperature} Ra (Ra$_{\Delta T}$) on the x-axis.
+As we will see in our future work, Ra$_{\partial_z T} \approx \text{Ra}_{\Delta T} \text{Nu}$. 
+Here we roughly found that Nu$\,\propto \text{Ra}_{\partial_z T}^{1/5}$.
+Substituting to find a scaling law in terms of Ra$_{\Delta T}$, we find Nu $\propto \text{Ra}_{\Delta T}^{1/4}$.
+These scaling laws were fairly chi-by-eye, and 1/4 is fairly indistinguishable from a classic 2/7 law which is found for similar simulations \citep{johnston&doering2009}.
+So: lesson learned, there can be multiple values of the Rayleigh number for a given system, and it's important to know how the choice of Ra that you're using changes your results.
+\end{enumerate}
 

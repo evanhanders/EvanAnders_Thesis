@@ -2,8 +2,19 @@
 \label{ch:ro_p19}
 
 \section{Preamble}
+The following work was published in the Astrophysical Journal \citep{anders&all2019}.
+The text in section \ref{sec:ro_p19_published} is the text of the paper as it was accepted for publication.
+Following the published work, in section \ref{sec:ro_p19_postscript}, I comment on a few lessons that have been learned since we published these results.
+
+This work was motivated by a fundamental lack of understanding of how to conduct a ``proper'' experiment in rotating convection.
+In Ch.~\ref{ch:ab17}, we established that if you hold the Mach number constant in polytropic convection (via $\epsilon$) and increase the value of Ra, you naturally step into a more turbulent region of parameter space in a manner similar to standard \RB convection.
+We supposed that anolagous paths could be walked in rotating convection: that is, if you hold the \emph{Rossby number} constant (the degree of rotational constant on the convective flows), and increase the Rayleigh number, you should be able to walk into a more turbulent region of parameter space analogous to \emph{nonrotational} \RB convection.
+
+This work started in the summer of 2018 and was performed in close collaboration with Katie Manduca, who was a post-baccalaureate researcher in our group.
+Her initial explorations of parameter space got us close enough to discovering Ro$_\text{P}$ that she deserves a huge chunk of the credit for this paper ever existing in a published state.
 
 \section{Published work}
+\label{sec:ro_p19_published}
 
 \subsection{Introduction}
 \label{sec:intro}
@@ -534,6 +545,7 @@ manuscript and also online in a Zenodo repository \cite{supp_andersetall2019a}.
 \label{table:simulation_info}
 }
 \begin{center}
+\resizebox{\textwidth}{!}{
 \begin{tabular}{c c c c c c c c c c c c c c c}
 Ra$_{\text{top}}$	&	Ta$_{\text{top}}$	&	Ro$_{\text{p, top}}$	&	Ra$_{\text{mid}}$	&	Ta$_{\text{mid}}$	&	Ro$_{\text{p, mid}}$	&	\con	&	$\mathcal{S}$	&	$L_x/L_z$	&	(nz,	nx,	ny)	&					Ro      	&	Re$_{\parallel}$ 	&	Re$_{\perp}$	&	Nu      \\
 \hline\hline
@@ -560,10 +572,29 @@ Ra$_{\text{top}}$	&	Ta$_{\text{top}}$	&	Ro$_{\text{p, top}}$	&	Ra$_{\text{mid}}$
 1.3	$\times 10^{	7	}$	&	5.6	$\times 10^{	9	}$	&	0.80	&	9.7	$\times 10^{	8	}$	&	4.2	$\times 10^{	11	}$	&	1.37	&	0.048	&	3.0	&	0.23	&	(512,		128,		128)	&	0.08	&	592	&	33.4	&	13.6	\\				
 \hline																																														
 \end{tabular}
+}
 \end{center}
 \end{table}
 
 
 
-
+\newpage
 \section{Postscript and lessons learned since publication}
+\label{sec:ro_p19_postscript}
+The most unfortunate detail of this work is that it was conducted in stratified, fully compressible domains rather than in Boussinesq domains.
+There are so few comparison data points available in the stratified literature that it's really hard to understand where the simulations that we conducted here sit among the hundreds of simulations and experiments that have been reported in the \RB literature.
+However, it is interesting to note that this study has revealed an interesting quirk of convective experiments (and studies).
+The desire to understand the Nusselt number and how it scales has essentially led scientists who study convection to rarely consider the importance of other measures of their flows.
+Essentially every paper about convective parameter space reports a value for Nu, fewer papers report a value for the Reynolds number, and even fewer report a true measurement of the Rossby number.
+Put simply -- Nu has become the measurement that we, as a community, use to tell us \emph{everything} about convection, and it's very possible that what we really need to do is study Nu, Re, Ro, and other quantities in light of each other.
+Time will tell, as will follow-up work.
+
+The results presented here have spawned many interesting follow-up conversations and studies.
+Preliminary results from simulations by Ben Brown shows that \pro$\,$ does a decent job of predicting the Rossby number in 3D, spherical, anelastic dynamo simulations.
+Discussions with Jon Aurnou have shown that some preliminary experimental results suggest that \pro$\,$ does a \emph{poor} job of predicting the Rossby number in their experiments.
+I think the one thing that this paper has taught us with certainty is that this is a confusing region of parameter space.
+
+These results have also led to some fruitful discussions with Keith Julien \& Ian Grooms, who are interested in understanding these results from a theoretical, rather than experimental, point of view.
+I look forward to continuing discussions with them over the spring and summer.
+
+
