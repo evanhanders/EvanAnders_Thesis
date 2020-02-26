@@ -2,8 +2,25 @@
 \label{ch:alb19}
 
 \section{Preamble}
+The following work was published in the Astrophysical Journal \citep{andersLB2019}.
+The text in section \ref{sec:alb19_published} is the text of the paper as it was accepted for publication.
+Following the published work, in section \ref{sec:alb19_postscript}, I comment on a few lessons that have been learned since we published these results.
+
+This work was initially motivated by discussions with Axel Brandenburg from around 2015-2016, in which he was interested in using the propagation of Hill vortices as a model for entropy rain.
+He conducted a couple of initial simulations of these vortices and reported briefly on them in the supplemental materials of \cite{brandenburg2016}.
+The results of those initial simulations didn't look too promising for the ``Entropy Rain'' idea -- that is, they compressed with increasing atmospheric density, as expected.
+I had completely forgotten about these discussions until reading the more recent results of \cite{lecoanet&jeevanjee2019}, which showed that ``thermals'' in \emph{unstratified} atmospheres produce propagating \emph{buoyant} vortex rings which expand as they propagate.
+Buoyant vortex rings as a model for entropy rain should therefore exhibit a blend of these phenomena: atmospheric compression and buoyant expansion.
+This published work below sought to understand how these effects interact with one another from a theoretical perspective, and to test out that theory with some simple simulations.
+
+This work was initially intended to be a direct follow-up to \cite{lecoanet&jeevanjee2019}.
+That is, we had intended to run an ensembled of laminar and turbulent simulations of thermals in atmospheres that were increasingly stratified.
+However, as we ran initial simulations and developed the theory in sec.~\ref{sec:theory}, we realized that the development and verification of a theory for laminar thermals was a sufficiently difficult (and complex) contribution to warrant publication alone.
+Sometime in the next year I hope to revisit this work and understand if this theory describes the evolution of turbulent thermals.
+
 
 \section{Published work}
+\label{sec:alb19_published}
 
 \subsection{Introduction}
 \label{sec:intro}
@@ -243,6 +260,7 @@ In the Boussinesq limit, \LJ\, showed the evolution of turbulent vortex rings is
 In future work, we will apply this laminar theory to turbulent thermals with density stratification, which necessitates 3D simulations.
 
 \subsubsection{2D Anelastic Simulations}
+\label{sec:alb19_anelastic}
 The LBR anelastic equations are \cite{lecoanet&all2014},
 \begin{gather}
 \DivU = -w \partial_z \ln\rho_0, \\
@@ -604,4 +622,21 @@ $N_\rho$ & nr or nx = ny & nz & $t_{\text{evolution}}$ & safety	\\
 \end{center}
 \end{table}
 
+\newpage
 \section{Postscript and lessons learned since publication}
+\label{sec:alb19_postscript}
+Thermals are an excellent testing ground in which to understand two fairly mundane topics:
+\begin{enumerate}
+\item The nature of viscous heating, and
+\item how different choices for the simulation diffusivities (e.g., constant kinematic viscosity vs.~constant dynamic viscosity) affect the results of the simulation and interpretation of results.
+\end{enumerate}
+We noted briefly in sec.~\ref{sec:alb19_anelastic} that we chose constant \emph{dynamic} diffusivities in this work due to the fact that those are the diffusivities that appear in the evolution equations for momentum and full entropy.
+However, it is unclear how a choice of constant \emph{diffusivities} (units of cm$^2$/s) would affect the dynamics.
+I discuss the implications of this further in sec.~\ref{sec:turb_thermals}.
+
+An interesting implication of this work relates to the manner in which entropy raindrops would interact with the solar radiative zone.
+From Fig.~\ref{fig:thermal_sun_comparison}, the size of thermals at the base of the convection zone is $r_{\text{th}} =\,$ a few $\times 10^{-3}$ Mm.
+The solar radius there is $R_{\text{CZ}} \approx 500$ Mm.
+We can the spherical harmonic degree of these thermals as $\ell \approx R_{\text{CZ}}/ r_{\text{th}} \approx 10^{5}$.
+This high spherical harmonic degree could have huge implications for the gravity wave spectrum excited within the radiative interior.
+Unfortunately, I haven't had the chance to pursue in depth the implications of entropy rain interactions with the radiative zone (either with regards to wave excitation or overshoot and mixing).

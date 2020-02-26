@@ -590,11 +590,25 @@ Put simply -- Nu has become the measurement that we, as a community, use to tell
 Time will tell, as will follow-up work.
 
 The results presented here have spawned many interesting follow-up conversations and studies.
-Preliminary results from simulations by Ben Brown shows that \pro$\,$ does a decent job of predicting the Rossby number in 3D, spherical, anelastic dynamo simulations.
-Discussions with Jon Aurnou have shown that some preliminary experimental results suggest that \pro$\,$ does a \emph{poor} job of predicting the Rossby number in their experiments.
-I think the one thing that this paper has taught us with certainty is that this is a confusing region of parameter space.
+Preliminary results (See Fig.~\ref{fig:ro_ek}) from simulations by Ben Brown shows that \pro$\,$ does a decent job of predicting the Rossby number in 3D, spherical, anelastic dynamo simulations (Brown 2020, private communication).
+In these simulations, the Rossby number seems to be a weak function of Ek along constant \pro$\,$ paths, suggesting that \pro$\,$ is \emph{close} to the ``right'' parameter for conducting suites of simulations along constant Rossby number paths.
+However, $\pro\,$ is not perfect, and future work should aim to determine what the ``right'' parameter is that would achieve a constant Ro as Ek or Ra are varied.
 
-These results have also led to some fruitful discussions with Keith Julien \& Ian Grooms, who are interested in understanding these results from a theoretical, rather than experimental, point of view.
+The results in our published work have led to some fruitful discussions with Keith Julien \& Ian Grooms.
+We are interested in understanding how Ro varies with Ra and Ek from a theoretical perspective.
+Or, put differently, we are interested in understanding how Ro scales by applying the logic that the \RB convection community has put towards understanding how e.g., the Nusselt number scales with Ra and Ek.
 I look forward to continuing discussions with them over the spring and summer.
+
+\begin{figure*}[b!]
+    \includegraphics[width=\textwidth]{./figs/postscripts/Ro_Ek.pdf}
+    \caption[Initial \pro$\,$ results in spherical simulations]
+	{
+	Experimental measurements of the evolved simulation Rossby number as a function of decreasing Ekman number (increasing rotational forcing).
+	Points are grouped according to their \pro$\,$ value according to the colorbar.
+	Simulations show a weak trend toward smaller Ro values as Ek is decreased.
+	Simulations marked with grey circles have not yet timestepped through a full thermal diffusion time, and their results may not be accurate.
+    \label{fig:ro_ek} }
+\end{figure*}
+
 
 

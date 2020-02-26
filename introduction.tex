@@ -152,18 +152,19 @@ Generally, studies of \emph{turbulence} have focused on simple convective labora
 The first controlled laboratory experiments of convection (or, a fluid layer heated from below and cooled from above) were performed by B\'{e}nard in 1900.
 Over a decade later, the first \emph{theoretical} description of that convective layer was performed by Lord Rayleigh in 1916, at who first derived the Rayleigh number,
 \begin{equation}
-\text{Ra} = \frac{\alpha g L^3 (\Delta T)}{\nu \kappa},
+\text{Ra} = \frac{\alpha g L^3 (\Delta T)}{\nu \chi},
+\label{eqn:rayleigh_number}
 \end{equation}
 where $\alpha$ is the coefficient of thermal expansion (describing how temperature and density fluctuations are related), $g$ is the gravitational acceleration, $L$ is the depth of the fluid layer, and $\Delta T$ is the temperature difference across the fluid layer domain, and $\nu$ and $\kappa$ are respectively the viscous and thermal diffusivities.
 Ra is roughly the ratio of buoyant convective driving to viscous dissipation, and the pioneering work of these scientists in the field are the reason that Boussinesq thermal convection is widely known as \RB convection (RBC).
-Together with geometric factors (the size and shape of the experimental domain), boundary conditions, and the Prandtl number (Pr = $\nu/\kappa$), the Rayleigh number fully describes a convective system.
+Together with geometric factors (the size and shape of the experimental domain), boundary conditions, and the Prandtl number (Pr = $\nu/\chi$), the Rayleigh number fully describes a convective system.
 Ra is an ideal control parameter for a convective system, because it is a straightforward knob for convective driving: above some ``critical value,'' $\text{Ra} > \text{Ra}_{\text{crit}}$, a fluid layer should convect, and the more ``supercritical'' ($S = \text{Ra}/\text{Ra}_{\text{crit}}$) a layer is, the more turbulent the convection should be.
 Furthermore, the value of $\text{Ra}_{\text{crit}}$ is independent of $\text{Pr}$ and is therefore independent of the specific fluid used in a convective experiment (e.g., in air Pr = 0.7 and in water Pr = 7).
 
 Historical reviews of the development of studies of RBC can be found throughout the decades in e.g., \citet{busse1978, siggia1994, ahlers&all2009}.
 In the simplest of terms, much of the research into RBC focuses on the behavior of heat transfer across a convective domain, quantified by the nondimensional Nusselt number (Nu),
 \begin{equation}
-\text{Nu} = \frac{\text{Evolved Convective Flux}}{\text{Comparison Hydrostatic Flux}} = \frac{\angles{w T - \kappa \partial_z T}}{|\kappa \Delta T / L|},
+\text{Nu} = \frac{\text{Evolved Convective Flux}}{\text{Comparison Hydrostatic Flux}} = \frac{\angles{w T - \chi \partial_z T}}{|\chi \Delta T / L|},
 \end{equation}
 where $w$ is the vertical velocity, and $T$ is the temperature field, and $\angles{}$ are a volume average over the convective domain.
 The key historical question that has been asked is: how does Nu (and also the Reynolds number, Re) scale as Ra and Pr are changed?
@@ -246,11 +247,81 @@ Recent theoretical work suggests that the topology of a star's magnetic field ca
 A deep exploration of dynamo action or magnetoconvection in the stellar context is beyond the scope of this thesis, and I refer the reader to the reviews of \citet{brandenburg&subramian2005, charbonneau2010, charbonneau2014, brun&browning2017}.
 
 
+\subsection{The Impossibility of Astrophysical Parameter Space}
+\label{sct:nondimensional_parameters}
+The Rayleigh number (Ra) is the most important nondimensional parameter used in describing experiments of convection.
+Ra is roughly a measure of the ratio of the strength of buoyant convective driving to viscous dissipation.
+In \RB convection, Ra is defined as in Eqn.~\ref{eqn:rayleigh_number}.
+However, in such a form it is impossible to apply to astrophysical convection.
+In acknowledging that the Boussinesq freefall velocity is $u_{\text{ff}} = \sqrt{\alpha g L \Delta T}$, one can see that the Rayleigh number is simply a product of the freefall Reynolds and P\'{e}clet numbers,
+\begin{equation}
+\Peff = \frac{u_{\text{ff}} L_z}{\chi}, \qquad
+\Reff = \frac{u_{\text{ff}} L_z}{\nu},  \qquad
+\text{Ra} = \Peff\Reff = \frac{u_{\text{ff}}^2 L_z^2}{\nu\chi}.
+\end{equation}
+Under this formulation, given an estimate of the diffusviites and MLT convective velocities, one can calculate an approximate value of Ra.
+Also, in this formulation it is clear to see that Ra is in some ways a direct measure of how turbulent the convective motions are.
 
-\section{Numerical Methods: Approaches}
+A perhaps more simple estimate for calculating Ra is to use a ``flux Rayleigh number,'' ($\text{Ra}_F$), which many authors use \citep[e.g.,][use an entropy-based formulation of one]{featherstone&hindman2016a}.
+Ra$_F$ can be defined,
+\begin{equation}
+\text{Ra}_F = \frac{g L^4 F}{\rho T c_P \nu \chi^2},
+\end{equation}
+where $g$ is the gravity, $L$ is the length scale, $F$ is the flux, $\rho$ is the density, $T$ is the temperature, $c_P$ is the specific heat at constant pressure, $\nu$ is the kinematic viscosity, and $\chi$ is the thermal diffusivity.
+This formulation can be derived from Eqn.~\ref{eqn:rayleigh_number} simply in a few steps.
+First, assume that the temperature scale is defined based on the temperature gradient $\Delta T = L \grad T$.
+Second, Assume that the flux in a corresponding static atmophere is carried entirely by radiative conductivity, $F = -\kappa \grad T$, where the conductivity relates to the diffusivity by $\kappa = \rho c_P \chi$.
+Third, assume that the fluid is an ideal gas (pressure, $P = R\rho T$ for a constant $R$), and thus the coefficient of thermal expansion is $\alpha = -\partial_T \ln\rho  = T^{-1}$.
+Under these assumptions, and multiplying the numerator and denominator of Eqn.~\ref{eqn:rayleigh_number} by $\kappa$, the definition of Ra$_F$ can be retrieved.
+
+In order to understand the magnitude of Ra$_F$, I will now estimate its value for the mid solar convection zone.
+The length scale of the solar convection zone is about $L = 200$ Mm, or about 30\% of the Sun's 700 Mm radius.
+At the mid-CZ ($r \approx 600$ Mm), most (or at least about half) of the solar luminosity ($L_\odot \approx 3.85 \times 10^{33}$ erg/s) is carried by the convection.
+Thus, $F = L_{\odot} / (4\pi r^2) \approx 8.5 \times 10^{10}$ erg/s/cm$^2$.
+From a simple solar MESA model (a 1 $M_\odot$ star evolved to 4.5 Gyr), at the mid-CZ, 99.5\% of $M_\odot$ is located further radially inward, $T \approx 10^6$ K, $\rho \approx 0.05$ g/cm$^3$, $g \approx 3.78 \times 10^4$ m/s$^2$, and $c_P \approx 3.43 \times 10^{7}$ erg/K.
+
+The diffusivities are a bit harder.
+While this is not a perfect approximation, we can model the solar convection zone as a fully-ionized, 100\% Hydrogen fluid.
+In this case, the Spitzer viscosity for a fully ionized gas applies \citep[Eqn.~5-54 of][]{spitzer1962},
+\begin{equation}
+\nu = (2.21 \times 10^{-15}) \frac{T^{5/2}}{\rho \ln \Lambda} \text{cm}^2/\text{s},
+\end{equation}
+for $T$ and $\rho$ in cgs units.
+Here, $\ln\Lambda$ is the Coulomb logarithm, defined on page 34 of the 2019 edition of the plasma formulary for a fully ionized hydrogen gas as
+\begin{equation}
+\ln \Lambda = 23 - \ln\left(\frac{\sqrt{2\rho}}{\sqrt{m_P}T^{3/2}}\right),
+\end{equation}
+where $m_P$ is the mass of a proton in grams.
+Under the diffusion approximation \citep[e.g., ch.~14.A-6 of][]{weiss&all2004}, the thermal conductivity is 
+\begin{equation}
+\kappa = \frac{16 \sigma_{\text{SB}} T^3}{3\rho k},
+\end{equation}
+where $k$ is the opacity and $\sigma_{\text{SB}} = 5.67 \times 10^{-5}$ erg/(cm$^2$ K$^4$ s).
+A chi-by-eye estimate of the opacity in this region of the Sun \citep[from OPAL opacities and Fig.~3 of][]{paxton&all2011} is $k \sim 10^3$ cm$^2$/g.
+Rearranging, we can solve for
+$$
+\chi = \frac{16 \sigma_{\text{SB}} T^3}{3\rho^2 c_P k}.
+$$
+Plugging in the temperature, density, opacity, etc.~of the mid-convection zone, we get roughly
+\begin{equation}
+\nu \approx 2.5 \,\text{cm}^2/\text{s}, \qquad
+\chi \approx 3.5 \times 10^{6}\,\text{cm}^2/\text{s}.
+\end{equation}
+Note also that this means that the Prandtl number, Pr = $\nu/\chi \approx  10^{-6}$, and is generally very small in stellar interiors.
+With these estimates of the diffusivity, we calculate an approximate solar Ra,
+\begin{equation}
+\text{Ra}_F\bigg|_{r=0.85 R_\odot} = \frac{g L^4 F}{\rho T c_P \nu \chi^2} \approx 10^{31}.
+\end{equation}
+Which is frankly enormous.
+
+The largest values of Ra currently accessible to experiments is Ra$\,\approx 10^{15}$ \citep{zhu&all2018}, and those experiments are 2D, unstratified, Boussinesq, and possibly not properly numerically resolved.
+The regime of very-high-Ra stellar convection is inaccessible using modern computational and laboratory tools.
+However, it is still possible to study convection as a function of Ra to learn how convection behaves as we exit the laminar regime and step towards the high-Ra, astrophysically interesting regime.
+
+
+\section{Numerical Methods}
 \label{sct:numerics}
 
-\subsection{The Impossibility of Astrophysical Parameter Space}
 
 \subsection{Direct Numerical Simulations vs.~Large Eddy Simulations}
 Direct Numerical Simulations (DNS) are simulations in which the Navier-Stokes equations are evolved in their entirety without any model for the turbulence, and the term was first coined by \citet{orzag1970}.
