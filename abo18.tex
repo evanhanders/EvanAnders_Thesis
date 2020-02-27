@@ -82,27 +82,27 @@ The gravitational acceleration, $\bm{g} = - g\bm{\hat{z}}$, is constant.
 The equations of motion are \cite{spiegel&veronis1960}:
 \begin{gather}
 \DivU = 0, 
-	\label{eqn:incompressible}
+	\label{eqn:abo18incompressible}
 \\
 \frac{\partial \bm{u}}{\partial t} + \bm{u}\cdot\grad\bm{u} =
 -\frac{1}{\rho_0}\grad P - g( 1 - \alpha T_1)\hat{z} + \nu\grad^2\bm{u}, 
-	\label{eqn:dim_bouss_momentum}
+	\label{eqn:abo18dim_bouss_momentum}
 \\
 \frac{\partial T_1}{\partial t} + \bm{u}\cdot\grad(T_0 + T_1) = \kappa\grad^2 (T_0 + T_1),
-	\label{eqn:dim_bouss_energy}
+	\label{eqn:abo18dim_bouss_energy}
 \end{gather}
 where $\bm{u} = u\bm{\hat{x}} + v\bm{\hat{y}} + w\bm{\hat{z}}$ is the velocity, $T = T_0(z) + T_1(x, y, z, t)$ are the initial and fluctuating components of temperature, and $P$ is the kinematic pressure. 
 The initial temperature profile, $T_0$, decreases linearly with height.
 We non-dimensionalize these equations such that length is in units of the layer height ($L_z$), temperature is in units of the initial temperature jump across the layer ($\Delta T_0 = L_z \partial_z T_0$), and velocity is in units of the freefall velocity ($v_{\text{ff}} = \sqrt{\alpha g L_z^2 \partial_z T_0}$).
 By these choices, one time unit is a freefall time ($t_{\text{ff}} = L_z/v_{\text{ff}}$).
 We introduce a reduced kinematic pressure, $\varpi \equiv (P / \rho_0 + \phi + |\bm{u}|^2 / 2) / v_{\text{ff}}^2$, where the gravitational potential, $\phi$, is defined such that $\bm{g} = -\grad \phi$. 
-In non-dimensional form, and substituting $\bm{u}\cdot\grad\bm{u} = \grad(|\bm{u}|^2/2) - \bm{u}\times(\grad\times\bm{u})$ and $\grad^2\bm{u} = -\grad\times(\grad\times\bm{u})$, Eqs.~(\ref{eqn:dim_bouss_momentum}) and (\ref{eqn:dim_bouss_energy}) become 
+In non-dimensional form, and substituting $\bm{u}\cdot\grad\bm{u} = \grad(|\bm{u}|^2/2) - \bm{u}\times(\grad\times\bm{u})$ and $\grad^2\bm{u} = -\grad\times(\grad\times\bm{u})$, Eqs.~(\ref{eqn:abo18dim_bouss_momentum}) and (\ref{eqn:abo18dim_bouss_energy}) become 
 \begin{align}
 \frac{\partial \bm{u}}{\partial t} + \grad \varpi - T_1\hat{z} + \mathcal{R}\grad\times\bm{\omega} &= \bm{u}\times\bm{\omega},
-	\label{eqn:bouss_momentum}
+	\label{eqn:abo18bouss_momentum}
 \\
 \frac{\partial T_1}{\partial t} - \mathcal{P}\grad^2 T_1 + w \frac{\partial T_0}{\partial z} &= - \bm{u}\cdot\grad T_1,
-	\label{eqn:bouss_energy}
+	\label{eqn:abo18bouss_energy}
 \end{align}
 where $\bm{\omega} = \grad \times \bm{u}$ is the vorticity.
 The dimensionless control parameters $\mathcal{R}$ and $\mathcal{P}$ are set by the Rayleigh (Ra) and Prandtl (Pr) numbers,
@@ -113,8 +113,8 @@ The dimensionless control parameters $\mathcal{R}$ and $\mathcal{P}$ are set by 
 We hold Pr $= 1$ constant throughout this work, such that $\mathcal{P} = \mathcal{R}$.
 $\mathcal{P}$ and $\mathcal{R}$ are related to the inverse Reynolds and Peclet numbers of the evolved flows.
 
-In Eqs.~(\ref{eqn:incompressible}), (\ref{eqn:bouss_momentum}), and (\ref{eqn:bouss_energy}), linear terms are grouped on the left-hand side of the equations, while nonlinear terms are found on the right-hand side. We timestep linear terms implicitly, and nonlinear terms explicitly.
-We utilize the Dedalus\footnote{\url{http://dedalus-project.org/}} pseudospectral framework \cite{burns&all2016} to evolve Eqs.~(\ref{eqn:incompressible}), (\ref{eqn:bouss_momentum}), and (\ref{eqn:bouss_energy}) forward in time using an implicit-explicit (IMEX), third-order, four-stage Runge-Kutta timestepping scheme RK443 \cite{ascher&all1997}. 
+In Eqs.~(\ref{eqn:abo18incompressible}), (\ref{eqn:abo18bouss_momentum}), and (\ref{eqn:abo18bouss_energy}), linear terms are grouped on the left-hand side of the equations, while nonlinear terms are found on the right-hand side. We timestep linear terms implicitly, and nonlinear terms explicitly.
+We utilize the Dedalus\footnote{\url{http://dedalus-project.org/}} pseudospectral framework \cite{burns&all2016} to evolve Eqs.~(\ref{eqn:abo18incompressible}), (\ref{eqn:abo18bouss_momentum}), and (\ref{eqn:abo18bouss_energy}) forward in time using an implicit-explicit (IMEX), third-order, four-stage Runge-Kutta timestepping scheme RK443 \cite{ascher&all1997}. 
 The code used to run the simulations in this work is included in the supplemental materials as a zip file\footnote{See Supplemental Material published with paper for a .zip file of the python run scripts used to perform all simulations in this work. This code was run using the Dedalus mercurial repository (\url{https://bitbucket.org/dedalus-project/dedalus/src/default/}) at commit node ID dab6af2abaab03c059a4e9513f6a4d98320c2f02.}.
 
 Variables are time-evolved on a dealiased Chebyshev (vertical) and Fourier (horizontal, periodic) domain in which the physical grid dimensions are 3/2 the size of the coefficient grid.  
@@ -123,17 +123,17 @@ In 2D simulations, we set $v = \partial_y = 0$.
 We specify no-slip, impenetrable boundary conditions at both the top and bottom boundaries,
 \begin{equation}
 u = v = w = 0 \, \, \text{at}\,\,z = 0,1.
-\label{eqn:vel_bcs}
+\label{eqn:abo18vel_bcs}
 \end{equation}
 The temperature is fixed at the top boundary, and the flux is fixed at the bottom boundary, such that
 \begin{equation}
 T_1 = 0 \,\,\text{at}\,\, z=1, \qquad
 \frac{\partial T_1}{\partial z} = 0\,\,\text{at}\,\,z=0.
-\label{eqn:temp_bcs}
+\label{eqn:abo18temp_bcs}
 \end{equation}
 For this choice of boundary conditions, the critical value of Ra at which the onset of convection occurs is Ra$_{\text{crit}} = 1295.78$ \cite{goluskin2016}, and the supercriticality of a run is defined as $S \equiv \text{Ra}/\text{Ra}_{\text{crit}}$.
 Studies of convection which aim to model astrophysical systems such as stars often employ mixed thermal boundary conditions, as we do here \cite{hurlburt&all1984, cattaneo&all1991, korre&all2017}.
-Our choice of the thermal boundary conditions in Eqn.~(\ref{eqn:temp_bcs}) was motivated by the fact that accelerated evolution is simpler when both the thermal profile and the flux through the domain are fixed at a boundary (see Sec. \ref{sec:abo18_ae}).
+Our choice of the thermal boundary conditions in Eqn.~(\ref{eqn:abo18temp_bcs}) was motivated by the fact that accelerated evolution is simpler when both the thermal profile and the flux through the domain are fixed at a boundary (see Sec. \ref{sec:abo18_ae}).
 
 The initial temperature profile is linearly unstable, $T_0(z) = 0.5 - z$. On top of this profile, we fill $T_1$ with random white noise whose magnitude is $10^{-6}\mathcal{P}$, and which is vertically tapered so as to match the thermal boundary conditions.
 This ensures that the initial perturbations are much smaller than the evolved convective temperature perturbations, even at large Ra.
@@ -196,7 +196,7 @@ In order to adjust the temperature profile to achieve AE, we calculate the total
 \begin{equation}
 f_{\text{E}}(z) = \frac{\text{F}_{\text{E}}}{\text{F}_{\text{tot}}},\qquad
 f_{\kappa}(z) = \frac{\text{F}_{\kappa}}{\text{F}_{\text{tot}}},
-\label{eqn:bvp_ratios}
+\label{eqn:abo18bvp_ratios}
 \end{equation}
 which have the systematic asymmetries [Fig.~\ref{fig:time_trace}(b)] removed. 
 These profiles describe which parts of the atmosphere depend on convection to carry flux (where $f_{\text{E}}(z) = 1$ and $f_{\kappa}(z) = 0$).
@@ -204,22 +204,22 @@ We presume that the early convection occupies roughly the same volume as the evo
 Under this assumption, in order to reach the converged state, the flux through the atmosphere must be decreased by some amount, 
 \begin{equation}
 \xi(z,t) \equiv \frac{\text{F}_{\text{B}}}{\text{F}_{\text{tot}}},
-\label{eqn:xi}
+\label{eqn:abo18xi}
 \end{equation}
 where $\text{F}_{\text{B}} = \mathcal{P}$ is the amount of flux that enters the atmosphere at the bottom, fixed-flux boundary.
 For example, in Fig.~\ref{fig:time_trace}b, F$_{\text{tot}} \approx 19\mathcal{P}$ at the upper boundary, but in the relaxed state it should just be $\mathcal{P}$, so $\xi \approx 1/19$ at that depth.
 
-To reduce the conductive flux by $\xi$, we examine the horizontally- and time-averaged Eqs.~(\ref{eqn:bouss_momentum}) and (\ref{eqn:bouss_energy}) in the time-stationary state; after neglecting terms which vanish due to symmetry, these equations become
+To reduce the conductive flux by $\xi$, we examine the horizontally- and time-averaged Eqs.~(\ref{eqn:abo18bouss_momentum}) and (\ref{eqn:abo18bouss_energy}) in the time-stationary state; after neglecting terms which vanish due to symmetry, these equations become
 \vspace{-0.2cm}
 \begin{gather}
 \frac{\partial}{\partial z}\angles{\varpi}_{x,y} - \angles{T_1}_{x,y}\hat{z} = \angles{\bm{u}\times\bm{\omega}}_{x,y, \text{ ev}},
-	\label{eqn:bouss_BVP_momentum}
+	\label{eqn:abo18bouss_BVP_momentum}
 \\
 \frac{\partial}{\partial z}\text{F}_{\text{E, ev}} - \mathcal{P}\frac{\partial^2}{\partial z^2} \angles{T_1}_{x,y} = 0.
-	\label{eqn:bouss_BVP_energy}
+	\label{eqn:abo18bouss_BVP_energy}
 \end{gather}
 Here, we construct  $\text{F}_{\text{E, ev}} = \xi \text{F}_{\text{E}}$ and $\angles{\bm{u}\times\bm{\omega}}_{x, y,\text{ ev}} = \xi\angles{\bm{u}\times\bm{\omega}}_{x, y}$.
-Using these profiles and Eqs.~(\ref{eqn:bouss_BVP_momentum}) and (\ref{eqn:bouss_BVP_energy}), we solve for $\angles{\varpi}_{x,y}$ and $\angles{T_1}_{x,y}$.
+Using these profiles and Eqs.~(\ref{eqn:abo18bouss_BVP_momentum}) and (\ref{eqn:abo18bouss_BVP_energy}), we solve for $\angles{\varpi}_{x,y}$ and $\angles{T_1}_{x,y}$.
 Our choice of fixing the temperature at the top boundary and the flux at the bottom boundary ensures that there is a unique solution for $\angles{T_1}_{x,y}$ given the evolved fluxes. 
 If flux were fixed at both boundaries, there would be infinitely many temperature solutions. 
 If temperature were fixed at both boundaries, $\text{F}_{\text{B}}$ would not be precisely known \emph{a priori}.
@@ -230,7 +230,7 @@ Upon removing terms which vanish due to symmetry, we note that the convective en
 In order to instantaneously decrease the convective enthalpy flux in a manner which is consistent with the conductive flux, we multiply both the velocity, $\bm{u}$, and temperature perturbations about the mean state, $T_1-\angles{T_1}_{x,y}$,  by $\sqrt{\xi}$. This scaling of the velocity field is the reason that we multiply $\angles{\bm{u}\times\bm{\omega}}_{x, y}$, which is nondimensionally of order $u^2/L$, by $\xi$ while constructing $\angles{\bm{u}\times\bm{\omega}}_{x, y,\text{ ev}}$.
 
 In general, the AE method occurs in the following steps. First, we pause a convective simulation and construct $\xi(z,t)$ from measured flux profiles in the convective domain.
-We solve a 1D boundary value problem (BVP) consisting of Eqs.~(\ref{eqn:bouss_BVP_momentum}) and (\ref{eqn:bouss_BVP_energy}) to obtain an evolved thermodynamic profile, and its corresponding conductive flux.
+We solve a 1D boundary value problem (BVP) consisting of Eqs.~(\ref{eqn:abo18bouss_BVP_momentum}) and (\ref{eqn:abo18bouss_BVP_energy}) to obtain an evolved thermodynamic profile, and its corresponding conductive flux.
 We multiply both the temperature perturbations around the mean and the convective velocity flows by $\sqrt{\xi}$.
 After adjusing the fields of a simulation in this manner, we continue timestepping forward.
 For specifics on the precise implementation of the AE method, we refer the reader to appendix \ref{appendix:recipe}.
@@ -353,7 +353,7 @@ The boundary layer width and structure are nearly identical between the two solu
 	(b) Probability Distribution Functions (PDFs, $P(T)$) and their integrated Cumulative Distribution Functions (CDFs, $F(T)$) of point-by-point measurements of the temperature field.
 	(c) The percentage difference between the mean temperature profiles as a function of height.
 	The difference between the mean profiles is very small, O(0.5\%).
-	(d) $\KS{T}$, as defined in Eqn.~\ref{eqn:ks_profile}, is shown. 
+	(d) $\KS{T}$, as defined in Eqn.~\ref{eqn:abo18ks_profile}, is shown. 
 	The small difference in the mean interior temperature between AE and SE results in a large difference between the two temperature distributions near the values of the temperature maxima.  
 	The spread of temperature around the maxima, which includes the fluctuations that drive convection, are nearly identical between the two runs. 
 	\label{fig:temp_comparison} 
@@ -369,7 +369,7 @@ One method of comparing two PDFs to determine if they are drawn from the same un
 We calculate the $D_{\text{KS}}$ statistic for a PDF of some value, $q$, as
 \begin{equation}
 \KS{q} = F_{\text{AE}}(q) - F_{\text{SE}}(q),
-\label{eqn:ks_profile}
+\label{eqn:abo18ks_profile}
 \end{equation}
 where $F$ stands for cumulative distribution function (CDF), the integral of the PDF.
 A traditional Kolmogorov-Smirnov statistic is just a single value, $\KSstat{q} = |\KS{q}|_\infty = \text{max} |\KS{q}|$, and we use both the profile KS$(q)$ and $\KSstat{q}$ to gain insight into the likeness of two PDFs. 
@@ -384,7 +384,7 @@ Fortunately, $\KS{T}$ is very small away from the maxima, indicating that the te
 {
 	Probability distribution functions (PDFs, $P(q)$) of (a) the vertical velocity ($q = w$), (b) the horizontal velocity ($q = u$), and (c) nonlinear convective transport [$q = w(T_1 - \angles{T_1}_{x,y})$] are shown for 2D runs achieved through SE (blue) and AE (red) at $S = 10^{5}$.  
 	The cumulative distribution function (CDF) is overplotted for each PDF. 
-	(d-f) The $D_{\text{KS}}$ profiles, as defined in Eq.~(\ref{eqn:ks_profile}), are shown for the related distributions; solid lines indicate positive values while dashed lines are negative values. 
+	(d-f) The $D_{\text{KS}}$ profiles, as defined in Eq.~(\ref{eqn:abo18ks_profile}), are shown for the related distributions; solid lines indicate positive values while dashed lines are negative values. 
 	Unlike the temperature distributions in Fig.~\ref{fig:temp_comparison}, these distributions show very good agreement and small values of the $D_{\text{KS}}$ statistic.
 	\label{fig:pdf_comparison} 
 }
@@ -393,7 +393,7 @@ Fortunately, $\KS{T}$ is very small away from the maxima, indicating that the te
 In addition to adjusting the 1D thermal profile, the AE method also scales the simulation velocities and temperature fluctuations by $\sqrt{\xi}$. 
 In Fig.~\ref{fig:pdf_comparison} we examine the velocities and heat transport found in the evolved states.
 Shown are the PDFs of vertical velocity [$w$, Fig.~\ref{fig:pdf_comparison}(a)], horizontal velocity [$u$, Fig. \ref{fig:pdf_comparison}(b)], and the nonlinear vertical convective flux [$w(T_1 - \angles{T_1}_{x,y})$, Fig.~\ref{fig:pdf_comparison}(c)]. 
-Each PDF here shows a strong peak near zero due to the no-slip, impenetrable velocity boundary conditions (Eq.~(\ref{eqn:vel_bcs})).
+Each PDF here shows a strong peak near zero due to the no-slip, impenetrable velocity boundary conditions (Eq.~(\ref{eqn:abo18vel_bcs})).
 The CDFs of each profile are overplotted, and corresponding KS profiles are shown in Figs.~\ref{fig:pdf_comparison}(d)-\ref{fig:pdf_comparison}(f).  
 We report $\KSstat{w} = 0.00615$, $\KSstat{u} = 0.0349$, and $\KSstat{w(T_1 - \angles{T_1}_{x,y})} = 0.0263$.
 The difference in vertical velocity and heat transport between AE and SE is negligible, which is unsurprising in light of the Nu measurements of Figs.~\ref{fig:parameter_space_comparison}(a) and \ref{fig:parameter_space_comparison}(d).
@@ -473,7 +473,7 @@ At the largest values of $S$ in which AE and SE are compared in this work, we fi
 
 Here we studied the simplest possible case for the application of AE: \RB convection at low aspect ratio with mixed thermal boundary conditions. 
 We anticipate that this technique will be powerful in its extensions to more complicated studies.
-To achieve AE in more complicated systems, one need only derive the steady-state, horizontally-averaged equations governing the convective dynamics [e.g., the analogs to Eqs.~(\ref{eqn:bouss_BVP_momentum}) and (\ref{eqn:bouss_BVP_energy})] and couple those equations with knowledge of the boundary conditions and current dynamics as described in Sec. \ref{sec:abo18_ae} and appendix \ref{appendix:recipe}.
+To achieve AE in more complicated systems, one need only derive the steady-state, horizontally-averaged equations governing the convective dynamics [e.g., the analogs to Eqs.~(\ref{eqn:abo18bouss_BVP_momentum}) and (\ref{eqn:abo18bouss_BVP_energy})] and couple those equations with knowledge of the boundary conditions and current dynamics as described in Sec. \ref{sec:abo18_ae} and appendix \ref{appendix:recipe}.
 In general, AE should be useful in studies where there are two disparate timescales which must both be resolved and which cannot be overcome through clever timestepping techniques.  
 Some avenues in which extensions of AE could be beneficial for expanding the available parameter space of exploration include studies of internally heated convection \cite{goluskin2016}, convection with height-dependent conductivities \cite{kapyla&all2017}, penetrative convection \cite{hurlburt&all1986,brandenburg&all2005,couston&all2017}, or fully compressible, stratified convection \cite{anders&brown2017}.
 As AE is fundamentally a horizontally uniform adjustment to the thermodynamic structure of the convective domain, it is unlikely that these techniques should be applied straightforwardly to nonperiodic convective domains.
@@ -541,7 +541,7 @@ $10^4$          &	$1.30 \times 10^7$	&	256$\times$512$\times$512$\,\,\,\,\,\,\,$
 
 \subsection{Appendix B: Accelerated Evolution Recipe}
 \label{appendix:recipe}
-In order to achieve Accelerated Evolution (AE), we pause the Direct Numerical Simulation (DNS) which is evolving the dynamics of convection and solve a 1D Boundary Value Problem (BVP) consisting of Eqns.~(\ref{eqn:bouss_BVP_momentum}) \& (\ref{eqn:bouss_BVP_energy}).
+:n order to achieve Accelerated Evolution (AE), we pause the Direct Numerical Simulation (DNS) which is evolving the dynamics of convection and solve a 1D Boundary Value Problem (BVP) consisting of Eqns.~(\ref{eqn:abo18bouss_BVP_momentum}) \& (\ref{eqn:abo18bouss_BVP_energy}).
 After solving this BVP, we appropriately adjust the fields being evolved in the DNS towards their evolved state, and then we continue running the now-evolved DNS.
 The specific steps taken in completing the AE method are as follows:
 \begin{enumerate}

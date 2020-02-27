@@ -64,7 +64,7 @@ The \textit{Rossby number} is the standard measure of this ratio,
 \begin{equation}
 \text{Ro} \ \equiv \ \frac{| \nabla \times \boldsymbol{u} | }{2 |\bm{\Omega}|} \ 
 \sim \ \frac{| (\nabla \times \boldsymbol{u}) \times \boldsymbol{u}  | }{|2 \bm{\Omega} \times \boldsymbol{u}|},
-\label{eqn:rossby-def}
+\label{eqn:ro_p19_rossby-def}
 \end{equation}
 where $\bm{\Omega}$ denotes the bulk rotation vector. 
 Many proxies for the dynamical Rossby number exist that are based solely on input parameters, most notably the \textit{convective} Rossby number. 
@@ -112,7 +112,7 @@ rotation ($\Omega$) at the top of the domain by choosing the Rayleigh number
     \text{Ra} = \frac{g L_z^3 \Delta S / c_P}{\nu \chi}, \,\,\,
     \text{Pr} = \frac{\nu}{\chi}, \,\,\,
     \text{Ta} = \left(\frac{2 \Omega L_z^2}{\nu}\right)^2,
-	\label{eqn:input_parameters}
+	\label{eqn:ro_p19_input_parameters}
 \end{equation}
 where $L_z$ is the depth of the domain as defined in \AB, 
 $\Delta S \propto \epsilon n_\rho$ is the specific entropy difference between
@@ -182,7 +182,7 @@ We will explore three paths through Ra-Ta space:
     (\con)^2 \, \text{Pr}\, \text{Ta}, & (\text{II}) \\
     (\pro)^2\, \text{Pr}^{1/2}\, \text{Ta}^{3/4} & (\text{III}).
     \end{cases}
-    \label{eqn:paths}
+    \label{eqn:ro_p19_paths}
 \end{equation}
 Paths on constraint I are at constant supercriticality, 
 $\mathcal{S} \equiv \text{Ra}/\text{Ra}_{\text{crit}}(\text{Ta})$
@@ -193,7 +193,7 @@ are at a constant value of the classic
 \begin{equation}
 \con \ = \   \sqrt{ \frac{\text{Ra}}{\text{Pr}\, \text{Ta} } } \ 
 = \  \frac{1}{2 \Omega } \sqrt{\frac{g \, \Delta  S}{c_{p} L_{z}}},
-\label{eqn:roc_defn}
+\label{eqn:ro_p19_roc_defn}
 \end{equation}
 which has provided \cite[e.g., ][]{julien&all1996, brummell&all1996} 
 a common proxy for the degree of rotational constraint.
@@ -205,7 +205,7 @@ set constant a ratio which we call the ``Predictive Rossby number,''
 \begin{equation}
 \pro = \sqrt{\frac{\text{Ra}}{\text{Pr}^{1/2}\,\text{Ta}^{3/4}}} \ = \    
 \frac{1}{(2 \Omega)^{3/4}} \sqrt{\frac{g \, \Delta  S}{c_{p} \chi^{1/2}}}
-\label{eqn:rop_defn}
+\label{eqn:ro_p19_rop_defn}
 \end{equation}
 Unlike paths through parameter space which hold \con$\,$ constant,
 paths with constant \pro$\,$ 
@@ -255,7 +255,7 @@ analysis provides $\text{Ra}_{\text{crit}}(\text{Ta}) = 1.459\text{Ta}^{2/3}$
 and $k_{\text{crit}}(\text{Ta}) = 0.414\text{Ta}^{1/6}$ for direct onset of convection.
 In figure~\ref{fig:parameter_space}a, the value of Ra$_{\text{crit}}(\text{Ta})$
 is shown. Sample paths for
-each criterion in equation~\ref{eqn:paths} through
+each criterion in equation~\ref{eqn:ro_p19_paths} through
 this parameter space are also shown.
 In this work, we often find it instructive to use one critical Ra for an entire \pro$\,$ path.
 This $\text{Ra}_\text{crit}$ is determined by the intersubsection of the onset curve and \pro$\,$ path
@@ -270,7 +270,7 @@ In figure \ref{fig:parameter_space}c, the value of Ro is shown simultaneously as
 a function of \pro$\,$and \con$\,$for all experiments conducted in this study.
 We find a general power-law of the form \mbox{$\text{Ro} = \mathcal{C} \con^{\alpha}\,\pro^{\beta}$}.
 In the rotationally-dominated regime where $\text{Ro} < 0.2$ and 
-$\text{Re}_{\perp} > 5$ (see Eqn. \ref{eqn:re_defn}),
+$\text{Re}_{\perp} > 5$ (see Eqn. \ref{eqn:ro_p19_re_defn}),
 we find $\alpha = -0.02$, and $\text{Ro}$ can be said to be a function
 of $\pro$ alone. Under this assumption, we report a scaling of $\text{Ro} = (0.148 \pm 0.003) \pro^{3.34 \pm 0.07}$.
 In the less rotationally dominated regime of $\text{Ro} > 0.2$ and $\text{Re}_{\perp} > 5$, 
@@ -305,7 +305,7 @@ we find $\{C, \alpha, \beta\} = \{0.2, -0.19, 1.5\}$.
     $\pro = 0.96$ ($\text{Ro} \approx 0.1$), and $\pro = 0.6$ ($\text{Ro} \approx 0.03$) are shown. 
     Numbers are plotted vs. Ra/Ra$_{\text{crit}}$, where Ra$_{\text{crit}}$ is given in Table \ref{table:ra_ta_bounds}.
 	(a) Nu, as defined in \AB, is shown.
-    (b) $\text{Re}_\parallel$ and $\text{Re}_{\perp}$, as defined in equation \ref{eqn:re_defn},
+    (b) $\text{Re}_\parallel$ and $\text{Re}_{\perp}$, as defined in equation \ref{eqn:ro_p19_re_defn},
 	are shown. All values of $\pro$ trace out similar Nu and $\text{Re}_{\perp}$ tracks,
 	whereas $\text{Re}_\parallel$ tracks shift upwards as Ro decreases.
     \label{fig:nu_and_re} }
@@ -348,7 +348,7 @@ are tightly correlated with their positions at the top of the domain. These quas
 dynamics are similar to those seen in rapidly 
 rotating \RB convection \cite[e.g.,][]{stellmach&all2014}. 
 The select cases displayed in figure~\ref{fig:dynamics_plot} each have an evolved volume-averaged
-$\text{Re}_{\perp} \approx 32$ (defined below in equation~\ref{eqn:re_defn}).
+$\text{Re}_{\perp} \approx 32$ (defined below in equation~\ref{eqn:ro_p19_re_defn}).
 
 We measure the Nusselt number (Nu), which quantifies heat transport in a convective
 solution, as defined in \AB.
@@ -373,7 +373,7 @@ We measure two forms of the RMS Reynolds number,
 \begin{equation}
 \text{Re}_{\parallel} = \frac{|\bm{u}| L_z}{\nu}, \qquad
 \text{Re}_{\perp}     = \frac{|\bm{u}|}{\nu}\frac{2\pi}{k_{\text{crit}}},
-\label{eqn:re_defn}
+\label{eqn:ro_p19_re_defn}
 \end{equation}
 where the length scale in $\text{Re}_{\perp}$ is the wavelength of convective onset, and is
 related to the horizontal extent of our domain (see subsection \ref{sec:experiment}).

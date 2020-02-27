@@ -7,7 +7,7 @@ The text in section \ref{sec:ab17_published} is the text of the paper as it was 
 Following the published work, in section \ref{sec:ab17_postscript}, I comment on a few lessons that have been learned since we published these results.
 
 This work was motivated in large part by the study of \citet{brandenburg&all2005} and conversations with Axel Brandenburg and Ben Brown.
-In Axel's 2005 work, he argues that the superadiabatic excess, $\epsilon$, defined below near Eqn.~\ref{eqn:polytrope}, should be large if one aims to study astrophysical convection.
+In Axel's 2005 work, he argues that the superadiabatic excess, $\epsilon$, defined below near Eqn.~\ref{eqn:ab17polytrope}, should be large if one aims to study astrophysical convection.
 He finds in his experiments that, as $\epsilon$ grows, the fraction of the system flux carried by the evolved convection approaches unity.
 However, we knew that as $\epsilon$ grows, so too does the Mach number of the convection.
 We were convinced that low $\epsilon$ polytropes were an ideal experimental setup in which to study low Mach number, stratified convection.
@@ -58,7 +58,7 @@ The atmospheres studied here are initially polytropically stratified,
 \begin{split}
 \rho_0(z) &= \rho_{t}(1 + L_z - z)^m, \\
 T_0(z)    &= T_{t}(1 + L_z - z),
-\label{eqn:polytrope}
+\label{eqn:ab17polytrope}
 \end{split}
 \end{equation}
 where $m$ is the polytropic index and $L_z$ is the depth of the atmosphere.
@@ -84,7 +84,7 @@ At a fixed value of $\epsilon$, the diffusivities are set by the Rayleigh number
 \end{equation}
 where $\Delta S_0 = \epsilon\ln (1 + L_z) = \epsilon n_\rho / m$ is the initial specific entropy difference across the domain, $\chi$ is the thermal diffusivity, and $\nu$ is the kinematic viscosity.
 Throughout this work we specify that Pr $= 1$ and is depth invariant.
-The initial thermal conductivity, $\kappa_0 = \chi \rho_0$, is constant with depth, such that (\ref{eqn:polytrope}) is in thermal equilibrium ($\grad\cdot[\kappa_0\grad T_0] = 0$).
+The initial thermal conductivity, $\kappa_0 = \chi \rho_0$, is constant with depth, such that (\ref{eqn:ab17polytrope}) is in thermal equilibrium ($\grad\cdot[\kappa_0\grad T_0] = 0$).
 By these choices, $\nu(z) \equiv \chi(z) \equiv \chi_t / \rho_0$.
 This formulation sets Ra at the bottom of the domain greater than Ra$_t$ by a factor of $e^{2n_\rho}$. 
 Henceforth when we specify Ra we are referring to Ra$_t$.  
@@ -93,10 +93,10 @@ The diffusivities scale as $\chi_t, \nu_t \propto \sqrt{g L_z^3 (\Delta S_0 / c_
 Defining the thermal diffusion timescale as $t_\chi \equiv \tau_IL_z^2 / \chi$, the ratio of $t_\chi$ to the buoyancy time is
 \begin{equation}
 \frac{t_\chi}{t_b} =\text{Ra}_t^{1/2}.
-\label{eqn:timescales}
+\label{eqn:ab17timescales}
 \end{equation}
 We carry out two experiments in this study. 
-In the first, we fix $\epsilon$ and increase Ra, thus increasing the ratio in (\ref{eqn:timescales}). 
+In the first, we fix $\epsilon$ and increase Ra, thus increasing the ratio in (\ref{eqn:ab17timescales}). 
 In the second, we fix Ra and vary $\epsilon$, scaling the dynamical timescales $(t_b, t_\chi)$ as $\epsilon^{-1/2}$ relative to the speed of sound; we see this reflected in the evolved Mach number scaling (Fig. \ref{fig:ma_v_eps}).
 
 We use $\ln \rho$ and $T$ as our thermodynamic variables and solve the Fully Compressible Navier-Stokes equations,
@@ -104,14 +104,14 @@ We use $\ln \rho$ and $T$ as our thermodynamic variables and solve the Fully Com
 &\begin{aligned}
 &\frac{\partial \ln\rho}{\partial t} + \grad\cdot\bm{u} 
     = -\bm{u}\cdot\grad\ln\rho,
-	\label{eqn:continuity_eqn}
+	\label{eqn:ab17continuity_eqn}
 \end{aligned}\\
 &\begin{aligned}
 \frac{\partial\bm{u}}{\partial t} + \grad T - 
 &\nu\grad\cdot\lilstressT - \lilstressT\cdot\grad\nu =
 -\bm{u}\cdot\grad\bm{u} - T\grad\ln\rho + \bm{g} + 
 \nu\lilstressT\cdot\grad\ln\rho,
-\label{eqn:momentum_eqn}
+\label{eqn:ab17momentum_eqn}
 \end{aligned}\\
 &\begin{aligned}
 \frac{\partial T}{\partial t} -\frac{1}{c_V}\left(\right.\chi&\left.
@@ -119,21 +119,21 @@ We use $\ln \rho$ and $T$ as our thermodynamic variables and solve the Fully Com
 	-\bm{u}\cdot\grad T - (\gamma-1)T\grad\cdot{\bm{u}}
 	+ \frac{1}{c_V}\left(\chi\grad T \cdot\grad\ln\rho +
 	\nu\left[\lilstressT\cdot\nabla\right]\cdot\bm{u}\right), 
-	\label{eqn:energy_eqn}
+	\label{eqn:ab17energy_eqn}
 \end{aligned}
 \end{align}
 with the viscous stress tensor given by
 \begin{equation}
 \sigma_{ij} \equiv \left(\frac{\partial u_i}{\partial x_j} + 
 \frac{\partial u_j}{\partial x_i} - \frac{2}{3}\delta_{ij}\grad\cdot\bm{u}\right),
-	\label{eqn:stress_tensor}
+	\label{eqn:ab17stress_tensor}
 \end{equation}
 where $\delta_{ij}$ is the Kronecker delta. 
-Taking an inner product of (\ref{eqn:momentum_eqn}) with $\rho\bm{u}$ and adding it to $\rho c_V\times$(\ref{eqn:energy_eqn}) reveals the full energy equation,
+Taking an inner product of (\ref{eqn:ab17momentum_eqn}) with $\rho\bm{u}$ and adding it to $\rho c_V\times$(\ref{eqn:ab17energy_eqn}) reveals the full energy equation,
 \begin{equation}
 \frac{\partial}{\partial t}\left(\rho\left[\frac{|\bm{u}|^2}{2} + c_V T + \phi\right]\right) +
 \Div{\bm{F}_{\text{conv}} + \bm{F}_{\text{cond}}} = 0,
-	\label{eqn:energy_eqn_full}
+	\label{eqn:ab17energy_eqn_full}
 \end{equation}
 where
 $
@@ -143,10 +143,10 @@ is the convective flux and $\bm{F}_{\text{cond}} = -\kappa \grad T$ is the condu
 The individual contributions to $\bm{F}_{\text{conv}}$ are the enthalpy flux, $\bm{F}_{\text{enth}} \equiv \rho\bm{u}(c_V T + P/\rho)$; the kinetic energy flux, $\bm{F}_{\text{KE}} \equiv \rho|\bm{u}|^2\bm{u}/2$; the potential energy flux, $\bm{F}_{\text{PE}} \equiv \rho\bm{u}\phi$ (with $\phi \equiv -gz$); and the viscous flux, $\bm{F}_{\text{visc}} \equiv -\rho\nu\bm{u}\cdot\lilstressT$.
 Understanding how each of these fluxes interact is crucial in characterizing convective heat transport.
 
-We utilize the Dedalus\footnote{\url{http://dedalus-project.org/}} pseudospectral framework \citep{burns&all2016} to time-evolve (\ref{eqn:continuity_eqn})-(\ref{eqn:energy_eqn}) using an implicit-explicit (IMEX), third-order, four-step Runge-Kutta timestepping scheme RK443 \citep{ascher&all1997}.  
+We utilize the Dedalus\footnote{\url{http://dedalus-project.org/}} pseudospectral framework \citep{burns&all2016} to time-evolve (\ref{eqn:ab17continuity_eqn})-(\ref{eqn:ab17energy_eqn}) using an implicit-explicit (IMEX), third-order, four-step Runge-Kutta timestepping scheme RK443 \citep{ascher&all1997}.  
 Thermodynamic variables are decomposed such that $T = T_0 + T_1$ and $\ln\rho = (\ln\rho)_0 + (\ln\rho)_1$, and the velocity is $\bm{u} = w\bm{\hat{z}} + u\bm{\hat{x}} + v\bm{\hat{y}}$.
 In our 2D runs, $v = 0$.
-Subscript 0 variables, set by (\ref{eqn:polytrope}), have no time derivative and vary only in $z$.
+Subscript 0 variables, set by (\ref{eqn:ab17polytrope}), have no time derivative and vary only in $z$.
 Variables are time-evolved on a dealiased Chebyshev (vertical) and Fourier (horizontal, periodic) domain in which the physical grid dimensions are 3/2 the size of the coefficient grid.  
 Domain sizes range from 64x256 coefficients at the lowest values of Ra to 1024x4096 coefficients at Ra $> 10^{7}$ in 2D, and from 64x128$^2$ to 256x512$^2$ in 3D. 
 By using IMEX timestepping, we implicitly step the stiff linear acoustic wave contribution and are able to efficiently study flows at high ($\sim 1$) and low ($\sim 10^{-4}$) Ma.  
@@ -194,7 +194,7 @@ These runs are represented in Figs.~\ref{fig:ma_v_eps}, \ref{fig:re_and_nu_v_ra}
 
 In 2D, low Ma flows (e.g., $\epsilon = 10^{-4}$) display the classic narrow downflow and broad upflow lanes of stratified convection (Fig. \ref{fig:entropy_snapshots}a).
 At high Ma (e.g., $\epsilon = 0.5$, Ra/Ra$_{\text{crit}} \gtrsim 10^3$), bulk thermodynamic structures are similar but shock systems form in the upper atmosphere near downflow lanes (Fig. \ref{fig:entropy_snapshots}b\&c), as reported previously \citep{cattaneo&all1990, malagoli&all1990}.
-At large Ra, the diffusion timescale becomes long (\ref{eqn:timescales}), and thermodynamic structures form small eddies which traverse the domain repeatedly before diffusing (Fig. \ref{fig:entropy_snapshots}c).
+At large Ra, the diffusion timescale becomes long (\ref{eqn:ab17timescales}), and thermodynamic structures form small eddies which traverse the domain repeatedly before diffusing (Fig. \ref{fig:entropy_snapshots}c).
 As evidenced by the colorbar scalings, the amplitudes of thermodynamic fluctuations scale with $\epsilon$.
 
 In 3D, the same upflow/downflow asymmetry is seen, but other aspects of the flow are distinctly different.  
@@ -233,7 +233,7 @@ In stratified convection Nu is more difficult to define, and we use a modified v
 \text{Nu} \equiv \frac{\langle F_{\text{conv,z}} + F_{\text{cond,z}} - F_{\text{A}}\rangle}
 {\langle F_{\text{cond,z}} - F_{\text{A}}\rangle} 
 = 1 + \frac{\langle F_{\text{conv,z}}\rangle}{\langle F_{\text{cond,z}} - F_{\text{A}} \rangle}
-\label{eqn:nusselt}
+\label{eqn:ab17nusselt}
 \end{equation}
 where $F_{\text{conv,z}}$ and $F_{\text{cond,z}}$ are the z-components of $\bm{F}_{\text{conv}}$ and $\bm{F}_{\text{cond}}$, and $\langle \rangle$ are volume averages.  
 $F_{\text{A}} \equiv -\langle\kappa\rangle \partial_z T_{\text{ad}}$ is the conductive flux of the proper corresponding adiabatic atmosphere.
@@ -269,7 +269,7 @@ Our choice of $\{\nu,\chi\}\propto \rho_0^{-1}$ drastically changes the value of
 We report values of Re at the midplane ($z=L_z/2$) of the atmosphere in Fig. \ref{fig:re_and_nu_v_ra}b.  
 We find that Re depends largely on Ra, but not $\epsilon$, except when the flow regime changes.
 In 2D Re $\appropto$ Ra$^{3/4}$ at low Ra.    
-When the 2D flows become supersonic,  Re $\appropto$ Ra$^{1/2}$, as expected from (\ref{eqn:timescales}).
+When the 2D flows become supersonic,  Re $\appropto$ Ra$^{1/2}$, as expected from (\ref{eqn:ab17timescales}).
 In our limited 3D runs, Re $\appropto$ Ra$^{1/2}$, consistent with the supersonic results.
 The heightened scaling of Re in 2D follows the scaling of velocity (Ma) with Ra, as seen in Fig. \ref{fig:ma_v_eps}, and reflects the presence of coherent spinners, which do not exist in 3D.
 

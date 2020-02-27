@@ -7,8 +7,8 @@ The text in section \ref{sec:alb19_published} is the text of the paper as it was
 Following the published work, in section \ref{sec:alb19_postscript}, I comment on a few lessons that have been learned since we published these results.
 
 This work was initially motivated by discussions with Axel Brandenburg from around 2015-2016, in which he was interested in using the propagation of Hill vortices as a model for entropy rain.
-He conducted a couple of initial simulations of these vortices and reported briefly on them in the supplemental materials of \cite{brandenburg2016}.
-The results of those initial simulations didn't look too promising for the ``Entropy Rain'' idea -- that is, they compressed with increasing atmospheric density, as expected.
+He conducted a couple of initial simulations of these vortices and reported briefly on them in the appendices of \cite{brandenburg2016}.
+The results of those initial simulations looked unfortunate for the ``Entropy Rain'' hypothesis -- that is, they compressed with increasing atmospheric density, as expected.
 I had completely forgotten about these discussions until reading the more recent results of \cite{lecoanet&jeevanjee2019}, which showed that ``thermals'' in \emph{unstratified} atmospheres produce propagating \emph{buoyant} vortex rings which expand as they propagate.
 Buoyant vortex rings as a model for entropy rain should therefore exhibit a blend of these phenomena: atmospheric compression and buoyant expansion.
 This published work below sought to understand how these effects interact with one another from a theoretical perspective, and to test out that theory with some simple simulations.
@@ -121,7 +121,7 @@ It is thus unaffected by internal forces (e.g., pressure or viscous).
 Upon integration by parts, it is obvious that the impulse encompasses the momentum of the fluid within the volume $\mathcal{V}$.
 However, one can also show that the surface terms correspond to the momentum outside the volume $\mathcal{V}$ \cite[e.g.][]{Akhmetov2009}.
 A thermal with volume $\mathcal{V}$, density $\rho$, and translating with velocity $\bm{u} = w_{\text{th}} \hat{z}$ thus has an impulse
-\begin{equation}\label{eqn:momentum}
+\begin{equation}\label{eqn:alb19_momentum}
 I_z = (1+k) \rho \mathcal{V} w_{\text{th}},
 \end{equation}
 where $k$ encompasses the ``virtual mass effect'' from the environmental fluid moving together with the thermal \cite{tarshish&all2018}.
@@ -142,24 +142,24 @@ because the surface terms completely cancel.
 Assuming a uniform, vertical gravity, $\bm{g} = -g\hat{z}$, it is useful to define the buoyancy perturbation,
 \begin{equation}
 B \equiv \int_{\mathcal{V}} \rho_0\, S_1\, \frac{g}{c_P}\, dV.
-\label{eqn:tot_buoyancy}
+\label{eqn:alb19_tot_buoyancy}
 \end{equation}
 such that
 \begin{equation}
 \frac{d I_z}{d t} = B.
-\label{eqn:change_in_impulse}
+\label{eqn:alb19_change_in_impulse}
 \end{equation}
 
 In the limit of a low Mach-number, thin-core vortex ring, the impulse can be approximated as
 \begin{equation}
 I_z \approx \pi \rho_0 r^2 \Gamma,
-\label{eqn:impulse_approx}
+\label{eqn:alb19_impulse_approx}
 \end{equation}
 where $r$ is the radius of the thermal from its axis of symmetry to its vorticity extremum, and $\Gamma = \int_{\mathcal{A}} (\grad\times\bm{u})dA$ is the circulation in a cross-subsection of the vortex ring.
 The circulation can change due to baroclinic torques,
 \begin{equation}
 \frac{d\Gamma}{dt} = \oint_{\mathcal{C}} g \frac{S_1}{c_P}\hat{z} \cdot d\bm{x},
-\label{eqn:circulation}
+\label{eqn:alb19_circulation}
 \end{equation}
 where $\mathcal{C}=\partial \mathcal{A}$ is the contour around the thermal's vorticity.
 For the case of a vortex core in which the entropy perturbation is contained tightly in the core, as in Fig.~\ref{fig:evolution_colormeshes}, a contour can be drawn for which $S_1\approx0$.
@@ -187,51 +187,51 @@ We thus express the buoyancy perturbation as
 B \approx \eta B_{\text{th}},
 \end{equation}
 where $\eta$ is a constant of $\mathcal{O}$(1) which represents this detrainment and $B_{\text{th}}$ is the thermal's characteristic buoyancy perturbation. 
-We then integrate Eqn.~\ref{eqn:change_in_impulse},
+We then integrate Eqn.~\ref{eqn:alb19_change_in_impulse},
 \begin{equation*}
 I_z = \eta B_{\text{th}} (t + t_{\text{off}}).
 \end{equation*}
 
-Combining this with Eqn.~\ref{eqn:impulse_approx}, we retrieve our first main result,
+Combining this with Eqn.~\ref{eqn:alb19_impulse_approx}, we retrieve our first main result,
 \begin{equation}
 r = \sqrt{\frac{\eta B_{\text{th}} (t + t_{\text{off}})}{\pi\rho_0\Gamma_{\text{th}}}},
-\label{eqn:r_theory}
+\label{eqn:alb19_r_theory}
 \end{equation}
 Here, $\Gamma_{\text{th}}$ is the characteristic circulation of the thermal. As there are no net baroclinic torques, $\Gamma_{\text{th}}$ remains nearly constant in our simulations (Fig.~\ref{fig:constants}, middle panel).
 In the Boussinesq limit where $\rho \rightarrow \text{constant}$, we retrieve the $r \propto \sqrt{t}$ scaling found in \LJ.
 In the limit of strong stratification, we find $r \propto \rho^{-1/2}$, corresponding to purely horizontal compression, with $r^2 \propto \rho^{-1}$ \cite{brandenburg2016}.
 
-To solve for the vertical evolution of the thermal, we can use Eqn.~\ref{eqn:momentum}.
+To solve for the vertical evolution of the thermal, we can use Eqn.~\ref{eqn:alb19_momentum}.
 We approximate the volume as $\mathcal{V} \approx m r^3$, where $m$ is a parameter which we take to be constant (which is a decent assumption in our simulations; see Fig.~\ref{fig:constants}, bottom panel).
 Here, $m$ accounts for volumetric constants (e.g., $4\pi/3$), the aspect ratio of the thermal, and the cubed ratio between the full radius of the spheroidal thermal and $r$.
 Defining the thermal velocity $w_{\text{th}} \equiv dz_{\text{th}}/dt$, we find
 \begin{equation}
 \frac{dz_{\text{th}}}{\rho(z_{\text{th}})^{1/2}} =
 \left(\frac{(\pi\Gamma_{\text{th}})^{3/2}}{m(1 + k)(\eta B_{\text{th}})^{1/2}}\right)\frac{dt}{(t + t_{\text{off}})^{1/2}}.
-\label{eqn:dz_theory}
+\label{eqn:alb19_dz_theory}
 \end{equation}
 This can be easily integrated given an atmospheric stratification $\rho(z)$.
 
 To summarize, we model thermals as thin-core vortex rings.
 The vortex ring is parameterized by its buoyancy perturbation and circulation, which are assumed to be nearly constant after spin-up.
-The impulse increases in magnitude due to buoyancy forces (Eqn.~\ref{eqn:change_in_impulse}), and allows us to relate the size of the vortex ring (Eqn.~\ref{eqn:impulse_approx}) to the momentum of the thermal and its ambient fluid (Eqn.~\ref{eqn:momentum}).
-Assuming the thermals' volume is spheroidal and that the virtual mass effect and detrainment can be parameterized as constants, we arrive at Eqn.~\ref{eqn:dz_theory}.
+The impulse increases in magnitude due to buoyancy forces (Eqn.~\ref{eqn:alb19_change_in_impulse}), and allows us to relate the size of the vortex ring (Eqn.~\ref{eqn:alb19_impulse_approx}) to the momentum of the thermal and its ambient fluid (Eqn.~\ref{eqn:alb19_momentum}).
+Assuming the thermals' volume is spheroidal and that the virtual mass effect and detrainment can be parameterized as constants, we arrive at Eqn.~\ref{eqn:alb19_dz_theory}.
 
 \subsubsection{Polytropic atmosphere solution}
 In this work, we study an ideal gas with an adiabatic index of $\gamma = 5/3$.
 An adiabatic polytrope satisfies
-\begin{gather}\label{eqn:T0}
+\begin{gather}\label{eqn:alb19_T0}
 T_0 = 1 + (z - L_z)\grad_{\text{ad}}, \\
 \rho_0 = T_0^{\,n_{\text{ad}}},
-\label{eqn:polytrope}
+\label{eqn:alb19_alb19_polytrope}
 \end{gather}
 where $n_{\text{ad}} = (\gamma-1)^{-1}$ and $\grad_{\text{ad}}$ is the adiabatic temperature gradient.
 All thermodynamic quantities are nondimensionalized such that $\rho_0 = T_0 = 1$ at $z = L_z$, the top of the domain.
 
-Integrating Eqn.~\ref{eqn:dz_theory} under this polytropic density stratification, we find
+Integrating Eqn.~\ref{eqn:alb19_dz_theory} under this polytropic density stratification, we find
 \begin{equation}
 z_{\text{th}} = \grad_{\text{ad}}^{-1}\left[\left(\frac{2C}{ \alpha } \sqrt{t + t_{\text{off}}} + T_{\text{th},0}^{1/\alpha}  \right)^{\alpha} - 1\right] + L_z,
-\label{eqn:theory_z}
+\label{eqn:alb19_theory_z}
 \end{equation}
 where 
 $$
@@ -288,7 +288,7 @@ u_{\text{th}}^2 = \frac{g L_{\text{th}} \Delta s}{c_P},
 where $u_{\text{th}}$ is the freefall velocity, $L_{\text{th}}$ is the thermal length scale, and
 $\Delta s$ is the magnitude of the specific entropy signature of the thermal.
 
-The background density and temperature are given by Eqs.~\ref{eqn:T0} \& \ref{eqn:polytrope}.
+The background density and temperature are given by Eqs.~\ref{eqn:alb19_T0} \& \ref{eqn:alb19_alb19_polytrope}.
 The adiabatic temperature gradient is $\nabla_{\text{ad}}=g(e^{N_\rho/n_{\text{ad}}}-1)/(L_z c_P)$, where $L_z=20$ is the height of the domain and $N_\rho$ is the number of density scale heights spanned by the domain.
 
 We choose an atmospheric model in which the dynamic viscosity, $\mu = \rho_0 \nu$, and the thermal conductivity, $\kappa = \rho_0 \chi$, are both uniform in space and constant in time.
@@ -318,7 +318,7 @@ The new parameter $\epsilon = -u_{\text{th}}^2/\grad_{\text{ad}}$ is the magnitu
 The simulations are initialized with a spherical specific entropy perturbation,
 \begin{equation}
 S_1 = \frac{1}{2}\left[\text{erf}\left(\frac{r' - r_{\text{th}}}{\delta}\right) - 1\right].
-\label{eqn:thermal_IC}
+\label{eqn:alb19_thermal_IC}
 \end{equation}
 Here, $r' = \sqrt{r^2 + (z - z_0)^2}$, where $z_0 = L_z - 3r_{\text{th}}$, with the thermal radius set as $r_{\text{th}} = 0.5$, and a smoothing width, $\delta = 0.1$.
 As mentioned previously, Re = 600 and Pr = 1 are specified at the thermal's initial depth, $z = z_0$.
@@ -380,8 +380,8 @@ For specifics on how these measurements are conducted in our simulations, we ref
 
 In the top panel of Fig. \ref{fig:results_panels} we show the depth, $d_{\text{th}} = L_z - z_{\text{th}}$, of the thermal as a function of time for simulations with different stratifications. 
 At very low stratification (e.g., $N_\rho = 0.1$), the thermal is small compared to the local density scale height at all depths, and it evolves roughly according to the Boussinesq prediction of $d \propto \sqrt{t}$. 
-As the stratification increases, the thermal transits the domain more quickly and approaches the limit of $d \propto t^2$ predicted in the highly stratified limit of Eqn.~\ref{eqn:theory_z}. 
-The theoretical fits for depth from the prediction of Eqn.~\ref{eqn:theory_z} are plotted over the measured data.
+As the stratification increases, the thermal transits the domain more quickly and approaches the limit of $d \propto t^2$ predicted in the highly stratified limit of Eqn.~\ref{eqn:alb19_theory_z}. 
+The theoretical fits for depth from the prediction of Eqn.~\ref{eqn:alb19_theory_z} are plotted over the measured data.
 The theoretical fits are poor at early times when the thermal is spinning up from its initial spherical state into the vortex ring state.
 Once the thermal is spun up into a vortex ring, the theory shows remarkable agreement with the data.
 
@@ -467,7 +467,7 @@ Our theory of thermals suggests that, instead, buoyancy counteracts some of the 
 We now estimate the behavior of thermals in the Sun based on the simulations presented in this work.
 The thermal evolution depends on a variety of parameters (see table \ref{table:parameters}).
 However, we find the only parameter which changes appreciably as we increase the stratification is the normalized buoyancy $B_\text{th}$.
-To estimate $B_\text{th}$ in the sun, we approximate the dimensional buoyancy perturbation of Eqn.~\ref{eqn:tot_buoyancy} as $\tilde{B} = \rho \mathcal{V} g (S_1/c_p)$, and calculate this quantity for thermals launched from the solar photosphere, assuming that solar downflow lanes quickly break up into thermals.
+To estimate $B_\text{th}$ in the sun, we approximate the dimensional buoyancy perturbation of Eqn.~\ref{eqn:alb19_tot_buoyancy} as $\tilde{B} = \rho \mathcal{V} g (S_1/c_p)$, and calculate this quantity for thermals launched from the solar photosphere, assuming that solar downflow lanes quickly break up into thermals.
 Using the VAL atmospheric data of \cite{avrett&loeser2008}, we estimate the solar surface to have a temperature of $T_0 \approx 6000$ K, a density of $\rho_0 \approx 1.74 \times 10^{-7}$ g/cm$^3$, and a sound speed of $c_s = 9.5 \times 10^5$ cm/s.
 We estimate that thermal diameters would be roughly the width of downflow lanes ($L_{\text{th}} = 0.1$ Mm), and the average atmospheric density over the first $L_{\text{th}}$ of the solar interior is $\bar{\rho} = 1.17\rho_0$.
 Estimating downflows to have a temperature deviation of $T_1 = -500$ K \cite{borrero&bellotrubio2002}, the nondimensional entropy signature of solar downflows is $S_1/c_p \sim \gamma^{-1}\ln(1 + T_1/T_0) = -5.22 \times 10^{-2}$.
@@ -491,7 +491,7 @@ Nondimensionalizing this by $B_0 = (S_1/c_P) L^2 u_{\text{th}}^2 \rho_0$ with $u
 \end{figure}
 
 Because solar downflows likely break up into thermals of various sizes, we will examine the fate of thermals with dimensionless buoyancy in the interval $[B_\ell, B_u] = 0.5B_\text{th}, 2B_\text{th}$.
-Interpolating and extrapolating the data in Table \ref{table:parameters}, we use Eqns.~\ref{eqn:r_theory} \& \ref{eqn:theory_z} to calculate theoretical predictions for how thermals with these buoyancies would evolve over extended atmospheres like the solar convection zone.
+Interpolating and extrapolating the data in Table \ref{table:parameters}, we use Eqns.~\ref{eqn:alb19_r_theory} \& \ref{eqn:alb19_theory_z} to calculate theoretical predictions for how thermals with these buoyancies would evolve over extended atmospheres like the solar convection zone.
 Using a simple solar interior model calculated using MESA \cite{paxton&all2011} to map the density profiles of our simulation domains onto the density profile of the Sun, we plot the evolution of thermals in our estimated interval in Fig. \ref{fig:thermal_sun_comparison}.
 In the first and second panels of Fig. \ref{fig:thermal_sun_comparison}, we show the evolution of these thermals' radii and velocities inside of the Sun, and compare their radial evolution to pure horizontal compression and their velocity evolution to the speed of sound.
 We use the solar diffusivity models of \cite{brown2011} to estimate the timescale over which the thermal would diffuse its entropy signature ($\tau_\kappa = \chi/r_{\text{th}}^2$) and the thermal freefall timescale over its own radial length scale ($\tau_{\text{ff}} = r_{\text{th}}/w_{\text{th}}$).
@@ -574,12 +574,12 @@ We begin by measuring the thermal's velocity versus time, $w_{\text{th}}$, as de
 We calculate the streamfunction of the velocity field as in \cite{romps&all2015},
 \begin{equation}
 \frac{\partial \psi}{\partial r} = 2\pi \rho r (w - w_{\text{th}}),
-\label{eqn:thermal_tracker}
+\label{eqn:alb19_thermal_tracker}
 \end{equation}
 using vertical velocity data, $w$, in a 2D domain which radially spans $r = [0, L_r]$ and vertically spans the same depth as the simulation domain.
 For our 2D simulations, this is simply the output of the simulations.
 For our 3D simulations, we assume that the vortex ring is azimuthally symmetric, and thus use the vertical velocity data in the $y = 0$ plane at values of $x \geq 0$.
-We solve Eqn.~\ref{eqn:thermal_tracker} with the boundary condition that $\psi = 0$ at $r = 0$. 
+We solve Eqn.~\ref{eqn:alb19_thermal_tracker} with the boundary condition that $\psi = 0$ at $r = 0$. 
 The contour $\psi = 0$ is taken to be the contour bounding the thermal, $\mathcal{C}$.
 
 \subsection{Appendix C: Table of Simulations}
@@ -637,6 +637,6 @@ I discuss the implications of this further in sec.~\ref{sec:turb_thermals}.
 An interesting implication of this work relates to the manner in which entropy raindrops would interact with the solar radiative zone.
 From Fig.~\ref{fig:thermal_sun_comparison}, the size of thermals at the base of the convection zone is $r_{\text{th}} =\,$ a few $\times 10^{-3}$ Mm.
 The solar radius there is $R_{\text{CZ}} \approx 500$ Mm.
-We can the spherical harmonic degree of these thermals as $\ell \approx R_{\text{CZ}}/ r_{\text{th}} \approx 10^{5}$.
+The spherical harmonic degree of these thermals is $\ell \approx R_{\text{CZ}}/ r_{\text{th}} \approx 10^{5}$.
 This high spherical harmonic degree could have huge implications for the gravity wave spectrum excited within the radiative interior.
 Unfortunately, I haven't had the chance to pursue in depth the implications of entropy rain interactions with the radiative zone (either with regards to wave excitation or overshoot and mixing).
