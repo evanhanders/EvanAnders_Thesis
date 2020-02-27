@@ -179,6 +179,20 @@ Together with geometric factors (the size and shape of the experimental domain),
 Ra is an ideal control parameter for a convective system, because it is a straightforward knob for convective driving: above some ``critical value,'' $\text{Ra} > \text{Ra}_{\text{crit}}$, a fluid layer should convect, and the more ``supercritical'' an experiment is (or, the larger $S = \text{Ra}/\text{Ra}_{\text{crit}}$ is), the more turbulent the convection should be.
 Furthermore, the value of $\text{Ra}_{\text{crit}}$ is independent of $\text{Pr}$ and is therefore independent of the specific fluid used in a convective experiment (e.g., in air Pr = 0.7 and in water Pr = 7).
 
+\begin{figure}[t!]
+\includegraphics[width=\textwidth]{./figs/intro/rayleigh_benard_description.pdf}
+\caption[A description of \RB convection studies.]
+{
+	\citep[left, Fig.~1 of][]{johnston&doering2009} A simple schematic of the \RB problem.
+	A hot plate sits below a cold plate, and either the flux (temperature gradient) or the temperature is fixed at each plate to maintain the convective instability.
+	\citep[right, Fig.~4 of][]{ahlers&all2009} A compensated scaling plot of Nu vs.~Ra.
+	Here, the value of Nu is divided by the expected scaling, Ra$^{1/3}$.
+	The initial trend downward means that, in taht part of parameter space, if you assume Nu$\,\propto\,$Ra$^{\alpha}$, $\alpha < 1/3$.
+	However, at high values of Ra, when the trend flattens, it suggests that a Ra$^{1/3}$ law is a good description.
+	\label{fig:rayleigh_benard_description} 
+}
+\end{figure}
+
 Historical reviews of the development of studies of RBC can be found throughout the decades in e.g., \citet{busse1978, siggia1994, ahlers&all2009}.
 In the simplest of terms, much of the research into RBC focuses on the behavior of heat transfer across a convective domain, quantified by the nondimensional Nusselt number (Nu),
 \begin{equation}
@@ -186,11 +200,14 @@ In the simplest of terms, much of the research into RBC focuses on the behavior 
 \end{equation}
 where $w$ is the vertical velocity, and $T$ is the temperature field, and $\angles{}$ are a volume average over the convective domain.
 The key historical question that has been asked is: how does Nu scale as Ra and Pr are changed?
+A schematic of the RBC setup and a sample scaling plot of Nu vs.~Ra are shown in Fig.~\ref{fig:rayleigh_benard_description}.
 %To a lesser extent, the same has also been asked of the Reynolds number, Re$\,= \angles{|\bm{u}|} L / \nu$, where $\bm{u}$ is the velocity.
 The earliest theoretical description developed by \citet{malkus1954} asserts that the boundary layers of convective domains are always in a marginally stable state, and thus when the Rayleigh number is defined with $L = \delta$, the boundary layer thickness, it should always have a value of Ra$_{\text{crit}}$.
 This argument suggests that $\delta \propto \text{Ra}^{-1/3}$.
 Assuming that the convection develops an isothermal interior and that the full temperature jump across the domain occurs in the boundary layers, we can substitute $L = \delta$ in the definition of Nu, and we retrieve a classical scaling law of $\text{Nu} \propto \text{Ra}^{1/3}$.
 This scaling, or similar scalings have been seen in experiments for decades.
+
+
 
 More recently, in \citet{grossman&lohse2000} and following papers, a unifying theory of scaling behavior has been developed that is based around the dissipation of kinetic and thermal energy in convective experiments.
 The dissipation for each of these energies is split into a bulk and boundary layer component, as it is assumed that different force balances dominate the equation of motion in the bulk or boundary layers.
@@ -210,7 +227,24 @@ In general, the presence of global rotation or a strong background magnetic fiel
 At low supercriticalities above Ra$_{\text{crit}}$, rotational (e.g., Coriolis) or magnetic forces dominate the convective flow balances.
 As $S$ is increased, these forces become less important until eventually convection behaves almost indistinguishably from its nonrotating or nonmagnetic forms.
 Theoretical descriptions of these models often focus on understanding scaling laws in the rotationally- \citep[e.g.,][]{julien&all2012} or magnetically- \citep[e.g.,][]{cioni&all2000} dominated regime.
+A sample of the manner in which scaling laws change in the rotationally- and magnetically-constrained regimes can be seen in Fig.~\ref{fig:rotation_mhd_rayleigh_benard}.
 In this thesis (Ch.~\ref{ch:ro_p19}), we focus on the effects of rotationally-influenced convection in stratified atmospheres.
+
+\begin{figure}[t!]
+\includegraphics[width=\textwidth]{./figs/intro/rotation_mhd_rayleigh_benard.pdf}
+\caption[Modification of Nu vs.~Ra in rotating RBC and magnetoconvection.]
+{
+	\citep[left, Fig.~1 of][]{julien&all2016} Nu vs.~Ra scalings of rotating \RB convection.
+	The green line shows the rough scaling of Nu vs.~Ra in the nonrotating regime.
+	Below that line, rotationally constrained experiments can be seen.
+	Due to rotational stabilization of convection, these experiments have a higher value of Ra$_{\text{crit}}$ (and therefore convection ``turns on'' further to the right).
+	As rotational constraint becomes less important, these simulations rapidly scale upwards towards the nonrotating values, and then follow those values once rotational constraint is not important.
+	\citep[right, Fig.~4 of][]{plumley&julien2019} The same, but for magnetoconvection.
+	This parameter space is significantly less well-explored.
+	\label{fig:rotation_mhd_rayleigh_benard} 
+}
+\end{figure}
+
 
 Outside of the realm of RBC, the field of convective research is less systematic and focused.
 Atmospheric density stratification is one key ingredient of convection in geophysical and astrophysical applications.
@@ -219,24 +253,53 @@ The first study which determined how to find Ra$_{\text{crit}}$ in a polytropic 
 These early works focused on similar questions to those studied in the RBC community (how does Nu behave as Ra increases?) but were limited to a very small range of supercriticalities.
 Subsequent studies into polytropic convection \citep[e.g.,][]{hurlburt&all1984, cattaneo&all1991} have often focused on the morphology of overall convective flows, forces responsible for those morphologies, and the emergent nonlinear phenomena.
 This trend has continued as complicating physics were added in addition to stratification (e.g., rotation in \citet{brummell&all1996, brummell&all1998}, stably stratified layers in \citet{hurlburt&all1986, singh&all1995, brummell&all2002}, or magnetism/dynamo action in \citet{nordlund&all1992, brandenburg&all1996, tobias&all1998}).
+A visualization of one of dynamics in one of these simulations is shown in the left panel of Fig.~\ref{fig:complex_simulations}.
 
 As the capabilities of supercomputers have expanded, so too have the complexity of convective simulations.
 Modern ``dynamo simulations'' examine the evolution of rotating magnetohydrodynamic convection in spherical domains and have produced fascinating phenomenon.
-These dynamo simulations regularly produce self-consistent differential rotation \citep{strugarek&all2018}, ``wreaths'' of magnetism \citep{brown&all2010}, magnetic cycles \citep{brown&all2011}, and more phenomenon.
+These dynamo simulations regularly produce self-consistent differential rotation \citep{strugarek&all2018}, ``wreaths'' of magnetism \citep[][and visualized in the middle panel of Fig.~\ref{fig:complex_simulations}]{brown&all2010, brown&all2011}, magnetic cycles \citep{brown&all2011}, and more phenomenon.
 These emergent phenomena parallel observed phenomena on the Sun and suggest that our fundamental understanding of the Sun's dynamo (that it is driven by turbulent motions in the convective zone) are correct.
 Unfortunately, these simulations are difficult to run and are are extremely complex.
 As a result, these simulations serve a role similar to observations: it is easy to see what phenomena they produce, but it is hard to understand and predict how those phenomena occurred.
 
+\begin{figure}[t!]
+\vspace{0.25cm}
+\includegraphics[width=\textwidth]{./figs/intro/complex_simulations.pdf}
+\caption[Modification of Nu vs.~Ra in rotating RBC and magnetoconvection.]
+{
+	\citep[left, Fig.~2b of][]{tobias&all1998} A visualization of enstrophy (purple) and magnetic field (blue, yellow) in a stratified simulation where a convecting region lies above a stable region.
+	\citep[middle, Fig.~2a of][]{brown&all2011} A visualization the azimuthal magnetic field in a spherical dynamo simulation (red is positive, blue is negative).
+	\citep[right, Fig.~6a of][]{rempel2014} Intensity of light near the surface of a realistic, solar surface simulation.
+	\label{fig:complex_simulations} 
+}
+\end{figure}
+
+
 While dynamo simulations are complex due to their geometry and scale, they often do not contain the most ``realistic'' physics.
 Small scale ``local'' simulations with realistic radiative transfer strikingly visually resemble solar surface convection and sunspots \citep{stein&nordlund1998, rempel&all2009, stein&nordlund2012, rempel2014}.
-These simulations visually resemble solar surface convection so convincingly that the raw data of e.g., \cite{rempel2014}'s simulations are being used directly as high-resolution observations of solar convection \cite[see e.g.,][and others]{vankooten&cranmer2017, shchukina&trujillo2019}.
+These simulations visually resemble solar surface convection so convincingly (see the right panel of Fig.~\ref{fig:complex_simulations}) that the raw data of e.g., \cite{rempel2014}'s simulations are being used directly as high-resolution observations of solar convection \cite[see e.g.,][and others]{vankooten&cranmer2017, shchukina&trujillo2019}.
 Whether or not such a practice is wise is beyond the editorial domain of this thesis, but as a numericist I generally advise caution in directly viewing the outputs of simulations as comparable to observations.
 
 Outside of simulations, convective experiments have become increasingly complex in recent years.
 Rotating magnetoconvection experiments have been performed in cylindrical cases using liquid gallium \citep{aurnou&all2018}.
-Distributed dye and light have been used to model driving of convection by internal heating, as in the interior of stars.
+Distributed dye and light have been used to model driving of convection by internal heating, as in the interior of stars \citep{bouillaut&all2019}.
 Small-scale spherical convecting plasma domains have even been produced \citep{koulakis&all2018}.
 All of these experiments provide excellent opportunities to better understand convection and give us excellent models against which to compare and benchmark simulations.
+These experiments are shown briefly in Fig.~\ref{fig:convective_experiments}
+
+\begin{figure}[t!]
+\vspace{0.25cm}
+\includegraphics[width=\textwidth]{./figs/intro/convective_experiments.pdf}
+\caption[Modern convective experiments.]
+{
+	\citep[left, Fig.~1a of][]{aurnou&all2018} A cylindrical experiment filled with liquid gallium in which rotating magnetoconvection can be studied.
+	\citep[middle, Fig.~1a of][]{bouillaut&all2019} An experiment in which internally heated convection can be studied.
+	The dye in the water absorbs the light, heating the water throughout the tank, and driving convection.
+	\citep[right, Fig.~3a of][]{koulakis&all2018} An experiment in which pyconoclinic acoustic forces contain a hot plasma sphere at the center of a bulb.
+	\label{fig:convective_experiments} 
+}
+\end{figure}
+
 
 The ultimate goal of convective models in the context of solar or stellar convection is to understand how the solar dynamo operates so that we can eventually predict its behavior.
 Modern studies have proven that we have the computational resources to create impressive simulations which strongly resemble the Sun.

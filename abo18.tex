@@ -596,7 +596,19 @@ We show time traces of more supercritical (e.g., flux Ra$\,= 10^{10.5}$) simulat
 As we will see in our future work, Ra$_{\partial_z T} \approx \text{Ra}_{\Delta T} \text{Nu}$. 
 Here we roughly found that Nu$\,\propto \text{Ra}_{\partial_z T}^{1/5}$.
 Substituting to find a scaling law in terms of Ra$_{\Delta T}$, we find Nu $\propto \text{Ra}_{\Delta T}^{1/4}$.
-These scaling laws were fairly chi-by-eye, and 1/4 is fairly indistinguishable from a classic 2/7 law which is found for similar simulations \citep{johnston&doering2009}.
+These scalings are plotted in Fig.~\ref{fig:flux_nu_ra_scalings}, and while 1/4 is not quite the classical 2/7 law, it may be because we are in a small-Ra range of parameter space \citep{johnston&doering2009}.
 So: lesson learned, there can be multiple values of the Rayleigh number for a given system, and it's important to know how the choice of Ra that you're using changes your results.
 \end{enumerate}
+
+\begin{figure}[ht!]
+\includegraphics[width=\textwidth]{./figs/postscripts/flux_nu_ra_scalings.pdf}
+\caption[Flux and Temperature Nu vs.~Ra.]
+{
+	(left) Compensated scaling plot of Nu vs.~the flux Ra reported in this paper, where a Ra$^{1/5}$ law is a good fit.
+	(right) Compensated scaling plot of Nu vs.~the temperature Ra, where Ra$_{\Delta T}$ = Ra$_{\partial_z T}/$Nu, where a Ra$^{1/4}$ law is a good fit.
+	While this is not a classical 2/7 law, the region of parameter space here is at a fairly low supercriticality compared to most modern studies.
+	\label{fig:flux_nu_ra_scalings} 
+}
+\end{figure}
+
 
