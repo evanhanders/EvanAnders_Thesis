@@ -1,4 +1,4 @@
-\chapter{Accelerated Evolution of Convective Simulations}
+\chapter{Accelerated evolution of convective simulations}
 \label{ch:abo18}
 
 \section{Preamble}
@@ -25,18 +25,18 @@ Stiffness in astrophysical systems can manifest in multiple ways, some of which 
 For example, flows in the convection zones of stars like the Sun are characteristically low Mach number (Ma) in the deep interior. 
 Initial value problems solved using explicit timestepping methods are bound by the Courant-Friedrich-Lewy (CFL) timestep limit corresponding to the fastest motions (sound waves), resulting in timesteps which are prohibitively small for studies of the deep, low-Ma motions. 
 These systems are numerically stiff, and the difference between the sound crossing time and the convective overturn time has made studies of low-Ma stellar convection difficult. 
-This stiffness can be avoided using approximations such as the anelastic approximation, in which sound waves are explicitly filtered out \cite{brown&all2010, featherstone&hindman2016a}.
-Recently, advanced numerical techniques which use fully implicit \cite{viallet&all2011, viallet&all2013, viallet&all2016} or mixed implicit-explicit \cite{lecoanet&all2014, anders&brown2017, bordwell&all2018} timestepping mechanisms have made it possible to study convection in the fully compressible equations at low Mach numbers, and careful studies of deep convection which would have been impossible a decade ago are now widely accessible.
+This stiffness can be avoided using approximations such as the anelastic approximation, in which sound waves are explicitly filtered out \citep{brown&all2010, featherstone&hindman2016a}.
+Recently, advanced numerical techniques which use fully implicit \citep{viallet&all2011, viallet&all2013, viallet&all2016} or mixed implicit-explicit \citep{lecoanet&all2014, anders&brown2017, bordwell&all2018} timestepping mechanisms have made it possible to study convection in the fully compressible equations at low Mach numbers, and careful studies of deep convection which would have been impossible a decade ago are now widely accessible.
 
 Unfortunately, astrophysical convective systems are stiff in more than one timescale. 
 Specifically, the Peclet number (Pe), the ratio of the thermal diffusion timescale to the convective velocity timescale, is large.
 In a high Pe system, many convective timescales must pass before the domain thermally relaxes into a steady state in which evolution of the thermal structure of the convective region has ceased.
-As the timestep size of implicit methods is bound to the fastest nonlinear flows (convection), fully implicit methods cannot be used to address this form of stiffness \cite{viallet&all2011, viallet&all2013, viallet&all2016}. 
+As the timestep size of implicit methods is bound to the fastest nonlinear flows (convection), fully implicit methods cannot be used to address this form of stiffness \citep{viallet&all2011, viallet&all2013, viallet&all2016}. 
 
 Resolving dynamics in atmospheres which are sufficiently thermally relaxed therefore remains a challenging problem.
-Solar convection is a prime example of this phenomenon, as dynamical timescales in the solar convective zone are relatively short (convection overturns every $\sim 5$ min at the solar surface) compared to the Sun's thermal relaxation timescale, which is O($10^7$) years \cite{stix2003}.  
+Solar convection is a prime example of this phenomenon, as dynamical timescales in the solar convective zone are relatively short (convection overturns every $\sim 5$ min at the solar surface) compared to the Sun's thermal relaxation timescale, which is O($10^7$) years \citep{stix2003}.  
 In such a system, it is impossible to resolve the convective dynamics while also meaningfully evolving the thermal structure of the system using traditional timestepping techniques alone.
-As modern simulations aim to model natural, high-Pe convection in the high-Rayleigh-number (Ra) regime, the thermal diffusion timescale ($t_{\kappa}$, defined in Sec. \ref{sec:abo18_ae}) becomes intractably large compared to dynamical timescales such as the freefall time ($t_{\text{ff}}$, defined in Sec. \ref{sec:abo18_experiment}) \cite{anders&brown2017}, 
+As modern simulations aim to model natural, high-Pe convection in the high-Rayleigh-number (Ra) regime, the thermal diffusion timescale ($t_{\kappa}$, defined in Sec. \ref{sec:abo18_ae}) becomes intractably large compared to dynamical timescales such as the freefall time ($t_{\text{ff}}$, defined in Sec. \ref{sec:abo18_experiment}) \citep{anders&brown2017}, 
 \begin{equation}
 \frac{t_{\kappa}}{t_{\text{ff}}} \propto (\text{Ra})^{1/2}.
 \end{equation}
@@ -45,22 +45,22 @@ Thus, the progression of simulations into the high-Ra regime of natural convecti
 
 The vast difference between convective and thermal timescales has long plagued numericists studying convection, and an abundance of approaches has been employed to study thermally relaxed solutions. 
 One popular method for accelerating the convergence of high-Ra solutions is by ``bootstrapping'' -- the process of using the relaxed flow fields and thermal structure of a low Ra solution as initial conditions for a simulation at high Ra.  
-This method has been used with great success \cite{johnston&doering2009, verzicco&camussi1997}, but it is not without its faults.  
+This method has been used with great success \citep{johnston&doering2009, verzicco&camussi1997}, but it is not without its faults.  
 In systems in which there are multiple stable solutions, such as a roll state and a shearing state of convection, the large-scale convective structures present in the low Ra solution imprint onto the dynamics of the new, high Ra solution. 
 It is possible that this puts the high Ra solution into a different stable state than it would naturally reach from an initial, hydrostatically stable configuration.
 Another commonly-used tactic in moderate-Ra simulations is to first solve a simple model of the system in question, and then use the solution of that model as initial conditions for full nonlinear direct numerical simulations. 
-For example, past studies have used initial conditions from a linear eigenvalue solve \cite{hurlburt&all1984} in plane-parallel studies, or axisymmetric solutions in studies of convection in three-dimensional (3D)  cylinders \cite{verzicco&camussi1997}. 
+For example, past studies have used initial conditions from a linear eigenvalue solve \citep{hurlburt&all1984} in plane-parallel studies, or axisymmetric solutions in studies of convection in three-dimensional (3D)  cylinders \citep{verzicco&camussi1997}. 
 In other systems, particularly when convective zones are adjacent to stable regions, authors often choose initial conditions which are not in a classic, hydrostatic, conductive state. 
-Rather, either through knowledge of low-Ra solutions \cite{couston&all2017} or broader convective theories such as Mixing Length Theory \cite{brandenburg&all2005}, initial conditions can be adjusted such that the stratification within the convective domain is closer to a relaxed state than the largely unstable hydrostatic state.
+Rather, either through knowledge of low-Ra solutions \citep{couston&all2017} or broader convective theories such as Mixing Length Theory \citep{brandenburg&all2005}, initial conditions can be adjusted such that the stratification within the convective domain is closer to a relaxed state than the largely unstable hydrostatic state.
 
 Despite the numerous methods that have been used, the most straightforward way to achieve a thermally relaxed solution is to evolve a convective simulation through a thermal timescale. 
-Some modern studies do just that \cite{featherstone&hindman2016a}.
-Such evolution is computationally \emph{expensive}, and state-of-the-art simulations at the highest values of Ra can only reasonably be run for hundreds of freefall timescales \cite{stevens&all2011}, much less the thousands or millions of freefall times required for thermal relaxation.
+Some modern studies do just that \citep{featherstone&hindman2016a}.
+Such evolution is computationally \emph{expensive}, and state-of-the-art simulations at the highest values of Ra can only reasonably be run for hundreds of freefall timescales \citep{stevens&all2011}, much less the thousands or millions of freefall times required for thermal relaxation.
 
 In this work, we study a method of achieving accelerated evolution of convective simulations. 
-Our technique is similar in essence to the approach used in asymptotically reduced models of rapidly rotating convection, in which the mean temperature profile evolves separately from the fast convective dynamics \cite{julien&all1998, sprague&all2006}. 
+Our technique is similar in essence to the approach used in asymptotically reduced models of rapidly rotating convection, in which the mean temperature profile evolves separately from the fast convective dynamics \citep{julien&all1998, sprague&all2006}. 
 We couple measurements of the dynamics of unstable, evolving convective simulations with knowledge about energy balances in the relaxed solution to instantaneously and self-consistently adjust the mean vertical thermodynamic profile toward its relaxed state. 
-While a technique of this kind has been used by many studies previously (e.g., \cite{hurlburt&all1986}), the details of implementation, the convergence properties, and whether or not the thermally relaxed state achieved from accelerated evolution corresponds to the relaxed state in standard evolution are not documented.
+While a technique of this kind has been used by many studies previously (e.g., \citep{hurlburt&all1986}), the details of implementation, the convergence properties, and whether or not the thermally relaxed state achieved from accelerated evolution corresponds to the relaxed state in standard evolution are not documented.
 In Sec. \ref{sec:abo18_experiment}, we describe our convective simulations and numerical methods. 
 In Sec. \ref{sec:abo18_ae}, we describe the procedure for achieving accelerated evolution. 
 In Sec. \ref{sec:abo18_results}, we compare accelerated evolution solutions to solutions obtained from standard evolution through a full thermal diffusion timescale. 
@@ -79,7 +79,7 @@ Finally, in Sec. \ref{sec:abo18_extensions}, we offer concluding remarks and dis
 In this work we study a simple form of thermal convection: incompressible \RB convection under the Oberbeck-Boussinesq approximation, such that the fluid has a constant kinematic viscosity ($\nu$), thermal diffusivity ($\kappa$), and coefficient of thermal expansion ($\alpha$). 
 The density of the fluid is a constant, $\rho_0$, except in the buoyancy term, where it is $\rho = \rho_0(1  - \alpha T_1)$.
 The gravitational acceleration, $\bm{g} = - g\bm{\hat{z}}$, is constant.
-The equations of motion are \cite{spiegel&veronis1960}:
+The equations of motion are \citep{spiegel&veronis1960}:
 \begin{gather}
 \DivU = 0, 
 	\label{eqn:abo18incompressible}
@@ -114,11 +114,11 @@ We hold Pr $= 1$ constant throughout this work, such that $\mathcal{P} = \mathca
 $\mathcal{P}$ and $\mathcal{R}$ are related to the inverse Reynolds and Peclet numbers of the evolved flows.
 
 In Eqs.~(\ref{eqn:abo18incompressible}), (\ref{eqn:abo18bouss_momentum}), and (\ref{eqn:abo18bouss_energy}), linear terms are grouped on the left-hand side of the equations, while nonlinear terms are found on the right-hand side. We timestep linear terms implicitly, and nonlinear terms explicitly.
-We utilize the Dedalus\footnote{\url{http://dedalus-project.org/}} pseudospectral framework \cite{burns&all2016} to evolve Eqs.~(\ref{eqn:abo18incompressible}), (\ref{eqn:abo18bouss_momentum}), and (\ref{eqn:abo18bouss_energy}) forward in time using an implicit-explicit (IMEX), third-order, four-stage Runge-Kutta timestepping scheme RK443 \cite{ascher&all1997}. 
+We utilize the Dedalus\footnote{\url{http://dedalus-project.org/}} pseudospectral framework \citep{burns&all2016} to evolve Eqs.~(\ref{eqn:abo18incompressible}), (\ref{eqn:abo18bouss_momentum}), and (\ref{eqn:abo18bouss_energy}) forward in time using an implicit-explicit (IMEX), third-order, four-stage Runge-Kutta timestepping scheme RK443 \citep{ascher&all1997}. 
 The code used to run the simulations in this work is included in the supplemental materials as a zip file\footnote{See Supplemental Material published with paper for a .zip file of the python run scripts used to perform all simulations in this work. This code was run using the Dedalus mercurial repository (\url{https://bitbucket.org/dedalus-project/dedalus/src/default/}) at commit node ID dab6af2abaab03c059a4e9513f6a4d98320c2f02.}.
 
 Variables are time-evolved on a dealiased Chebyshev (vertical) and Fourier (horizontal, periodic) domain in which the physical grid dimensions are 3/2 the size of the coefficient grid.  
-We study two- (2D) and three-dimensional (3D) convection in which the domain is a cartesian box, whose dimensionless vertical extent is $z \in [0, 1]$, and which is horizontally periodic with an extent of $x, y \in [0, \Gamma]$, where $\Gamma = 2$ is the aspect ratio, as has been previously studied \cite{goluskin&all2014, johnston&doering2009}. 
+We study two- (2D) and three-dimensional (3D) convection in which the domain is a cartesian box, whose dimensionless vertical extent is $z \in [0, 1]$, and which is horizontally periodic with an extent of $x, y \in [0, \Gamma]$, where $\Gamma = 2$ is the aspect ratio, as has been previously studied \citep{goluskin&all2014, johnston&doering2009}. 
 In 2D simulations, we set $v = \partial_y = 0$.
 We specify no-slip, impenetrable boundary conditions at both the top and bottom boundaries,
 \begin{equation}
@@ -131,8 +131,8 @@ T_1 = 0 \,\,\text{at}\,\, z=1, \qquad
 \frac{\partial T_1}{\partial z} = 0\,\,\text{at}\,\,z=0.
 \label{eqn:abo18temp_bcs}
 \end{equation}
-For this choice of boundary conditions, the critical value of Ra at which the onset of convection occurs is Ra$_{\text{crit}} = 1295.78$ \cite{goluskin2016}, and the supercriticality of a run is defined as $S \equiv \text{Ra}/\text{Ra}_{\text{crit}}$.
-Studies of convection which aim to model astrophysical systems such as stars often employ mixed thermal boundary conditions, as we do here \cite{hurlburt&all1984, cattaneo&all1991, korre&all2017}.
+For this choice of boundary conditions, the critical value of Ra at which the onset of convection occurs is Ra$_{\text{crit}} = 1295.78$ \citep{goluskin2016}, and the supercriticality of a run is defined as $S \equiv \text{Ra}/\text{Ra}_{\text{crit}}$.
+Studies of convection which aim to model astrophysical systems such as stars often employ mixed thermal boundary conditions, as we do here \citep{hurlburt&all1984, cattaneo&all1991, korre&all2017}.
 Our choice of the thermal boundary conditions in Eqn.~(\ref{eqn:abo18temp_bcs}) was motivated by the fact that accelerated evolution is simpler when both the thermal profile and the flux through the domain are fixed at a boundary (see Sec. \ref{sec:abo18_ae}).
 
 The initial temperature profile is linearly unstable, $T_0(z) = 0.5 - z$. On top of this profile, we fill $T_1$ with random white noise whose magnitude is $10^{-6}\mathcal{P}$, and which is vertically tapered so as to match the thermal boundary conditions.
@@ -245,7 +245,7 @@ For specifics on the precise implementation of the AE method, we refer the reade
 
 \begin{figure}[bt!]
 \includegraphics[width=\textwidth]{./figs/nu_v_time.pdf}
-\caption[Time evolution of the Nusselt number in AE vs SE]
+\caption[Time evolution of the Nusselt number in AE vs.~SE]
 {
 	The time evolution of Nu (black) and $\angles{T} - T_{\text{top}}$ (blue) are shown for simulations at $S = 10^5$ in SE (a) and AE (b).
 	A moving average of Nu, using a centered boxcar with a span of 50 freefall time units, is overplotted as a gray line. 
@@ -271,7 +271,7 @@ The time evolution of Nu in AE and SE is compared to the mean temperature evolut
 In Fig.~\ref{fig:nu_v_time}(a), we show the evolution of the SE run at $S = 10^5$. The black trace shows the instantaneous value of Nu, and the overplotted gray line shows a moving time average of Nu. 
 The time average is taken using a centered boxcar window whose width is 50 $t_{\text{ff}}$.
 The mean value of Nu evolves towards its relaxed value (dashed horizontal gray line) rapidly compared to $\angles{T}-T_{\text{top}}$ (blue), which approaches its evolved state (dashed horizontal blue line) slowly.
-As such, it is possible to measure the statistically stationary mean value of Nu after only a few hundred simulated freefall times, as has been done previously \cite{stevens&all2010}. 
+As such, it is possible to measure the statistically stationary mean value of Nu after only a few hundred simulated freefall times, as has been done previously \citep{stevens&all2010}. 
 However, fluctuations in Nu around the mean value at early times have both a larger magnitude and higher frequency than the fluctuations in the relaxed state.
 In Fig.~\ref{fig:nu_v_time}(b), we show the AE traces of Nu and $\angles{T}-T_{\text{top}}$ at $S = 10^5$. 
 The times at which AE solves occur are marked by arrows. 
@@ -283,7 +283,7 @@ We examine the shaded region of Fig.~\ref{fig:nu_v_time}(b) in more detail in th
 We find that these systems exhibit large Nu during states in which temperature fluctuations travel in their natural buoyant direction (Fig.~\ref{fig:oscillating_plumes}, Ia and IIa, where cold elements fall and hot elements rise).
 However, when wrongly-signed temperature perturbations are entrained in an upflow or downflow with oppositely signed fluid, Nu is suppressed (Fig.~\ref{fig:oscillating_plumes}, Ib and IIb,  where warm fluid is pulled down by the downflow lane, and cool fluid is drawn up by the upflow lane).
 The plumes in these systems naturally oscillate horizontally over time, switching between transport being dominated by a counterclockwise cell, as pictured in Fig.~\ref{fig:oscillating_plumes}, and a clockwise cell. 
-Our choice of no-slip boundary conditions prevents the fluid from entering a full domain shearing state \cite{goluskin&all2014}, and the oscillatory motions of the plumes are a long-lived, stable phenomenon. 
+Our choice of no-slip boundary conditions prevents the fluid from entering a full domain shearing state \citep{goluskin&all2014}, and the oscillatory motions of the plumes are a long-lived, stable phenomenon. 
 However, thanks to our choice of periodic boundary conditions and despite the no-slip conditions, the full system of the upflow and downflow plumes is free to slowly migrate to the left or right over time, and we observe this phenomenon in our solutions.
 The 2D SE simulations exhibit the same horizontally oscillatory behavior as the AE solutions for the same initial conditions.  
 This time-dependent behavior of Nu is not seen strongly in our 3D solutions, however most 3D simulations we conducted were at low $S$ compared to the runs in which this behavior was observed in 2D.
@@ -326,7 +326,7 @@ Mean values are shown by the symbols (purple circles and red stars), and the ver
 Nu is shown as a function of Ra and $S$ in Fig.~\ref{fig:parameter_space_comparison}a, while $\text{Pe} = \angles{|\bm{u}|} / \mathcal{P}$ is shown in Fig.~\ref{fig:parameter_space_comparison}(b), and $\angles{T} - T_{\text{top}}$ (the mean temperature value minus its value at the upper, fixed temperature boundary) is shown in Fig.~\ref{fig:parameter_space_comparison}(c).
 We report $\text{Nu} \propto \text{Ra}^{1/5}$, $\text{Pe} \propto \text{Ra}^{0.45}$, and $(\angles{T} - T_{\text{top}}) \propto \text{Ra}^{-1/5}$.
 The average temperature, $\angles{T}$, is dominated by its value in the isothermal interior, so this measurement serves as a probe of the temperature jump across the boundary layers. 
-Thus, the inverse scaling of average temperature and Nu that we find here is expected for thermally equilibrated solutions \cite{otero&all2002}.
+Thus, the inverse scaling of average temperature and Nu that we find here is expected for thermally equilibrated solutions \citep{otero&all2002}.
 
 In Figs.~\ref{fig:parameter_space_comparison}(d)-\ref{fig:parameter_space_comparison}(f), we report the fractional difference between measurements in the AE and SE solutions.
 The mean values of Nu and $\angles{T} - T_{\text{top}}$ measured in AE are accurate to SE values to within $\sim 1$\%.
@@ -365,7 +365,7 @@ To construct these PDFs, we interpolate the full temperature field at each measu
 The two PDFs have noticeably different maxima, as is expected from Fig.~\ref{fig:temp_comparison}(a). 
 Over long timescales, the 0.5\% difference between the two profiles would disappear, as the AE solution evolves to be exactly the SE solution; this is evident in the asymmetry of the AE PDF near the maxima in Fig.~\ref{fig:temp_comparison}(b) and also the trend of the mean temperature over time in Fig.~\ref{fig:time_trace}(c).
 
-One method of comparing two PDFs to determine if they are drawn from the same underlying sample distribution is through the use of a Kolmogorov-Smirnov ($D_{\text{KS}}$) test \cite{wall&jenkins2012}.
+One method of comparing two PDFs to determine if they are drawn from the same underlying sample distribution is through the use of a Kolmogorov-Smirnov ($D_{\text{KS}}$) test \citep{wall&jenkins2012}.
 We calculate the $D_{\text{KS}}$ statistic for a PDF of some value, $q$, as
 \begin{equation}
 \KS{q} = F_{\text{AE}}(q) - F_{\text{SE}}(q),
@@ -475,14 +475,14 @@ Here we studied the simplest possible case for the application of AE: \RB convec
 We anticipate that this technique will be powerful in its extensions to more complicated studies.
 To achieve AE in more complicated systems, one need only derive the steady-state, horizontally-averaged equations governing the convective dynamics [e.g., the analogs to Eqs.~(\ref{eqn:abo18bouss_BVP_momentum}) and (\ref{eqn:abo18bouss_BVP_energy})] and couple those equations with knowledge of the boundary conditions and current dynamics as described in Sec. \ref{sec:abo18_ae} and appendix \ref{appendix:recipe}.
 In general, AE should be useful in studies where there are two disparate timescales which must both be resolved and which cannot be overcome through clever timestepping techniques.  
-Some avenues in which extensions of AE could be beneficial for expanding the available parameter space of exploration include studies of internally heated convection \cite{goluskin2016}, convection with height-dependent conductivities \cite{kapyla&all2017}, penetrative convection \cite{hurlburt&all1986,brandenburg&all2005,couston&all2017}, or fully compressible, stratified convection \cite{anders&brown2017}.
+Some avenues in which extensions of AE could be beneficial for expanding the available parameter space of exploration include studies of internally heated convection \citep{goluskin2016}, convection with height-dependent conductivities \citep{kapyla&all2017}, penetrative convection \citep{hurlburt&all1986,brandenburg&all2005,couston&all2017}, or fully compressible, stratified convection \citep{anders&brown2017}.
 As AE is fundamentally a horizontally uniform adjustment to the thermodynamic structure of the convective domain, it is unlikely that these techniques should be applied straightforwardly to nonperiodic convective domains.
 
 We conclude by noting that AE should be extended to these more complicated studies with caution. 
 While AE was extremely effective in this simple case studied here (where the aspect ratio was low,  the bounds of the convective domain were pre-defined, and the solutions were simple rolls), this may not be the case for more complicated systems. 
 For example, at higher aspect ratios, multiple stable solution branches may exist, and there is no guarantee that AE and SE will arrive at the same solution. 
-Some assumptions which inform the AE solution, such as the assumption that the convection intially occupies the same space as the evolved convection, may not hold in studies of penetrative convection, despite the fact that similar methods have long been used in those studies \cite{hurlburt&all1986}. 
-Extensions to fully compressible convection in which there are two true thermodynamic variables \cite{anders&brown2017} must contain a very careful treatment of AE pressure adjustments, so as to avoid wave-launching pressure mismatches.
+Some assumptions which inform the AE solution, such as the assumption that the convection intially occupies the same space as the evolved convection, may not hold in studies of penetrative convection, despite the fact that similar methods have long been used in those studies \citep{hurlburt&all1986}. 
+Extensions to fully compressible convection in which there are two true thermodynamic variables \citep{anders&brown2017} must contain a very careful treatment of AE pressure adjustments, so as to avoid wave-launching pressure mismatches.
 Our work here serves as a basis for determining if AE techniques are effective in more complex studies of convection.
 
 
@@ -582,7 +582,7 @@ However, smaller values of $f$ require additional AE BVP solves, and likely requ
 \section{Postscript and lessons learned since publication}
 \label{sec:abo18_postscript}
 This work was initially motivated by studies of stratified convection which included stable regions, but we have not yet had the chance to robustly test a similar method in those more complex atmospheres.
-We have performed some initial work to expand AE to convection in polytropes, and the changes to the procedure that we described here can be found in Sct.~\ref{sec:stratified_ae}.
+We have performed some initial work to expand AE to convection in polytropes, and the changes to the procedure that we described here can be found in Sec.~\ref{sec:stratified_ae}.
 
 In the years since we have published this work, we have learned a great deal more about our choice of thermal boundary conditions that we used in this work (``FT'' boundaries, where we fix the flux at the bottom and the temperature at the top).
 This knowledge is largely synthesized in work that has been submitted for publication in Ch.~\ref{ch:FT20}.

@@ -1,23 +1,23 @@
-\chapter{Predicting the Rossby number in convective experiments}
+\chapter{Predicting the Rossby Number in Convective Experiments}
 \label{ch:ro_p19}
 
 \section{Preamble}
 The following work was published in the Astrophysical Journal \citep{anders&all2019}.
-The text in section \ref{sec:ro_p19_published} is the text of the paper as it was accepted for publication.
-Following the published work, in section \ref{sec:ro_p19_postscript}, I comment on a few lessons that have been learned since we published these results.
+The text in section \ref{sec_ro_p19_:ro_p19_published} is the text of the paper as it was accepted for publication.
+Following the published work, in section \ref{sec_ro_p19_:ro_p19_postscript}, I comment on a few lessons that have been learned since we published these results.
 
 This work was motivated by a fundamental lack of understanding of how to conduct a ``proper'' experiment in rotating convection.
 In Ch.~\ref{ch:ab17}, we established that if you hold the Mach number constant in polytropic convection (via $\epsilon$) and increase the value of Ra, you naturally step into a more turbulent region of parameter space in a manner similar to standard \RB convection.
-We supposed that anolagous paths could be walked in rotating convection: that is, if you hold the \emph{Rossby number} constant (the degree of rotational constant on the convective flows), and increase the Rayleigh number, you should be able to walk into a more turbulent region of parameter space analogous to \emph{nonrotational} \RB convection.
+We supposed that analogous paths could be walked in rotating convection: that is, if you hold the \emph{Rossby number} constant (the degree of rotational constant on the convective flows), and increase the Rayleigh number, you should be able to walk into a more turbulent region of parameter space analogous to \emph{nonrotational} \RB convection.
 
 This work started in the summer of 2018 and was performed in close collaboration with Katie Manduca, who was a post-baccalaureate researcher in our group.
 Her initial explorations of parameter space got us close enough to discovering Ro$_\text{P}$ that she deserves a huge chunk of the credit for this paper ever existing in a published state.
 
 \section{Published work}
-\label{sec:ro_p19_published}
+\label{sec_ro_p19_:ro_p19_published}
 
 \subsection{Introduction}
-\label{sec:intro}
+\label{sec_ro_p19_:intro}
 Rotation influences the dynamics of convective flows in
 stellar and planetary atmospheres.
 Many studies on the fundamental nature of
@@ -25,7 +25,7 @@ rotating convection in both laboratory and numerical settings
 have provided great insight into the properties of convection 
 in both the rapidly rotating regime 
 and the transition to the rotationally unconstrained regime 
-\cite{king&all2009, zhong&all2009, schmitz&tilgner2009, king&all2012, julien&all2012, king&all2013, ecke&niemela2014, stellmach&all2014, cheng&all2015, gastine&all2016}
+\citep{king&all2009, zhong&all2009, schmitz&tilgner2009, king&all2012, julien&all2012, king&all2013, ecke&niemela2014, stellmach&all2014, cheng&all2015, gastine&all2016}
 The scaling behavior of heat transport, the nature of convective flow
 structures, and the importance of boundary layer-bulk interactions in driving dynamics are well known.
 Yet, we do not know of any simple procedure for predicting the magnitude of vortical flow gradients 
@@ -33,21 +33,21 @@ purely from experimental control parameters, such as bulk rotation rate and ther
 
 In the astrophysical context,
 many studies of rotating convection have investigated questions inspired by the solar dynamo
-\cite{glatzmaier&gilman1982, busse2002, brown&all2008,
+\citep{glatzmaier&gilman1982, busse2002, brown&all2008,
 brown&all2010, brown&all2011, augustson&all2012, guerrero&all2013, kapyla&all2014}.
 Even when these simulations nominally rotate at the solar rate,
 they frequently produce distinctly different behaviors than the true Sun,
-such as anti-solar differential rotation profiles  \cite{gastine&all2014, brun&all2017}.
+such as anti-solar differential rotation profiles  \citep{gastine&all2014, brun&all2017}.
 It seems that these differences occur because the simulations produce less rotationally 
 constrained states than the Sun. 
 The influence of rotation results from the local 
 shear gradients, and these are not direct input parameters.
 Recent simulations predict significant rotational influence in the deep solar interior, 
 which can drastically affect flows throughout the solar convection zone 
-\cite{featherstone&hindman2016a, greer&all2016}. 
+\citep{featherstone&hindman2016a, greer&all2016}. 
 In the planetary context, the balance between magnetic
 and rotational forces likely leads to the observed differences between ice
-giant and gas giant dynamos in our solar system \cite{soderlund&all2015}.
+giant and gas giant dynamos in our solar system \citep{soderlund&all2015}.
 The work of \cite{aurnou&king2017} demonstrates the importance of studying a dynamical regime
 with the proper balance between Lorentz, Coriolis, and inertial forces when modeling
 astrophysical objects such as planetary dynamos.
@@ -56,7 +56,7 @@ In short, simulations must achieve the proper rotational balance if they are to 
 the behavior of astrophysical objects. 
 In Boussinesq studies, rotational constraint is often measured by comparing
 dynamical and thermal boundary layers or deviation in heat transport from the non-rotating
-state \cite{king&all2012, julien&all2012, king&all2013}. 
+state \citep{king&all2012, julien&all2012, king&all2013}. 
 Such measurements are not available for astrophysical objects, where
 the degree of rotational influence is best assessed by the ratio between 
 nonlinear advection magnitude and the linear Coriolis accelerations. 
@@ -76,17 +76,17 @@ of convection in a simple stratified system.}
 In \cite{anders&brown2017} (hereafter \AB), we studied non-rotating compressible convection without magnetic fields in polytropic atmospheres. 
 In this work, we extend \AB$\,$ to rotationally-influenced, $f$-plane
 atmospheres 
-\cite[e.g.,][]{brummell&all1996, brummell&all1998, calkins&all2015a}. 
+\citep[e.g.,][]{brummell&all1996, brummell&all1998, calkins&all2015a}. 
 We determine how the input parameters we studied previously, which controlled the Mach and
-Reynolds numbers of the evolved flows, couple with the Taylor number \cite[Ta,][]{julien&all1996}, which sets the magnitude of the rotational vector. 
+Reynolds numbers of the evolved flows, couple with the Taylor number \citep[Ta,][]{julien&all1996}, which sets the magnitude of the rotational vector. 
 
-In subsection  \ref{sec:experiment}, we describe our experiment and paths through parameter space. 
-In subsection \ref{sec:results}, we present the results of our experiments and in subsection \ref{sec:discussion} we offer concluding remarks.
+In subsection  \ref{sec_ro_p19_:experiment}, we describe our experiment and paths through parameter space. 
+In subsection \ref{sec_ro_p19_:results}, we present the results of our experiments and in subsection \ref{sec_ro_p19_:discussion} we offer concluding remarks.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% EXPERIMENT SECTION
 \subsection{Experiment} 
-\label{sec:experiment}
+\label{sec_ro_p19_:experiment}
 We study fully compressible, stratified 
 convection under precisely the same atmospheric model
 as in \AB, but here
@@ -95,7 +95,7 @@ with $n_\rho = 3$ density scale heights and a superadiabatic
 excess of $\epsilon = 10^{-4}$ such that flows are at low Mach number.
 We study a domain in which the
 gravity, $\bm{g} = -g\hat{z}$, and rotational vector, $\bm{\Omega} = \Omega \hat{z}$, 
-are antiparallel \cite[as in e.g.,][]{julien&all1996, brummell&all1996}.
+are antiparallel \citep[as in e.g.,][]{julien&all1996, brummell&all1996}.
 
 We evolve the velocity ($\bm{u}$), temperature ($T$), 
 and log density ($\ln\rho$) according to the Fully Compressible Navier-Stokes equations
@@ -126,13 +126,13 @@ We nondimensionalize our atmospheres at the top of the domain, and so all values
 Ta quoted in this work are the minimal value of Ra and Ta in the domain at $z = L_z$.
 For direct comparison to Boussinesq studies, past work has found that the value of Ra 
 at the atmospheric midplane ($z = L_z/2$) varies minimally with increasing stratification 
-\cite{unnoetall1960}. For the atmospheres presented in this work, 
+\citep{unnoetall1960}. For the atmospheres presented in this work, 
 midplane Ra and Ta values
 are larger than reported top-of-atmosphere values by a factor of $\sim$70, and values at the
 bottom of the atmosphere are larger by $\sim$400.
 
 When Ta is large, the wavenumber of convective onset increases according to $k_{\text{crit}} \propto \text{Ta}^{1/6}$
-\cite{Chandrasekhar,calkins&all2015a}.
+\citep{Chandrasekhar,calkins&all2015a}.
 We study horizontally-periodic, 3D Cartesian domains with extents of
 $x, y = [0, 4(2\pi/k_{\text{crit}})]$ and $z = [0, L_z]$. At large values of Ta, these
 domains are tall and skinny, as in \cite{stellmach&all2014}.
@@ -140,7 +140,7 @@ We evolve our simulations using the Dedalus\footnote{\url{http://dedalus-project
 pseudospectral framework, and our numerical methods are identical to those presented
 in \AB. The supplemental materials of this paper include a \texttt{.tar} file which
 contains the code used to perform the simulations in this work,
-and this tarball is also published online in a Zenodo repository \cite{supp_andersetall2019a}.
+and this tarball is also published online in a Zenodo repository \citep{supp_andersetall2019a}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% PARAMETER SPACE FIGURE
@@ -155,7 +155,7 @@ and this tarball is also published online in a Zenodo repository \cite{supp_ande
 	From thickest to thinnest, paths with $\pro = [1.58, 0.96, 0.6]$ are plotted,
 	and the value of
 	($\text{Ta}_{\text{crit}}, \text{Ra}_{\text{crit}}$) for each path is denoted by a
-	circular marker (see Table \ref{table:ra_ta_bounds}).
+	circular marker (see Table \ref{table_ro_p19_:ra_ta_bounds}).
     (b) Evolved Ro is plotted vs. Ra along paths of \pro = [1.58, 0.96, 0.6] for [big, medium, small] orange circles.
     For comparison, paths of constant $\mathcal{S}$ (blue squares, $\mathcal{S} = [3,2]$ 
     for [big, small] squares)
@@ -171,7 +171,7 @@ and this tarball is also published online in a Zenodo repository \cite{supp_ande
 
 
 The critical value of Ra at which rapidly rotating convection onsets also depends on Ta (see the black line in figure \ref{fig:parameter_space}a),
-roughly according to $\text{Ra}_{\text{crit}} \sim \text{Ta}^{2/3}$ \cite{Chandrasekhar,calkins&all2015a}.
+roughly according to $\text{Ra}_{\text{crit}} \sim \text{Ta}^{2/3}$ \citep{Chandrasekhar,calkins&all2015a}.
 Even taking account of linear theory, the dependence of the evolved nonlinear fluid 
 flows on the input parameters makes predicting the rotational constraint very challenging. 
 We will explore three paths through Ra-Ta space:
@@ -195,7 +195,7 @@ are at a constant value of the classic
 = \  \frac{1}{2 \Omega } \sqrt{\frac{g \, \Delta  S}{c_{p} L_{z}}},
 \label{eqn:ro_p19_roc_defn}
 \end{equation}
-which has provided \cite[e.g., ][]{julien&all1996, brummell&all1996} 
+which has provided \citep[e.g., ][]{julien&all1996, brummell&all1996} 
 a common proxy for the degree of rotational constraint.
 This parameter measures the importance of buoyancy relative to rotation without 
 involving dissipation.  
@@ -213,15 +213,15 @@ feel changes in diffusivities but not the depth of the domain.
 To our knowledge, these paths have not been reported in the literature, 
 although the importance of $\text{Ra}/\text{Ta}^{3/4} = \text{Ra Ek}^{3/2}$
 has been independently found by \cite{king&all2012} using a boundary layer
-analysis. We compare our results to their theory in Section \ref{sec:discussion}. 
+analysis. We compare our results to their theory in Section \ref{sec_ro_p19_:discussion}. 
 
 In this work, we primarily study three values of \pro. These values are shown in
-Fig.~\ref{fig:parameter_space}a and Table \ref{table:ra_ta_bounds}. Table \ref{table:ra_ta_bounds}
+Fig.~\ref{fig:parameter_space}a and Table \ref{table_ro_p19_:ra_ta_bounds}. Table \ref{table_ro_p19_:ra_ta_bounds}
 lists the values of (Ra$_{\text{crit}}$, Ta$_{\text{crit}}$) for each value of \pro, and also
 the maximum value of (Ra, Ta) studied in this work for each path. We additionally walked
 two pathways at constant supercriticality (constraint I, $\mathcal{S} = \{2, 3\}$) and
 three pathways at constant convective Rossby number (constraint II, $\con = \{1, 0.3, 0.1\}$).
-Full details on all cases are provided in Appendix \ref{appendix:table} and the supplemental
+Full details on all cases are provided in Appendix \ref{appendix_ro_p19_:table} and the supplemental
 materials.
 
 \begin{table}
@@ -229,9 +229,9 @@ materials.
 {Parameter space:
 Values of the critical Ra and Ta for each \pro$\,$ track are reported, as well as the
 maximal values of Ra and Ta studied on each track. All values reported are for the top of
-the atmosphere. A fuller set of simulations are reported in Table \ref{table:simulation_info}
+the atmosphere. A fuller set of simulations are reported in Table \ref{table_ro_p19_:simulation_info}
 with midplane Ra and Ta values as well.
-\label{table:ra_ta_bounds}
+\label{table_ro_p19_:ra_ta_bounds}
 }
 \begin{center}
 \begin{tabular}{c c c}
@@ -248,7 +248,7 @@ with midplane Ra and Ta values as well.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% RESULTS SECTION
 \subsection{Results}
-\label{sec:results}
+\label{sec_ro_p19_:results}
 In our stratified domains, for $\text{Ta} \geq 10^5$, 
 a best-fit to results from a linear stability
 analysis provides $\text{Ra}_{\text{crit}}(\text{Ta}) = 1.459\text{Ta}^{2/3}$ 
@@ -259,7 +259,7 @@ each criterion in equation~\ref{eqn:ro_p19_paths} through
 this parameter space are also shown.
 In this work, we often find it instructive to use one critical Ra for an entire \pro$\,$ path.
 This $\text{Ra}_\text{crit}$ is determined by the intersubsection of the onset curve and \pro$\,$ path
-(indicated by the orange circles in figure~\ref{fig:parameter_space}a, and quoted in Table \ref{table:ra_ta_bounds}). 
+(indicated by the orange circles in figure~\ref{fig:parameter_space}a, and quoted in Table \ref{table_ro_p19_:ra_ta_bounds}). 
 In the high Ta regime, we find that $\text{Ra}_{\text{crit}} = 18.5\pro^{-16}$.
 
 In figure \ref{fig:parameter_space}b, we display the evolution of Ro
@@ -295,39 +295,6 @@ we find $\{C, \alpha, \beta\} = \{0.2, -0.19, 1.5\}$.
     \label{fig:dynamics_plot} }
 \end{figure*}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% NU AND RE FIGURE
-\begin{figure}[p!]
-    \includegraphics[width=\textwidth]{./figs/nu_and_re.pdf}
-    \caption[Scaling of Nusselt and Reynolds numbers on fixed Predictive Rossby paths.]
-	{
-	Scaling laws for paths at $\pro = 1.58$ ($\text{Ro} \approx 0.4$),
-    $\pro = 0.96$ ($\text{Ro} \approx 0.1$), and $\pro = 0.6$ ($\text{Ro} \approx 0.03$) are shown. 
-    Numbers are plotted vs. Ra/Ra$_{\text{crit}}$, where Ra$_{\text{crit}}$ is given in Table \ref{table:ra_ta_bounds}.
-	(a) Nu, as defined in \AB, is shown.
-    (b) $\text{Re}_\parallel$ and $\text{Re}_{\perp}$, as defined in equation \ref{eqn:ro_p19_re_defn},
-	are shown. All values of $\pro$ trace out similar Nu and $\text{Re}_{\perp}$ tracks,
-	whereas $\text{Re}_\parallel$ tracks shift upwards as Ro decreases.
-    \label{fig:nu_and_re} }
-\end{figure}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% BOUNDARY LAYER FIGURE
-\begin{figure*}[ht!]
-    \includegraphics[width=\textwidth]{./figs/boundary_layers.pdf}
-    \caption[Boundary layer evolution on fixed Predictive Rossby paths]
-	{Horizontally-averaged profiles of the standard deviation of entropy ($\sigma_{\text{s}}$, a) and Rossby number (Ro, b) 
-    are shown vs. height for $\pro = 1.58$ ($\text{Ro} \approx 0.4$). 
-    Similar profiles are shown in (c) and (d) for $\pro = 0.96$ ($\text{Ro} \approx 0.1$). The color of the profiles
-    denotes the value of Ra/Ra$_{\text{crit}}$, where Ra$_\text{crit}$ is given in Table \ref{table:ra_ta_bounds}.
-    (e) The ratio of the thicknesses of the dynamical boundary layers ($\delta_{\text{Ro}}$) and 
-    thermal boundary layers ($\delta_{\text{s}}$) is shown vs. $\text{Ra}/\text{Ra}_{\text{crit}}$ for fixed \pro.
-	(f) $\delta_{\text{s}}$ is plotted vs. $\text{Ra}/\text{Ra}_{\text{crit}}$ in units of the density
-	scale height at the top of the atmosphere ($H_\rho$). Vertical lines denote when $\delta_\text{s}/H_\rho = 1$
-	for each value of \pro.
-    \label{fig:profiles_and_bls} }
-\end{figure*}
-
 In figure~\ref{fig:dynamics_plot}, sample snapshots of the evolved entropy field 
 in the $x$-$y$ plane near the top and at the middle of the domain are shown. 
 In the left column, flows are at $\text{Ro} \sim 1$ and resemble the classic granular structure 
@@ -346,9 +313,44 @@ higher entropy perturbations than the surrounding weak downflows which sheathe t
 and the locations of the columns
 are tightly correlated with their positions at the top of the domain. These quasi-two-dimensional 
 dynamics are similar to those seen in rapidly 
-rotating \RB convection \cite[e.g.,][]{stellmach&all2014}. 
+rotating \RB convection \citep[e.g.,][]{stellmach&all2014}. 
 The select cases displayed in figure~\ref{fig:dynamics_plot} each have an evolved volume-averaged
 $\text{Re}_{\perp} \approx 32$ (defined below in equation~\ref{eqn:ro_p19_re_defn}).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% NU AND RE FIGURE
+\begin{figure}[p!]
+    \includegraphics[width=\textwidth]{./figs/nu_and_re.pdf}
+    \caption[Scaling of Nusselt and Reynolds numbers on fixed Predictive Rossby paths.]
+	{
+	Scaling laws for paths at $\pro = 1.58$ ($\text{Ro} \approx 0.4$),
+    $\pro = 0.96$ ($\text{Ro} \approx 0.1$), and $\pro = 0.6$ ($\text{Ro} \approx 0.03$) are shown. 
+    Numbers are plotted vs. Ra/Ra$_{\text{crit}}$, where Ra$_{\text{crit}}$ is given in Table \ref{table_ro_p19_:ra_ta_bounds}.
+	(a) Nu, as defined in \AB, is shown.
+    (b) $\text{Re}_\parallel$ and $\text{Re}_{\perp}$, as defined in equation \ref{eqn:ro_p19_re_defn},
+	are shown. All values of $\pro$ trace out similar Nu and $\text{Re}_{\perp}$ tracks,
+	whereas $\text{Re}_\parallel$ tracks shift upwards as Ro decreases.
+    \label{fig:nu_and_re} }
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% BOUNDARY LAYER FIGURE
+\begin{figure*}[ht!]
+    \includegraphics[width=\textwidth]{./figs/boundary_layers.pdf}
+    \caption[Boundary layer evolution on fixed Predictive Rossby paths]
+	{Horizontally-averaged profiles of the standard deviation of entropy ($\sigma_{\text{s}}$, a) and Rossby number (Ro, b) 
+    are shown vs. height for $\pro = 1.58$ ($\text{Ro} \approx 0.4$). 
+    Similar profiles are shown in (c) and (d) for $\pro = 0.96$ ($\text{Ro} \approx 0.1$). The color of the profiles
+    denotes the value of Ra/Ra$_{\text{crit}}$, where Ra$_\text{crit}$ is given in Table \ref{table_ro_p19_:ra_ta_bounds}.
+    (e) The ratio of the thicknesses of the dynamical boundary layers ($\delta_{\text{Ro}}$) and 
+    thermal boundary layers ($\delta_{\text{s}}$) is shown vs. $\text{Ra}/\text{Ra}_{\text{crit}}$ for fixed \pro.
+	(f) $\delta_{\text{s}}$ is plotted vs. $\text{Ra}/\text{Ra}_{\text{crit}}$ in units of the density
+	scale height at the top of the atmosphere ($H_\rho$). Vertical lines denote when $\delta_\text{s}/H_\rho = 1$
+	for each value of \pro.
+    \label{fig:profiles_and_bls} }
+\end{figure*}
+
+
 
 We measure the Nusselt number (Nu), which quantifies heat transport in a convective
 solution, as defined in \AB.
@@ -356,7 +358,7 @@ In figure~\ref{fig:nu_and_re}a, we plot Nu as a function
 of $\text{Ra}/\text{Ra}_\text{crit}$ at fixed \pro. We find that $\text{Nu} \propto \{\text{Ra}^{0.29 \pm 0.01}, \text{Ra}^{0.29 \pm 0.01}, \text{Ra}^{0.24}\}$
 for $\pro = \{0.6, 0.957, 1.58\}$. In the regime of $\text{Ro} \lesssim 0.1$, these scaling laws are indistinguishable
 from a classic Ra$^{2/7}$ power law scaling,
-which is observed in nonrotating \RB and stratified convection \cite[][\AB]{ahlers&all2009}.
+which is observed in nonrotating \RB and stratified convection \citep[][\AB]{ahlers&all2009}.
 Our results seem consistent with the stress-free, rotating \RB convection results of
 \cite{schmitz&tilgner2009}, whose re-arranged Eqn.~7 returns a best-fit of
 $\text{Nu} \propto \text{Ra}^{0.26}$ at fixed \pro$\,$. Their work primarily spans the transition
@@ -365,7 +367,7 @@ surprising that their power law is a blend of our rotationally-constrained $\tex
 law and the fairly rotationally unconstrained $\text{Ra}^{0.24}$ at $\pro = 1.58$.
 %, and approach a $\text{Ra}^{1/3}$ scaling, 
 %which has been predicted when \pro$\,$ is held constant
-%\cite[see][and subsection \ref{sec:discussion}]{king&all2012}.
+%\cite[see][and subsection \ref{sec_ro_p19_:discussion}]{king&all2012}.
 
 Flows are distinctly different parallel to and perpendicular
 from the rotation vector, which aligns with gravity and stratification.
@@ -376,7 +378,7 @@ We measure two forms of the RMS Reynolds number,
 \label{eqn:ro_p19_re_defn}
 \end{equation}
 where the length scale in $\text{Re}_{\perp}$ is the wavelength of convective onset, and is
-related to the horizontal extent of our domain (see subsection \ref{sec:experiment}).
+related to the horizontal extent of our domain (see subsection \ref{sec_ro_p19_:experiment}).
 From our work in \AB, we expect the RMS velocity to scale as $|u| \propto \sqrt{\Delta S}$.
 By definition, $\nu \propto \sqrt{\text{Ra}/(\text{Pr }\Delta S)}$, and $L_z$ is a constant
 set by the stratification while $k_{\text{crit}} \propto \text{Ta}^{1/6}$. Along paths of
@@ -388,7 +390,7 @@ as a function of Ra$/\text{Ra}_{\text{crit}}$ at fixed \pro. We find that $\text
 and $\text{Re}_\perp \propto \{\text{Ra}^{0.22 \pm 0.01}, \\ \text{Ra}^{0.23 \pm 0.01}, \text{Ra}^{0.21}\}$ for
 $\pro = \{0.6, 0.957, 1.58\}$. These scalings are similar to but slightly weaker than our
 predictions in all cases. However, the scaling of $\text{Re}_{\parallel} \propto \text{Ra}^{0.45}$, 
-is once again a power law observed frequently in nonrotating convection \cite[][\AB]{ahlers&all2009}.
+is once again a power law observed frequently in nonrotating convection \citep[][\AB]{ahlers&all2009}.
 We also observe that $\text{Re}_{\perp}$ collapses for each $\pro\,$ track,
 while $\text{Re}_{\parallel}$ experiences an offset
 to larger values as $\pro$ shrinks. The offset in $\text{Re}_{\parallel}$ is unsurprising, 
@@ -432,7 +434,7 @@ local density scale height.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% CONCLUSION SECTION
 \subsection{Discussion}
-\label{sec:discussion}
+\label{sec_ro_p19_:discussion}
 In this letter, we studied low-Mach-number, stratified, compressible convection 
 under the influence of rotation.
 We examined three paths through Ra-Ta space, and showed that the newly-defined 
@@ -442,7 +444,7 @@ the evolved Rossby number.
 Shockingly, along these constant \pro$\,$ pathways, particularly when $\text{Ro} \lesssim 0.1$, 
 we find $\text{Nu} \propto \text{Ra}^{2/7}$ and $\text{Re}_\parallel \propto \text{Ra}^{0.45}$.
 These scalings are indistinguishable from the scalings of
-Re and Nu with Ra in non-rotating Boussinesq convection \cite{ahlers&all2009}.  
+Re and Nu with Ra in non-rotating Boussinesq convection \citep{ahlers&all2009}.  
 \cite{julien&all2012} theorized that in the rapidly rotating
 asymptotic limit, $(\text{Nu} - 1) \propto (\text{Ra}^{3/2}/\text{Ta}) = (\text{Ra}/\text{Ra}_{\text{crit}}(\text{Ta}))^{3/2}$. Thus,
 at fixed \text{Ta}, a very sharp $\text{Ra}^{3/2}$ scaling law is expected. 
@@ -456,7 +458,7 @@ Recasting the scaling of
 \cite{julien&all2012} into this perspective, we find 
 $(\text{Nu} - 1) \propto \text{Ra}^{3/2}/\text{Ta} = \pro^{8/3}\text{Ra}^{1/6} \propto (\text{Ra}/\text{Ra}_{\text{crit}})^{1/6}$, 
 where in this final result we use the $\text{Ra}_{\text{crit}}$ value of the whole $\pro$ path, such as those
-specified in Table \ref{table:ra_ta_bounds}.
+specified in Table \ref{table_ro_p19_:ra_ta_bounds}.
 This $\text{Ra}^{1/6}$ scaling is much weaker than the $\text{Ra}^{2/7}$ law we find here. 
 We leave it to future work to explain this discrepancy between
 Boussinesq theory and our observed Nu vs.~Ra scaling.
@@ -472,7 +474,7 @@ They demonstrate that when $2 \lesssim\text{Ra}/\text{Ta}^{3/4} \lesssim 20$ flo
 transitional regime, and for $\text{Ra}/\text{Ta}^{3/4} \lesssim 2$, flows are rotationally
 constrained. We remind the reader that Boussinesq values of $\text{Ra}$ and $\text{Ta}$ are 
 not the same as their
-values in our stratified domains here, as diffusivities change with depth (see subsection \ref{sec:experiment}). 
+values in our stratified domains here, as diffusivities change with depth (see subsection \ref{sec_ro_p19_:experiment}). 
 Taking into account this change with depth,
 our simulations fall in \cite{king&all2012}'s rotationally constrained
 ($\pro = 0.6$) and near-constrained transitional regime ($\pro = \{0.957, 1.58\}$).
@@ -482,7 +484,7 @@ in Fig.~\ref{fig:dynamics_plot} agree with this interpretation.
 We note briefly that the scaling $\text{Ra} \propto \text{Ta}^{3/4}$ is very similar to
 another theorized boundary between fully rotationally constrained convection and 
 partially constrained convection predicted in Boussinesq theory, of 
-$\text{Ra} \propto \text{Ta}^{4/5}$ \cite{julien&all2012, gastine&all2016}. This
+$\text{Ra} \propto \text{Ta}^{4/5}$ \citep{julien&all2012, gastine&all2016}. This
 Ta$^{4/5}$ scaling also arises through arguments of geostrophic balance in the boundary layers,
 and is a steeper scaling than the Ta$^{3/4}$ scaling present in \pro.
 This suggests that at sufficiently low \pro, a suite of simulations across many orders
@@ -519,12 +521,12 @@ antiparallel gravity and rotation, preliminary 3D spherical simulations suggest 
 
 
 \subsection{Appendix A: Table of Simulations}
-\label{appendix:table}
-Information for select simulations in this work are shown in Table \ref{table:simulation_info}.
+\label{appendix_ro_p19_:table}
+Information for select simulations in this work are shown in Table \ref{table_ro_p19_:simulation_info}.
 The simulation at minimum (Ra, Ta) and maximum (Ra, Ta) for each of the \pro, \con, and $\mathcal{S}$
 paths in Fig.~\ref{fig:parameter_space}b are shown. This information for the displayed simulations
 and all other simulations in this work is included as a .csv file in the supplemental materials
-and is published online in a Zenodo repository \cite{supp_andersetall2019a}.
+and is published online in a Zenodo repository \citep{supp_andersetall2019a}.
 
 \begin{table}
 \caption[Simulation information for Anders et al 2019]
@@ -535,14 +537,14 @@ highest (Ra, Ta) point on that path. The first six rows show information for con
 $\pro\,$ paths, the next six for constant \con$\,$ paths, and the last four for constant $\mathcal{S}$ paths.
 We show the input Ra, Ta, and \pro$\,$ at the top of the atmosphere, as well as their
 stratification-weighted values at the midplane of the atmosphere, which provide a more direct
-comparison to Boussinesq values \cite{unnoetall1960}. We also provide the input \con$\,$ at the
+comparison to Boussinesq values \citep{unnoetall1960}. We also provide the input \con$\,$ at the
 top of the atmosphere, $\mathcal{S}$, aspect ratio ($L_x/L_z$), and coefficient resolution
 (nz, nx, ny). Each dimension of the physical grid is 3/2 the size of the coefficient grid 
 for adequate dealiasing of quadratic nonlinear terms.
 Output values of Ro, Re$_{\parallel}$, Re$_{\perp}$, and Nu are also provided.
 This table in its entirety is published as a supplemental \texttt{.csv} file with this
-manuscript and also online in a Zenodo repository \cite{supp_andersetall2019a}.
-\label{table:simulation_info}
+manuscript and also online in a Zenodo repository \citep{supp_andersetall2019a}.
+\label{table_ro_p19_:simulation_info}
 }
 \begin{center}
 \resizebox{\textwidth}{!}{
@@ -580,7 +582,7 @@ Ra$_{\text{top}}$	&	Ta$_{\text{top}}$	&	Ro$_{\text{p, top}}$	&	Ra$_{\text{mid}}$
 
 \newpage
 \section{Postscript and lessons learned since publication}
-\label{sec:ro_p19_postscript}
+\label{sec_ro_p19_:ro_p19_postscript}
 The most unfortunate detail of this work is that it was conducted in stratified, fully compressible domains rather than in Boussinesq domains.
 There are so few comparison data points available in the stratified literature that it's really hard to understand where the simulations that we conducted here sit among the hundreds of simulations and experiments that have been reported in the \RB literature.
 However, it is interesting to note that this study has revealed an interesting quirk of convective experiments (and studies).

@@ -14,7 +14,7 @@ Buoyant vortex rings as a model for entropy rain should therefore exhibit a blen
 This published work below sought to understand how these effects interact with one another from a theoretical perspective, and to test out that theory with some simple simulations.
 
 This work was initially intended to be a direct follow-up to \cite{lecoanet&jeevanjee2019}.
-That is, we had intended to run an ensembled of laminar and turbulent simulations of thermals in atmospheres that were increasingly stratified.
+That is, we had intended to run an ensemble of laminar and turbulent simulations of thermals in atmospheres that were increasingly stratified.
 However, as we ran initial simulations and developed the theory in sec.~\ref{sec:theory}, we realized that the development and verification of a theory for laminar thermals was a sufficiently difficult (and complex) contribution to warrant publication alone.
 Sometime in the next year I hope to revisit this work and understand if this theory describes the evolution of turbulent thermals.
 
@@ -355,7 +355,9 @@ All of the code used to perform the simulations in this work can be found online
 \subsection{Model verification}
 \label{sec:results}
 \begin{figure}[p!]
-    \includegraphics[width=\columnwidth]{./figs/results_panels.pdf}
+	\begin{center}
+    \includegraphics[width=0.9\columnwidth]{./figs/results_panels.pdf}
+	\end{center}
     \caption[Depth and radius evolution of thermals at varying stratifications.]
 	{
 	(top) The thermal depth as a function of time for the 2D anelastic (AN) and 3D fully compressible (FC) simulations.
@@ -403,7 +405,7 @@ This gives us confidence that our high stratification anelastic simulations are 
 \cite{lecoanet&all2014} also found close agreement between low Mach-number anelastic and fully compressible simulations.
 
 \begin{table}
-\caption[Measured values of important quantities in the thermal evolution theory from simulation data.]
+\caption[Measured values of constants in thermal evolution theory.]
 {Simulation output parameterization
 \label{table:parameters}
 Parameters presented in this table are best fits to simulation output data in the range $z = [0.1 L_z, 0.65 L_z]$.
@@ -478,7 +480,9 @@ $$
 Nondimensionalizing this by $B_0 = (S_1/c_P) L^2 u_{\text{th}}^2 \rho_0$ with $u_{\text{th}} = c_s \sqrt{S_1/c_P}$, we find $B_\text{th} = \tilde{B}/B_0 = -3.57$, which lies between the $N_\rho = 5$ and $N_\rho = 6$ simulations we studied here (see table \ref{table:parameters}).
 
 \begin{figure}[p!]
-    \includegraphics[width=\columnwidth]{./figs/thermal_sun_comparison.pdf}
+	\begin{center}
+    \includegraphics[width=0.75\columnwidth]{./figs/thermal_sun_comparison.pdf}
+	\end{center}
     \caption[Implications of thermal experiment results for solar convection and the entropy rain hypothesis]
 	{
 	(First panel) Bounds on the evolution of the radii of entropy rain in the Sun are shown and compared to what the radii would be under purely horizontal compression.
@@ -625,7 +629,7 @@ $N_\rho$ & nr or nx = ny & nz & $t_{\text{evolution}}$ & safety	\\
 \newpage
 \section{Postscript and lessons learned since publication}
 \label{sec:alb19_postscript}
-Thermals are an excellent testing ground in which to understand two fairly mundane topics:
+I haven't had the chance to fully investigate this, but I think thermals are an excellent testing ground in which to understand two fairly mundane topics:
 \begin{enumerate}
 \item The nature of viscous heating, and
 \item how different choices for the simulation diffusivities (e.g., constant kinematic viscosity vs.~constant dynamic viscosity) affect the results of the simulation and interpretation of results.

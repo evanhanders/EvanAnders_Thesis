@@ -4,16 +4,32 @@
 \section{Motivation}
 \sectionmark{Motivation}
 
-\subsection{Convection in astrophysics: stars, planets, \& beyond}
+\subsection{Convection in Astrophysics: Stars, Planets, \& Beyond}
 \label{sct:convective_abundance}
 In nature, thermal buoyancy forces primarily drive two types of flows: gravity waves and convection.
 Gravity waves are driven when the fluid stratification (e.g., the atmosphere) is convectively \emph{stable}.
 Convection is the manifestation of buoyancy forces in the presence of an \emph{unstable} or \emph{superadiabatic} stratification.
 Convection occurs in the Earth's atmosphere, and cumulus clouds are evidence of that convection (and there is a rich literature investigating atmospheric convection, see \citet{yano2014} for a recent review).
 Within the Earth, both the mantle \citep{schubert&all2001} and liquid outer core convect, respectively driving plate tectonics \citep{bercovici2003} and the Earth's magnetic dynamo \citep{christensen2011}.
-Convection also accurs in more exotic astrophysical systems, including in the planes of accretion disks \citep{held&latter2018} and in the magnetospheres of giant planets \citep{thomsen&all2012}.
+Convection also occurs in more exotic astrophysical systems, including in the planes of accretion disks \citep{held&latter2018} and in the magnetospheres of giant planets \citep{thomsen&all2012}.
 In short, convection is a ubiquitous process in astrophysics and geophysics.
 A detailed understanding of the fundamental nature of convection is therefore crucial to understanding emergent convectively-driven phenomena in these fields.
+
+\begin{figure}[t!]
+\includegraphics[width=\textwidth]{./figs/intro/solar_convection_scales.pdf}
+\caption[Images of solar granulation and supergranulation.]
+{
+	(left) first-light image of the solar surface from DKIST (visible light [789 nm], covering 36.5 km$^2$).
+	Bright, hot granules and relatively cool, dark intergranular lanes can be observed.
+	Magnetically-dominated ``bright points'' occupying the center of intergranular lanes can also be seen \citep{vankooten&cranmer2017}.
+	(right) Image of the solar surface from the Dutch Open Telescope (Ca II H line [396.8 nm]).
+	For a sense of scale, the small-scale speckles or ``web'' of lights in this image trace out intergranular lanes (the dark regions in the left image).
+	The large-scale web of lights roughly traces out the outlines of supergranules, the largest obvious scale of convection that is observed at the solar surface.
+	\label{fig:solar_convection_scales} 
+}
+\end{figure}
+
+
 
 Convection in the interiors and envelopes of stars is likely the most well-studied form of convection in astrophysics.
 The surface of the Sun is covered in large ($\sim$1 Mm) convective ``granules'' (see the left panel of Fig.~\ref{fig:solar_convection_scales}) which overturn on roughly a five minute timescale.
@@ -26,30 +42,16 @@ The opacity of the stellar material, dominated by free-free interactions \citep[
 Convection must therefore assist radiative conductivity to transport the stellar luminosity outward, resulting in a well-mixed convective core region in these massive stars.
 The luminosity of less massive stars ($M \leq 1.5 M_\odot$) is provided by the PP-chain (proton-proton), allowing many such stars to have stable cores.
 However, the cooler surface temperatures of these stars allow for phase changes of hydrogen and helium (e.g., from fully ionized to neutral) within their stellar envelopes.
-These elements are the primary consitutents of the stellar material, and neutral atoms greatly increase the stellar opacity through bound-free (photo effect) interactions \citep[these effects were first studied in simple convective systems by][]{rast&toomre1993a, rast&toomre1993b}.
-In solar-type stars ($1.5 M_\odot \lesssim M \lesssim 0.3 M_\odot$), this increased opacity near the stellar surface results in a convectively unstable envelope which overlies a stable, radiative interior.
+These elements are the primary constituents of the stellar material, and neutral atoms greatly increase the stellar opacity through bound-free (photo effect) interactions \citep[and these effects were studied by][]{rast&toomre1993a, rast&toomre1993b}.
+In solar-type stars ($1.5 M_\odot \lesssim M \lesssim 0.3 M_\odot$), the increased opacity near the stellar surface results in a convectively unstable envelope which overlies a stable, radiative interior.
 In ``Late-type'', ``Lower-MS'' stars, such as M-dwarf stars, these opacity effects are sufficiently important that the star is convectively unstable throughout its full radial extent.
 While stars spend the majority of their lifetimes on the MS, convection is also an important process during other evolutionary phases \citep[and I refer the reader to chapter 2 of][for a broad but brief overview of stellar evolutionary phases]{HKT}.
 
-\begin{figure}[ht!]
-\includegraphics[width=\textwidth]{./figs/intro/solar_convection_scales.pdf}
-\caption[Images of solar granulation and supergranulation.]
-{
-	(left) first-light image of the solar surface from DKIST (visible light [789 nm], covering 36.5 km$^2$).
-	Bright, hot granules and relatively cool, dark intergranular lanes can be observed.
-	Bright points occupying the center of intergranular lanes can also be seen \citep{vankooten&cranmer2017}.
-	(right) Image of the solar surface from the Dutch Open Telescope (Ca II H line [396.8 nm]).
-	For a sense of scale, the small-scale speckles or ``web'' of lights in this image trace out intergranular lanes (the dark regions in the left image).
-	The large-scale web of lights roughly traces out the outlines of supergranules, the largest obvious scale of convection that is observed at the solar surface.
-	\label{fig:solar_convection_scales} 
-}
-\end{figure}
-
-Convection's prevalence within stars suggests that it is a crucial process in establishing the stratification and structure of stellar inteiors.
-However, until recently, the insides of stars have been an unobservable region, and there has been a dearth of observations to test stellar convection theory against.
-The relatively new fields of helioseismology and asteroseismology (briefly explored in Sct.~\ref{sct:asteroseismology}) have enabled scientists to literally look inside of the Sun and stars.
+Convection's prevalence within stars suggests that it is a crucial process in establishing the stratification and structure of stellar interiors.
+However, until recently, the insides of stars have been an unobservable region, and there has been a dearth of observations against which to test stellar convection theory.
+The relatively new fields of helioseismology and asteroseismology (briefly explored in Sec.~\ref{sct:asteroseismology}) have enabled scientists to literally look inside of the Sun and stars.
 These measurements allow us to put constraints upon and test the validity of stellar structure models, our assumptions about processes in stellar interiors, and our theories of convection.
-Helioseismology has revealed a major discrepancy between models and observations, commonly referred to as the ``Solar Convective Conundrum,'' which I explore in detail in Sct.~\ref{sct:convective_conundrum}.
+Helioseismology has revealed a major discrepancy between models and observations, commonly referred to as the ``Solar Convective Conundrum,'' which I explore in detail in Sec.~\ref{sct:convective_conundrum}.
 This conundrum has shown that our fundamental understanding of stellar convection is flawed.
 The collection of experiments presented in this thesis were motivated by the Solar Convective Conundrum and a desire to rebuild some understanding of stellar convection from fundamental principles.
 
@@ -58,14 +60,14 @@ The collection of experiments presented in this thesis were motivated by the Sol
 Stars are seismically active.
 This seismic activity is the manifestation of complex, 3D oscillations within the star which come in two primary forms: pressure-driven ``p''-modes, and buoyancy-driven ``g''-modes.
 The simplest of these modes are radial modes, in which the star experiences spherically symmetric oscillations along its radial coordinate (and the simplest of these modes is the fundamental ``breathing'' mode, whose spherical harmonic degree is $\ell = 0$, in which the star's radius expands and contracts as a whole).
-On top of these radial modes, nonradial modes (including dipolar, quadrupolar, and infinitely more complex modes) are also excited.
+Theoretically, an infinite number of (radial and nonradial) modes can be excited in a star at a given time.
 The left image of Fig.~\ref{fig:asteroseismology} shows an example of the modes which can be excited within a standard model of the Sun's stratification.
 Temporal frequency on the y-axis is plotted against spherical harmonic degree $\ell$, and each of the ridges in the plots is an individual mode at a specific overtone $n$.
 The bottom of the diagram is filled with low-frequency, buoyancy-driven g-modes while the upper part of the diagram is filled with higher frequency, pressure-driven p-modes.
 
 \begin{figure}[t!]
 \includegraphics[width=\textwidth]{./figs/intro/asteroseismology.pdf}
-\caption[Introduction to Asteroseismology.]
+\caption[Introduction to asteroseismology.]
 {
 	Select images describing asteroseismology, taken from Ch.~1 of \citet{aerts&all2010}.
 	(left, Fig.~1.6) Allowed frequency modes in a standard solar model.
@@ -81,7 +83,7 @@ The bottom of the diagram is filled with low-frequency, buoyancy-driven g-modes 
 
 As these waves propagate into the stellar interior, the stratification of the star (e.g., the changing sound speed with depth for the p-modes) causes the waves to refract and return to the surface (see the middle panel of Fig.~\ref{fig:asteroseismology}).
 These waves therefore directly sample the interior stratification of the star, and the spherical harmonic degree of a given mode determines how deep it propagates before reflecting (with higher $\ell$ propagating less deeply).
-Asteroseismology and helioseismology refer to the observation of the resultant complex wavefields that these many waves add together to create at the surface of stars, or the Sun, respectively.
+Asteroseismology and helioseismology refer to the observation of complex wavefields at the stellar surface which are the summation of these waves which sample various stellar depths.
 Due to the fact that stars are not spatially resolved, asteroseismology can only detect a limited number of modes.
 An asteroseismic power spectrum of the Sun-seen-as-a-star is shown in the right panel of Fig.~\ref{fig:asteroseismology}.
 Each of the peaks in this power spectrum correspond to one of the ridges in the leftmost panel, and the frequencies at which these peaks occur help constrain the interior structure of a given star.
@@ -92,16 +94,16 @@ The advent of asteroseismic science has closely paralleled that of exoplanetary 
 Early ground-based observations of stellar pulsations \cite[e.g.,][]{kjeldsen&frandsen1991, bouchy&carrier2001, bedding&all2001} have given way to datasets larger than $10^4$ stars \cite[e.g.,][]{yu&all2018, santos&all2019b} in the age of CoRoT, Kepler, and K2 data.
 Another 20,000 asteroseismically-interesting targets are being observed in the TESS satellite's two-year mission \citep{schofield&all2019}.
 By 2030 we expect to have observed $10^7$ pulsating red giants and $10^5$ dwarfs and subgiants \citep{huber&all2019}.
-This plethora of data will teach us a great deal about the nature of stellar interiors, and will enables the accurate measurement of the ages, masses, and radii of many of these stars.
+This plethora of data will teach us a great deal about the nature of stellar interiors, and will enable the accurate measurement of the ages, masses, and radii of many of these stars.
 These measurements in turn facilitates studies in numerous astrophysical disciplines, including galactic archaeology and exoplanetary science.
 
-However, inferring information about a star's structure from asteroseismic data is difficult due to the small number of measurable frequencies available.
-Forward modeling using one-dimensional (1D) stellar structure models is also difficult due to the need to compute many slightly different models to produce a model which lines up well with a given set of observations.
-For a more complete discussion of the difficulties of difficulties inherent in asteroseismic techniques, we refer the reader to chs.~1.4 \& 4.1 of \citet{bellingerT2018}.
-Regardless, 1D stellar structure models consitently fail to reproduce some aspects of asteroseismic observations; one such example is that models and observations frequently do not align in the highly supercritical surface layers of solar-like stars \citep[as discussed in][]{jorgensen&weiss2019}.
-Some of the known deficiences of stellar structure models are described by \cite{buldgen2019}, and of particular interest in the context of this thesis are their handling of three-dimensional (3D) dynamical phenomena like convection.
-The exponential rise in asteroseismic targets over the past two decades demands improved stellar structure models for comparison with asteroseismic datasets.
-In order to improve these models, we must improve the handling of convection in stelar structure models. 
+However, inferring information about a star's structure from asteroseismic data is difficult.
+Forward modeling using one-dimensional (1D) stellar structure models requires the computation of many slightly different models to produce a model which lines up well with a given set of observations, and backwards modeling is in and of itself a difficult proposition.
+For a more complete discussion of the difficulties inherent in asteroseismic techniques, I refer the reader to Chs.~1.4 \& 4.1 of \citet{bellingerT2018}.
+Regardless, 1D stellar structure models consistently fail to reproduce some aspects of asteroseismic observations; one such example is that models and observations frequently do not align in the highly supercritical surface layers of solar-like stars \citep[as discussed in][]{jorgensen&weiss2019}.
+Some of the known deficiencies of stellar structure models are described by \cite{buldgen2019}, and of particular interest in the context of this thesis are their handling of three-dimensional (3D) dynamical phenomena like convection.
+In order to improve these models, we must improve how stellar structure codes handle convection.
+By improving convective models and stellar structure models, we can better take advantage of the exponential rise in asteroseismic targets that has occurred---and continues to occur---in recent years.
 
 
 
@@ -111,7 +113,7 @@ Recent observations have revealed that we lack a fundamental understanding of th
 Helioseismic observations \citep{hanasoge&all2012, greer&all2015} have reported detections of convective velocity magnitudes which are different by a factor of 100.
 Despite these disagreements, one way in which these observations broadly agree with one another and broadly agree with measurements of solar surface velocities \citep{hathaway&all2015} is that solar convection has an unexpected absence of velocity at large spatial scales.
 In short, we do not observe large-scale ``giant cells'' driven by buoyant motions deep in the solar convection zone in helioseismic (left panel of Fig.~\ref{fig:conv_conundrum}) or surface velocity (right panel of Fig.~\ref{fig:conv_conundrum}) measurements.
-These measurements, and the absence of giant cells, consitute the Solar Convective Conundrum.
+These measurements, and the absence of giant cells, constitute the Solar Convective Conundrum.
 Two primary hypotheses currently aim to explain the absence of giant cells: 
 \begin{enumerate}
 \item The ``entropy rain'' hypothesis, and
@@ -132,7 +134,7 @@ I will briefly describe each of these hypotheses below.
 \end{figure}
 
 First suggested by \cite{spruit1997}, the entropy rain hypothesis suggests that many theories over-predict the importance of upflows in solar convection.
-Instead, \emph{downflows} are the predominant mechanism responsible for carrying the solar luminosity across the solar convection zone.
+Instead, perhaps \emph{downflows} are the predominant mechanism responsible for carrying the solar luminosity across the solar convection zone.
 Recent theory and simulations \citep{brandenburg2016, kapyla&all2017}, including some of my own work (Ch.~\ref{ch:alb19}), suggest that small, intense downflows can indeed traverse the entire convection zone intact and may be more important than upflows in solar-like convection.
 A slice of the traditional view of the solar interior is shown in the left panel of Fig.~\ref{fig:conundrum_solns}, and the solar interior under the entropy rain hypothesis is shown in the middle panel.
 
@@ -141,8 +143,9 @@ Simulations by \cite{featherstone&hindman2016a, featherstone&hindman2016b} show 
 A model of the solar convection zone under this hypothesis is shown in the right panel of Fig.~\ref{fig:conundrum_solns}.
 However, rotational effects on simulations can be hard to quantify; some simulations which nominally rotate at the solar rate show \emph{anti-solar} differential rotation \citep{gastine&all2014}, and other rotationally constrained simulations exhibit Jupiter-like bands \citep{brun&all2017}.
 Regardless, current results and hypotheses suggest that the interplay between downflows and rotational effects must be better understood in stellar convection.
+In Ch.~\ref{ch:ro_p19}, I make an effort to better understand how to control the degree of rotational constraint in simulations.
 
-\begin{figure}[ht!]
+\begin{figure}[t!]
 \includegraphics[width=\textwidth]{./figs/intro/conundrum_explanations.pdf}
 \caption[Schematics of hypotheses that solve the convective conundrum.]
 {
@@ -157,18 +160,16 @@ Regardless, current results and hypotheses suggest that the interplay between do
 \end{figure}
 
 
-
-
-\section{Perspectives on studies of convection}
+\section{Perspectives on Studies of Convection}
 Historically, experiments into the nature of convection have come from two distinct lines of motivation.
 As is the case of the studies presented in this thesis, many studies into convection are motivated by the prevalence of convection in the natural world and a desire to understand convectively-driven processes.
-The second line of motivation stems from turbulence research, because convective experients are ideal systems in which to study buoyantly driven turbulent flows.
-These two motivations have led to a large variety of studies into the nature of convection, which I will attempt to briefly summarize in the followsing sections.
+The second line of motivation stems from turbulence research, because convective experiments are ideal systems in which to study buoyantly driven turbulent flows.
+These two motivations have led to a large variety of studies into the nature of convection, which I will attempt to briefly summarize in the following sections.
 Generally, studies of turbulent flows have focused on simple convective laboratory experiments or simulations in the Boussinesq regime, whereas astrophysically or geophysically motivated studies range from the same simple experimental setups to complex magnetohydrodynamic, global ``dynamo'' simulations in spherical domains.
 
 \subsection{\RB convection}
 The first controlled laboratory experiments of convection (or, a fluid layer heated from below and cooled from above) were performed by B\'{e}nard in 1900.
-However, the first theoretical description of such a convective layer was performed by \citet{rayleigh1916}, at who first derived the fundamental control parameter of convection: the Rayleigh number,
+However, the first theoretical description of such a convective layer was performed by \citet{rayleigh1916}, who first derived the fundamental control parameter of convection: the Rayleigh number,
 \begin{equation}
 \text{Ra} = \frac{\alpha g L^3 (\Delta T)}{\nu \chi},
 \label{eqn:rayleigh_number}
@@ -187,7 +188,7 @@ Furthermore, the value of $\text{Ra}_{\text{crit}}$ is independent of $\text{Pr}
 	A hot plate sits below a cold plate, and either the flux (temperature gradient) or the temperature is fixed at each plate to maintain the convective instability.
 	\citep[right, Fig.~4 of][]{ahlers&all2009} A compensated scaling plot of Nu vs.~Ra.
 	Here, the value of Nu is divided by the expected scaling, Ra$^{1/3}$.
-	The initial trend downward means that, in taht part of parameter space, if you assume Nu$\,\propto\,$Ra$^{\alpha}$, $\alpha < 1/3$.
+	The downward trend at low Ra means that, if you assume Nu$\,\propto\,$Ra$^{\alpha}$, the value of $\alpha < 1/3$ (and $\alpha \approx 2/7$ has been frequently used in the literature).
 	However, at high values of Ra, when the trend flattens, it suggests that a Ra$^{1/3}$ law is a good description.
 	\label{fig:rayleigh_benard_description} 
 }
@@ -201,7 +202,6 @@ In the simplest of terms, much of the research into RBC focuses on the behavior 
 where $w$ is the vertical velocity, and $T$ is the temperature field, and $\angles{}$ are a volume average over the convective domain.
 The key historical question that has been asked is: how does Nu scale as Ra and Pr are changed?
 A schematic of the RBC setup and a sample scaling plot of Nu vs.~Ra are shown in Fig.~\ref{fig:rayleigh_benard_description}.
-%To a lesser extent, the same has also been asked of the Reynolds number, Re$\,= \angles{|\bm{u}|} L / \nu$, where $\bm{u}$ is the velocity.
 The earliest theoretical description developed by \citet{malkus1954} asserts that the boundary layers of convective domains are always in a marginally stable state, and thus when the Rayleigh number is defined with $L = \delta$, the boundary layer thickness, it should always have a value of Ra$_{\text{crit}}$.
 This argument suggests that $\delta \propto \text{Ra}^{-1/3}$.
 Assuming that the convection develops an isothermal interior and that the full temperature jump across the domain occurs in the boundary layers, we can substitute $L = \delta$ in the definition of Nu, and we retrieve a classical scaling law of $\text{Nu} \propto \text{Ra}^{1/3}$.
@@ -217,9 +217,9 @@ A great number of studies have historically sought out the so-called ``ultimate 
 Some authors have recently claimed to have achieved this ultimate regime \citep[see e.g.,][]{zhu&all2018}, but this is still a point of contention in the community.
 This theory, and a comparison to experimental and numerical results, are described in detail in the review of \citet{ahlers&all2009}.
 
-\subsection{More realistic geophysical and astrophysical experiments}
+\subsection{More Realistic Geophysical and Astrophysical Experiments}
 While modern and historical studies of RBC have allowed the community of convective modelers to understand convective experiments to a much greater degree, they do not contain all of the ``ingredients'' which are important to astrophysical or geophysical convection.
-Numerous studies exist which aim to understand these additional complexities, ranging from studies which essentially study RBC with one extra component to studies with realistic radiiative transfer, magnetism, etc.
+Numerous studies exist which aim to understand these additional complexities, ranging from studies which essentially study RBC with one extra component to studies with realistic radiative transfer, magnetism, etc.
 
 The effects of rotation, and to a lesser extent magnetism, have been studied in the RBC context in great detail.
 \citet{plumley&julien2019} provide an excellent overview of these fields.
@@ -258,7 +258,7 @@ A visualization of one of dynamics in one of these simulations is shown in the l
 As the capabilities of supercomputers have expanded, so too have the complexity of convective simulations.
 Modern ``dynamo simulations'' examine the evolution of rotating magnetohydrodynamic convection in spherical domains and have produced fascinating phenomenon.
 These dynamo simulations regularly produce self-consistent differential rotation \citep{strugarek&all2018}, ``wreaths'' of magnetism \citep[][and visualized in the middle panel of Fig.~\ref{fig:complex_simulations}]{brown&all2010, brown&all2011}, magnetic cycles \citep{brown&all2011}, and more phenomenon.
-These emergent phenomena parallel observed phenomena on the Sun and suggest that our fundamental understanding of the Sun's dynamo (that it is driven by turbulent motions in the convective zone) are correct.
+These emergent phenomena parallel observed phenomena on the Sun and suggest that our fundamental understanding of the Sun's dynamo (that it is driven by turbulent motions in the convective zone) is correct.
 Unfortunately, these simulations are difficult to run and are are extremely complex.
 As a result, these simulations serve a role similar to observations: it is easy to see what phenomena they produce, but it is hard to understand and predict how those phenomena occurred.
 
@@ -290,12 +290,12 @@ These experiments are shown briefly in Fig.~\ref{fig:convective_experiments}
 \begin{figure}[t!]
 \vspace{0.25cm}
 \includegraphics[width=\textwidth]{./figs/intro/convective_experiments.pdf}
-\caption[Modern convective laboratoryexperiments.]
+\caption[Modern convective laboratory experiments.]
 {
 	\citep[left, Fig.~1a of][]{aurnou&all2018} A cylindrical experiment filled with liquid gallium in which rotating magnetoconvection can be studied.
 	\citep[middle, Fig.~1a of][]{bouillaut&all2019} An experiment in which internally heated convection can be studied.
 	The dye in the water absorbs the light, heating the water throughout the tank, and driving convection.
-	\citep[right, Fig.~3a of][]{koulakis&all2018} An experiment in which pyconoclinic acoustic forces contain a hot plasma sphere at the center of a bulb.
+	\citep[right, Fig.~3a of][]{koulakis&all2018} An experiment in which pycnoclinic acoustic forces contain a hot plasma sphere at the center of a bulb.
 	\label{fig:convective_experiments} 
 }
 \end{figure}
@@ -310,7 +310,7 @@ This in turn will help us build better dynamo models to help predict dynamo acti
 
 \subsection{Mixing Length Theory \& Stellar Structure Models}
 While the first analytical description of convection was performed by \citet{rayleigh1916}, the earliest formulation of a simple mixing length theory was derived by \citet{prandtl1925}.
-These were later expanded by \citet{vitense1953} and \citet{bohm-vitense1958} into the predecessor to most formulations of stellar mixing length thoery (MLT) used today.
+These were later expanded by \citet{vitense1953} and \citet{bohm-vitense1958} into the predecessor to most formulations of stellar mixing length theory (MLT) used today.
 Modern MLT has many branches, but the one described in Chapter 14 of \citet{weiss&all2004} and earlier versions of Cox \& Giuli's book provide an excellent and fundamental description of MLT.
 
 MLT serves as a one-dimensional (1D) description of complex three-dimensional convective motions.
@@ -320,7 +320,7 @@ As a result, hot elements transport warm material upward some mixing length, col
 While MLT is obviously an over-simplification of convective processes, it works qualitatively, and until recently it showed few noticeable disagreements with the observations available.
 More importantly, there is no other 1D description of convection that is widely accepted by the community, so MLT is all that 1D modelers have available to work with.
 
-State-of-the-art stellar strucuture models are produced by 1D codes like MESA \citep{paxton&all2011}, which depend on convective parameterizations like MLT.
+State-of-the-art stellar structure models are produced by 1D codes like MESA \citep{paxton&all2011}, which depend on convective parameterizations like MLT.
 Stellar structure models produced with MLT have aligned well with helioseismic observations for quite some time \citep{christensen-dalsgaard&all1996}, and disagreements between models and observations are generally less than a few percent \citep{serenelli&all2009}.
 One particular area of weakness for these models has been problems due to ``near-surface effects'' \citep{kjeldsen&all2008}.
 In short, MLT assumes that all convective flows are in perfect pressure equilibrium with their surroundings.
@@ -342,7 +342,7 @@ A deep exploration of dynamo action or magnetoconvection in the stellar context 
 \subsection{The Impossibility of Astrophysical Parameter Space}
 \label{sct:nondimensional_parameters}
 One of the reasons that our understanding of stellar convection is so incomplete is that it is impossible for us to model ``true'' stellar convection.
-That is -- convection in stars occurs in regions of parameter space that is unaccessible to simulations.
+That is -- convection in stars occurs in regions of parameter space that are inaccessible to simulations.
 The Rayleigh number (Ra) is the most important nondimensional parameter used in describing experiments of convection.
 Ra is roughly a measure of the ratio of the strength of buoyant convective driving to viscous dissipation.
 In \RB convection, Ra is defined as in Eqn.~\ref{eqn:rayleigh_number}.
@@ -353,7 +353,7 @@ In acknowledging that the Boussinesq freefall velocity is $u_{\text{ff}} = \sqrt
 \Reff = \frac{u_{\text{ff}} L_z}{\nu},  \qquad
 \text{Ra} = \Peff\Reff = \frac{u_{\text{ff}}^2 L_z^2}{\nu\chi}.
 \end{equation}
-Under this formulation, given an estimate of the diffusviites and MLT convective velocities, one can calculate an approximate value of Ra.
+Under this formulation, given an estimate of the diffusivities and MLT convective velocities, one can calculate an approximate value of Ra.
 Also, in this formulation it is clear to see that Ra is in some ways a direct measure of how turbulent the convective motions are.
 
 Perhaps the best form of Ra for use in astrophysical calculations is that of a ``flux Rayleigh number,'' ($\text{Ra}_F$), which many authors use \citep[e.g.,][]{featherstone&hindman2016a}.
@@ -371,7 +371,7 @@ In order to understand the magnitude of Ra$_F$, I will now estimate its value fo
 The length scale of the solar convection zone is about $L = 200$ Mm, or about 30\% of the Sun's 700 Mm radius.
 At the mid-CZ ($r \approx 600$ Mm), most (or at least about half) of the solar luminosity ($L_\odot \approx 3.85 \times 10^{33}$ erg/s) is carried by the convection.
 Thus, $F = L_{\odot} / (4\pi r^2) \approx 8.5 \times 10^{10}$ erg/s/cm$^2$.
-From a simple solar MESA model (a 1 $M_\odot$ star evolved to 4.5 Gyr), at the mid-CZ, $T \approx 10^6$ K, $\rho \approx 0.05$ g/cm$^3$, $g \approx 3.78 \times 10^4$ m/s$^2$, and $c_P \approx 3.43 \times 10^{7}$ erg/K.
+From a simple solar MESA model (a 1 $M_\odot$ star evolved to 4.5 Gyr), at the mid-CZ, $T \approx 10^6$ K, $\rho \approx 0.05$ g/cm$^3$, $g \approx 3.78 \times 10^4$ cm/s$^2$, and $c_P \approx 3.43 \times 10^{7}$ erg/K.
 
 The diffusivities are a bit harder to estimate.
 While this is not a perfect approximation, we can model the solar convection zone as a fully-ionized, 100\% Hydrogen fluid.
@@ -380,7 +380,7 @@ In this case, the Spitzer viscosity for a fully ionized gas applies \citep[Eqn.~
 \nu = (2.21 \times 10^{-15}) \frac{T^{5/2}}{\rho \ln \Lambda} \text{cm}^2/\text{s},
 \end{equation}
 for $T$ and $\rho$ in cgs units.
-Here, $\ln\Lambda$ is the Coulomb logarithm, defined on page 34 of the 2019 edition of the plasma formulary for a fully ionized hydrogen gas as
+Here, $\ln\Lambda$ is the Coulomb logarithm, defined on page 34 of the 2019 edition of the NRL plasma formulary for a fully ionized hydrogen gas as
 \begin{equation}
 \ln \Lambda = 23 - \ln\left(\frac{\sqrt{2\rho}}{\sqrt{m_P}T^{3/2}}\right),
 \end{equation}
@@ -415,7 +415,7 @@ The regime of very-high-Ra stellar convection is inaccessible using modern compu
 \label{sct:numerics}
 Numerical simulations are the cornerstone of the work presented in this thesis.
 The following section is by no means meant to be an exhaustive description of numerical methods, but is meant to be a broad overview of terminology and jargon.
-Furthermore, in Sct.~\ref{sct:intro_equations}, I review different formulations of the Navier-Stokes equations used in astrophysical convection simulations, and in Sct.~\ref{sct:dedalus}, I describe the numerical tool, Dedalus, used in this work. 
+Furthermore, in Sec.~\ref{sct:intro_equations}, I review different formulations of the Navier-Stokes equations used in astrophysical convection simulations, and in Sec.~\ref{sct:dedalus}, I describe the numerical tool, Dedalus, used in this work. 
 
 \subsection{Direct Numerical Simulations vs.~Large Eddy Simulations}
 Direct Numerical Simulations (DNS) are simulations in which the Navier-Stokes equations are evolved in their entirety without any model for the turbulence, and the term was first coined by \citet{orszag1970}.
@@ -431,7 +431,7 @@ However, this premise hinges on the fact that the unresolved small scales are re
 A given simulation can capture length scales which vary between $L$, the large-scale size of the simulation domain, and $\ell$, a small-scale set by e.g., the grid resolution.
 If $\ell \leq \ell_{\text{diss}}$, the dissipation length scale, then the simulation is a DNS -- it explicitly captures scales down to (and possibly below) the dissipation scales.
 In an LES, the goal is to set $L$ to the largest scales present in the system of interest, and to set $\ell_{\text{diss}} \ll \ell \ll \ell_{\text{max}}$, where $\ell_{\text{max}} < L$ is the dominant length scale of e.g., convective velocities being modeled in the system and $\ell_{\text{max}} < L$.
-The choices of $\ell$ and $L$ for an LES in theory achieve a realistic description of the sytem while using many fewer computational resources than would be required to resolve $L$ and $\ell_{\text{diss}}$ in a DNS.
+The choices of $\ell$ and $L$ for an LES in theory achieve a realistic description of the system while using many fewer computational resources than would be required to resolve $L$ and $\ell_{\text{diss}}$ in a DNS.
 
 DNS and LES are two different tools to be used for different problems.
 In the physics community where \RB convection is studied, DNS are the tool of choice.
@@ -441,7 +441,7 @@ When applied to astrophysics, DNS generally aim to understand how flow propertie
 These scaling laws can then be extrapolated out to astrophysical quantities (which are often many decades away from the most turbulent values achievable in DNS).
 In short, in studies of astrophysics, it is acknowledged that DNS cannot achieve a model of the true astrophysical system of interest, but can instead provide insight into the behavior of similar systems at less extreme parameters.
 The goal of LES is to study dynamics in a system which is as close to a realistic model of the astrophysical system of interest as can be achieved.
-However, LES are senitive to choices of how to model SGS effects.
+However, LES are sensitive to choices of how to model SGS effects.
 Some recent studies suggest that these two approaches should not be seen as an ``either or'' choice but a ``both and'' \citep{mellado&all2018}.
 In other words, DNS studies can be used to accurately model small scales, and those results can better inform SGS choices of LES.
 
@@ -450,14 +450,14 @@ All of the simulations conducted in this work are DNS.
 
 \subsection{Finite Element vs. Spectral Methods}
 The simplest and most straightforward way of modeling a physical system numerically is through the use of finite element, finite volume, and finite difference methods.
-In these systems, physical space is discretized into a series of coordinates, and the values of relevant quantiies (velocity, density, etc.) are tracked at each of those locations, and derivatives are computed based on the values of quantities in neighboring grid cells.
+In these systems, physical space is discretized into a series of coordinates, and the values of relevant quantities (velocity, density, etc.) are tracked at each of those locations, and derivatives are computed based on the values of quantities in neighboring grid cells.
 Finite volume codes can be used to model problems in complex geometries, but can be difficult to implement for complex equations and converge slowly as the simulation resolution is increased \citep{burns&all2019}.
 Some modern examples of finite volume codes used in astrophysical fluid modeling are the Stagger\footnote{\url{https://starformation.hpc.ku.dk/?q=node/18}} \citep{galsgaard2011}, PLUTO\footnote{\url{http://plutocode.ph.unito.it/}} \citep{mignone&all2012}, Athena/Athena++\footnote{\url{https://princetonuniversity.github.io/athena/}} \citep{stone&all2008, stone&all2019}, the Pencil Code\footnote{\url{http://pencil-code.nordita.org/}} \citep{brandenburg&dobler2010}, and MUSIC\footnote{\url{https://empslocal.ex.ac.uk/tofu/}} \citep{goffrey&all2017} (although, the Pencil code acts like a blend of finite element and spectral methods, as described below).
 
 Spectral methods, on the other hand, discretize important quantities by expanding them over a set of bases functions.
 Common basis choices include Fourier series and Chebyshev polynomials.
 Such methods can highly accurately follow the value of evolving fields at all spatial locations within a domain, but are generally restricted to simple geometries (Cartesian, cylindrical, and spherical domains).
-The code used to perform all simulations in this thesis, Dedalus\footnote{\url{http://dedalus-project.org/}} (described below in sct.~\ref{sct:dedalus}), is a \emph{pseudo}spectral code.
+The code used to perform all simulations in this thesis, Dedalus\footnote{\url{http://dedalus-project.org/}} (described below in Sec.~\ref{sct:dedalus}), is a \emph{pseudo}spectral code.
 This means that, while solving equations, all linear equation terms are handled in a fully spectral sense.
 Nonlinear terms are dealiased, projected onto a finite volume domain, and analyzed. 
 Pseudospectral methods can be much more efficient than spectral methods in the analysis of certain terms.
@@ -466,7 +466,7 @@ Some other modern codes which employ spectral methods are Rayleigh\footnote{\url
 A benchmark comparing Dedalus' pseudospectral methods to Athena's finite volume methods for a turbulent, nonlinear Kelvin-Helmholtz instability is explored by \citet{Lecoanet_et_al_2016_KH}.
 
 
-\subsection{Timestepping: Implicit \& Explicit methods}
+\subsection{Timestepping: Implicit \& Explicit Methods}
 \label{sct:intro_timestepping}
 The most common class of timestepping methods used are explicit timestepping methods.
 In these methods, the future state of the system is solved for as a function of the current state of the system and some timestep size, $\Delta t$.
@@ -489,7 +489,7 @@ Mixed implicit-explicit (IMEX) methods have been growing in popularity in recent
 These methods utilize the best parts of both implicit and explicit methods.
 Generally, these methods handle linear terms implicitly, thereby superstepping CFL conditions on linear waves or other linear system solutions.
 These methods then handle their nonlinear terms explicitly, using significantly less memory than nonlinear implicit methods.
-All of the simulations presented in this thesis utilze IMEX methods.
+All of the simulations presented in this thesis utilize IMEX methods.
 
 
 \subsection{Equation Formulation: From Complexity to Simplicity}
@@ -531,9 +531,9 @@ $$
 where $T$ is the temperature.
 
 One benefit of anelastic approximations such as the one here is that they are ``soundproof.''
-In other words, these equations are not stiff: acoustic waves are explicitly filtered out of the linear solution of these equations, so simulations of low Mach number flows can be performed using explicit timestepping techniques without having to take prohibatively small timesteps that follow the sound waves.
+In other words, these equations are not stiff: acoustic waves are explicitly filtered out of the linear solution of these equations, so simulations of low Mach number flows can be performed using explicit timestepping techniques without having to take prohibitively small timesteps that follow the sound waves.
 Anelastic equation formulations have historically been used in many global simulation models (ASH and Rayleigh both use an anelastic equation formulation).
-More recently, implicit-explicit (IMEX) timestepping methods have enabled low Mach number simulations under the fully compressible equations which are not bound by the CFL.
+More recently, IMEX timestepping methods have enabled low Mach number simulations under the fully compressible equations which are not bound by the CFL.
 If these methods become more prevalent, it is possible that Anelastic approximations may become a thing of the past.
 Regardless, some comparisons of fully compressible low Mach number dynamics and Anelastic dynamics have shown remarkable agreement between the two equation sets \citep[see e.g.,][and chapter \ref{ch:alb19}]{lecoanet&all2014, andersLB2019}.
 As such, due to their simplicity, anelastic models will likely continue to find use in theoretical descriptions of low Mach number flows.
@@ -549,12 +549,12 @@ Under these conditions, the continuity equation (Eqn.~\ref{eqn:intro_fc_continui
 \label{eqn:intro_incompressibility}
 \end{equation}
 and the density is assumed to be a constant ($\rho_0$) everywhere except on the gravitational term in the momentum equation, where it is $\rho = \rho_0 + \rho_1$.
-Assuming that the background atmospheric profile is in hydrostatic equilibrium $-\grad P_0 + \rho_0 \bm{g} = 0$, and adopting the boussinesq approximation for density fluctuations on the gravitational term,
+We assume that the background atmospheric profile is in hydrostatic equilibrium $-\grad P_0 + \rho_0 \bm{g} = 0$, and adopt the Boussinesq approximation for density fluctuations on the gravitational term,
 \begin{equation}
 \rho_1 = \rho_0\alpha T_1,
 \end{equation}
 where $\alpha$ is the coefficient of thermal expansion and $T_1$ is temperature fluctuations away from background temperature profile.
-The boussinesq momentum equation is
+The Boussinesq momentum equation is
 \begin{equation}
 \frac{\partial \bm{u}}{\partial t} + \bm{u}\cdot\grad\bm{u} = -\grad \varpi - \alpha T_1 \bm{g} + \nu \grad^2 \bm{u},
 \label{eqn:intro_bouss_momentum}
@@ -571,7 +571,7 @@ In Chs.~\ref{ch:ab17} and \ref{ch:ro_p19}, fully compressible convection will be
 In Chs.~\ref{ch:abo18} and \ref{ch:FT20}, convection under the Boussinesq approximation will be examined.
 In Ch.~\ref{ch:alb19}, the evolution of low Mach number fluid parcels will be analyzed using both fully compressible and anelastic simulations.
 
-\subsection{Dedalus: A pseudospectral toolkit}
+\subsection{Dedalus: A Pseudospectral Toolkit}
 \label{sct:dedalus}
 Dedalus is an open source Python package which allows the user to apply pseudospectral and spectral methods to solve arbitrary partial differential equation sets.
 These equation sets are generally solved in Cartesian domains, although select cylindrical domains are available, and an alpha version of Dedalus in spherical domains has been tested and is available \citep{vasil&all2019, lecoanet&all2019}.
@@ -579,7 +579,7 @@ While the full functionality of Dedalus is covered in detail in its recently rel
 
 \subsubsection{Arbitrary Equation Sets}
 Dedalus users input sets of partial differential equations into Dedalus in a plain text format.
-This means that using any of the the three equation sets covered in Section \ref{sct:intro_equations} is straightforward, and going from initial implementation of a new set of equations, to debugging those equations, to getting science results from those equations is a fast process.
+This means that using any of the three equation sets covered in Section \ref{sct:intro_equations} is straightforward, and going from initial implementation of a new set of equations, to debugging those equations, to getting science results from those equations is a fast process.
 As an illustrative example, take the Boussinesq equations (nondimensionalized on a freefall timescale as in Ch.~\ref{ch:abo18}):
 \begin{gather}
 \DivU = 0, \\
@@ -658,13 +658,13 @@ u \\ w \\ T_1 \\ u_z \\ w_z \\ T_{1,z} \\ p
 = \bm{0},
 \end{equation}
 In this work, the eigenvalue we have always been interested in is $\omega$, whose imaginary component describes whether the solution experiences exponential growth (convection) or exponential decay (not convection).
-In solving for this eigenvalue, Dedalus takes the determinant of the 7x7 matrix displayed above, Det$(\bm{\overline{\overline{A}}})$, given a set of physical values (e.g., $k_x$, $\mP$, $\mR$), and sets that determinant equal to zero to solve for $\omega$.
+In solving for this eigenvalue, Dedalus takes the determinant of the 7x7 matrix displayed above, sets Det$(\bm{\overline{\overline{A}}}) = 0$, and solves for $\omega$ given a set of physical values (e.g., $k_x$, $\mP$, $\mR$).
 Dedalus internally deals with $\partial_z$'s by substituting in appropriate derivative expressions for the Chebyshev polynomials that it is resolving.
 \end{enumerate}
 
-\paragraph{Boundary Value Problems} have found some use in this thesis.
+\paragraph{Boundary Value Problems} have found some use in this thesis (see Ch.~\ref{ch:abo18}).
 Usually we solve one-dimensional boundary value problems in the $z$ direction, and therefore use a simpler set of equations than the aforementioned equation set.
-In Dedalus, BVPs are solved using a Newton solver (using a Newton-Raphson rootfinding method).
+In Dedalus, BVPs are solved using a Newton solver (using a Newton-Raphson root-finding method).
 Given an initial guess for the answer as a function of height, Dedalus iteratively attempts to shoot the solution closer to one which satisfies both the equations and boundary conditions.
 
 

@@ -1,4 +1,4 @@
-\chapter{Heat Transport in Stratified Atmospheres at low and high Mach number}
+\chapter{Convective heat transport in stratified atmospheres at low and high Mach number}
 \label{ch:ab17}
 
 \section{Preamble}
@@ -197,17 +197,6 @@ At high Ma (e.g., $\epsilon = 0.5$, Ra/Ra$_{\text{crit}} \gtrsim 10^3$), bulk th
 At large Ra, the diffusion timescale becomes long (\ref{eqn:ab17timescales}), and thermodynamic structures form small eddies which traverse the domain repeatedly before diffusing (Fig. \ref{fig:entropy_snapshots}c).
 As evidenced by the colorbar scalings, the amplitudes of thermodynamic fluctuations scale with $\epsilon$.
 
-In 3D, the same upflow/downflow asymmetry is seen, but other aspects of the flow are distinctly different.  
-Fig. \ref{fig:entropy_snapshots}d-f show select snapshots of a 3D simulation with the same input parameters as the 2D case in Fig. \ref{fig:entropy_snapshots}a.
-In 2D, large-scale, coherent spinners dominate the  flow, leading to a single upflow and downflow.  
-New downflowing plumes at the upper boundary are efficiently swept into the large coherent structure (near $x \sim 1$ and spanning the vertical domain).  
-The behavior of downflows in 3D is strikingly different (Fig. \ref{fig:entropy_snapshots}d).
-In 3D, many individual plumes detach from the upper boundary, but do not organize into a single dominant downflow in the same fashion.  
-Horizontal cuts near the top of the domain (Fig. \ref{fig:entropy_snapshots}e) reveal a network of narrow downflow lanes surrounding broad upflows. 
-Stronger clusters of downflows near the surface are linked to sheets of low entropy at the midplane of the domain (Fig. \ref{fig:entropy_snapshots}f).
-As the flows evolve in time, new downflows appear at the top of the domain in the middle of upflows and join the surrounding downflow network, causing the convective structures to fragment.  
-There is no preferred orientation in the newly forming downflows, and the convective flow field constantly evolves, which appears to prevent the occurrence of either spinners or windy states.
-
 \begin{figure}[t!]
 \includegraphics[width=\textwidth]{./figs/snapshots_fig_raster.pdf}
 \caption[Flow morphology of 2D, 3D, and low and high Mach number flows.]
@@ -223,6 +212,19 @@ There is no preferred orientation in the newly forming downflows, and the convec
 	\label{fig:entropy_snapshots} 
 }
 \end{figure}
+
+
+
+In 3D, the same upflow/downflow asymmetry is seen, but other aspects of the flow are distinctly different.  
+Fig. \ref{fig:entropy_snapshots}d-f show select snapshots of a 3D simulation with the same input parameters as the 2D case in Fig. \ref{fig:entropy_snapshots}a.
+In 2D, large-scale, coherent spinners dominate the  flow, leading to a single upflow and downflow.  
+New downflowing plumes at the upper boundary are efficiently swept into the large coherent structure (near $x \sim 1$ and spanning the vertical domain).  
+The behavior of downflows in 3D is strikingly different (Fig. \ref{fig:entropy_snapshots}d).
+In 3D, many individual plumes detach from the upper boundary, but do not organize into a single dominant downflow in the same fashion.  
+Horizontal cuts near the top of the domain (Fig. \ref{fig:entropy_snapshots}e) reveal a network of narrow downflow lanes surrounding broad upflows. 
+Stronger clusters of downflows near the surface are linked to sheets of low entropy at the midplane of the domain (Fig. \ref{fig:entropy_snapshots}f).
+As the flows evolve in time, new downflows appear at the top of the domain in the middle of upflows and join the surrounding downflow network, causing the convective structures to fragment.  
+There is no preferred orientation in the newly forming downflows, and the convective flow field constantly evolves, which appears to prevent the occurrence of either spinners or windy states.
 
 
 
@@ -393,4 +395,4 @@ At the end of this thesis, I examine the nature of Boussinesq flywheel modes in 
 The scaling laws that we observed in this work suggest that, in studies of polytropic convection, the convective heat flux is controlled by dissipation in the boundary layers.
 However, unlike in \RB convection, the boundary layers in our work are \emph{not} symmetrical -- instead, the boundary layer at the bottom of the atmosphere is physically smaller than the one at the top of the atmosphere.
 It is unclear at this time whether it is the bottom boundary layer, the top boundary layer, or \emph{both} boundary layers in which dissipation is maximized.
-Some initial theoeretical work on this topic is being performed by Chris Jones \citep[as presented in ][]{jones&all2019}, but to date little or no careful work on this theory has been published.
+Some initial theoretical work on this topic is being performed by Chris Jones \citep[as presented in ][]{jones&all2019}, but to date little or no careful work on this theory has been published.

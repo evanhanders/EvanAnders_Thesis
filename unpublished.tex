@@ -1,10 +1,10 @@
-\chapter{Unpublished work and open mysteries}
+\chapter{Unpublished Work and Open Mysteries}
 \label{ch:unpublished}
 
 Many promising projects have been abandoned over the course of my thesis work due to limited brain bandwidth, and due to the previous five chapters showing more promising and clear results.
 In the following sections, I will briefly outline progress that has been made on some of these abandoned projects, in the hope that they can be revisited and completed in the future.
 
-\section{Flywheel modes in 2D convection}
+\section{Flywheel Modes in 2D Convection}
 \label{sec:flywheels}
 This project \emph{almost} became a paper, but we couldn't find an angle in which to make it sufficiently interesting.
 Our goal was to study \RB convection at \textbf{high aspect ratio with stress free boundaries}, and show:
@@ -62,7 +62,7 @@ Or, through a straightforward substitution, we expect
 \end{equation}
 We find that this is indeed a good description of the enstrophy contained in the evolved flywheels for stress-free simulations, see Fig. \ref{fig:enstrophy}.
 Note, these scalings hold up for no-slip boundary conditions, as well.
-In the case of no-slip boundaries, the enstrophy is localized near the boundary (where the bulk velocities must go to zero over a small lengthscale of the boundary layer thickness).
+In the case of no-slip boundaries, the enstrophy is localized near the boundary (where the bulk velocities must go to zero over a small length scale of the boundary layer thickness).
 
 \begin{figure}[t!]
     \includegraphics[width=\textwidth]{figs/unpublished/enstrophy_v_ra.pdf}
@@ -115,17 +115,17 @@ Logical next steps would be to figure out the timescales over which the flywheel
 Furthermore, carrying out a similar procedure for the compressible equations to understand if the flywheels are as simple to understand there would be crucial in understanding why our Mach number increases with Ra in 2D polytropic convection sims (in Fig.~\ref{fig:ma_v_eps}).
 Finally, it would be fascinating to understand how the fully compressible equations dissipate flywheel energy at high Mach number (as in the high-Mach 2D cases in Fig.~\ref{fig:ma_v_eps}).
 
-\section{The magnitude of viscous terms in turbulent convection}
+\section{The Magnitude of Viscous Terms in Turbulent Convection}
 Historically, the magnitude of viscous terms (like viscous fluxes, and viscous heating) have been thought to be negligible in turbulent convection when diffusivities are small.
 However, recent work by \citet{currie&all2017} has shown that the volume-integrated contributions of the viscous heating (viscous dissipation) term can exceed the luminosity of the convection, even at very high Rayleigh number.
 Some of our unpublished work also suggests that viscous dissipation processes can be generally important in stratified convection.
 For example, the shearing states that we discovered at low Mach number in Ch.~\ref{ch:ab17} had important contributions from the viscous flux.
 In Fig.~\ref{fig:shear_fig}, a simulation with Ra = $10^{5.5}$ and $\epsilon = 10^{-4}$ (and otherwise constructed as described in Ch.~\ref{ch:ab17}) which displays shearing states is shown, including the large contributions from the viscous fluxes in those states.
-An extension of the flyweel work, mentioned in the previous section, into the realm of stratified convection would likely be one of the best routes for understanding the importance and magnitude of viscous dissipation and viscous fluxes.
+An extension of the flywheel work, mentioned in the previous section, into the realm of stratified convection would likely be one of the best routes for understanding the importance and magnitude of viscous dissipation and viscous fluxes.
 
 \begin{figure*}[p!]
     \includegraphics[width=\textwidth]{figs/unpublished/shear_fig.pdf}
-    \caption[Shearing Convection States]{
+    \caption[Shearing convection states in low Mach number, stratified convection.]{
 	(a \& c) Entropy anomaly snapshots in low-Mach number, fully compressible convection in a classic roll (a) and shearing (c) state.
 	(b \& d) The respective nondimensional fluxes in those systems.
 	The dark black line shows the sum of the fluxes, and the yellow and purple dashed lines respectively show the enthalpy and kinetic energy fluxes.
@@ -153,7 +153,7 @@ Understanding internally heated convection is therefore crucial for characterizi
 Inspired by the work of \citet{goluskin&spiegel2012} and the concise review of \citet{goluskin2016}, I had hoped to develop and study very simple internally heated, fully compressible systems.
 Just as polytropic atmospheres have linear temperature profiles and can be compared to \RB convection easily, our goal was to develop and study stratified atmospheres driven by a constant (or linear) internal heating term, which would in turn produce quadratic (or cubic) temperature profiles which could be compared to internally heated Boussinesq convection.
 
-\subsection{Preliminaries: Convective stability and available flux}
+\subsection{Preliminaries: convective stability and available flux}
 \label{sec:stability}
 In Boussinesq convection, convective stability is entirely determined by the temperature gradient.
 There, negative temperature gradients drive convective motions, and positive temperature gradients are stable.
@@ -163,7 +163,7 @@ In an ideal gas, the specific entropy gradient is defined
 \begin{equation}
 \grad S = c_V \grad\ln T - R \grad\ln\rho,
 \end{equation}
-where $S$, $T$, and $\rho$ are the specific entropy, temperature, and density; $c_V$ is the specfic heat at constant volume; and $R$ is the specific gas constant defining pressure, $P = R \rho T$.
+where $S$, $T$, and $\rho$ are the specific entropy, temperature, and density; $c_V$ is the specific heat at constant volume; and $R$ is the specific gas constant defining pressure, $P = R \rho T$.
 Where stability is concerned, the entropy gradient in compressible systems is a direct analog to the temperature gradient in Boussinesq systems.
 Regions with $\grad S < 0$ are unstable to convection, and regions with $\grad S > 0$ are stable.
 
@@ -245,7 +245,7 @@ The O($\epsilon$) terms are the quadratic perturbation around the stable adiabat
 
 \subsubsection{A three-layer atmosphere}
 A three-layer, internally heated \& cooled atmosphere can also be constructed.
-These atmospheres have a stable layer at the top of the atmosphere with depth $L_{RT}$, a convective layer with depth $L_C$, and a stable layer at the base of the atmophere with depth $L_{RB}$; the total atmospheric depth is $L_z = L_{RB} + L_C + L_{RT}$.
+These atmospheres have a stable layer at the top of the atmosphere with depth $L_{RT}$, a convective layer with depth $L_C$, and a stable layer at the base of the atmosphere with depth $L_{RB}$; the total atmospheric depth is $L_z = L_{RB} + L_C + L_{RT}$.
 These atmospheres are constructed around an internal heating/cooling profile with the shape
 \begin{equation}
 Q(z) = -\kappa \epsilon(z - L_{RB} - L_C/2),
@@ -265,22 +265,22 @@ For both atmospheres, the density profile is constructed numerically by solving 
 \end{equation}
 under the constraint that the nondimensional density is 1 at the top of the atmosphere.
 
-\subsection{Next Steps}
+\subsection{Next steps}
 One difficulty of these atmospheres is that they have extremely long thermal relaxation timescales in the deep, stable zone.
 In order to study these atmospheres fully, it would either be necessary to develop a consistent accelerated evolution procedure for stratified convection (see section \ref{sec:stratified_ae}), or it would be necessary to run them down at great computational expense.
-Either way, the next steps would then be to compare e.g., modified Nusselt numbers in these atmospheres to those in Boussinesq internaly heated systems, as laid out in \citet{goluskin2016}.
+Either way, the next steps would then be to compare e.g., modified Nusselt numbers in these atmospheres to those in Boussinesq internally heated systems, as laid out in \citet{goluskin2016}.
 
 
 \section{Stratified Accelerated Evolution}
 \label{sec:stratified_ae}
 A natural follow-up to the AE method presented in Ch.~\ref{ch:abo18} is to explore AE in Polytropic, stratified atmospheres.
 The beginnings of an extension of AE to polytropes was explored.
-Preliminary results (see Fig.~\ref{fig:gabo_ae}, experiments performed by Gabo Ortiz-Pena) showed promise in acceleratign the atmospheres up to Ra $\approx 10^{8-9}$ (supercriticalities of $\gtrsim 10^7$).
+Preliminary results (see Fig.~\ref{fig:gabo_ae}, experiments performed by Gabo Ortiz-Pena) showed promise in accelerating the atmospheres up to Ra $\approx 10^{8-9}$ (supercriticalities of $\gtrsim 10^7$).
 
 
 \begin{figure}[t!]
     \includegraphics[width=\textwidth]{figs/unpublished/gabo_ae.pdf}
-    \caption[Stratified Accelerated Evolution Timeseries]{
+    \caption[Timeseries of kinetic energy in stratified AE vs.~SE.]{
 	Kinetic energy trace of a stratified simulation ($\epsilon = 10^{-4}$, supercriticality $\sim 10^4$) comparing AE and SE kinetic energies.
 	The AE procedure (described in section \ref{sec:ae}) seems to reach the proper mean value for the converged kinetic energy, but in this instance it put the system into an oscillatory state not achieved by the SE simulation.
     \label{fig:gabo_ae} }
@@ -293,7 +293,7 @@ Preliminary results (see Fig.~\ref{fig:gabo_ae}, experiments performed by Gabo O
 \label{sec:ae}
 For simplicity, we will restrict our study again to FT boundary conditions -- that is, when the flux is fixed at the bottom of the atmosphere, and the temperature is fixed at the top boundary to $T_{\text{top}}$.
 We additionally restrict this study to the case in which the thermal conductivity, $\kappa$, is constant.
-As described in Sct.~\ref{sec:stability}, we subtract off the adiabatic flux ($\bm{F}_{\text{ad}}$) from the input flux at the bottom boundary ($\bm{F}_{\text{drive}}$) to find the available flux for convection, $\bm{F}_{\text{avail}} = F \hat{z}$, a constant.
+As described in Sec.~\ref{sec:stability}, we subtract off the adiabatic flux ($\bm{F}_{\text{ad}}$) from the input flux at the bottom boundary ($\bm{F}_{\text{drive}}$) to find the available flux for convection, $\bm{F}_{\text{avail}} = F \hat{z}$, a constant.
 
 In stratified systems, convection carries energy not only through enthalpy fluxes, but also through fluxes of potential energy, kinetic energy, and viscous forces.
 All of these new fluxes are driven by convection, and we therefore define the convective flux as in Ch.~\ref{ch:ab17},
@@ -324,7 +324,7 @@ with the boundary conditions $M_1 = 0$ at $z = [0, L_z]$, $\partial_z T_1 = 0$ a
 Here, the exponent of $\xi^{2/3}$ in the hydrostatic equilibrium equation comes from the assumption that the flux scales like the kinetic energy $F \sim \rho u^3$, so in scaling the flux by $\xi$, we must equivalently scale the velocities by roughly $\xi^{1/3}$.
 It's unclear if this is a good assumption.
 
-\subsection{Next Steps}
+\subsection{Next steps}
 The first obvious next step is to actually see if this procedure works robustly (so far we've only checked it chi-by-eye).
 After that, a very important project would be to incorporating a procedure that successfully accounts for stable layers.
 It is probable that the knowledge gained in Ch.~\ref{ch:FT20} will be essential in extending AE.
@@ -332,20 +332,19 @@ This is to say: thermal relaxation happens in two parts (changes to the energy r
 AE should likely therefore have two parts (a change to the energy reservoir step based on current flux divergence, and a boundary value problem which solves for the proper stratification under those new energy constraints).
 
 
-\section{A freefall nondimensionalization of the Fully Compressible Equations}
-(NOTE: These have that Pr error)
+\section{A Freefall Nondimensionalization of the Fully Compressible Equations}
 In our standard nondimensionalizations of the fully compressible equations, we nondimensionalize based on the sound speed rather than on the convective velocity (freefall) speed.
 In order to compare results with anelastic equations which were nondimensionalized on the freefall timescale, we presented a form of the fully compressible equations in Ch.~\ref{ch:alb19} which were scaled so that one time unit was one freefall time unit. 
 However, the version of the fully compressible equations presented in Ch.~\ref{ch:alb19} is essentially nondimensionalized twice, which isn't ideal.
 Technically, it is first nondimensionalized on the sound speed and average atmospheric temperature (as in Ch.~\ref{ch:ab17}), and then it is again rescaled based off of the magnitude of thermodynamic perturbations and the freefall velocity.
 This works, but it's confusing.
-I have faith in the results of the \emph{simulations} from that chapter, which were conducted using a numerical form of the comrpessible equations similar to the one presented in Ch.~\ref{ch:ab17}, and then rescaled in post-processing.
+I have faith in the results of the \emph{simulations} from that chapter, which were conducted using a numerical form of the compressible equations similar to the one presented in Ch.~\ref{ch:ab17}, and then rescaled in post-processing.
 
 It would be ideal to have a set of fully compressible equations which are nondimensionalized on the freefall timescale.
 This would be useful both for future comparisons to anelastic simulations, but also for numerical stability at low Mach number (where thermodynamic perturbations are O($\epsilon$). O(1) would be better). 
 The formulation of the equations that I will derive here aim to understand what the nondimensional fully compressible equations look like when the convective velocities and thermal perturbations are all O(1), regardless of the Mach number.
 
-\subsection{The fully compressible equations}
+\subsection{Equation formulation derivation}
 We define the fully compressible equations in \citet{anders&brown2017} as:
 \begin{gather}
 \partial_{\td{t}} \td{\ln \rho_1} + \td{\uvec}\cdot\td{\grad} \td{\ln\rho_0} + \td{\grad}\cdot\td{\uvec} = -\td{\uvec}\cdot\td{\grad}\td{\ln\rho_1} 
@@ -385,7 +384,7 @@ We now nondimensionalize all quantities,
 u_{\ff} = L/\tau, \qquad &%\td{c_V} = R c_V,
 \end{split}
 \end{equation}
-and note that $\ln\rho$ is already dimensionaless in its nature.
+and note that $\ln\rho$ is already dimensionless in its nature.
 Here, $\xi(z)$ is the nondimensional shape of the diffusivity profiles.
 The nondimensional momentum equation is
 \begin{equation}
@@ -451,7 +450,7 @@ Any term that has a $T_0$ in it is large, or O($\epsilon^{-1}$) compared to the 
 \section{Convection with Kramer's Opacity}
 All of the experiments presented in this work utilized a constant conductivity.
 The Sun, however, has a conductivity which varies by orders of magnitude over the course of its convection zone.
-In the optically thick, deep convection zone, the opacity in the Sun can be modeled as a Kramer's Opacity \citep[see e.g.,][]{brandenburg2016}, and the conductivity is a radiative conductivy constructed with that opacity choice.
+In the optically thick, deep convection zone, the opacity in the Sun can be modeled as a Kramer's Opacity \citep[see e.g.,][]{brandenburg2016}, and the conductivity is a radiative conductively constructed with that opacity choice.
 Some recent simulation work by \citet{kapyla&all2017} compared some convection which utilized polytropic-like stratifications with a constant conductivity to simulations with a Kramer's-informed conductivity.
 They found some interesting things, including ``Deardorff'' layers, which are layers in the convection zone which are marginally stable but which have a positive convective flux.
 They claim that these are only seen with the realistic Kramer's-like opacity.
@@ -459,7 +458,7 @@ Internally, as a research group, we have observed extended Deardorff layers even
 In this project, we had hoped to discover what it is about a Kramer's-like opacity in their simulations that caused them to see such deep Deardorff layers.
 In the end, what we learned was that using a Kramer's opacity is difficult in DNS.
 
-\subsection{The Experiment -- Single Layer atmosphere}
+\subsection{Single-layer, polytropic atmospheres}
 The radiative conductivity in a simulation with a Kramer's opacity \citep{kapyla&all2017} takes the form
 $$
 \kappa(z) = \kappa_0 \left(\frac{\rho}{\rho_c}\right)^{-(1+a)} \left(\frac{T}{T_c}\right)^{(3-b)}.
@@ -479,7 +478,7 @@ m_{kram} = 1.5 - b/2 = m_{ad} - b/2.
 So $b$ should behave like $2\epsilon$ from Ch.~\ref{ch:ab17}, driving low or high Mach number flows accordingly.
 We had some success simulating these atmospheres (where we set up the initial conditions to have $m = m_{kram}$).
 
-However, when we tried to reproduce some fo the results of \cite{kapyla&all2017}, we ran into some roadblocks.
+However, when we tried to reproduce some of the results of \cite{kapyla&all2017}, we ran into some roadblocks.
 The solar choices of $a = 1$ and $b = -7/2$ in the presence of a perfectly adiabatic atmosphere result in the conductivity dropping by orders of magnitude.
 This essentially drives convection which is O(large) and very high Mach number, and also requires impossibly large temperature gradients in the boundary layers to conduct the fluxes.
 Past authors used SGS tactics to get around this, but I didn't know how to choose a proper SGS model, nor did I trust that I would be able to consistently interpret and compare simulations with SGS models to those without.
@@ -495,7 +494,7 @@ If we have a radiative conductivity of the form,
 \kappa(\ln\rho, T) = \kappa_0 \rho^{-(1 + a)} T^{3 - b}
 = \kappa_0 \left(e^{\ln\rho}\right)^{-(1 + a)} T^{3 - b},
 \end{equation}
-then we can taylor expand around our thermodynamic variables ($T, \ln\rho$) into constant, linear, and nonlinear components,
+then we can Taylor expand around our thermodynamic variables ($T, \ln\rho$) into constant, linear, and nonlinear components,
 \begin{equation}
 \kappa(\ln\rho, T) = \kappa(\ln\rho_0, T_0) 
 + \frac{\partial \kappa}{\partial T}\bigg|_{\ln\rho_0, T_0}(T - T_0)
@@ -512,7 +511,7 @@ To evaluate that, we need a couple of derivatives:
 -(1+a)\kappa_0 \rho_0^{-(1+a)} T_0^{3-b} = -(1+a)\kappa(\ln\rho_0, T_0),
 \end{split}
 \end{equation}
-and after quick substitions,
+and after quick substitutions,
 \begin{equation}
 \kappa(\rho, T) = \kappa(\rho_0, T_0)\left( 1 +
 (3 - b)\frac{T_1}{T_0} - (1 + a) \ln\rho_1 \right)
@@ -556,7 +555,7 @@ where the background profile has here been assumed to be in thermal equilibrium.
 \label{sec:turb_thermals}
 \begin{figure*}[p!]
     \includegraphics[width=\textwidth]{figs/unpublished/turbulent_thermals.pdf}
-    \caption[Evolved Turbulent Thermals]{
+    \caption[Evolved turbulent thermals]{
 	Horizontal slices through Cartesian domains containing evolved turbulent thermals.
 	In both cases, the initial freefall Reynolds number of the thermals is $4\cdot10^3$.
 	On the left is an evolved thermal in a 1-density-scale-height atmosphere.
@@ -583,12 +582,12 @@ This choice seems to eat away at the buoyant signature of our dense thermals by 
 This messes up our theory, because we assumed the buoyant signature was constant in time.
 
 The theory of thermals that we derived in Ch.~\ref{ch:alb19} revolved around the \emph{momentum} and the \emph{entropy} (which is density-weighted, unlike the specific entropy).
-The form of the diffusivities that appear in the equations for those quantities are the \emph{dynamic} diffusivities, which in these intial turbulent simulations grow with depth.
+The form of the diffusivities that appear in the equations for those quantities are the \emph{dynamic} diffusivities, which in these initial turbulent simulations grow with depth.
 Moreover, they grow more with depth in a highly stratified atmosphere than they do in an atmosphere which is not highly stratified.
 These initial results suggest that if one wants to study dynamics which are equally turbulent throughout the full depth of an atmosphere, the ``proper'' choice of diffusivities is to hold the dynamic diffusivities constant, meaning that the diffusivities shrink with depth like $\rho$.
 
 Regardless, these initial struggles and the high computational expense of turbulent thermals have currently caused this project to stall out.
-Futhermore, from some conversations with Mark Rast, there is some reason to perhaps be concerned about simulating cylindrical structures in Cartesian domains \citep[see e.g., Fig.~9 of][]{clyne&all2007}, as the shape of the domain can lead to non-axisymmetric unrealistic perturbations.
+Furthermore, from some conversations with Mark Rast, there is some reason to perhaps be concerned about simulating cylindrical structures in Cartesian domains \citep[see e.g., Fig.~9 of][]{clyne&all2007}, as the shape of the domain can lead to non-axisymmetric unrealistic perturbations.
 The striking similarity reported between 2D (cylindrical) and 3D (Cartesian) domains in Ch.~\ref{ch:alb19} gives optimism that those calculations should be trusted, but it would likely be ideal to conduct future experiments in cylindrical domains if possible.
 
 
