@@ -45,7 +45,29 @@
 %%%%%%%%%%%
 %%%%%%%%%%%%
 
-\section{A clearer nondimensionalization of the equations}
+\section{Concerns}
+This document includes text that will be cleaned up and added to the postscript to Ch.~2 of my thesis.
+It aims to address Brad's concerns regarding this work, which I'll attempt to summarize here.
+
+\subsection{Overarching Concerns}
+The biggest concern is that Ra and $\epsilon$ are not independent control parameters.
+Put differently,
+\begin{enumerate}
+\item Is $\epsilon$ in the initial state similar to $\epsilon$ in the final state, and
+\item Is Ra in the initial state similar to Ra in the final state?
+\end{enumerate}
+
+\subsection{Smaller concerns and questions}
+\begin{enumerate}
+\item Is the lack of scaling of Mach vs.~Ra in 3D a result of entropy restratification?
+\end{enumerate}
+I will not show in deep analytical detail what causes the differences in Mach number scaling in 2D and 3D.
+Bluntly, this is because I don't know what causes this, and figuring this out and showing it in careful detail is a new paper's worth of work.
+However, I will comment on the evidence that we have on hand that suggests that this is a 2D vs.~3D effect and not something else.
+
+\section{Addressing the Overarching Concerns}
+
+\subsection{A clearer nondimensionalization of the equations}
 \label{sec:introduction}
 The (dimensional) form of the fully compressible equations solved in this chapter is
 \begin{align}
@@ -109,7 +131,7 @@ I'll also rearrange for easier reading (our former setup of the equations was se
 &\begin{aligned}
 \frac{\partial\bm{u}}{\partial t} + \bm{u}\cdot\grad\bm{u}
 &= - R (\grad T_1 + T_1\grad\ln\rho_0 + T_0\grad\ln\rho_1 + T_1 \grad\ln\rho_1)
-+ \frac{\nu_t}{\rho_0}\left(\lilstressT\cdot\grad\ln\rho + \grad\cdot\lilstressT - \lilstressT\cdot\grad\ln\rho_0\right),
++ \frac{\nu_t}{\rho_0}\left(\lilstressT\cdot\grad\ln\rho_1 + \grad\cdot\lilstressT\right),
 \label{eqn:ab17momentum_eqn2}
 \end{aligned}\\
 &\begin{aligned}
@@ -205,12 +227,12 @@ Note that it is crucial that we solve the linear, O(1) pieces of this equation i
 Nondimensionalizing the momentum equation, we find that
 \begin{equation}
 \frac{D \bm{u}}{D t} = -\frac{ R T_t }{u_{\text{ff}}^2}\left(\grad T_1 + T_1\grad\ln\rho_0 + T_0 \grad\ln\rho_1 + T_1\grad\ln\rho_1\right)
-+ \frac{1}{\rho_0}\frac{\nu_t}{u_{\text{ff}} L} \left(\lilstressT\cdot\grad\ln\rho + \grad\cdot\lilstressT - \lilstressT\cdot\grad\ln\rho_0\right)
++ \frac{1}{\rho_0}\frac{\nu_t}{u_{\text{ff}} L} \left(\lilstressT\cdot\grad\ln\rho_1 + \grad\cdot\lilstressT\right)
 \end{equation}
 Defining the freefall Reynolds number at the top of the domain as $\text{Re}_{\text{ff}} = u_{\text{ff}} L / \nu_t$, and remembering that $u_{\text{ff}}^2 = \epsilon R T_t$, the momentum equation is
 \begin{equation}
 \frac{D \bm{u}}{D t} = -\epsilon^{-1}\left(\grad T_1 + T_1\grad\ln\rho_0 + T_0 \grad\ln\rho_1 + T_1\grad\ln\rho_1\right)
-+ \frac{1}{\rho_0}\frac{1}{\text{Re}_{\text{ff}}} \left(\lilstressT\cdot\grad\ln\rho + \grad\cdot\lilstressT - \lilstressT\cdot\grad\ln\rho_0\right).
++ \frac{1}{\rho_0}\frac{1}{\text{Re}_{\text{ff}}} \left(\lilstressT\cdot\grad\ln\rho_1 + \grad\cdot\lilstressT\right).
 \end{equation}
 Under this nondimensionalization, the LHS terms are O(1).
 The first three buoyancy terms are O(1) and the fully nonlinear buoyancy term is O($\epsilon$).
@@ -280,25 +302,115 @@ Decomposing $n_\rho(t) = n_{\rho,0} + \Delta n_\rho(t)$, we find
 Also recall that $m = m_{\text{ad}} - \epsilon$ and $m_{\text{ad}} = (\gamma-1)^{-1}$, such that we can simplify this expression to 
 \begin{equation}
 \frac{\Delta s}{c_P} = \frac{\gamma-1}{\gamma}\left( -\epsilon \frac{n_{\rho,0}}{m} + \Delta n_\rho(t)\right).
+\label{eqn:deltaS_evolved}
 \end{equation}
 In other words, this is some O($\epsilon$) quantity that evolves with the number of density scale heights of the evolved atmosphere.
 So -- let's try to put some boundaries on the value of $\Delta n_\rho(t)$.
 
-\paragraph{How much does $n_\rho$ change?}
-We can build a really simple model of how the atmosphere's density evolves to try to get a handle on boundaries for $n_\rho$.
+\paragraph{Estimates for changes in $n_\rho$}
+We can't know this a priori -- if we did, we wouldn't need to run the convection simulation because we'd know the boundary layer structure (and thus stuff like the Nusselt number) in advance.
+But -- we can build a simple model to get a feel for how $n_\rho$ will evolve.
 We know that the atmospheric density stratification will evolve under two constraints:
 \begin{enumerate}
 \item Mass is conserved, and
-\item Adiabaticity is achieved in the convective interior.
+\item Adiabaticity is achieved throughout most of the domain (the convective interior, not the boundary layers).
 \end{enumerate}
-Under these constraints, let's try to figure out the approximate sign and order of magnitude of $\Delta n_\rho(t)$.
+Our choice of fixing the temperature at the top and bottom boundaries means that the adiabat that our simulation ``chooses'' in the convective interior will be bounded by two adiabats that we know about: the adiabat the crosses the top boundary temperature ($T = 1$ at $z = L_z$) and the adiabat that crosses the bottom boundary temperature ($T = 1 + L_z$ at $z = 0$).
+We further know the adiabatic temperature gradient for our nondimensionalization, $\grad_{\text{ad}} = -g / c_P = -1 + \epsilon/c_P$.
+Let's therefore set up models where
+\begin{equation}
+\partial_z T_{\text{top-BL}} = \begin{cases}
+\grad_{\text{ad}} & z < (1-\delta) L_z, \\
+\grad_{\text{s}}  & z \geq (1-\delta) L_z, \,\, |\grad_{\text{s}}| > |\grad_{\text{ad}}|
+\end{cases},\qquad
+\partial_z T_{\text{bot-BL}} = \begin{cases}
+\grad_{\text{ad}} & z > \delta L_z, \\
+\grad_{\text{s}}  & z \leq \delta L_z, \,\, |\grad_{\text{s}}| > |\grad_{\text{ad}}|
+\end{cases},
+\end{equation}
+or where the temperature gradient is perfectly adiabatic everywhere except for, respectively, a superadiabatic top or bottom boundary layer.
+The boundary layer will extend through some fraction of the domain, $\delta < 1$, and its superadiabatic temperature gradient, $\grad_\text{s}$, is constrained by the fact that the temperature is fixed at both boundaries by the initial superadiabatic polytrope.
+For a given value of $\epsilon$ and $\delta$, a temperature profile with a top boundary layer ($T_{\text{top-BL}}$) or a bottom boundary layer ($T_{\text{bot-BL}}$) can be constructed.
+To understand how these boundary layers respectively affect the density stratification, and therefore the entropy jump across the domain, we can solve a simple mass-conserving boundary value problem for hydrostatic equilibrium, 
+\begin{equation}
+\begin{split}
+\frac{\partial M}{\partial z} = \rho,\\
+T\frac{\partial \ln\rho}{\partial z} + \frac{\partial T}{\partial z} = -g,
+\end{split}
+\end{equation}
+under the constraints that $M = 0$ at $z = 0$ and $M = \int_0^{L_z} \rho_0 dz$ at $z = L_z$.
+In the left two panels of Fig.~\ref{fig:limiting_adiabats}, some examples of these temperature and density profiles can be seen.
+All cases shown have $\epsilon = 0.5$, to ensure that the changes away from the initial state are appreciable and observable.
+The orange lines show profiles of $T_{\text{top-BL}}$ and the purples lines show profiles of $T_{\text{bot-BL}}$; for both cases, we solve out for $\delta = \{0.2, 0.02\}$.
+The changes in $\ln\rho$ are qualitatively similar to the changes observed in Fig.~4 of our published work, and we generally find that: bottom boundary layers aim to \emph{increase} $n_\rho$ while upper boundary layers aim to \emph{decrease} $n_\rho$.
+We performed this analysis for a broad range of epsilon in the range $\epsilon = [10^{-7}, 0.5]$, and we show the magnitude of the change of $n_\rho$ as a function of $\epsilon$ in the upper right panel.
+In all cases, $\Delta n_\rho$ for the orange (upper boundary layer) points are negative while the purple (lower boundary layer) points are positive.
+In the lower right panel, we solve Eqn.~\ref{eqn:deltaS_evolved} for $\Delta S$, and normalize it by its input value.
+We find that upper boundary layers aim to increase the magnitude of $\Delta S$, effectively increasing the input value of $\epsilon$ (by a factor of $\sim 2-3$).
+Lower boundary layers, on the other hand, aim to decrease the magnitude of $\Delta S$, effectively decreasing the input value of $\epsilon$ (by a factor of, again, $\sim 2-3$).
+In our published work (Fig.~4), we find that the upper boundary layer effects tend to dominate, so it's reasonable to assume that $\Delta S$ will change by a factor of a few away from the initial conditions.
+
+\begin{figure}[t!]
+\includegraphics[width=\textwidth]{./atmospheres/limiting_adiabats.pdf}
+\caption{ (left two panels) Stratification of simple atmospheric solutions with upper and lower boundary layers are shown.
+		  Temperature (upper left) and log density (lower left) are shown, and the initial state (an $\epsilon = 0.5$ polytrope) is shown in black.
+		  Orange profiles show atmospheres which are perfectly adiabatic everywhere except for an upper boundary layer, and purple profiles show profiles which are adiabatic other than a lower boundary layer.
+		  All shown atmospheres have the same $\Delta T$ across the domain and the same mass.
+		  (upper right) Changes in $n_\rho$ from profiles similar to those in the left panels at many different values of $\epsilon$.
+		  Purple points correspond to lower boundary layers and are positive; orange points correspond to upper boundary layers and are negative.
+		  The shape of the marker shows the difference between a thicker boundary layer (0.2 or 20\% of the domain) vs.~ a thinner boundary layer (0.02 or 2\%).
+		  $\Delta n_\rho$ scales with $\epsilon$, as expected.
+		  In the lower right panel, we calculate the evolved $\Delta s$ according to Eqn.~\ref{eqn:deltaS_evolved} and normalize it by the initial $\Delta s$.
+		  We find that upper boundary layers make the atmosphere more superadiabatic and lower boundary layers make the atmosphere more adiabatic.
+	\label{fig:limiting_adiabats} }
+\end{figure}
+
+\paragraph{Experimentally measured changes in $n_\rho$}
+Fortunately, when I did this work in 2017, I included the evolved value of $n_\rho$ in a supplementary \texttt{.csv} file.
+Unfortunately, when I did this work, I was fairly new to computing, and I made a bit of a rookie mistake.
+I had my simulations output the volume-integrated value of the average value of $\ln\rho$ at the bottom minus the average value of $\ln\rho$ at the top.
+I did \emph{not} output the \emph{petrubation} value away from the intial state, but rather included the initial state plus the fluctuations.
+This means that I have robust measurements for high $\epsilon$, where the fluctuations are on the same order of magnitude as the initial state.
+I trust that the values for $\epsilon = 10^{-4}$ are approximately correct, but the values for $\epsilon = 10^{-7}$ appear to just be spurious numerical noise, so I'm not including them in this analysis.
+
+Using Eqn.~\ref{eqn:deltaS_evolved}, I calculated the evolved $\Delta s$ in my simulations and normalized it by the input value.
+I've plotted this in the left panel of Fig.~\ref{fig:delta_S_vs_ra}.
+We can see that $\Delta S$ changes by a factor of a few over many decades of Ra in both 2D and 3D.
+If we calculate the value of Ra in the evolved state through the formula,
+$$
+\text{Ra}_{\text{out}} = \frac{\Delta s_{\text{evolved}}}{\Delta s_{\text{initial}}} \text{Ra}_{\text{in}},
+$$
+and plot $\text{Ra}_{\text{out}}$ vs.~$\text{Ra}_{\text{in}}$ in the right panel of Fig.~\ref{fig:delta_S_vs_ra}, we see that while we don't perfectly achieve a 1-to-1 input-to-output ratio, we achieve something close to that.
+Furthermore, for the larger values of $\epsilon$ where I trust this measurement more, it seems like the evolved $\Delta S$ plateaus around Ra $\sim 10^4$ (similar to where those cases become supersonic), so $\epsilon$ and Ra are truly independent input parameters for our most turbulent simulations.
 
 
-
-\begin{figure}[p!]
-\includegraphics[width=\textwidth]{./figs/delta_S_vs_ra.png}
-\caption{ 
+\begin{figure}[t!]
+\includegraphics[width=\textwidth]{./figs/delta_S_vs_ra.pdf}
+\caption{ (left) Measured values of $\Delta s$, from Eqn.~\ref{eqn:deltaS_evolved}, using values of $\Delta n_\rho$ obtained from our simulations.
+		  2D points are small, dark circles while 3D points are large, light-colored circles.
+		  (right) The corresponding changes in Ra resulting from the small observed changes in $\Delta s$.
+		  The ideal 1-to-1 correspondence between input and output Ra is plotted as a black line, and it is close to the achieved scaling.
 	\label{fig:delta_S_vs_ra} }
 \end{figure}
+
+
+\subsection{Mach number evolution in 2D vs.~3D}
+If the scaling of Mach number with Ra were a result of $\Delta s$ changing with increasing Ra, our presented results would suggest that Mach number should grow with increasing Ra in both 2D and 3D.
+We find (Fig.~\ref{fig:delta_S_vs_ra}) that the magnitude of $\Delta S$ grows with Ra in both 2D and 3D, and the Mach number should also therefore grow.
+However, $\Delta S$ changes only by a factor of 2-4, at most, from onset through the most turbulent simulations that we studied.
+We would therefore expect Mach to change by $\sqrt{2-4}$, at most, as a result of $\Delta S$ changes.
+This is not what we observe; in 3D, the Mach number at fixed $\epsilon$ is constant as a function of increasing Ra, while the Mach number in 2D increases by more than an order of magnitude.
+This disagreement suggests that changing entropy profiles are not responsible for the changes in Mach number.
+
+Here's the data that we have on hand:
+\begin{enumerate}
+\item Velocities grow with increasing Ra in 2D but not 3D.
+\item Morphologies are very different in 2D and 3D (2D exhibits a large, coherent ``flywheel,'' 3D does not.)
+\item At low Mach number, eventually 2D cases break apart these flywheels and exhibit ``shearing'' states, much like in Boussinesq convection.
+\end{enumerate}
+So this tells us that something about 2D compressible convection is very similar to 2D Boussinesq convection (except at Mach 1).
+However, to my knowledge, no one has really done the work to specifically tease out why these high-velocity flywheel modes are so favored by 2D convection.
+It's possible that these modes are a result of inverse turbulent cascades in 2D, but that's pure speculation.
+This would be an interesting problem to pursue, but it's beyond the scope of this thesis.
 
 \end{document}

@@ -55,3 +55,4 @@ plt.xlabel(r'Ra$_{\mathrm{in}}$')
 plt.ylabel(r'Ra$_{\mathrm{out}}$')
 
 plt.savefig('delta_S_vs_ra.png', dpi=300, bbox_inches='tight')
+plt.savefig('delta_S_vs_ra.pdf', dpi=300, bbox_inches='tight')
