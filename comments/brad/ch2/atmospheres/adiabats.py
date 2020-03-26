@@ -175,23 +175,27 @@ plt.ylabel(r'$\ln(\rho)$')
 ax2 = fig.add_subplot(2,2,2)
 
 for bl, marker in [(0.2, '+'), (0.02, 'x')]:
-    plt.plot(epsilons[bls == bl],  uppers[bls == bl,0], c='indigo', label='BL = {}'.format(bl),    lw=0, marker=marker)
+    plt.plot(epsilons[bls == bl],  uppers[bls == bl,0], c='indigo', label=r'$\delta$ = {}'.format(bl),    lw=0, marker=marker)
     plt.plot(epsilons[bls == bl], -lowers[bls == bl,0], c='orange', lw=0, marker=marker)
 plt.yscale('log')
 plt.xscale('log')
 plt.legend(loc='best')
-plt.ylabel(r'$|\Delta n_\rho|$', labelpad=-1)
+plt.ylabel(r'$|\Delta n_\rho|$')
 plt.xlabel(r'$\epsilon$')
 
 ax3 = fig.add_subplot(2,2,4)
 
 for bl, marker in [(0.2, '+'), (0.02, 'x')]:
-    plt.plot(epsilons[bls == bl], uppers[bls == bl,1], c='indigo', label='BL = {}'.format(bl),    lw=0, marker=marker)
+    plt.plot(epsilons[bls == bl], uppers[bls == bl,1], c='indigo', label=r'$\delta$ = {}'.format(bl),    lw=0, marker=marker)
     plt.plot(epsilons[bls == bl], lowers[bls == bl,1], c='orange', lw=0, marker=marker)
 plt.xscale('log')
 
 plt.ylabel(r'$\Delta s(t) / \Delta s_0$')
 plt.xlabel(r'$\epsilon$')
+
+for ax in [ax2, ax3]:
+    ax.yaxis.tick_right()
+    ax.yaxis.set_label_position('right')
 
 plt.savefig('limiting_adiabats.png', dpi=300, bbox_inches='tight')
 plt.savefig('limiting_adiabats.pdf', dpi=300, bbox_inches='tight')

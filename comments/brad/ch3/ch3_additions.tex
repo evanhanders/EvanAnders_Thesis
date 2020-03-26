@@ -96,9 +96,9 @@ Visually, flows in our simulations do not appear to be dominated by low-aspect-r
 From a private conversation with Jon Aurnou (2019 APS Division of Fluid Dynamics meeting), I expressed a similar concern: perhaps our simulation boxes were too narrow, and that led to confusing results.
 He has quite a bit more experience and intuition for rotating convection than I do, and he didn't seem concerned by our choice.
 His intuition is essentially that rotationally constrained convective domains become ``infinitely large'' compared to convective elements very quickly.
-Due to rotationally constrained structures becoming essentially vertically invariant, the difference between a large box and a small box is that you basically fit more or less of those vertically invariant structures into your box.
+Due to rotationally constrained structures becoming essentially vertically invariant, the difference between a large box and a small box is whether you fit a lot or a few of those vertically invariant structures into your box.
 But -- the solution and heat transport per horizontal area should be the same.
-It's unclear if that intuition fits in stratified convection, but our highly-rotationally constrained results (right panels of Fig.~3.2) suggest that it might be true.
+It's unclear if that intuition fits in stratified convection, but our highly-rotationally constrained results (right panels of Fig.~3.2) suggest that even stratified domains can achieve mostly vertically invariant flows.
 \begin{figure}[t!]
 \includegraphics[width=\textwidth]{./figs/crit_curve_ta1e10.pdf}
 \caption{ 
@@ -112,7 +112,7 @@ It's unclear if that intuition fits in stratified convection, but our highly-rot
 	\label{fig:ta1e10_onset} }
 \end{figure}
 \item Ah, the confusion here is due to bad notation on our part.
-The Ra$_{\text{crit}}$ we're referring to here is a Ra$_{\text{crit}}(\text{Ro}_{\text{p}}$, not a Ra$_{\text{crit}}(\text{Ta})$.
+The Ra$_{\text{crit}}$ we're referring to here is a Ra$_{\text{crit}}(\text{Ro}_{\text{p}})$, not a Ra$_{\text{crit}}(\text{Ta})$.
 If you look at Fig.~ 3.1a, we're referring to the value of Ra$_{\text{crit}}$ for a given value of $\text{Ro}_\text{p}$, which has a singular value, indicated by an orange circle.
 We're not referring to the full black line in that figure which is Ra$_{\text{crit}}(\text{Ta})$.
 Perhaps we should have stopped that scaling before the final proportionality and left it at (Nu − 1) $\propto \text{Ra}^{3/2} / \text{Ta} = \text{Ro}_{\text{p}} \text{Ra}^{1/6}$, meaning that we would expect a Ra$^{1/6}$ scaling along a fixed Ro$_{\text{p}}$ path.
@@ -150,7 +150,63 @@ $$
 \text{Ra} \propto \text{Ta}^{3/4},
 $$
 and this is the scaling we're referring to.
-\item Chi-by-eye, I see Ro decreasing by less than a factor of 2 over an order of magnitude of Ek in this picture, but it'd be good to have exact values.
+\item This work is hugely preliminary, but Ben Brown (private communication, Mar.~25, 2020) was able to get me the exact values that went into making this figure.
+They are presented in Table~\ref{table:rop_spheres}.
+These simulations reportedly take a very long time to converge, and these results are extremely preliminary (benchmarking, etc.~ is underway to ensure that they are trustworthy).
+Ben claims that it's probably not reasonable to have faith in the runs that haven't evolved for more than 5 viscous diffusion timescales (at the top of the domain), so I'm dropping those points from further analysis.
+It's unclear if the points that have run for fewer than 20 viscous timescales are trustworthy in his opinion, but for now I'm going to assume that they are.
+I've re-plotted the `trustworthy' points in the left panel of Fig.~\ref{fig:mdwarfs_rop}.
+The points with Ro$_\text{p}^2 > 20$ seem to have a sensible scaling, and the best fit law is roughly $\text{Ro} \sim \text{Ro}_\text{p}^2 \text{Ek}^\alpha$ where $\alpha \approx 0.25$ for Ro$_\text{p}^2 = 80$ and $\alpha \approx 0.22$ for Ro$_\text{p}^2 = \{20, 40\}$.
+In the right panel of Fig.~\ref{fig:mdwarfs_rop}, I've compensated this plot by an Ek$^{0.22}$ scaling law, and I've normalized all points by their value at Ek$ = 3 \times 10^{-3}$ to show the goodness of these power-law fits.
+Indeed, in these data, even at fixed Ro$_\text{p}$, the evolved Rossby number has a fairly large ($\alpha \sim 1/4$) Ek dependence remaining.
+It's unclear to me if this is due to geometry effects, or if it is due to the region of parameter space that these models are in.
+We previously found that Ro$_\text{p}$ behaved best for low Ro cases (at lower Ek than these runs), and the lowest Ro points here behave very strangely.
+Further data is needed to determine if Ro$_{\text{p}}$ works well in spherical domains.
+
+
+
+
+\begin{figure}[ht!]
+\includegraphics[width=\textwidth]{./figs/mdwarfs_rop.pdf}
+\caption{ (left) Ro vs.~Ek from preliminary dynamo models in spherical domains which include the $r = 0$ point.
+		  (right) A compensated Ro vs.~Ek plot, where an Ek$^{0.22}$ law has been removed from the data, and where the data has been normalized by the value of Ro at Ek = $3 \times 10^{-3}$.
+	\label{fig:mdwarfs_rop} }
+\vspace{-0.75cm}
+\end{figure}
+
+
+
+\begin{table}[htb]
+    \caption[Preliminary Rossby numbers in Mdwarf simulations.]{
+	Results from preliminary dynamo models are reported.
+	The squared value of Ro$_\text{p}$ and the value of Ek (input values) are reported, as well as the evolved value of Ro and the total simulation run time in units of viscous diffusion timescales at the top of the domain.
+	Due to diffusivities decreasing with depth (and increasing density), the viscous diffusion timescale is much longer at the bottom of the domain (at $r = 0$).
+	}
+    \begin{center}
+    \begin{tabular}{c c c c} \hline
+	Ro$_\text{p}^2$ & Ek &  Ro & run time ($t_{\text{visc, top}}$) \\
+	\hline
+	10	&	$3 \times 10^{-3}$	& 0.042 & 	20	\\
+	10	&	$10^{-3}$			& 0.039	&	9.6 \\
+	10 	&	$3 \times 10^{-4}$	& 0.12	&	6.8 \\
+	20	&	$10^{-2}$			& 0.16	&	20 \\
+	20	&	$3 \times 10^{-3}$	& 0.13	&	20 \\
+	20	&	$10^{-3}$			& 0.097 &	20 \\
+	20 	&	$8 \times 10^{-4}$	& 0.088	&	4.6 \\
+	20	&	$5 \times 10^{-4}$	& 0.079 &	2.3 \\
+	40	&	$10^{-2}$			& 0.34	&	20  \\
+	40	&	$3 \times 10^{-3}$	& 0.26	&	20  \\
+	40	&	$10^{-3}$			& 0.19	&	3.3 \\
+	80	&	$10^{-2}$			& 0.61	&	20  \\
+	80	&	$3 \times 10^{-3}$	& 0.45	&	20  \\
+	80	&	$10^{-3}$			& 0.34	&	10	\\
+	80	&	$3 \times 10^{-4}$	& 0.26	&	0.41 \\
+	\end{tabular}
+\end{center}
+\label{table:rop_spheres}
+\end{table}
+
+
 
 \end{enumerate}
 

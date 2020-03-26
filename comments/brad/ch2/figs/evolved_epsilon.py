@@ -35,10 +35,12 @@ for i, eps in enumerate(eps_vals):
     plt.plot(ra[good], np.abs(evolved_deltaS_over_cp[good]/initial_deltaS_over_cp[good]),  lw=0, marker='o', markersize=10, alpha=0.3, c=colors[i])
 
 plt.xscale('log')
-plt.xlabel('Ra')
-plt.ylabel(r'Evolved $\Delta S$ / (Initial $\Delta S$)')
+plt.xlabel(r'Ra$_t$')
+plt.ylabel(r'$\Delta s_{\mathrm{evolved}}$ / $\Delta s_{\mathrm{initial}}$')
 
 ax2 = fig.add_subplot(1,2,2)
+ras = np.logspace(0, 9, 100)
+plt.plot(ras, ras, c='k')
 
 for i, eps in enumerate(eps_vals):
     good = (epsilon == eps)*(threeD == 0)
@@ -46,13 +48,18 @@ for i, eps in enumerate(eps_vals):
     good = (epsilon == eps)*(threeD == 1)
     plt.plot(ra[good], ra[good]*np.abs(evolved_deltaS_over_cp[good]/initial_deltaS_over_cp[good]),  lw=0, marker='o', markersize=10, alpha=0.3, c=colors[i])
 
-ras = np.logspace(1, 8, 100)
-plt.plot(ras, ras, c='k')
 plt.legend()
 plt.xscale('log')
 plt.yscale('log')
-plt.xlabel(r'Ra$_{\mathrm{in}}$')
-plt.ylabel(r'Ra$_{\mathrm{out}}$')
+plt.xlabel(r'Ra$_t$')
+plt.ylabel(r'Ra$_{t, \mathrm{evolved}}$')
+
+for ax in [ax1, ax2]:
+    ax.set_xlim(ra.min()/1.3, ra.max()*1.3)
+ax2.set_ylim(ra.min()/1.3, ra.max()*4*1.3)
+ax2.yaxis.set_label_position('right')
+ax2.yaxis.tick_right()
+
 
 plt.savefig('delta_S_vs_ra.png', dpi=300, bbox_inches='tight')
 plt.savefig('delta_S_vs_ra.pdf', dpi=300, bbox_inches='tight')
