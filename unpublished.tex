@@ -203,9 +203,14 @@ In a static, steady state, thermal equilibrium in the ``background'' atmosphere 
 Assuming that this thermal equilibrium is always met by the background profile (and for simplicity, assuming constant and uniform $\kappa$), the energy equation is
 \begin{equation}
 \frac{D T}{Dt} + T(\gamma-1)\DivU = \frac{1}{\rho c_V}\Div{\kappa \grad T_1} + \text{(Viscous Heating)}.
+\label{eqn:energy_noheat}
 \end{equation}
 
-In other words, the equation for the perturbations is precisely the same as it is for a case where internal heating is not present, and the internal heating disappears from the system.
+In other words, the equation for the perturbations is precisely the same as it is for a case where internal heating is not present, and the internal heating disappears from the system\footnote{
+Note that this is \emph{precisely} true for simple, time-independent heating terms, $Q$, like the one we have discussed here.
+However, astrophysical systems often have heating profiles which vary nonlinearly in time (which are either explicit heating terms, from sources like nuclear fusion, or pseudo-heating terms, from divergences of changing opacities as in Sec.~\ref{sec:kramers_opacity}).
+The time-dependent portions of these heating terms would remain in Eqn.~\ref{eqn:energy_noheat}, even if a large O(1) portion of the heating term does not appear in the equation due to its cancellation with a background thermodynamic stratification.
+}.
 Internal heating therefore only enters the dynamics by modifying the background profile $T_0$ from a linear profile to something more complex.
 The differences in this temperature profile affect dynamics through, for example, the $\bm{u}\cdot\grad T_0$ term in the temperature equation.
 But -- importantly -- \emph{dynamics do not directly feel the source term}.
@@ -448,6 +453,7 @@ Any term that has a $T_0$ in it is large, or O($\epsilon^{-1}$) compared to the 
 
 
 \section{Convection with Kramer's Opacity}
+\label{sec:kramers_opacity}
 All of the experiments presented in this work utilized a constant conductivity.
 The Sun, however, has a conductivity which varies by orders of magnitude over the course of its convection zone.
 In the optically thick, deep convection zone, the opacity in the Sun can be modeled as a Kramer's Opacity \citep[see e.g.,][]{brandenburg2016}, and the conductivity is a radiative conductively constructed with that opacity choice.
