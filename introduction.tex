@@ -98,7 +98,7 @@ This plethora of data will teach us a great deal about the nature of stellar int
 These measurements in turn facilitates studies in numerous astrophysical disciplines, including galactic archaeology and exoplanetary science.
 
 However, inferring information about a star's structure from asteroseismic data is difficult.
-Forward modeling using one-dimensional (1D) stellar structure models requires the computation of many slightly different models to produce a model which lines up well with a given set of observations, and backwards modeling is in and of itself a difficult proposition.
+Forward modeling using one-dimensional (1D) stellar structure models requires the computation of many slightly different models to produce a model which lines up well with a given set of observations, and inverse modeling is in and of itself a difficult proposition.
 For a more complete discussion of the difficulties inherent in asteroseismic techniques, I refer the reader to Chs.~1.4 \& 4.1 of \citet{bellingerT2018}.
 Regardless, 1D stellar structure models consistently fail to reproduce some aspects of asteroseismic observations; one such example is that models and observations frequently do not align in the highly supercritical surface layers of solar-like stars \citep[as discussed in][]{jorgensen&weiss2019}.
 Some of the known deficiencies of stellar structure models are described by \cite{buldgen2019}, and of particular interest in the context of this thesis are their handling of three-dimensional (3D) dynamical phenomena like convection.
@@ -277,7 +277,9 @@ As a result, these simulations serve a role similar to observations: it is easy 
 
 While dynamo simulations are complex due to their geometry and scale, they often do not contain the most ``realistic'' physics.
 Small scale ``local'' simulations with realistic radiative transfer strikingly visually resemble solar surface convection and sunspots \citep{stein&nordlund1998, rempel&all2009, stein&nordlund2012, rempel2014}.
-These simulations visually resemble solar surface convection so convincingly (see the right panel of Fig.~\ref{fig:complex_simulations}) that the raw data of e.g., \cite{rempel2014}'s simulations are being used directly as high-resolution observations of solar convection \cite[see e.g.,][and others]{vankooten&cranmer2017, shchukina&trujillo2019}.
+These simulations visually resemble solar surface convection convincingly (see the right panel of Fig.~\ref{fig:complex_simulations}).
+As a result, data from e.g., \cite{rempel2014}'s simulations are utilized as high-resolution, pseudo-observations of solar convection \cite[see e.g.,][and others]{vankooten&cranmer2017, shchukina&trujillo2019}.
+This simulation data is attractive for this purpose due to the fact that the temporal and spatial (depth and horizontal) evolution of all fields in the simulation is precisely known.
 Whether or not such a practice is wise is beyond the editorial domain of this thesis, but as a numericist I generally advise caution in directly viewing the outputs of simulations as comparable to observations.
 
 Outside of simulations, convective experiments have become increasingly complex in recent years.
@@ -459,7 +461,7 @@ Common basis choices include Fourier series and Chebyshev polynomials.
 Such methods can highly accurately follow the value of evolving fields at all spatial locations within a domain, but are generally restricted to simple geometries (Cartesian, cylindrical, and spherical domains).
 The code used to perform all simulations in this thesis, Dedalus\footnote{\url{http://dedalus-project.org/}} (described below in Sec.~\ref{sct:dedalus}), is a \emph{pseudo}spectral code.
 This means that, while solving equations, all linear equation terms are handled in a fully spectral sense.
-Nonlinear terms are dealiased, projected onto a finite volume domain, and analyzed. 
+Nonlinear terms are analyzed after projection onto a finite volume domain, whose number of grid cells is $f\cdot N$, where $N$ is the number of spectral coefficients, and $f$ is a ``dealiasing'' factor (typically $f = 3/2$ is chosen to resolve quadratic nonlinearities). 
 Pseudospectral methods can be much more efficient than spectral methods in the analysis of certain terms.
 Some other modern codes which employ spectral methods are Rayleigh\footnote{\url{https://geodynamics.org/cig/software/rayleigh/}}, MagIC\footnote{\url{https://magic-sph.github.io/}} \citep{wicht&all2017}, SNOOPY\footnote{\url{http://geoffroy-lesur.org/snoopy.html}} \citep{lesur2015}, and ASH (closed source).
 
@@ -481,9 +483,8 @@ where $C$ is the Courant number, $C_{\text{max}}$ is typically O(1) for explicit
 Implicit timestepping methods, on the other hand, solve a linear algebraic system that involves both the current and the future timestep.
 These methods are as a general rule more memory intensive than explicit methods.
 The MUSIC code is one of the first astrophysical codes to offer the capability of studying stellar convection which utilizes a fully implicit timestepper.
-Since implicit methods are not bound as strongly by the CFL condition, there has been great optimism that the implementation of implicit methods could allow numericists to simulate convection over many dynamical timescales using a modest number of timesteps.
-Unfortunately, as discovered by \citet{viallet&all2011, viallet&all2013, viallet&all2016}, implicit methods do not achieve an accurate solution if they superstep the CFL of all simulation flows.
-Specifically, it was found that implicit methods must take short enough timesteps in order to resolve nonlinear advective flows.
+Implicit methods produce stable solutions regardless of the size of the timestep taken, but just because these methods are \emph{stable} does not mean that they produce \emph{physically correct} answers at arbitrarily large timesteps.
+It has long been known \citep[e.g., per the discussion in Ch.~11.1 of][]{oran&boris1987}, and recently re-verified in an astrophysical setting \citep{viallet&all2011, viallet&all2013, viallet&all2016}, that implicit methods must take short enough timesteps to resolve nonlinear advective flows.
 
 Mixed implicit-explicit (IMEX) methods have been growing in popularity in recent years.
 These methods utilize the best parts of both implicit and explicit methods.
@@ -509,7 +510,7 @@ It is likely crucial that a simulation studying the near-surface layers of the S
 However, in certain limits, it is often useful to approximate these equations even further.
 
 \subsubsection{The Lantz-Braginsky-Roberts (LBR) Anelastic Equations}
-One of the most commonly used approximations of the fully compressible equations in astrophysics is the Anelastic approximation.
+One of the most commonly used approximations of the fully compressible equations in astrophysics is the anelastic approximation.
 Under this approximation, density fluctuations are assumed to be small such that Eqn.~\ref{eqn:intro_fc_continuity} becomes
 \begin{equation}
 \Div{\rho_0 \bm{u}} = 0,
