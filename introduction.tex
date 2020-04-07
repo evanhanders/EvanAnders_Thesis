@@ -214,7 +214,7 @@ The dissipation for each of these energies is split into a bulk and boundary lay
 It is next assumed that, for each type of energy, \emph{either} the bulk \emph{or} boundary layer is predominantly responsible for dissipation of that type of energy.
 Scaling laws are then determined by where in the domain each type of energy is primarily dissipated, and this results in four regimes in parameter space (e.g., where kinetic energy is dissipated in the boundaries but thermal is dissipated in the bulk, and other permutations).
 A great number of studies have historically sought out the so-called ``ultimate regime'' of convection, which is the regime in which boundary layer dissipation is unimportant compared to the bulk.
-Some authors have recently claimed to have achieved this ultimate regime \citep[see e.g.,][]{zhu&all2018}, but this is still a point of contention in the community.
+Some authors have recently claimed to have achieved this ultimate regime \citep[see e.g.,][]{zhu&all2018}, but this is still a point of contention in the community \citep{doering&all2019a, doering&all2019b}.
 This theory, and a comparison to experimental and numerical results, are described in detail in the review of \citet{ahlers&all2009}.
 
 \subsection{More Realistic Geophysical and Astrophysical Experiments}
@@ -456,13 +456,13 @@ In these systems, physical space is discretized into a series of coordinates, an
 Finite volume codes can be used to model problems in complex geometries, but can be difficult to implement for complex equations and converge slowly as the simulation resolution is increased \citep{burns&all2019}.
 Some modern examples of finite volume codes used in astrophysical fluid modeling are the Stagger\footnote{\url{https://starformation.hpc.ku.dk/?q=node/18}} \citep{galsgaard2011}, PLUTO\footnote{\url{http://plutocode.ph.unito.it/}} \citep{mignone&all2012}, Athena/Athena++\footnote{\url{https://princetonuniversity.github.io/athena/}} \citep{stone&all2008, stone&all2019}, the Pencil Code\footnote{\url{http://pencil-code.nordita.org/}} \citep{brandenburg&dobler2010}, and MUSIC\footnote{\url{https://empslocal.ex.ac.uk/tofu/}} \citep{goffrey&all2017} (although, the Pencil code acts like a blend of finite element and spectral methods, as described below).
 
-Spectral methods, on the other hand, discretize important quantities by expanding them over a set of bases functions.
+Spectral methods \citep[covered in detail in, e.g.][]{gottlieb&all1978, boyd2001}, on the other hand, discretize important quantities by expanding them over a set of bases functions.
 Common basis choices include Fourier series and Chebyshev polynomials.
 Such methods can highly accurately follow the value of evolving fields at all spatial locations within a domain, but are generally restricted to simple geometries (Cartesian, cylindrical, and spherical domains).
 The code used to perform all simulations in this thesis, Dedalus\footnote{\url{http://dedalus-project.org/}} (described below in Sec.~\ref{sct:dedalus}), is a \emph{pseudo}spectral code.
 This means that, while solving equations, all linear equation terms are handled in a fully spectral sense.
 Nonlinear terms are analyzed after projection onto a finite volume domain, whose number of grid cells is $f\cdot N$, where $N$ is the number of spectral coefficients, and $f$ is a ``dealiasing'' factor (typically $f = 3/2$ is chosen to resolve quadratic nonlinearities). 
-Pseudospectral methods can be much more efficient than spectral methods in the analysis of certain terms.
+Pseudospectral methods \citep[covered in detail in, e.g.][]{fornberg1996} can be much more efficient than spectral methods in the analysis of certain terms.
 Some other modern codes which employ spectral methods are Rayleigh\footnote{\url{https://geodynamics.org/cig/software/rayleigh/}}, MagIC\footnote{\url{https://magic-sph.github.io/}} \citep{wicht&all2017}, SNOOPY\footnote{\url{http://geoffroy-lesur.org/snoopy.html}} \citep{lesur2015}, and ASH (closed source).
 
 A benchmark comparing Dedalus' pseudospectral methods to Athena's finite volume methods for a turbulent, nonlinear Kelvin-Helmholtz instability is explored by \citet{Lecoanet_et_al_2016_KH}.
@@ -486,7 +486,7 @@ The MUSIC code is one of the first astrophysical codes to offer the capability o
 Implicit methods produce stable solutions regardless of the size of the timestep taken, but just because these methods are \emph{stable} does not mean that they produce \emph{physically correct} answers at arbitrarily large timesteps.
 It has long been known \citep[e.g., per the discussion in Ch.~11.1 of][]{oran&boris1987}, and recently re-verified in an astrophysical setting \citep{viallet&all2011, viallet&all2013, viallet&all2016}, that implicit methods must take short enough timesteps to resolve nonlinear advective flows.
 
-Mixed implicit-explicit (IMEX) methods have been growing in popularity in recent years.
+Mixed implicit-explicit (IMEX) methods have been growing in popularity in recent years \citep[see e.g.,][and citations to that work]{ascher&all1995}.
 These methods utilize the best parts of both implicit and explicit methods.
 Generally, these methods handle linear terms implicitly, thereby superstepping CFL conditions on linear waves or other linear system solutions.
 These methods then handle their nonlinear terms explicitly, using significantly less memory than nonlinear implicit methods.

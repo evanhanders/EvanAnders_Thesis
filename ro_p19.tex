@@ -360,8 +360,13 @@ for $\pro = \{0.6, 0.957, 1.58\}$. In the regime of $\text{Ro} \lesssim 0.1$, th
 from a classic Ra$^{2/7}$ power law scaling,
 which is observed in nonrotating \RB and stratified convection \citep[][\AB]{ahlers&all2009}.
 Our results seem consistent with the stress-free, rotating \RB convection results of
-\cite{schmitz&tilgner2009}, whose re-arranged Eqn.~7 returns a best-fit of
-$\text{Nu} \propto \text{Ra}^{0.26}$ at fixed \pro$\,$. Their work primarily spans the transition
+\cite{schmitz&tilgner2009}, whose re-arranged Eqn.~7 returns a best-fit of $\text{Nu} \propto \text{Ra}^{0.26}$ at fixed \pro$\,$\footnote{
+Their equation is Nu$_* = 0.11 \text{Ra}_{f*}^{0.55}$ with Nu$_* =\,$ Nu Ek / Pr = Nu / Pr / Ta$^{1/2}$ and Ra$_{f*} =\,$ Ra$_*$Nu$_*$, where Ra$_* =\,$ Ra Ek$^2$ / Pr = Ra / Pr / Ta.
+Plugging in those quantities, and rearrangingin gives Nu $\propto \pro ^{0.87} (\text{Ra Pr})^{0.26}$.
+So -- what we have said here is true for constant \pro$\,$ and Pr.
+However, if you were to walk a different path through parameter space (e.g., constant Ta), you would see a different scaling.
+}.
+Their work primarily spans the transition
 regime between rotationally constrained and unconstrained convection, and so it is perhaps not
 surprising that their power law is a blend of our rotationally-constrained $\text{Ra}^{2/7}$ power
 law and the fairly rotationally unconstrained $\text{Ra}^{0.24}$ at $\pro = 1.58$.
@@ -479,7 +484,14 @@ Taking into account this change with depth,
 our simulations fall in \cite{king&all2012}'s rotationally constrained
 ($\pro = 0.6$) and near-constrained transitional regime ($\pro = \{0.957, 1.58\}$).
 The measured values of Ro in Fig.~\ref{fig:parameter_space}b and the observed dynamics
-in Fig.~\ref{fig:dynamics_plot} agree with this interpretation.
+in Fig.~\ref{fig:dynamics_plot} agree with this interpretation\footnote{
+However, in our simulations here, we used stress-free boundary conditions.
+Stress-free boundary conditions do not generate Ekman pumping or Ekman layers in the way that no-slip boundary conditions do \citep{plumley&all2015}.
+Regardless, as shown in Fig.~\ref{fig:profiles_and_bls}, a clear boundary layer can be measured in the vorticity (Ro) profile.
+Perhaps we are seeing simply more classical viscous boundary layers?
+But -- if that were the case -- it would make sense for the boundary layer thicknesses (Fig.~\ref{fig:profiles_and_bls}e) to have a constant ratio on a \emph{different} path through parameter space.
+This is all quite confusing and requires further investigation, preferably in a Boussinesq system.
+}.
 
 We note briefly that the scaling $\text{Ra} \propto \text{Ta}^{3/4}$ is very similar to
 another theorized boundary between fully rotationally constrained convection and 
