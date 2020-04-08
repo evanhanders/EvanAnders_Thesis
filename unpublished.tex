@@ -338,6 +338,8 @@ AE should likely therefore have two parts (a change to the energy reservoir step
 
 
 \section{A Freefall Nondimensionalization of the Fully Compressible Equations}
+\label{sec:freefall_fc_nondim}
+\subsection{Motivation}
 In our standard nondimensionalizations of the fully compressible equations, we nondimensionalize based on the sound speed rather than on the convective velocity (freefall) speed.
 In order to compare results with anelastic equations which were nondimensionalized on the freefall timescale, we presented a form of the fully compressible equations in Ch.~\ref{ch:alb19} which were scaled so that one time unit was one freefall time unit. 
 However, the version of the fully compressible equations presented in Ch.~\ref{ch:alb19} is essentially nondimensionalized twice, which isn't ideal.
@@ -346,110 +348,229 @@ This works, but it's confusing.
 I have faith in the results of the \emph{simulations} from that chapter, which were conducted using a numerical form of the compressible equations similar to the one presented in Ch.~\ref{ch:ab17}, and then rescaled in post-processing.
 
 It would be ideal to have a set of fully compressible equations which are nondimensionalized on the freefall timescale.
-This would be useful both for future comparisons to anelastic simulations, but also for numerical stability at low Mach number (where thermodynamic perturbations are O($\epsilon$). O(1) would be better). 
-The formulation of the equations that I will derive here aim to understand what the nondimensional fully compressible equations look like when the convective velocities and thermal perturbations are all O(1), regardless of the Mach number.
+This would be useful both for future comparisons to anelastic simulations, but also for numerical stability at low Mach number. 
+The formulation of the equations that I will derive here aim to understand what the nondimensional fully compressible equations look like when the convective velocities are O(1), regardless of the Mach number.
 
-\subsection{Equation formulation derivation}
-We define the fully compressible equations in \citet{anders&brown2017} as:
-\begin{gather}
-\partial_{\td{t}} \td{\ln \rho_1} + \td{\uvec}\cdot\td{\grad} \td{\ln\rho_0} + \td{\grad}\cdot\td{\uvec} = -\td{\uvec}\cdot\td{\grad}\td{\ln\rho_1} 
-\label{eqn:unscaled_continuity}
-\\
-\begin{split}
-\partial_{\td{t}} \td{\uvec} + R(\td{\grad} \td{T_1} + \td{T_1} \td{\grad}\td{\ln\rho_0} + \td{T_0} \td{\grad}\td{\ln\rho_1})
-- \td{\nu}\left(\td{\grad}^2 \td{\uvec} + \frac{1}{3}\td{\grad}(\td{\grad}\cdot\td{\uvec}) + \td{\grad}\td{\ln\rho_0}\cdot\td{\lilstressT}\right)
-- \td{\grad}\td{\nu}\cdot\td{\lilstressT}
-\\= -\td{\uvec}\cdot\td{\grad}\td{\uvec} - R\td{T_1}\td{\grad}\td{\ln\rho_1} + \td{\nu}\td{\grad}\td{\ln\rho_1}\cdot\td{\lilstressT}
-\end{split}
-\label{eqn:unscaled_momentum}
-\\
-\begin{split}
-\partial_{\td{t}} \td{T_1} + \td{\uvec}\cdot\td{\grad} \td{T_0} + \td{T_0}(\gamma-1)\td{\grad}\cdot\td{\uvec} 
-- \frac{c_P}{c_V}\left(\td{\chi}\left\{\td{\grad}^2 \td{T_1} + \td{\grad}\td{\ln\rho_0} \cdot\td{\grad} \td{T_1} + \td{\grad}\td{\ln\rho_1}\cdot\td{\grad} \td{T_0}\right\} 
-+ \td{\grad}\td{\chi}\cdot\td{\grad} \td{T_1}\right)
-\\= \frac{\td{\chi}c_P}{c_V}\td{\grad}\td{\ln\rho_1}\cdot\td{\grad} \td{T_1} - \td{\uvec}\cdot\td{\grad} \td{T_1} - \td{T_1}(\gamma-1)\td{\grad}\cdot\td{\uvec}
-+ \frac{\td{\nu}}{c_V}\td{\lilstressT}\cdot\td{\grad}\cdot\td{\uvec}.
-\end{split}
-\label{eqn:unscaled_energy}
-\end{gather}
-Here, the tildes over the terms stand for ``dimensionful" quantities (or quantities that I haven't rescaled yet). 
-Those are going to be dropped. 
-Only two real assumptions have happened so far: I've assumed hydrostatic equilibrium of the background quantities in the momentum equation, and I've assumed thermal equilibrium of the background quantities in the energy equation.
-The rest of this nondimensionalization is predicated around the linearized equation of state,
+\subsection{Fully compressible equation formulation}
+The (dimensional) form of the fully compressible equations solved in ch.~\ref{ch:ab17} is 
+\begin{align}
+&\begin{aligned}
+&\frac{\partial \ln\rho}{\partial t} + \grad\cdot\bm{u} 
+    = -\bm{u}\cdot\grad\ln\rho,
+\end{aligned}\\
+&\begin{aligned}
+\frac{\partial\bm{u}}{\partial t} + R \grad T - 
+&\nu\grad\cdot\lilstressT - \lilstressT\cdot\grad\nu =
+-\bm{u}\cdot\grad\bm{u} - RT\grad\ln\rho + \bm{g} + 
+\nu\lilstressT\cdot\grad\ln\rho,
+\end{aligned}\\
+&\begin{aligned}
+\frac{\partial T}{\partial t} -\frac{1}{c_V}\left(\right.\chi&\left.
+    \grad^2 T + \grad T\cdot\grad\chi\right) =
+	-\bm{u}\cdot\grad T - (\gamma-1)T\grad\cdot{\bm{u}}
+	+ \frac{1}{c_V}\left(\chi\grad T \cdot\grad\ln\rho +
+	\nu\left[\lilstressT\cdot\nabla\right]\cdot\bm{u}\right), 
+\end{aligned}
+\end{align}
+Here, $\bm{u}$ is the velocity, $\rho$ is the density, $T$ is the temperature, $R$ is the ideal gas constant (where the pressure $P = R\rho T$), $\bm{g}$ is the gravitational acceleration, $\lilstressT$ is the viscous stress tensor (in units of inverse time), $c_V$ is the specific heat at constant volume, and $\nu$ and $\chi$ are respectively the viscous and thermal diffusivities (in units of length$^2$/time).
+In constructing these equations, we have assumed that the dynamic diffusivities are defined as $\mu = \rho \nu$ (the dynamic viscosity) and $\kappa = \rho \chi$ (the thermal conductivity).
+
+Before analyzing these equations further, I will assume that the background state is in hydrostatic equilibrium and thermal equilibrium.
+This means that
+\begin{equation}
+\grad T_0 + T_0\grad\ln\rho_0 = \frac{\bm{g}}{R},
+\label{eqn:hydrostatic_equilibrium1}
+\end{equation}
+and
+\begin{equation}
+\frac{1}{\rho_0}\grad\cdot(\rho_0\chi\grad T_0) = 0 \qquad\rightarrow\qquad
+\chi (\grad^2 T_0 + \grad T_0 \cdot\grad\ln\rho_0) + \grad T_0 \cdot\grad\chi  = 0
+\label{eqn:thermal_equilibrium1}
+\end{equation}
+Throughout this derivation, we will assume that the diffusivities are functions of depth but not time, and can be expressed in terms of a constant value and the initial density stratification (although a different choice could be made, and a similar procedure followed),
 $$
-\frac{\rho_1}{\rho_0} = \frac{P_1}{P_0} - \frac{T_1}{T_0},
+\chi(z) = \chi_t \frac{\rho_t}{\rho_0(z)}, \qquad
+\nu(z)  = \nu_t  \frac{\rho_t}{\rho_0(z)},
 $$
-and the assumption that for low Mach number flows, each of the quantities in this equation is essentially O($\epsilon$).
-We now nondimensionalize all quantities, 
+where $\chi_t$, $\nu_t$, and $\rho_t$ are respectively the values of the thermal diffusivity, viscous diffusivity, and density at the top of the atmosphere, and are constant values.
+These diffusivity profiles can be plugged into Eqn.~\ref{eqn:thermal_equilibrium1},
+$$
+\frac{\chi_t\rho_t}{\rho_0(z)}(\grad^2 T_0 + \grad T_0 \cdot \grad\ln\rho_0) - \frac{\chi_t\rho_t}{\rho_0(z)}\grad T_0 \cdot\grad\ln\rho_0 = 0
+\qquad\rightarrow\qquad
+\grad^2 T_0 = 0,
+$$
+which is to say that for this choice of diffusivities, the only requirement for thermal equilibrium in the initial, static, conductive state is that the temperature profile have no second derivative.
+
+Since hydrostatic and thermal equilibrium are always satisfied by the equations, we can remove them from the momentum and temperature equation and we can plug in our definition of the diffusivities.
+I'll also rearrange for easier reading (our former setup of the equations was set up to show LHS / RHS splitting of linear and nonlinear terms),
+\begin{align}
+&\begin{aligned}
+&\frac{\partial \ln\rho}{\partial t} + \bm{u}\cdot\grad\ln\rho + \grad\cdot\bm{u}  = 0
+	\label{eqn:ab17continuity_eqn2}
+\end{aligned}\\
+&\begin{aligned}
+\frac{\partial\bm{u}}{\partial t} + \bm{u}\cdot\grad\bm{u}
+&= - R (\grad T_1 + T_1\grad\ln\rho_0 + T_0\grad\ln\rho_1 + T_1 \grad\ln\rho_1)
++ \frac{\nu_t\rho_t}{\rho_0}\left(\lilstressT\cdot\grad\ln\rho_1 + \grad\cdot\lilstressT\right),
+\label{eqn:ab17momentum_eqn2}
+\end{aligned}\\
+&\begin{aligned}
+\frac{\partial T}{\partial t} + \bm{u}\cdot\grad T + (\gamma-1)T\grad\cdot\bm{u}
+=	\frac{\chi_t\rho_t}{c_V\rho_0}(\grad^2 T_1 + \grad T_0\cdot\grad\ln\rho_1 + \grad T_1\cdot\grad\ln\rho_1)
+	+ \frac{\nu_t\rho_t }{c_V\rho_0}[\lilstressT\cdot\nabla]\cdot\bm{u}, 
+	\label{eqn:ab17energy_eqn2}
+\end{aligned}
+\end{align}
+
+I will go through our nondimensionalization carefully over the next few sections, but the nondimensional form of these equations (nondimensionalized on a freefall timescale and on the thermodynamics at the top of the domain) are
+\begin{align}
+&\begin{aligned}
+\frac{\partial \ln\rho_1}{\partial t} + \grad\cdot\bm{u} + w\partial_z \ln\rho_0 = -\bm{u}\cdot\grad\ln\rho_1.
+	\label{eqn:ab17continuity_nondim}
+\end{aligned}\\
+&\begin{aligned}
+\frac{D \bm{u}}{D t} = -\epsilon^{-1}\left(\grad T_1 + T_1\grad\ln\rho_0 + T_0 \grad\ln\rho_1 + T_1\grad\ln\rho_1\right)
++ \frac{\rho_t}{\rho_0}\frac{1}{\text{Re}_{\text{ff}}} \left(\lilstressT\cdot\grad\ln\rho_1 + \grad\cdot\lilstressT\right),
+\label{eqn:ab17momentum_nondim}
+\end{aligned}\\
+&\begin{aligned}
+\frac{\partial T_1}{\partial t} &+ (w \partial_z T_0 + [\gamma-1]T_0\grad\cdot\bm{u}) + (\bm{u}\cdot\grad T_1 + [\gamma-1] T_1\grad\cdot\bm{u})
+\\
+&= \frac{\rho_t}{\rho_0 c_V}\left[
+\frac{1}{\text{Pe}_{\text{ff}}}(\grad^2 T_1 + \grad T_0 \cdot\grad\ln\rho_1 + \grad T_1 \cdot\grad\ln\rho_1)
++ \frac{\epsilon R}{\text{Re}_{\text{ff}}} (\lilstressT\cdot\grad)\cdot\bm{u}
+\right].
+	\label{eqn:ab17energy_nondim}
+\end{aligned}
+\end{align}
+
+
+
+\subsection{The scale of thermodynamic fluctuations and velocities}
+In our convective system, to find the magnitude of thermodynamic fluctuations, we turn to the entropy equation,
+\begin{equation}
+\frac{1}{c_P}\grad s = \frac{1}{\gamma}\grad\ln T - \frac{\gamma - 1}{\gamma}\grad \ln \rho,
+\end{equation}
+where $s$ is the specific entropy, $c_P$ is the specific heat at constant pressure, and $\gamma = c_P/c_V = 5/3$ is the adiabatic index.
+For consistency with our work in e.g., Ch.~\ref{ch:ab17}, we will decompose our thermodynamic variables as follows:
+$$
+T = T_0 + T_1, \qquad
+s = s_0 + s_1, \qquad
+\ln\rho = \ln\rho_0 + \ln\rho_1.
+$$
+Note that due to our somewhat unintuitive decomposition on $\ln\rho$, the density fluctuations are of the form
+$$
+\rho = \rho_0 + \rho' = \rho_0 e^{\ln\rho_1} \rightarrow \ln\rho_1 = \ln\left(1 + \frac{\rho'}{\rho_0}\right).
+$$
+
+We assume that the background entropy gradient is negative and has a magnitude characterized by $\epsilon$,
+$$
+\frac{1}{c_P}\grad s_0 = \frac{1}{\gamma}\grad\ln T_0 - \frac{\gamma - 1}{\gamma}\grad \ln \rho_0 = -O(\epsilon).
+$$
+Furthermore, we will assume that convective motions will aim to drive the atmosphere towards an adiabat, wiping out the superadiabaticity of the initial state.
+Put differently, we assume that $\grad s = 0$ most places in the domain such that $\grad s_1 = O(\epsilon)$ (except in boundary layers).
+This means that
+$$
+\frac{1}{c_P}\grad s_1 = \frac{1}{\gamma}\frac{\grad T_1}{T_0 + T_1} - \frac{\gamma - 1}{\gamma}\grad\ln\rho_1 \approx \epsilon.
+$$
+If $\epsilon$ is small, we expect thermodynamic fluctuations from the background to be small.
+Under this assumption, we can assume that $T_0 + T_1 \approx T_0$, and we can integrate the former equation for a more exact expression regarding the magnitude of fluctuations,
+\begin{equation}
+\frac{s_1}{c_P} \approx \frac{1}{\gamma}\frac{T_1}{T_0} - \frac{\gamma-1}{\gamma}\ln\rho_1 \approx \epsilon,
+\end{equation}
+which states that fluctuations in thermodynamic quantities are O($\epsilon$) \emph{compared to the background atmosphere}.
+
+Ok, with that in mind, let's return to the momentum equation and assume that the dominant force balance is between advection and buoyancy,
+$$
+\bm{u}\cdot\grad\bm{u} = - R(\grad T_1 + T_1 \grad\ln\rho_0 + T_0 \grad\ln\rho_1 + T_1 \grad\ln\rho_1).
+$$
+If we assume $\grad = L^{-1}$, a length scale, and we multiply the RHS by $T_0 / T_0$, we retrieve
+$$
+\frac{u^2}{L} \approx \frac{R T_0}{L}\left(\frac{\grad T_1}{T_0} + \frac{T_1}{T_0}\grad\ln\rho_0 + \grad\ln\rho_1 + \frac{T_1}{T_0}\grad\ln\rho_1 \right).
+$$
+Using our above scaling arguments, the first three terms in the RHS parenthesis are O($\epsilon$), and the last term is O($\epsilon^2$).
+Plugging in the definition of the isothermal sound speed for the background atmosphere, $c_s^2 = R T_0$, we get
+$$
+u^2 \sim c_s^2 [ O(\epsilon) + O(\epsilon^2) ],
+$$
+Assuming that $\epsilon \leq 1$, or that thermodynamic fluctuations aren't larger than the background state, we can drop the O($\epsilon^2$) term, and we retrieve
+$$
+\text{Ma}^2 = \frac{u^2}{c_s^2} = O(\epsilon).
+$$
+Note that this is the prediction which guided our intuition for using $\epsilon$ as a control parameter, and it seems to hold in 3D in Fig.~\ref{fig:ma_v_eps}, but not in 2D.
+
+
+\subsection{Nondimensionalization on the freefall velocity}
+While this is \emph{not} the nondimensionalization we used in Ch.~\ref{ch:ab17}, I think it is perhaps more clear than the one that we used.
+Let's nondimensionalize the velocity on the freefall velocity scale at the top of the domain (in the published work we nondimensionalized on the sound speed scale).
+We'll use the same thermodynamic nondimensionalization as in the published work (so that the initial atmosphere has thermodynamic quantities equal to unity at the top of the atmosphere).
+This nondimensionalization is
+$$
+\grad^* \rightarrow \frac{1}{L}\grad,\qquad
+\partial_{t^*} \rightarrow \frac{1}{\tau}\partial_t, \qquad
+\bm{u}^* \rightarrow u_{\text{ff}}\bm{u}\,\,(\text{with}\, u_{\text{ff}} = \sqrt{\epsilon R T_t}), \qquad
+T^* \rightarrow T_t T,\qquad
+\rho^* \rightarrow \rho_t \rho,
+$$
+where here, quantities with (*) are ``dimensionful,'' and represent the quantities as presented in Eqns.~\ref{eqn:ab17continuity_eqn2}-\ref{eqn:ab17energy_eqn2}.
+Going forward, we will use the quantities on the right side of these arrows, which are dimensionless.
+In this nondimensionalization, convective velocities and times will be O(1), and thermodynamic fluctuations ($T_1, \ln\rho_1$) will be O($\epsilon$), because background thermodynamic quantities are O(1).
+
+\subsubsection{Continuity equation}
+The contintuity equation as we write it is already nondimensional,
+\begin{equation}
+\frac{\partial \ln\rho_1}{\partial t} + \grad\cdot\bm{u} + w\partial_z \ln\rho_0 = -\bm{u}\cdot\grad\ln\rho_1.
+\end{equation}
+In this nondimensionalization, it is immediately clear that this equation has two O(1) terms:
+$$
+\grad\cdot\bm{u} + w\partial_z \ln\rho_0,
+$$
+and the remaining terms are O($\epsilon$).
+The anelastic approximation is the approximation in which $\epsilon \rightarrow 0$ and the O($\epsilon$) terms drop out of the equation.
+The O($\epsilon$) terms are a crucial component of sound waves, and in our numerical setup we solve the linear, O(1) pieces of this equation implicitly in order to avoid hard CFL constraints from sound waves on our low-Mach flows.
+
+\subsubsection{Momentum equation}
+Nondimensionalizing the momentum equation, we find that
+\begin{equation}
+\frac{D \bm{u}}{D t} = -\frac{ R T_t }{u_{\text{ff}}^2}\left(\grad T_1 + T_1\grad\ln\rho_0 + T_0 \grad\ln\rho_1 + T_1\grad\ln\rho_1\right)
++ \frac{\rho_t}{\rho_0}\frac{\nu_t}{u_{\text{ff}} L} \left(\lilstressT\cdot\grad\ln\rho_1 + \grad\cdot\lilstressT\right)
+\end{equation}
+Defining the freefall Reynolds number at the top of the domain as $\text{Re}_{\text{ff}} = u_{\text{ff}} L / \nu_t$, and remembering that $u_{\text{ff}}^2 = \epsilon R T_t$, the momentum equation is
+\begin{equation}
+\frac{D \bm{u}}{D t} = -\epsilon^{-1}\left(\grad T_1 + T_1\grad\ln\rho_0 + T_0 \grad\ln\rho_1 + T_1\grad\ln\rho_1\right)
++ \frac{\rho_t}{\rho_0}\frac{1}{\text{Re}_{\text{ff}}} \left(\lilstressT\cdot\grad\ln\rho_1 + \grad\cdot\lilstressT\right).
+\end{equation}
+Under this nondimensionalization, the LHS terms are O(1).
+The first three buoyancy terms are O(1) and the fully nonlinear buoyancy term is O($\epsilon$).
+The viscous term's magnitude depends primarily on the Reynolds number.
+
+\subsubsection{Energy Equation}
+A similar nondimensionalization of the energy equation gives us
+\begin{equation}
+\frac{D T}{D t} + (\gamma-1)T \grad\cdot\bm{u} = 
+\frac{\chi_t}{u_{\text{ff}} L}\frac{\rho_t}{\rho_0 c_V} (\grad^2 T_1 + \grad T_0\cdot\grad\ln\rho_1 + \grad T_1\cdot\grad\ln\rho_1)
++ \frac{\nu_t}{\tau T_t}\frac{\rho_t}{\rho_0 c_V} (\lilstressT\cdot\grad)\cdot\bm{u}.
+\end{equation}
+The thermal diffusion term straightforwardly has a freefall P\'{e}clet number in it ($\text{Pe}_{\text{ff}} = u_{\text{ff}} L / \chi_t$).
+The viscous heating term is a bit more confusing, but
+$$
+\frac{\nu_t}{\tau T_t} = \frac{1}{T_t}\frac{\nu_t \tau}{L^2} \frac{L^2}{\tau^2} = \frac{1}{T_t}\frac{u_{\text{ff}}^2}{\text{Re}_{\text{ff}}} = \frac{\epsilon R}{\text{Re}_{\text{ff}}}.
+$$
+Unsurprisingly, the viscous heating term (which is composed of O(1) velocities) has an $\epsilon$ appear in front of it to reflect that its magnitude is of the order of the temperature fluctuations.
+Plugging these back in, the full energy equation is
 \begin{equation}
 \begin{split}
-\td{T} =  \bar{T} T, \\
-\td{\grad} = L^{-1}\grad,  		\qquad &\partial_{\td{t}} = \tau^{-1}\partial_t, \\
-\td{\nu} = \nu\xi(z),				\qquad &\td{\chi} = \chi\xi(z),\\
-u_{\ff} = L/\tau, \qquad &%\td{c_V} = R c_V,
+\frac{\partial T_1}{\partial t} &+ (w \partial_z T_0 + [\gamma-1]T_0\grad\cdot\bm{u}) + (\bm{u}\cdot\grad T_1 + [\gamma-1] T_1\grad\cdot\bm{u})
+\\
+&= \frac{\rho_t}{\rho_0 c_V}\left[
+\frac{1}{\text{Pe}_{\text{ff}}}(\grad^2 T_1 + \grad T_0 \cdot\grad\ln\rho_1 + \grad T_1 \cdot\grad\ln\rho_1)
++ \frac{\epsilon R}{\text{Re}_{\text{ff}}} (\lilstressT\cdot\grad)\cdot\bm{u}
+\right].
 \end{split}
 \end{equation}
-and note that $\ln\rho$ is already dimensionless in its nature.
-Here, $\xi(z)$ is the nondimensional shape of the diffusivity profiles.
-The nondimensional momentum equation is
-\begin{equation}
-\begin{split}
-\frac{D \bm{u}}{Dt} + \frac{ R \bar{T}}{u_{\text{ff}^2}} \left( \grad T_1 + T_1 \grad \ln\rho_0 + T_0 \grad \ln\rho_1 + T_1 \grad\ln\rho_1\right)
-\\
-= \frac{\nu \tau}{L^2}\left( \xi\left[\grad^2\uvec + \frac{1}{3}\grad(\DivU) + \grad\ln\rho_0\cdot\lilstressT + \grad\ln\rho_1\cdot\lilstressT\right] + \grad\xi\cdot\lilstressT\right)
-\end{split}
-\end{equation}
-We now make the choice that the nondimensional scale of the temperature perturbations is O($\epsilon$) compared to the background temperature, $\bar{T} = \epsilon T_0$.
-Per Ch.~\ref{ch:ab17}, the isothermal Mach number of these flows is roughly $\text{Ma}_{\text{iso}} = \sqrt{\epsilon}$, so the choice that
-$$
-u_{\text{ff}}= \sqrt{R \bar{T}} \sim \text{Ma}_{\text{iso}} 
-$$
-means that we're roughly nondimensionalizing on the freefall velocity of the flows.
-The continuity and momentum equation under this assumption are then
-\begin{gather}
-\frac{D \ln\rho_1}{Dt} + (\bm{u}\cdot\ln\rho_0 + \DivU) = 0 \\
-\begin{split}
-\frac{D \bm{u}}{Dt} + \left( \grad T_1 + T_1 \grad \ln\rho_0 + T_0 \grad \ln\rho_1 + T_1 \grad\ln\rho_1\right)
-\\
-= \frac{1}{\text{Re}_{\text{ff}}}\left( \xi\left[\grad^2\uvec + \frac{1}{3}\grad(\DivU) + \grad\ln\rho_0\cdot\lilstressT + \grad\ln\rho_1\cdot\lilstressT\right] + \grad\xi\cdot\lilstressT\right)
-\end{split}
-\end{gather}
-where the freefall Reynolds number is
-$$
-\text{Re}_{\text{ff}} = \frac{u_{\text{ff}} L}{\nu} = \sqrt{\frac{\text{Ra}}{\text{Pr}}}\,\,\,\text{(in the case of convection)}.
-$$
-The nondimensional temperature equation is
-\begin{gather}
-\begin{split}
-&\frac{D T_1}{Dt} + \left(\uvec\cdot\grad T_0 + (T_0 + T_1)(\gamma-1)\DivU\right)
-\\
-&= \frac{\chi \tau c_P}{c_V L^2}\left(\xi\left[\grad^2 T_1 + \grad\ln\rho_0\cdot\grad T_1 + \grad\ln\rho_1 \cdot\grad T_0 + \grad\ln\rho_1\cdot\grad T_1\right] + \grad\xi\cdot\grad T_1\right)
- + \frac{\nu}{c_V \bar{T} \tau }\xi\lilstressT\cdot\grad\cdot\uvec.
-\end{split}
-\end{gather}
-The viscous heating term is a bit tricky, but substituting $\bar{T} = u_{\text{ff}}^2/R^2$, we're left with
-\begin{equation}
-\begin{split}
-\frac{D T_1}{Dt} + \left(\uvec\cdot\grad T_0 + (T_0 + T_1)(\gamma-1)\DivU\right)
-\\= \frac{c_P}{c_V \text{Pe}_{\text{ff}}}\left(\xi\left[\grad^2 T_1 + \grad\ln\rho_0\cdot\grad T_1 + \grad\ln\rho_1 \cdot\grad T_0 + \grad\ln\rho_1\cdot\grad T_1\right] + \grad\xi\cdot\grad T_1\right)
- + \frac{R^2}{c_V \text{Re}_{\text{ff}} }\xi\lilstressT\cdot\grad\cdot\uvec,
-\end{split}
-\end{equation}
-where
-$$
-\text{Pe}_{\text{ff}} = \text{Re}_{\text{ff}}\text{Pr}.
-$$
+I've written the LHS of this equation to call attention to the fact that there are two groups of terms on the LHS: O(1) terms which include velocities and $T_0$ (sound wave terms which must be implicitly timestepped), and O($\epsilon$) terms which include $T_1$ and are on the scale of convective dynamics.
+Note also that in our nondimensionalization in our paper where $P = \rho T$, the ideal gas constant is $R = 1$, so the viscous heating term just has $\epsilon/\text{Re}_{\text{ff}}$ in front of it.
 
-Note that it is \emph{crucial} that you consistently nondimensionalize the background temperature profile so that both it--and gravity--are O($\epsilon^{-1}$).
-Which is to say that, if you're using a polytrope, rather than $T_0 = 1 + (L_z - z)$, you need to specify
-$$
-T_0 = \epsilon^{-1}\left(1 + [L_z - z]\right),
-$$
-and gravity with be $g = (1 + m)/\epsilon$, for $m$ the polytropic index.
-Per the polytropic assumption, $\rho = T^m$ still holds, so $\ln\rho_0$ will be shifted by $-\ln(\epsilon)$.
-
-One thing that's nice about this nondimensionalization, in addition to having O(1) flows for numerical stability, is that it's clear to see where the linear wave terms come from.
-Any term that has a $T_0$ in it is large, or O($\epsilon^{-1}$) compared to the other terms, so these are the stiff terms in the equations.
 
 
 \section{Convection with Kramer's Opacity}

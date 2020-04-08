@@ -60,7 +60,25 @@ state \citep{king&all2012, julien&all2012, king&all2013}.
 Such measurements are not available for astrophysical objects, where
 the degree of rotational influence is best assessed by the ratio between 
 nonlinear advection magnitude and the linear Coriolis accelerations. 
-The \textit{Rossby number} is the standard measure of this ratio, 
+The \textit{Rossby number}\footnote{
+In this work, when we report Ro, we calculate:
+$$
+\text{Ro} = \frac{\sqrt{\bm{\omega}\cdot\bm{\omega}}}{2 \Omega},
+\qquad\text{with}\qquad
+\bm{\omega} = \grad\times\bm{u}.
+$$
+everywhere in the domain.
+We then take a volume average
+$$
+\angles{\text{Ro}} = \frac{1}{L_x L_y L_z}\iiint \text{Ro}\,dx\,dy\,dz,
+$$
+and output that quantity to file.
+To get the values reported in the paper, we take a time-average of the volume average,
+$$
+\text{Ro}_{\text{reported}} = \frac{1}{t_2 - t_1}\int_{t_1}^{t_2} \angles{\text{Ro}} dt.
+$$
+
+}is the standard measure of this ratio, 
 \begin{equation}
 \text{Ro} \ \equiv \ \frac{| \nabla \times \boldsymbol{u} | }{2 |\bm{\Omega}|} \ 
 \sim \ \frac{| (\nabla \times \boldsymbol{u}) \times \boldsymbol{u}  | }{|2 \bm{\Omega} \times \boldsymbol{u}|},
@@ -463,14 +481,43 @@ Recasting the scaling of
 \cite{julien&all2012} into this perspective, we find 
 $(\text{Nu} - 1) \propto \text{Ra}^{3/2}/\text{Ta} = \pro^{8/3}\text{Ra}^{1/6} \propto (\text{Ra}/\text{Ra}_{\text{crit}})^{1/6}$, 
 where in this final result we use the $\text{Ra}_{\text{crit}}$ value of the whole $\pro$ path, such as those
-specified in Table \ref{table_ro_p19_:ra_ta_bounds}.
+specified in Table \ref{table_ro_p19_:ra_ta_bounds}\footnote{
+The Ra$_{\text{crit}}$ we're referring to here is a Ra$_{\text{crit}}(\text{Ro}_{\text{p}})$, not a Ra$_{\text{crit}}(\text{Ta})$.
+In Fig.~3.1a, we're referring to the value of Ra$_{\text{crit}}$ for a given value of $\text{Ro}_\text{p}$, which has a singular value, indicated by an orange circle.
+We're not referring to the full black line in that figure which is Ra$_{\text{crit}}(\text{Ta})$.
+Perhaps we should have stopped that scaling before the final proportionality and left it at (Nu − 1) $\propto \text{Ra}^{3/2} / \text{Ta} = \text{Ro}_{\text{p}} \text{Ra}^{1/6}$, meaning that we would expect a Ra$^{1/6}$ scaling along a fixed Ro$_{\text{p}}$ path.
+}.
 This $\text{Ra}^{1/6}$ scaling is much weaker than the $\text{Ra}^{2/7}$ law we find here. 
 We leave it to future work to explain this discrepancy between
 Boussinesq theory and our observed Nu vs.~Ra scaling.
 
 In this work, we experimentally arrived at the 
 $\text{Ra}/\text{Ta}^{3/4} = \text{Ra}\,\text{Ek}^{3/2}$
-scaling in \pro, but this relationship was independently
+scaling\footnote{
+Ra and Ta are both indepdendent inputs, so talking about them scaling with one another may be confusing.
+At fixed Prandtl number (and $\epsilon$, $n_\rho$), the solution is completely characterized by a choice of Ra and Ta.
+We've posited in this work that there's a ``new'' input parameter,
+\begin{equation}
+\text{Ro}_\text{p} = \text{Ra}^\alpha\text{Ta}^\beta\text{Pr}^{\gamma}.
+\end{equation}
+Rearranging this expression, it becomes clear that
+\begin{equation}
+\text{Ta} = \left(\text{Ra}^\alpha\text{Pr}^{\gamma}\right)^{1/\beta},
+\end{equation}
+which is to say that, at fixed Pr, even if we now have ``three'' input parameters (Ra, Ta, Ro$_{\text{p}}$), we only have two degrees of freedom given those inputs.
+Choosing two (e.g., Ra and Ro$_\text{p}$ in this work) specifies the third (Ta).
+We've suggested that $\alpha = 1/2$, $\beta = -3/8$, and $\gamma = -1/4$ may be the ``proper'' definition of Ro$_{\text{p}}$, where by ``proper'' we mean: these exponents may trace out surfaces in (Ra, Ta, Pr) space along which the Rossby number is constant.
+When we refer to the Ra$\sim$Ta$^{3/4}$ scaling, what we are referring to is really the ratio of $\beta$ and $\alpha$,
+$$
+\frac{\beta}{\alpha} = \frac{-3/8}{1/2} = -\frac{3}{4}.
+$$
+Recast differently, if you fix the values of Pr and Ro$_{\text{p}}$, you can see that Ra and Ta are constrained by
+$$
+\text{Ra} \propto \text{Ta}^{-\beta/\alpha} \qquad\rightarrow\qquad
+\text{Ra} \propto \text{Ta}^{3/4},
+$$
+and this is the scaling we're referring to.
+} in \pro, but this relationship was independently
 discovered by \cite{king&all2012}. Arguing that the thermal boundary layers should
 scale as $\delta_{S} \propto \text{Ra}^{-1/3}$ and rotational Ekman boundary layers
 should scale as $\delta_{\text{Ro}} \propto \text{Ta}^{-1/4} = \text{Ek}^{1/2}$, they
@@ -606,15 +653,23 @@ Time will tell, as will follow-up work.
 The results presented here have spawned many interesting follow-up conversations and studies.
 Preliminary results (See Fig.~\ref{fig:ro_ek}) from simulations by Ben Brown shows that \pro$\,$ does a decent job of predicting the Rossby number in 3D, spherical, anelastic dynamo simulations (Brown 2020, private communication).
 In these simulations, the Rossby number seems to be a weak function of Ek along constant \pro$\,$ paths, suggesting that \pro$\,$ is \emph{close} to the ``right'' parameter for conducting suites of simulations along constant Rossby number paths.
-However, $\pro\,$ is not perfect, and future work should aim to determine what the ``right'' parameter is that would achieve a constant Ro as Ek or Ra are varied.
+This work is hugely preliminary, but Ben Brown (private communication, Mar.~25, 2020) was able to get me the exact values that went into making this figure.
+They are presented in Table~\ref{table:rop_spheres}.
+These simulations reportedly take a very long time to converge, and these results are extremely preliminary (benchmarking, etc.~is underway to ensure that they are trustworthy).
+Ben claims that it's probably not reasonable to have faith in the runs that haven't evolved for more than 5 viscous diffusion timescales (at the top of the domain), so I'm dropping those points from further analysis.
+It's unclear if the points that have run for fewer than 20 viscous timescales are trustworthy in his opinion, but for now I'm going to assume that they are.
+I've re-plotted the `trustworthy' points in the left panel of Fig.~\ref{fig:mdwarfs_rop}.
+The points with Ro$_\text{p}^2 > 20$ seem to have a sensible scaling, and the best fit law is roughly $\text{Ro} \sim \text{Ro}_\text{p}^2 \text{Ek}^\alpha$ where $\alpha \approx 0.25$ for Ro$_\text{p}^2 = 80$ and $\alpha \approx 0.22$ for Ro$_\text{p}^2 = \{20, 40\}$.
+In the right panel of Fig.~\ref{fig:mdwarfs_rop}, I've compensated this plot by an Ek$^{0.22}$ scaling law, and I've normalized all points by their value at Ek$ = 3 \times 10^{-3}$ to show the goodness of these power-law fits.
+Indeed, in these data, even at fixed Ro$_\text{p}$, the evolved Rossby number has a fairly large ($\alpha \sim 1/4$) Ek dependence remaining.
+It's unclear to me if this is due to geometry effects, or if it is due to the region of parameter space that these models are in.
+We previously found that Ro$_\text{p}$ behaved best for low Ro cases (at lower Ek than these runs), and the lowest Ro points here behave very strangely.
+Further data is needed to determine if Ro$_{\text{p}}$ works well in spherical domains.
 
-The results in our published work have led to some fruitful discussions with Keith Julien \& Ian Grooms.
-We are interested in understanding how Ro varies with Ra and Ek from a theoretical perspective.
-Or, put differently, we are interested in understanding how Ro scales by applying the logic that the \RB convection community has put towards understanding how e.g., the Nusselt number scales with Ra and Ek.
-I look forward to continuing discussions with them over the spring and summer.
-
-\begin{figure*}[b!]
-    \includegraphics[width=\textwidth]{./figs/postscripts/Ro_Ek.pdf}
+\begin{figure*}[t!]
+	\begin{center}
+    \includegraphics[width=0.7\textwidth]{./figs/postscripts/Ro_Ek.pdf}
+	\end{center}
     \caption[Initial \pro$\,$ results in spherical simulations]
 	{
 	Experimental measurements of the evolved simulation Rossby number as a function of decreasing Ekman number (increasing rotational forcing).
@@ -623,6 +678,111 @@ I look forward to continuing discussions with them over the spring and summer.
 	Simulations marked with grey circles have not yet timestepped through a full thermal diffusion time, and their results may not be accurate.
     \label{fig:ro_ek} }
 \end{figure*}
+
+\begin{table}[ht!]
+    \caption[Preliminary Rossby numbers in Mdwarf simulations.]{
+	Results from preliminary dynamo models are reported.
+	The squared value of Ro$_\text{p}$ and the value of Ek (input values) are reported, as well as the evolved value of Ro and the total simulation run time in units of viscous diffusion timescales at the top of the domain.
+	Due to diffusivities decreasing with depth (and increasing density), the viscous diffusion timescale is much longer at the bottom of the domain (at $r = 0$).
+	}
+    \begin{center}
+    \begin{tabular}{c c c c} \hline
+	Ro$_\text{p}^2$ & Ek &  Ro & run time ($t_{\text{visc, top}}$) \\
+	\hline
+	10	&	$3 \times 10^{-3}$	& 0.042 & 	20	\\
+	10	&	$10^{-3}$			& 0.039	&	9.6 \\
+	10 	&	$3 \times 10^{-4}$	& 0.12	&	6.8 \\
+	20	&	$10^{-2}$			& 0.16	&	20 \\
+	20	&	$3 \times 10^{-3}$	& 0.13	&	20 \\
+	20	&	$10^{-3}$			& 0.097 &	20 \\
+	20 	&	$8 \times 10^{-4}$	& 0.088	&	4.6 \\
+	20	&	$5 \times 10^{-4}$	& 0.079 &	2.3 \\
+	40	&	$10^{-2}$			& 0.34	&	20  \\
+	40	&	$3 \times 10^{-3}$	& 0.26	&	20  \\
+	40	&	$10^{-3}$			& 0.19	&	3.3 \\
+	80	&	$10^{-2}$			& 0.61	&	20  \\
+	80	&	$3 \times 10^{-3}$	& 0.45	&	20  \\
+	80	&	$10^{-3}$			& 0.34	&	10	\\
+	80	&	$3 \times 10^{-4}$	& 0.26	&	0.41 \\
+	\end{tabular}
+\end{center}
+\vspace{0.5cm}
+\label{table:rop_spheres}
+\end{table}
+
+
+
+
+\begin{figure}[ht!]
+\includegraphics[width=\textwidth]{./figs/revisions/mdwarfs_rop.pdf}
+\caption[Filtered initial \pro$\,$ results and scalings in spherical simulations.]{ (left) Ro vs.~Ek from preliminary dynamo models in spherical domains which include the $r = 0$ point.
+		  (right) A compensated Ro vs.~Ek plot, where an Ek$^{0.22}$ law has been removed from the data, and where the data has been normalized by the value of Ro at Ek = $3 \times 10^{-3}$.
+	\label{fig:mdwarfs_rop} }
+\end{figure}
+
+
+The results in our published work have led to some fruitful discussions with Keith Julien \& Ian Grooms.
+We are interested in understanding how Ro varies with Ra and Ek from a theoretical perspective.
+Or, put differently, we are interested in understanding how Ro scales by applying the logic that the \RB convection community has put towards understanding how e.g., the Nusselt number scales with Ra and Ek.
+I look forward to continuing discussions with them over the spring and summer.
+
+
+\subsection{A few further lessons learned}
+We find that, even in rotationally constrained systems, the initial stratification is the same as evolved stratification to within $\sim\epsilon$ (see Fig.~\ref{fig:rot_density}). 
+So the flows in our simulations here feel $\sim$3 density scale heights of stratification.
+It's surprising that the lack of vertical variation seen in the right panels of Fig.~\ref{fig:dynamics_plot} can be achieved in the presence of this stratification.
+\begin{figure}[b!]
+\includegraphics[width=\textwidth]{./figs/revisions/rot_density.pdf}
+\caption[Evolved density stratification in rotating convection simulations.]{ 
+	Density profiles for all simulations with Ro$_{\text{p}} = 0.6$ are shown.
+	(Left) The log of the full density profile compared to the initial profile.
+	All profiles are, to first order, indistinguishable from the initial profile.
+	(Right) Deviations in $\ln\rho$ away from the initial state.
+	As Ra increases (from yellow to purple), density differences, particularly in the upper boundary layer, become more extreme.
+	The noise in these profiles is a result of the accuracy of the output data that I have on hand (which was the full rho profile, not the fluctuations), and does not reflect noise or accuracy in the simulations themselves.
+	\label{fig:rot_density} }
+\end{figure}
+
+In this work, we chose to simulate in \emph{extremely} ``skinny'' domains.
+Intuitively, these boxes feel a little narrow, and it seems like they may not fully capture the convective motions.
+However, the most unstable and fastest-growing horizontal modes are certainly contained within our simulation domain -- see Fig.~\ref{fig:ta1e10_onset}. 
+Visually, flows in our simulations do not appear to be dominated by low-aspect-ratio effects (e.g., development of mean flows driven by convective elements not having enough room to horizontally expand).
+From a private conversation with Jon Aurnou (2019 APS Division of Fluid Dynamics meeting), I expressed a concern about the narrowness of our boxes.
+He has quite a bit more experience and intuition for rotating convection than I do, and he didn't seem concerned by our choice.
+His intuition is essentially that rotationally constrained convective domains become ``infinitely large'' compared to convective elements very quickly.
+Due to rotationally constrained structures becoming essentially vertically invariant, the difference between a large box and a small box is whether you fit a lot or a few of those vertically invariant structures into your box.
+But -- the solution and heat transport per horizontal area should be the same.
+It's unclear if that intuition fits in stratified convection, but our highly-rotationally constrained results (right panels of Fig.~\ref{fig:dynamics_plot}) suggest that even stratified domains can achieve mostly vertically invariant flows.
+\begin{figure}[t!]
+\includegraphics[width=\textwidth]{./figs/revisions/crit_curve_ta1e10.pdf}
+\caption[Critical Rayleigh number curve for a rotating, polytropic atmosphere.]{ 
+	Critical curve of convective onset at Ta = $10^{10}$, $\epsilon = 10^{-4}$, $n_\rho = 3$.
+	Red colors indicate a value of $(k_\perp, \text{Ra})$ that is convectively unstable -- that is, where the linear solution is exponential growth.
+	Blue colors indicate a linear solution of exponential decay.
+	The thick black line shows the critical curve that separates convectively unstable modes from convectively stable modes.
+	The star indicates the true value of the critical Rayleigh number and indicates the point $(k_{\perp, \text{crit}}, \text{Ra}_{\text{crit}})$.
+	In our simulation domains, we set $L_x = L_y = 2 \lambda_\text{crit} = 4\pi / k_{\perp, \text{crit}}$.
+	For this choice, we have annotated the maximum wavenumber which is contained along a given horizontal direction ($x$ or $y$) with a line (``Minimum simulation $k_x$''), as well as the maximum wavenumber contained along a diagonal of our simulation (``Minimum simulation $k_\perp$'').
+	\label{fig:ta1e10_onset} }
+\end{figure}
+
+Note that our theoretical understanding of \pro$\,$ suggests that it is boundary layer scalings which are controlling the dynamics in our simulations.
+To first order, $\delta_s \sim \text{Ra}^{-1/3}$ is a good description of what we measure for our entropy boundary layer thickness (top of domain) along our Ro$_\text{p}$ paths.
+See Fig.~\ref{fig:ro_p_boundary_layers}.
+\begin{figure}[t!]
+\includegraphics[width=\textwidth]{./figs/revisions/ro_p_boundary_layers.pdf}
+\caption[Thermal Boundary layer thickness in rotating, polytropic atmospheres.]{ 
+	The thickness of the entropy boundary layer at the top of the simulation is plotted vs.~Ra at constant Ro$_{\text{p}}$.
+	For each case, we plot the supercriticality, $\mathcal{S}$ on the x-axis, which is Ra normalized by the value of Ra$_{\text{crit}}$ along that Ro$_{\text{p}}$ path, reported in table 3.1.
+	The boundary layer values are compensated by $\mathcal{S}^{-1/3}$, the prediction for the scaling of boundary layers per the arguments of \citet{king&all2012}.
+	To first order, across many decades of Ra, this quantity is flat, indicating that this predition describes our simulation behavior well.
+	\label{fig:ro_p_boundary_layers} }
+\end{figure}
+
+
+
+
+
 
 
 
