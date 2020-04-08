@@ -36,6 +36,7 @@ We will refer to the common choice of fixing temperature at both boundaries as `
 It is generally assumed that FT and FF boundaries should fundamentally behave similarly \citep{goluskin2016}, and the behavior of FF boundaries is well-known \citep{otero&all2002, johnston&doering2009}.
 FF and TT boundaries exhibit the same scaling of convective heat transport (quantified by the Nusselt number, Nu) as a function of increased convective driving (quantified by the Rayleigh number, Ra) \citep{johnston&doering2009}.
 It is natural to assume that FT simulations should follow the same Nu vs.~Ra scaling laws as FF and TT boundary conditions.
+Indeed, \citet{calkins&all2015b} have found a dynamical equivalence between FT and TT boundaries in rapidly rotating RBC.
 However, FT boundaries introduce complexities into the convective solution which neither FF nor TT boundaries are exposed to.
 First, the evolved mean temperature of a simulation with FT boundaries differs from the initial mean temperature, and therefore the thermal reservoir of the convective system must evolve (``relax'') over time \citep{anders&all2018}.
 Second, FT boundary conditions are fundamentally asymmetric, and it is unclear if these asymmetries affect the evolved convective solution.
@@ -300,7 +301,7 @@ In the previous subsections, we have shown that relaxed FT and TT simulations ar
 It should therefore be possible to use results from a TT simulation to quickly reach the relaxed state of a comparable FT simulation, saving up to an order of magnitude in computational cost.
 
 We now briefly describe a procedure which takes advantage of the fast evolution of TT simulations to achieve equilibrated FT simulations.
-In short, the evolved flow fields in the TT simulation are properly re-nondimensionalized and used as initial conditions for an FT simulation.
+In short, the evolved flow fields in the TT simulation are properly re-nondimensionalized and used as initial conditions for an FT simulation (and for a more complete discussion of this nondimensional remapping, we refer the reader to \citet{calkins&all2015b}).
 Throughout this work, we will refer to simulations conducted this way as ``TT-to-FT'' simulations.
 To achieve this, we perform these steps:
 \begin{enumerate}
@@ -427,7 +428,7 @@ We explore this further in the discussion in subsection \ref{sec:ft20_discussion
 
 We now extend our study to a more complicated experiment: 3D rotating RBC with an Ekman number of $10^{-6}$.
 We study a TT case at Ra$_{\Delta T} = 2.75\times 10^9$, and an FT case at $\text{Ra}_{\partial_z T} = 2.1 \times 10^{10}$ (the supercriticality of the TT case is $\sim 3$).
-These simulations employ stress free boundary conditions which allow for the generation of mean flows such as large scale vortices (LSV) \citep{couston&all2019}.
+These simulations employ stress free boundary conditions which allow for the generation of mean flows such as large scale vortices (LSV) \citep{stellmach&all2014, rubio&all2014, guervilly&all2014, guervilly&hughes2017, favier&all2014, favier&all2019, couston&all2019}.
 
 \begin{figure}
 \includegraphics[width=\textwidth]{./figs/rotating_panels.pdf}
