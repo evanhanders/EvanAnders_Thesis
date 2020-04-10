@@ -116,6 +116,7 @@ Furthermore, carrying out a similar procedure for the compressible equations to 
 Finally, it would be fascinating to understand how the fully compressible equations dissipate flywheel energy at high Mach number (as in the high-Mach 2D cases in Fig.~\ref{fig:ma_v_eps}).
 
 \section{The Magnitude of Viscous Terms in Turbulent Convection}
+\label{sec:unpub_viscous_terms}
 Historically, the magnitude of viscous terms (like viscous fluxes, and viscous heating) have been thought to be negligible in turbulent convection when diffusivities are small.
 However, recent work by \citet{currie&all2017} has shown that the volume-integrated contributions of the viscous heating (viscous dissipation) term can exceed the luminosity of the convection, even at very high Rayleigh number.
 Some of our unpublished work also suggests that viscous dissipation processes can be generally important in stratified convection.
@@ -143,198 +144,7 @@ An extension of the flywheel work, mentioned in the previous section, into the r
 
 
 
-\section{Internally Heated, Fully Compressible Convection}
-\label{sec:internally_heated}
-Convective systems in nature (e.g., in stars) are generally not as simple as the purely boundary-driven convection generally examined in simulations.
-The next step up in complexity from boundary driven convection is \emph{internally heated} convection, in which the convection is driven by deposition of energy in the bulk of the convective domain.
-Two instances of internally heated convection in nature are the Sun and the Earth's mantle.
-In the Sun, the increasing opacity within the solar convection zone (and subsequent divergence of radiative flux) leads to the gradual deposition of energy, as does radioactive decay in the Earth's mantle.
-Understanding internally heated convection is therefore crucial for characterizing geophysical and astrophysical processes.
-Inspired by the work of \citet{goluskin&spiegel2012} and the concise review of \citet{goluskin2016}, I had hoped to develop and study very simple internally heated, fully compressible systems.
-Just as polytropic atmospheres have linear temperature profiles and can be compared to \RB convection easily, our goal was to develop and study stratified atmospheres driven by a constant (or linear) internal heating term, which would in turn produce quadratic (or cubic) temperature profiles which could be compared to internally heated Boussinesq convection.
 
-\subsection{Preliminaries: convective stability and available flux}
-\label{sec:stability}
-In Boussinesq convection, convective stability is entirely determined by the temperature gradient.
-There, negative temperature gradients drive convective motions, and positive temperature gradients are stable.
-When compressibility is taken into account, atmospheres can maintain stability even in the presence of a large, negative temperature gradient \citep{spiegel&veronis1960}.
-In such atmospheres, it is the gradient of \emph{entropy} which determines stability.
-In an ideal gas, the specific entropy gradient is defined
-\begin{equation}
-\grad S = c_V \grad\ln T - R \grad\ln\rho,
-\end{equation}
-where $S$, $T$, and $\rho$ are the specific entropy, temperature, and density; $c_V$ is the specific heat at constant volume; and $R$ is the specific gas constant defining pressure, $P = R \rho T$.
-Where stability is concerned, the entropy gradient in compressible systems is a direct analog to the temperature gradient in Boussinesq systems.
-Regions with $\grad S < 0$ are unstable to convection, and regions with $\grad S > 0$ are stable.
-
-Assuming that the convective system remains, to first order, in hydrostatic equilibrium, $\grad P = \rho \bm{g}$, the temperature gradient which characterizes a perfectly adiabatic state is:
-\begin{equation}
-\grad_{\text{ad}} = \bm{g}/c_P,
-\end{equation}
-where $\bm{g}$ is the gravity and $c_P$ is the specific heat at constant pressure.
-The ``adiabatic temperature gradient,'' $\grad_{\text{ad}}$, can in general have a large magnitude, which makes the interpretation of the conductive (or radiative) flux in a system a bit harder to understand.
-The conductive flux is
-\begin{equation}
-\bm{F}_{\text{cond}} = -\kappa \grad T,
-\end{equation}
-where $\kappa$ is the conductivity.
-If a system is driven by some quantity of flux, $\bm{F}_{\text{drive}}$, we define the ``available flux'' as
-\begin{equation}
-\bm{F}_{\text{avail}} \equiv \bm{F}_{\text{drive}} - \bm{F}_{\text{ad}},
-\end{equation}
-where the ``adiabatic flux,'' $\bm{F}_{\text{ad}} = -\kappa\grad_{\text{ad}}$, is flux that can be conducted across an adiabatically stratified atmosphere.
-If $\bm{F}_{\text{avail}} \leq 0$, the system is stable to convection.
-If $\bm{F}_{\text{avail}} > 0$, the system is unstable to convection.
-Importantly, $\bm{F}_{\text{avail}}$ is the \emph{only portion} of the flux that the convection is able to ``tap'' into.
-Any amount of $\bm{F}_{\text{drive}}$ that is conducted down the adiabatic gradient will not be carried by convection.
-Thus, $\bm{F}_{\text{avail}}$ is a direct analog in compressible systems to the \emph{total} flux carried through a Boussinesq system.
-
-Internally heated (or cooled) convection in which the domain has a convecting region and a stable region is characterized by a heating (or cooling) profile that changes the sign of $\bm{F}_{\text{avail}}$.
-
-\subsection{Disappearance of internal heating term from perturbation equations}
-Given a constant internal heating term, $Q$ (in units of energy flux / length), the energy equation takes the form
-\begin{equation}
-\frac{D T}{Dt} + T(\gamma-1)\DivU = \frac{1}{\rho c_V}\left(\Div{\kappa \grad T} + Q\right) + \text{(Viscous Heating)}.
-\end{equation}
-In a static, steady state, thermal equilibrium in the ``background'' atmosphere satisfies 
-\begin{equation}
--\Div{\kappa \grad T_0} = Q.
-\end{equation}
-Assuming that this thermal equilibrium is always met by the background profile (and for simplicity, assuming constant and uniform $\kappa$), the energy equation is
-\begin{equation}
-\frac{D T}{Dt} + T(\gamma-1)\DivU = \frac{1}{\rho c_V}\Div{\kappa \grad T_1} + \text{(Viscous Heating)}.
-\label{eqn:energy_noheat}
-\end{equation}
-
-In other words, the equation for the perturbations is precisely the same as it is for a case where internal heating is not present, and the internal heating disappears from the system\footnote{
-Note that this is \emph{precisely} true for simple, time-independent heating terms, $Q$, like the one we have discussed here.
-However, astrophysical systems often have heating profiles which vary nonlinearly in time (which are either explicit heating terms, from sources like nuclear fusion, or pseudo-heating terms, from divergences of changing opacities as in Sec.~\ref{sec:kramers_opacity}).
-The time-dependent portions of these heating terms would remain in Eqn.~\ref{eqn:energy_noheat}, even if a large O(1) portion of the heating term does not appear in the equation due to its cancellation with a background thermodynamic stratification.
-}.
-Internal heating therefore only enters the dynamics by modifying the background profile $T_0$ from a linear profile to something more complex.
-The differences in this temperature profile affect dynamics through, for example, the $\bm{u}\cdot\grad T_0$ term in the temperature equation.
-But -- importantly -- \emph{dynamics do not directly feel the source term}.
-
-%%%%%%%%%%%%
-%%%%%%%%%%%
-% Atmospheres
-%%%%%%%%%%%
-%%%%%%%%%%%%
-\subsection{Two internally heated/cooled basic atmospheric models}
-\label{sec:atmospheres}
-For these atmospheres, I nondimensionalize the length scale on the \emph{adiabatic} temperature gradient length scale, $\grad_{\text{ad}} = -g/c_P = -1$, where $g$ is the (uniform) gravity and $c_P$ is the specific heat at constant pressure.
-The nondimensional timescale is the isothermal sound crossing time of that unit length at the top of the atmosphere.
-This choice of nondimensionalization makes it clear that these atmospheres are respectively quadratic and cubic perturbations away from a stable adiabatic profile.
-
-\subsubsection{A two-layer atmosphere}
-A two-layer, internally heated atmosphere can be simply constructed.
-These atmospheres have an unstable layer of depth $L_C$ overlying a stable layer of depth $L_R$; the total atmospheric depth is $L_z = L_R + L_C$.
-These atmospheres are constructed around a constant internal heating term,
-\begin{equation}
-Q = \kappa \epsilon,
-\end{equation}
-where $\kappa$ is the thermal conductivity, and this heating term is an O($\epsilon$) source term compared to a nondimensional adiabatic flux ($-\kappa\grad_{\text{ad}} = \kappa$).
-We assume that the atmosphere satisfies thermal equilibrium,
-$$
--\kappa \grad^2 T_0 = Q.
-$$
-We integrate this equation such that the flux is perfectly adiabatic at $z = L_R$ (so $\partial_z T = \grad_{\text{ad}} = -1$ there), and such that $T_0 = 1$ at the top of the atmosphere.
-Under these assumptions,
-\begin{equation}
-T_0 = 1 - (z - L_z) + \epsilon\left(\frac{1}{2} z^2 + L_R z + L_z \left[L_R - \frac{1}{2}L_z\right]\right),
-\end{equation}
-is the thermally equilibrated profile.
-The O($\epsilon$) terms are the quadratic perturbation around the stable adiabatic profile.
-
-
-
-\subsubsection{A three-layer atmosphere}
-A three-layer, internally heated \& cooled atmosphere can also be constructed.
-These atmospheres have a stable layer at the top of the atmosphere with depth $L_{RT}$, a convective layer with depth $L_C$, and a stable layer at the base of the atmosphere with depth $L_{RB}$; the total atmospheric depth is $L_z = L_{RB} + L_C + L_{RT}$.
-These atmospheres are constructed around an internal heating/cooling profile with the shape
-\begin{equation}
-Q(z) = -\kappa \epsilon(z - L_{RB} - L_C/2),
-\end{equation}
-where $\kappa$ is the thermal conductivity, $z$ is height, and this heating profile is once again an O($\epsilon$) source term compared to the adiabatic flux.
-This profile transitions from positive (heating) to negative (cooling) halfway through the convection zone.
-The thermally equilibrated temperature profile which accompanies this heating term is a cubic perturbation from an adiabat,
-\begin{equation}
-T_0 = 1 - (z - L_z) + \epsilon(A z^3 + B z^2 + Cz + D),
-\end{equation}
-where $A = \frac{1}{6}$, $B = -\frac{1}{2}(L_{RB} + L_C/2)$, $C = \frac{1}{2}L_{RB}(L_{RB} + L_C)$, and $D = (-AL_z^3 + BL_z^2 + CL_z)$.
-
-\subsection{Density profile construction}
-For both atmospheres, the density profile is constructed numerically by solving a boundary value problem for hydrostatic equilibrium
-\begin{equation}
-\grad P_0 = \rho_0 \bm{g},
-\end{equation}
-under the constraint that the nondimensional density is 1 at the top of the atmosphere.
-
-\subsection{Next steps}
-One difficulty of these atmospheres is that they have extremely long thermal relaxation timescales in the deep, stable zone.
-In order to study these atmospheres fully, it would either be necessary to develop a consistent accelerated evolution procedure for stratified convection (see section \ref{sec:stratified_ae}), or it would be necessary to run them down at great computational expense.
-Either way, the next steps would then be to compare e.g., modified Nusselt numbers in these atmospheres to those in Boussinesq internally heated systems, as laid out in \citet{goluskin2016}.
-
-
-\section{Stratified Accelerated Evolution}
-\label{sec:stratified_ae}
-A natural follow-up to the AE method presented in Ch.~\ref{ch:abo18} is to explore AE in Polytropic, stratified atmospheres.
-The beginnings of an extension of AE to polytropes was explored.
-Preliminary results (see Fig.~\ref{fig:gabo_ae}, experiments performed by Gabo Ortiz-Pena) showed promise in accelerating the atmospheres up to Ra $\approx 10^{8-9}$ (supercriticalities of $\gtrsim 10^7$).
-
-
-\begin{figure}[t!]
-    \includegraphics[width=\textwidth]{figs/unpublished/gabo_ae.pdf}
-    \caption[Timeseries of kinetic energy in stratified AE vs.~SE.]{
-	Kinetic energy trace of a stratified simulation ($\epsilon = 10^{-4}$, supercriticality $\sim 10^4$) comparing AE and SE kinetic energies.
-	The AE procedure (described in section \ref{sec:ae}) seems to reach the proper mean value for the converged kinetic energy, but in this instance it put the system into an oscillatory state not achieved by the SE simulation.
-    \label{fig:gabo_ae} }
-\end{figure}
-
-
-
-
-\subsection{Modifications to the method of Accelerated Evolution}
-\label{sec:ae}
-For simplicity, we will restrict our study again to FT boundary conditions -- that is, when the flux is fixed at the bottom of the atmosphere, and the temperature is fixed at the top boundary to $T_{\text{top}}$.
-We additionally restrict this study to the case in which the thermal conductivity, $\kappa$, is constant.
-As described in Sec.~\ref{sec:stability}, we subtract off the adiabatic flux ($\bm{F}_{\text{ad}}$) from the input flux at the bottom boundary ($\bm{F}_{\text{drive}}$) to find the available flux for convection, $\bm{F}_{\text{avail}} = F \hat{z}$, a constant.
-
-In stratified systems, convection carries energy not only through enthalpy fluxes, but also through fluxes of potential energy, kinetic energy, and viscous forces.
-All of these new fluxes are driven by convection, and we therefore define the convective flux as in Ch.~\ref{ch:ab17},
-\begin{equation}
-\bm{F}_{\text{conv}} \equiv \bm{F}_{\text{enth}} + \bm{F}_{\text{KE}} + \bm{F}_{\text{PE}} + \bm{F}_{\text{visc}},
-\end{equation}
-where $\bm{F}_{\text{enth}} \equiv \rho\bm{u}(c_V T + P/\rho)$ is the enthalpy flux, $\bm{F}_{\text{KE}} \equiv \rho|\bm{u}|^2\bm{u}/2$ is the kinetic energy flux, $\bm{F}_{\text{PE}} \equiv \rho\bm{u}\phi$ (with $\phi \equiv -gz$) is the potential energy flux, and $\bm{F}_{\text{visc}} \equiv -\rho\nu\bm{u}\cdot\lilstressT$ is the viscous flux.
-This convective flux combined with the superadiabatic portion of the conductive flux, $\bm{F}_{\text{cond,s}} = -\kappa \grad T - \bm{F}_{\text{ad}}$, will carry $\bm{F}_{\text{avail}}$ through the atmosphere in the evolved state.
-
-As in \citet{anders&all2018}, we find that the fluxes carried through these systems at early times can exceed $F_{\text{avail}}$ as the system leaks out its energy and approaches its relaxed states.
-As a result, we define the profile,
-\begin{equation}
-\xi(z, t) = \frac{F_{\text{avail}}}{F_{\text{conv}} + F_{\text{cond,s}}},
-\label{eqn:xi}
-\end{equation}
-which has a value of unity where the system is carrying the input flux, but whose value is generally less than one at early times while the system is converging.
-Here, $\xi$ is a measure of the factor by which the flux through the system must be reduced in order for the system to reach its final, equilibrium state.
-In boundary-driven polytropic convection, where $F_{\text{avail}}$ is a uniform, positive value throughout the whole domain, this definition of $\xi$ is fairly robust.
-Extensions of the AE method which aim to study stable regions will have to come up with a clever adjustment to $\xi$, but that's beyond the scope of this discussion.
-
-With this definition of $\xi$, we solve a mass-conserving boundary value problem for a modified thermal and hydrostatic equilibrium,
-\begin{gather}
-\partial_z M_1 = \rho_0(e^{\ln\rho_1} - 1), \\
-\kappa\partial_z^2 T_1 = \partial_z(\xi \angles{F_{\text{conv}}}), \\
-\partial_z(T_1) + T_1 \partial_z(\ln\rho_0) + T_0\partial_z(\ln\rho_1) = -T_1\partial_z(\ln\rho_1) - \bar{\xi}^{\frac{2}{3}}\angles{\bm{u}\cdot\grad w}.
-\end{gather}
-with the boundary conditions $M_1 = 0$ at $z = [0, L_z]$, $\partial_z T_1 = 0$ at $z = 0$, and $T_1 = 0$ at $z = L_z$.
-Here, the exponent of $\xi^{2/3}$ in the hydrostatic equilibrium equation comes from the assumption that the flux scales like the kinetic energy $F \sim \rho u^3$, so in scaling the flux by $\xi$, we must equivalently scale the velocities by roughly $\xi^{1/3}$.
-It's unclear if this is a good assumption.
-
-\subsection{Next steps}
-The first obvious next step is to actually see if this procedure works robustly (so far we've only checked it chi-by-eye).
-After that, a very important project would be to incorporating a procedure that successfully accounts for stable layers.
-It is probable that the knowledge gained in Ch.~\ref{ch:FT20} will be essential in extending AE.
-This is to say: thermal relaxation happens in two parts (changes to the energy reservoir and stratification).
-AE should likely therefore have two parts (a change to the energy reservoir step based on current flux divergence, and a boundary value problem which solves for the proper stratification under those new energy constraints).
 
 
 \section{A Freefall Nondimensionalization of the Fully Compressible Equations}
@@ -571,6 +381,244 @@ Plugging these back in, the full energy equation is
 I've written the LHS of this equation to call attention to the fact that there are two groups of terms on the LHS: O(1) terms which include velocities and $T_0$ (sound wave terms which must be implicitly timestepped), and O($\epsilon$) terms which include $T_1$ and are on the scale of convective dynamics.
 Note also that in our nondimensionalization in our paper where $P = \rho T$, the ideal gas constant is $R = 1$, so the viscous heating term just has $\epsilon/\text{Re}_{\text{ff}}$ in front of it.
 
+\section{Stratified Accelerated Evolution}
+\label{sec:stratified_ae}
+A natural follow-up to the AE method presented in Ch.~\ref{ch:abo18} is to explore AE in Polytropic, stratified atmospheres.
+The beginnings of an extension of AE to polytropes was explored.
+Preliminary results (see Fig.~\ref{fig:gabo_ae}, experiments performed by Gabo Ortiz-Pena) showed promise in accelerating the atmospheres up to Ra $\approx 10^{8-9}$ (supercriticalities of $\gtrsim 10^7$).
+
+
+\begin{figure}[t!]
+    \includegraphics[width=\textwidth]{figs/unpublished/gabo_ae.pdf}
+    \caption[Timeseries of kinetic energy in stratified AE vs.~SE.]{
+	Kinetic energy trace of a stratified simulation ($\epsilon = 10^{-4}$, supercriticality $\sim 10^4$) comparing AE and SE kinetic energies.
+	The AE procedure (described in section \ref{sec:ae}) seems to reach the proper mean value for the converged kinetic energy, but in this instance it put the system into an oscillatory state not achieved by the SE simulation.
+	This is a caution to those using AE-like techniques: it is crucial to verify that the technique works properly and is able to reproduce the results of SE simulations before using these techniques for scientific production runs.
+    \label{fig:gabo_ae} }
+\end{figure}
+
+\subsection{Preliminaries: convective stability and available flux}
+\label{sec:stability}
+In Boussinesq convection, convective stability is entirely determined by the temperature gradient.
+There, negative temperature gradients drive convective motions, and positive temperature gradients are stable.
+When compressibility is taken into account, atmospheres can maintain stability even in the presence of a large, negative temperature gradient \citep{spiegel&veronis1960}.
+In such atmospheres, it is the gradient of \emph{entropy} which determines stability.
+In an ideal gas, the specific entropy gradient is defined
+\begin{equation}
+\grad S = c_V \grad\ln T - R \grad\ln\rho,
+\end{equation}
+where $S$, $T$, and $\rho$ are the specific entropy, temperature, and density; $c_V$ is the specific heat at constant volume; and $R$ is the specific gas constant defining pressure, $P = R \rho T$.
+Where stability is concerned, the entropy gradient in compressible systems is a direct analog to the temperature gradient in Boussinesq systems.
+Regions with $\grad S < 0$ are unstable to convection, and regions with $\grad S > 0$ are stable.
+
+Assuming that the convective system remains, to first order, in hydrostatic equilibrium, $\grad P = \rho \bm{g}$, the temperature gradient which characterizes a perfectly adiabatic state is:
+\begin{equation}
+\grad_{\text{ad}} = \bm{g}/c_P,
+\end{equation}
+where $\bm{g}$ is the gravity and $c_P$ is the specific heat at constant pressure.
+The ``adiabatic temperature gradient,'' $\grad_{\text{ad}}$, can in general have a large magnitude, which makes the interpretation of the conductive (or radiative) flux in a system a bit harder to understand.
+The conductive flux is
+\begin{equation}
+\bm{F}_{\text{cond}} = -\kappa \grad T,
+\end{equation}
+where $\kappa$ is the conductivity.
+If a system is driven by some quantity of flux, $\bm{F}_{\text{drive}}$, we define the ``available flux'' as
+\begin{equation}
+\bm{F}_{\text{avail}} \equiv \bm{F}_{\text{drive}} - \bm{F}_{\text{ad}},
+\end{equation}
+where the ``adiabatic flux,'' $\bm{F}_{\text{ad}} = -\kappa\grad_{\text{ad}}$, is flux that can be conducted across an adiabatically stratified atmosphere.
+If $\bm{F}_{\text{avail}} \leq 0$, the system is stable to convection.
+If $\bm{F}_{\text{avail}} > 0$, the system is unstable to convection.
+Importantly, $\bm{F}_{\text{avail}}$ is the \emph{only portion} of the flux that the convection is able to ``tap'' into.
+Any amount of $\bm{F}_{\text{drive}}$ that is conducted down the adiabatic gradient will not be carried by convection.
+Thus, $\bm{F}_{\text{avail}}$ is a direct analog in compressible systems to the \emph{total} flux carried through a Boussinesq system.
+
+
+
+
+\subsection{Modifications to the method of Accelerated Evolution}
+\label{sec:ae}
+For simplicity, we will restrict our study again to FT boundary conditions -- that is, when the flux is fixed at the bottom of the atmosphere, and the temperature is fixed at the top boundary to $T_{\text{top}}$.
+We additionally restrict this study to the case in which the thermal conductivity, $\kappa$, is constant.
+As described in Sec.~\ref{sec:stability}, we subtract off the adiabatic flux ($\bm{F}_{\text{ad}}$) from the input flux at the bottom boundary ($\bm{F}_{\text{drive}}$) to find the available flux for convection, $\bm{F}_{\text{avail}} = F \hat{z}$, a constant.
+
+In stratified systems, convection carries energy not only through enthalpy fluxes, but also through fluxes of potential energy, kinetic energy, and viscous forces.
+All of these new fluxes are driven by convection, and we therefore define the convective flux as in Ch.~\ref{ch:ab17},
+\begin{equation}
+\bm{F}_{\text{conv}} \equiv \bm{F}_{\text{enth}} + \bm{F}_{\text{KE}} + \bm{F}_{\text{PE}} + \bm{F}_{\text{visc}},
+\end{equation}
+where $\bm{F}_{\text{enth}} \equiv \rho\bm{u}(c_V T + P/\rho)$ is the enthalpy flux, $\bm{F}_{\text{KE}} \equiv \rho|\bm{u}|^2\bm{u}/2$ is the kinetic energy flux, $\bm{F}_{\text{PE}} \equiv \rho\bm{u}\phi$ (with $\phi \equiv -gz$) is the potential energy flux, and $\bm{F}_{\text{visc}} \equiv -\rho\nu\bm{u}\cdot\lilstressT$ is the viscous flux.
+This convective flux combined with the superadiabatic portion of the conductive flux, $\bm{F}_{\text{cond,s}} = -\kappa \grad T - \bm{F}_{\text{ad}}$, will carry $\bm{F}_{\text{avail}}$ through the atmosphere in the evolved state.
+
+As in \citet{anders&all2018}, we find that the fluxes carried through these systems at early times can exceed $F_{\text{avail}}$ as the system leaks out its energy and approaches its relaxed states.
+As a result, we define the profile,
+\begin{equation}
+\xi(z, t) = \frac{F_{\text{avail}}}{F_{\text{conv}} + F_{\text{cond,s}}},
+\label{eqn:xi}
+\end{equation}
+which has a value of unity where the system is carrying the input flux, but whose value is generally less than one at early times while the system is converging.
+Here, $\xi$ is a measure of the factor by which the flux through the system must be reduced in order for the system to reach its final, equilibrium state.
+In boundary-driven polytropic convection, where $F_{\text{avail}}$ is a uniform, positive value throughout the whole domain, this definition of $\xi$ is fairly robust.
+Extensions of the AE method which aim to study stable regions will have to come up with a clever adjustment to $\xi$, but that's beyond the scope of this discussion.
+
+With this definition of $\xi$, we solve a mass-conserving boundary value problem for a modified thermal and hydrostatic equilibrium,
+\begin{gather}
+\partial_z M_1 = \rho_0(e^{\ln\rho_1} - 1), \\
+\kappa\partial_z^2 T_1 = \partial_z(\xi \angles{F_{\text{conv}}}), \\
+\partial_z(T_1) + T_1 \partial_z(\ln\rho_0) + T_0\partial_z(\ln\rho_1) = -T_1\partial_z(\ln\rho_1) - \bar{\xi}^{\frac{2}{3}}\angles{\bm{u}\cdot\grad w}.
+\end{gather}
+with the boundary conditions $M_1 = 0$ at $z = [0, L_z]$, $\partial_z T_1 = 0$ at $z = 0$, and $T_1 = 0$ at $z = L_z$.
+Here, the exponent of $\xi^{2/3}$ in the hydrostatic equilibrium equation comes from the assumption that the flux scales like the kinetic energy $F \sim \rho u^3$, so in scaling the flux by $\xi$, we must equivalently scale the velocities by roughly $\xi^{1/3}$.
+It's unclear if this is a good assumption.
+
+\subsection{Next steps}
+The first obvious next step is to actually see if this procedure works robustly (so far we've only checked it chi-by-eye).
+After that, a very important project would be to incorporating a procedure that successfully accounts for stable layers.
+It is probable that the knowledge gained in Ch.~\ref{ch:FT20} will be essential in extending AE.
+This is to say: thermal relaxation happens in two parts (changes to the energy reservoir and stratification).
+AE should likely therefore have two parts (a change to the energy reservoir step based on current flux divergence, and a boundary value problem which solves for the proper stratification under those new energy constraints).
+
+\section{Turbulent Thermals}
+\label{sec:turb_thermals}
+\begin{figure*}[p!]
+    \includegraphics[width=\textwidth]{figs/unpublished/turbulent_thermals.pdf}
+    \caption[Evolved turbulent thermals]{
+	Horizontal slices through Cartesian domains containing evolved turbulent thermals.
+	In both cases, the initial freefall Reynolds number of the thermals is $4\cdot10^3$.
+	On the left is an evolved thermal in a 1-density-scale-height atmosphere.
+	On the right is an evolved thermal in a 3-density-scale-height atmosphere.
+	There are two observations that can be made from this figure that are strange.
+	First, the vortex ring on the right looks quite laminar, whereas the one on the left looks quite turbulent.
+	Second, unlike in the results of Ch.~\ref{ch:alb19}, the thermal in the highly stratified atmosphere is falling \emph{slower} than the one on the right.
+    \label{fig:turbulent_thermals} }
+\end{figure*}
+
+
+The next logical step in the study presented in Ch.~\ref{ch:alb19} is a study of turbulent thermals.
+I have performed some initial simulations of anelastic, 3D thermals at Re = $4 \cdot 10^3$, but the initial results from these simulations are rather perplexing.
+See Fig.~\ref{fig:turbulent_thermals}.
+
+While simulations of thermals are not computationally expensive in \emph{time} (they are short), they are expensive in terms of \emph{memory}.
+Even the laminar simulations presented in Ch.~\ref{ch:alb19} took many coefficients to resolve, and were nearly at the limits of our computational abilities on a system like NASA Pleiades.
+Increasing the turbulence (the Reynolds number) by an order of magnitude is therefore quite difficult.
+In order to get around this problem, we changed the formulation of our diffusivities.
+Rather than holding the \emph{dynamic} diffusivities constant (as we did in Ch.~\ref{ch:alb19}), we here held the diffusivities (in units of cm$^2$/s) constant.
+This means that the dynamic viscosities grow proportionally to density.
+Importantly, in compressible or anelastic domains, this means that the viscous heating term (in the equation for total entropy or for total energy) grows with density.
+This choice seems to eat away at the buoyant signature of our dense thermals by heating them as they fall, and this in turn reduces the thermal acceleration.
+This messes up our theory, because we assumed the buoyant signature was constant in time.
+
+The theory of thermals that we derived in Ch.~\ref{ch:alb19} revolved around the \emph{momentum} and the \emph{entropy} (which is density-weighted, unlike the specific entropy).
+The form of the diffusivities that appear in the equations for those quantities are the \emph{dynamic} diffusivities, which in these initial turbulent simulations grow with depth.
+Moreover, they grow more with depth in a highly stratified atmosphere than they do in an atmosphere which is not highly stratified.
+These initial results suggest that if one wants to study dynamics which are equally turbulent throughout the full depth of an atmosphere, the ``proper'' choice of diffusivities is to hold the dynamic diffusivities constant, meaning that the diffusivities shrink with depth like $\rho$.
+
+Regardless, these initial struggles and the high computational expense of turbulent thermals have currently caused this project to stall out.
+Furthermore, from some conversations with Mark Rast, there is some reason to perhaps be concerned about simulating cylindrical structures in Cartesian domains \citep[see e.g., Fig.~9 of][]{clyne&all2007}, as the shape of the domain can lead to non-axisymmetric unrealistic perturbations.
+The striking similarity reported between 2D (cylindrical) and 3D (Cartesian) domains in Ch.~\ref{ch:alb19} gives optimism that those calculations should be trusted, but it would likely be ideal to conduct future experiments in cylindrical domains if possible.
+Beyond this more subtle numerical problem, it is unclear if our initial conditions (thermals) are the ``right'' experiment (e.g., are thermals or plumes the basic convective element?).
+A review of this debate in the context of Earth's atmosphere is laid out in detail by \citet{yano2014}.
+
+
+\section{Internally Heated, Fully Compressible Convection}
+\label{sec:internally_heated}
+Convective systems in nature (e.g., in stars) are generally not as simple as the purely boundary-driven convection generally examined in simulations.
+The next step up in complexity from boundary driven convection is \emph{internally heated} convection, in which the convection is driven by deposition of energy in the bulk of the convective domain.
+Two instances of internally heated convection in nature are the Sun and the Earth's mantle.
+In the Sun, the increasing opacity within the solar convection zone (and subsequent divergence of radiative flux) leads to the gradual deposition of energy, as does radioactive decay in the Earth's mantle.
+Understanding internally heated convection is therefore crucial for characterizing geophysical and astrophysical processes.
+Inspired by the work of \citet{goluskin&spiegel2012} and the concise review of \citet{goluskin2016}, I had hoped to develop and study very simple internally heated, fully compressible systems.
+Just as polytropic atmospheres have linear temperature profiles and can be compared to \RB convection easily, our goal was to develop and study stratified atmospheres driven by a constant (or linear) internal heating term, which would in turn produce quadratic (or cubic) temperature profiles which could be compared to internally heated Boussinesq convection.
+
+\subsection{Disappearance of internal heating term from perturbation equations}
+Per the discussion in Sec.~\ref{sec:stability}, internally heated (or cooled) convection in which the domain has a convecting region and a stable region is characterized by a heating (or cooling) profile that changes the sign of $\bm{F}_{\text{avail}}$.
+
+Given a constant internal heating term, $Q$ (in units of energy flux / length), the energy equation takes the form
+\begin{equation}
+\frac{D T}{Dt} + T(\gamma-1)\DivU = \frac{1}{\rho c_V}\left(\Div{\kappa \grad T} + Q\right) + \text{(Viscous Heating)}.
+\end{equation}
+In a static, steady state, thermal equilibrium in the ``background'' atmosphere satisfies 
+\begin{equation}
+-\Div{\kappa \grad T_0} = Q.
+\end{equation}
+Assuming that this thermal equilibrium is always met by the background profile (and for simplicity, assuming constant and uniform $\kappa$), the energy equation is
+\begin{equation}
+\frac{D T}{Dt} + T(\gamma-1)\DivU = \frac{1}{\rho c_V}\Div{\kappa \grad T_1} + \text{(Viscous Heating)}.
+\label{eqn:energy_noheat}
+\end{equation}
+
+In other words, the equation for the perturbations is precisely the same as it is for a case where internal heating is not present, and the internal heating disappears from the system\footnote{
+Note that this is \emph{precisely} true for simple, time-independent heating terms, $Q$, like the one we have discussed here.
+However, astrophysical systems often have heating profiles which vary nonlinearly in time (which are either explicit heating terms, from sources like nuclear fusion, or pseudo-heating terms, from divergences of changing opacities as in Sec.~\ref{sec:kramers_opacity}).
+The time-dependent portions of these heating terms would remain in Eqn.~\ref{eqn:energy_noheat}, even if a large O(1) portion of the heating term does not appear in the equation due to its cancellation with a background thermodynamic stratification.
+}.
+Internal heating therefore only enters the dynamics by modifying the background profile $T_0$ from a linear profile to something more complex\footnote{
+Note that the deviations away from this background profile will \emph{act} like an ``effective'' internal heating, on the order of $\epsilon$, the deviations of $T_1$ away from $T_0$.
+}.
+The differences in this temperature profile affect dynamics through, for example, the $\bm{u}\cdot\grad T_0$ term in the temperature equation.
+But -- importantly -- \emph{dynamics do not directly feel the source term}.
+This means that a set of equations which have the initial state's thermal equilibrium subtracted out are a valid set of equations for both boundary-driven and internally heated convection, when that internal heating is a constant.
+
+%%%%%%%%%%%%
+%%%%%%%%%%%
+% Atmospheres
+%%%%%%%%%%%
+%%%%%%%%%%%%
+\subsection{Two internally heated/cooled basic atmospheric models}
+\label{sec:atmospheres}
+For these atmospheres, I nondimensionalize the length scale on the \emph{adiabatic} temperature gradient length scale, $\grad_{\text{ad}} = -g/c_P = -1$, where $g$ is the (uniform) gravity and $c_P$ is the specific heat at constant pressure.
+The nondimensional timescale is the isothermal sound crossing time of that unit length at the top of the atmosphere.
+This choice of nondimensionalization makes it clear that these atmospheres are respectively quadratic and cubic perturbations away from a stable adiabatic profile.
+
+\subsubsection{A two-layer atmosphere}
+A two-layer, internally heated atmosphere can be simply constructed.
+These atmospheres have an unstable layer of depth $L_C$ overlying a stable layer of depth $L_R$; the total atmospheric depth is $L_z = L_R + L_C$.
+These atmospheres are constructed around a constant internal heating term,
+\begin{equation}
+Q = \kappa \epsilon,
+\end{equation}
+where $\kappa$ is the thermal conductivity, and this heating term is an O($\epsilon$) source term compared to a nondimensional adiabatic flux ($-\kappa\grad_{\text{ad}} = \kappa$).
+We assume that the atmosphere satisfies thermal equilibrium,
+$$
+-\kappa \grad^2 T_0 = Q.
+$$
+We integrate this equation such that the flux is perfectly adiabatic at $z = L_R$ (so $\partial_z T = \grad_{\text{ad}} = -1$ there), and such that $T_0 = 1$ at the top of the atmosphere.
+Under these assumptions,
+\begin{equation}
+T_0 = 1 - (z - L_z) - \epsilon\left(\frac{1}{2} z^2 - L_R z + L_z \left[L_R - \frac{1}{2}L_z\right]\right),
+\end{equation}
+is the thermally equilibrated profile.
+The O($\epsilon$) terms are the quadratic perturbation around the stable adiabatic profile.
+
+
+
+\subsubsection{A three-layer atmosphere}
+A three-layer, internally heated \& cooled atmosphere can also be constructed.
+These atmospheres have a stable layer at the top of the atmosphere with depth $L_{RT}$, a convective layer with depth $L_C$, and a stable layer at the base of the atmosphere with depth $L_{RB}$; the total atmospheric depth is $L_z = L_{RB} + L_C + L_{RT}$.
+These atmospheres are constructed around an internal heating/cooling profile with the shape
+\begin{equation}
+Q(z) = -\kappa \epsilon(z - L_{RB} - L_C/2),
+\end{equation}
+where $\kappa$ is the thermal conductivity, $z$ is height, and this heating profile is once again an O($\epsilon$) source term compared to the adiabatic flux.
+This profile transitions from positive (heating) to negative (cooling) halfway through the convection zone.
+The thermally equilibrated temperature profile which accompanies this heating term is a cubic perturbation from an adiabat,
+\begin{equation}
+T_0 = 1 - (z - L_z) + \epsilon(A z^3 + B z^2 + Cz + D),
+\end{equation}
+where $A = \frac{1}{6}$, $B = -\frac{1}{2}(L_{RB} + L_C/2)$, $C = \frac{1}{2}L_{RB}(L_{RB} + L_C)$, and $D = (-AL_z^3 + BL_z^2 + CL_z)$.
+
+\subsection{Density profile construction}
+For both atmospheres, the density profile is constructed numerically by solving a boundary value problem for hydrostatic equilibrium
+\begin{equation}
+\grad P_0 = \rho_0 \bm{g},
+\end{equation}
+under the constraint that the nondimensional density is 1 at the top of the atmosphere.
+
+\subsection{Next steps}
+One difficulty of these atmospheres is that they have extremely long thermal relaxation timescales in the deep, stable zone.
+In order to study these atmospheres fully, it would either be necessary to develop a consistent accelerated evolution procedure for stratified convection (see section \ref{sec:stratified_ae}), or it would be necessary to run them down at great computational expense.
+Either way, the next steps would then be to compare e.g., modified Nusselt numbers in these atmospheres to those in Boussinesq internally heated systems, as laid out in \citet{goluskin2016}.
+
 
 
 \section{Convection with Kramer's Opacity}
@@ -596,7 +644,12 @@ If a polytropic atmosphere is assumed ($\rho \propto T^m$), the polytropic index
 $$
 m_{kram} = \frac{3 - b}{1 + a}.
 $$
-Note that if the adiabatic index is $\gamma = 5/3$, then the solar values for $a$ and $b$ produce $m_{kram} = 3.25 > m_{\text{ad}}$ (see Ch.~\ref{ch:ab17}), producing a stable stratification.
+Note that if the adiabatic index is $\gamma = 5/3$, then the solar values for $a$ and $b$ produce $m_{kram} = 3.25 > m_{\text{ad}}$ (see Ch.~\ref{ch:ab17}), producing a stable stratification\footnote{
+Note that this suggests that the ``typical'' explanation for the depth of the solar convection zone isn't quite correct.
+The depth over which the Sun's convection zone exhibits an unstable temperature gradient is rather thin and near the surface (where this form of the Kramer's opacity breaks down), see e.g., \citet{brandenburg2016}.
+The convection zone's depth is therefore determined by the point of neutral buoyancy of surface plumes, or the point to which cold plumes formed near the surface fall until their buoyancy is neutral with the Sun's background profile.
+The depth of the Sun's convection zone is therefore determined by the entropy in the upper boundary layer and mixing, rather than merely the mean stability of the Sun's profile.
+}.
 However, a choice of $a = 1$ with values of $b = (0, 1]$ get the proper ``flavor'' of this opacity ($\rho^{-2}$, $T^{\text{nonzero integer}}$).
 Furthermore, this choice of exponents leads to
 \begin{equation}
@@ -678,45 +731,23 @@ which can be simply broken up into linear (L) and nonlinear (NL) components,
 where the background profile has here been assumed to be in thermal equilibrium.
 
 
-\section{Turbulent Thermals}
-\label{sec:turb_thermals}
-\begin{figure*}[p!]
-    \includegraphics[width=\textwidth]{figs/unpublished/turbulent_thermals.pdf}
-    \caption[Evolved turbulent thermals]{
-	Horizontal slices through Cartesian domains containing evolved turbulent thermals.
-	In both cases, the initial freefall Reynolds number of the thermals is $4\cdot10^3$.
-	On the left is an evolved thermal in a 1-density-scale-height atmosphere.
-	On the right is an evolved thermal in a 3-density-scale-height atmosphere.
-	There are two observations that can be made from this figure that are strange.
-	First, the vortex ring on the right looks quite laminar, whereas the one on the left looks quite turbulent.
-	Second, unlike in the results of Ch.~\ref{ch:alb19}, the thermal in the highly stratified atmosphere is falling \emph{slower} than the one on the right.
-    \label{fig:turbulent_thermals} }
-\end{figure*}
+\section{Final Thoughts}
+\label{sec:final_thoughts}
 
+This thesis has examined five experiments into the fundamental nature of stratified, stellar convection.
+In Chs.~\ref{ch:ab17} and \ref{ch:ro_p19}, we studied fully compressible, stratified, polytropic convection.
+We learned that, when force balances in the momentum equation are held constant and the Rayleigh number is increased (the importance of dissipation is decreased), many experimental measures scale in a manner very similar to Boussinesq, \RB convection.
+After learning this, we turned to simple studies in the \RB context in Chs.~\ref{ch:abo18} and \ref{ch:FT20} to learn about the nature of thermal relaxation.
+We learned that, in fully convective domains, the choice of mixed thermal boundary conditions imposes a long thermal relaxation on the simulation.
+Furthermore, we explored some simple mechanisms for skipping through that long relaxation.
+Finally, in Ch.~\ref{ch:alb19}, we studied buoyant vortex rings in stratified domains as a model for ``entropy rain'' in the Sun.
+We developed a theory describing the propagation of these vortex rings, and estimated from this theory that cold downdrafts can indeed carry a significant fraction of the solar luminosity.
 
-The next logical step in the study presented in Ch.~\ref{ch:alb19} is a study of turbulent thermals.
-I have performed some initial simulations of anelastic, 3D thermals at Re = $4 \cdot 10^3$, but the initial results from these simulations are rather perplexing.
-See Fig.~\ref{fig:turbulent_thermals}.
+While we have learned a great deal from these studies, they have also opened many more questions, as discussed in the conclusion sections of each of the chapters within this work.
+Some preliminary ideas for expanding upon the work of this thesis are laid out here in this final chapter, and could prove to be fruitful directions for studies in the future.
 
-While simulations of thermals are not computationally expensive in \emph{time} (they are short), they are expensive in terms of \emph{memory}.
-Even the laminar simulations presented in Ch.~\ref{ch:alb19} took many coefficients to resolve, and were nearly at the limits of our computational abilities on a system like NASA Pleiades.
-Increasing the turbulence (the Reynolds number) by an order of magnitude is therefore quite difficult.
-In order to get around this problem, we changed the formulation of our diffusivities.
-Rather than holding the \emph{dynamic} diffusivities constant (as we did in Ch.~\ref{ch:alb19}), we here held the diffusivities (in units of cm$^2$/s) constant.
-This means that the dynamic viscosities grow proportionally to density.
-Importantly, in compressible or anelastic domains, this means that the viscous heating term (in the equation for total entropy or for total energy) grows with density.
-This choice seems to eat away at the buoyant signature of our dense thermals by heating them as they fall, and this in turn reduces the thermal acceleration.
-This messes up our theory, because we assumed the buoyant signature was constant in time.
-
-The theory of thermals that we derived in Ch.~\ref{ch:alb19} revolved around the \emph{momentum} and the \emph{entropy} (which is density-weighted, unlike the specific entropy).
-The form of the diffusivities that appear in the equations for those quantities are the \emph{dynamic} diffusivities, which in these initial turbulent simulations grow with depth.
-Moreover, they grow more with depth in a highly stratified atmosphere than they do in an atmosphere which is not highly stratified.
-These initial results suggest that if one wants to study dynamics which are equally turbulent throughout the full depth of an atmosphere, the ``proper'' choice of diffusivities is to hold the dynamic diffusivities constant, meaning that the diffusivities shrink with depth like $\rho$.
-
-Regardless, these initial struggles and the high computational expense of turbulent thermals have currently caused this project to stall out.
-Furthermore, from some conversations with Mark Rast, there is some reason to perhaps be concerned about simulating cylindrical structures in Cartesian domains \citep[see e.g., Fig.~9 of][]{clyne&all2007}, as the shape of the domain can lead to non-axisymmetric unrealistic perturbations.
-The striking similarity reported between 2D (cylindrical) and 3D (Cartesian) domains in Ch.~\ref{ch:alb19} gives optimism that those calculations should be trusted, but it would likely be ideal to conduct future experiments in cylindrical domains if possible.
-Beyond this more subtle numerical problem, it is unclear if our initial conditions (thermals) are the ``right'' experiment (e.g., are thermals or plumes the basic convective element?).
-A review of this debate in the context of Earth's atmosphere is laid out in detail by \citet{yano2014}.
-
-
+As a community, we astrophysicists are driven by a desire to understand the workings of extremely complex systems.
+Within the more specific community of astrophysical convection modeling, we have often desired to model our experiments after natural objects of interest (e.g., the Sun), and this has led to very complex simulations.
+In this thesis, I have focused on more modest experiments.
+I hope that this work demonstrates that we still have a great deal to learn from extremely simplified experiments in which the full parameter space can be explored.
+I look forward to many years of building on this foundational work, and to taking the lessons learned here and applying them to more complex experiments and simulations in the future.

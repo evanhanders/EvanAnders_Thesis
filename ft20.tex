@@ -3,8 +3,7 @@
 
 \section{Preamble}
 This manuscript in Sec.~\ref{sec:ft20_manuscript} appears as it was submitted to Physical Review Fluids on Feb.~28, 2020.
-It was posted to arXiv the same day, and should be available online on my arXiv page at \url{https://arxiv.org/a/anders_e_1.html} starting Tuesday, March.~3.
-As of the submission of this thesis to the committee, its arXiv identifier has not yet been generated.
+Its initial version can be found on the arXiv \citep{anders&all2020}, and the text here contains minor modifications suggested by the Thesis Committee.
 
 This work was motivated tangentially by our work in Ch.~\ref{ch:abo18}.
 Over the summer of 2019, we started asking the question, ``what do you get wrong if you do not allow a simulation to thermally converge?''
@@ -27,7 +26,7 @@ Numerical simulations are a commonly-used tool in studies of geophysical or astr
 These studies range from examinations of convection in the simplified Boussinesq approximation \citep{spiegel&veronis1960, ahlers&all2009, plumley&julien2019} to highly complex ``dynamo simulations'' which include magnetism and atmospheric density stratification \citep{charbonneau2014, toomre2019}.
 Regardless of complexity, numerically simulated convection is fundamentally driven by some combination of imposed boundary conditions and internal heating profiles \citep{goluskin2016}.
 In studies of Boussinesq convection, the standard choice is to hold constant the temperature difference across the domain by fixing the temperature at the upper and lower boundaries.
-However, a common choice of thermal boundary conditions in astrophysical convection \citep{glatzmaier&gilman1982, hurlburt&all1986, cattaneo&all1990, featherstone&hindman2016a, korre&all2019, wood&brummell2018, kapyla&all2019} is to fix the flux entering the domain through the bottom boundary and to fix the value of a thermodynamic quantity (e.g., temperature or entropy) at the top boundary.
+However, a common choice of thermal boundary conditions in astrophysical convection \citep{glatzmaier&gilman1982, hurlburt&all1986, cattaneo&all1990, featherstone&hindman2016a, korre&all2019, wood&brummell2018, kapyla&all2019, matilsky&all2019} is to fix the flux entering the domain through the bottom boundary and to fix the value of a thermodynamic quantity (e.g., temperature or entropy) at the top boundary.
 We are unaware of any study which has examined the consequences of imposing the ``mixed'' boundaries that are frequently favored in astrophysical convection studies.
 
 In this work, we examine how the choice of using ``mixed'' boundaries affects the evolved nonlinear convective state in the simplest possible model: \RB convection (RBC) under the Boussinesq approximation.
@@ -232,14 +231,14 @@ FT simulation dynamics evolve slowly during thermal relaxation, and these images
 \begin{figure}[t!]
 \includegraphics[width=\textwidth]{./figs/rbc_scalar_comparisons.pdf}
 \caption[Scalar time traces and parameter space scalings for FT and TT simulations]{ 
-	(Left three panels) Time traces of scalar quantities in an FT (orange) and TT (purple) simulation are shown.
+	(Left three panels) Time traces of scalar quantities in an FT (orange, Ra$_{\partial_z T} = 4.83 \times 10^{10}$) and TT (purple, Ra$_{\Delta T} = 10^9$) simulation are shown.
 	All traces have been averaged over a rolling window of 100 freefall time units to increase the clarity of the evolutionary trend.
 	We display evolutionary traces of Ra (top, normalized by the input Ra$_{\Delta T}$ = $10^9$ value of the TT simulation) as well as Nu (middle) and Pe (bottom), both of which are normalized by their mean values measured over the last 500 freefall times of the TT simulation (reported in appendix \ref{app:table}).
 	(Right two panels) Compensated scaling plots of Nu (upper) and Pe (lower) vs. Ra$_{\Delta T}$.
 	Nu vs.~Ra is compensated by $(0.138 \text{Ra}_{\Delta T}^{0.285})$, the best-fit reported by \citet{johnston&doering2009}.
 	Re vs.~Ra is compensated by a Ra$_{\Delta T}^{1/2}$ law, the anticipated scaling of Pe \citep{ahlers&all2009}.
 	The orange trace is the time evolution of the FT case from the left panels with the arrows showing the sense of time.
-	The yellow trace shows the evolution of an FT case with Ra$_{\Delta T} = 10^8$.
+	The yellow trace shows the evolution of an FT case with Ra$_{\Delta T} = 10^8$ (Ra$_{\partial_z T} = 2.61 \times 10^{9}$).
 	Purple circles are the measured values of Nu and Pe in our TT simulations (reported in appendix \ref{app:table}); error bars show the standard deviation of the sample mean and are smaller than the marker in all cases.
 	The purple circles filled in with yellow and orange are the TT comparisons for the evolved states of the two FT cases.
 	Black crosses show comparison TT simulations as reported by \citet{zhu&all2018}.
@@ -254,7 +253,7 @@ FT simulation dynamics evolve slowly during thermal relaxation, and these images
 \begin{figure}
 \includegraphics[width=\textwidth]{./figs/rbc_1D_profiles.pdf}
 \caption[1D profiles of temperatures and fluxes in TT and FT simulations]{ 
-	(Left three panels) We compare time- and horizontally-averaged profiles from an FT (orange) and TT (purple) simulation at Ra$_{\Delta T} = 10^{9}$.
+	(Left three panels) We compare time- and horizontally-averaged profiles from an FT (orange) and TT (purple) simulation at Ra$_{\Delta T} = 10^{9}$ (Ra$_{\partial_z T} = 4.83 \times 10^{10}$).
 	Shown are the (top) temperature, (middle) temperature in upflows (solid) and downflows (dashed), and (bottom) enthalpy (solid) and conductive (dashed) fluxes.
 	The boundary layer regions are separated from the bulk by thin vertical lines and are examined in more detail in the right six panels.
 	(Right six panels) The three panels on the left examine the bottom boundary layers and the right panels examines the top boundary layers.
@@ -283,7 +282,7 @@ These differences are interesting, and are explored further in subsection \ref{s
 \begin{figure}
 \includegraphics[width=\textwidth]{./figs/rbc_restart_description.pdf}
 \caption[Time traces and PDF comparisons of FT and TT-to-FT simulations]{ 
-	(Left three panels) Time traces of scalar quantities, which have been averaged over a rolling time window of 25 simulation time units, are shown for a simulation with Ra$_{\Delta T} = 10^9$ which starts with TT boundary conditions and then is switched to FT boundary conditions.
+	(Left three panels) Time traces of scalar quantities, which have been averaged over a rolling time window of 25 simulation time units, are shown for a simulation with Ra$_{\Delta T} = 10^9$ which starts with TT boundary conditions and then is switched to FT boundary conditions (with Ra$_{\partial_z T} = 4.83 \times 10^{10}$).
 	The time of the change of boundary conditions is denoted by the vertical black line.
 	(Top panel) The evolution of Ra is shown; Ra$_{\partial_z T}/(4.83\times 10^{10})$ is shown as a dashed-dot line, while Ra$_{\Delta T}/10^9$ is shown as a solid line.
 	The mean value of temperature gradient (middle panel) and temperature (bottom panel) at the bottom boundary are also shown.
@@ -337,6 +336,7 @@ The remaining discrepancies between the PDFs are small and seem to primarily be 
 \vspace{-0.5cm}
 \caption[PDF moments for FT and TT-to-FT comparisons]{ 
 	The first four moments, as defined in Eqn.~\ref{eqn:pdf_moments}, of each of the PDFs shown in Fig.~\ref{fig:rbc_restart_description} are displayed below.
+	Note that the coefficient resolution of the evolved FT simulation and the TT-to-FT simulation are the same (nz, nx) = (1024, 2048).
 }
 \vspace{-0.25cm}
 \setlength{\tabcolsep}{12pt}
@@ -395,7 +395,7 @@ These findings suggest that comparing FT and TT dynamics may be more straightfor
 \begin{figure}
 \includegraphics[width=\textwidth]{./figs/rbc_dynamics_asymmetries.pdf}
 \caption[PDF and snapshot examination of asymmetries in FT simulations]{ 
-	(Left panel) PDFs of temperature measurements of a TT-to-FT (orange) and TT (purple) case with Ra$_{\Delta T} = 10^{10}$ are displayed.
+	(Left panel) PDFs of temperature measurements of a TT-to-FT (orange) and TT (purple) case with Ra$_{\Delta T} = 10^{10}$ (Ra$_{\partial_z T} = 9.51 \times 10^{11}$) are displayed.
 	The right tail of the distribution (near the hot fixed-flux boundary for the FT case) shows that fixed flux boundaries achieve more extreme temperature events than fixed temperature boundaries.
 	(Middle panel) A snapshot of the temperature anomaly in the FT simulation.
 	Zoomed in views of the regions outlined in black boxes are shown in the right two panels.
@@ -427,13 +427,15 @@ We explore this further in the discussion in subsection \ref{sec:ft20_discussion
 \label{sec:ft20_rotating_results}
 
 We now extend our study to a more complicated experiment: 3D rotating RBC with an Ekman number of $10^{-6}$.
-We study a TT case at Ra$_{\Delta T} = 2.75\times 10^9$, and an FT case at $\text{Ra}_{\partial_z T} = 2.1 \times 10^{10}$ (the supercriticality of the TT case is $\sim 3$).
+We study a TT case at Ra$_{\Delta T} = 2.75\times 10^9$, and an FT case at $\text{Ra}_{\partial_z T} = 2.1 \times 10^{10}$ (the supercriticality of the TT case is $\sim 3$)\footnote{
+At these parameters, we would be in the cellular convection regime of \citet{stellmach&all2014}, but our dynamics are different due to our choice of stress free boundary conditions.
+}.
 These simulations employ stress free boundary conditions which allow for the generation of mean flows such as large scale vortices (LSV) \citep{stellmach&all2014, rubio&all2014, guervilly&all2014, guervilly&hughes2017, favier&all2014, favier&all2019, couston&all2019}.
 
 \begin{figure}
 \includegraphics[width=\textwidth]{./figs/rotating_panels.pdf}
 \caption[Time traces, parameter space plot, and snapshots showing evolution of rotating FT simulation]{ 
-	(Left three panels) Time traces of scalar quantities in an FT (orange) and TT (purple) simulation are shown.
+	(Left three panels) Time traces of scalar quantities in an FT (orange) and TT (purple) simulation are shown with Ra$_{\Delta T} = 2.75 \times 10^9$ (Ra$_{\partial_z T} = 2.1 \times 10^{10}$) and Ek = $10^{-6}$.
 	All traces have been averaged over a rolling window of 50 freefall time units to increase the clarity of the evolutionary trend.
 	(Top panel) Ra, normalized by the input Ra$_{\Delta T}$ = 2.75$\,\times 10^9$ of the TT simulation.
 	(Middle panel) Ro evolution of both simulation; the bulk flow of the FT simulation transitions from a marginally rotationally unconstrained state to a constrained state, while the TT simulation is always rotationally constrained.
@@ -546,7 +548,9 @@ If we had terminated our FT rotating simulation too early, we would not have see
 Many dynamo simulations are performed in highly turbulent regimes at the cutting-edge of what is achievable using modern computational resources.
 As a result, timestepping through thousands of freefall timescales is not possible in these simulations.
 It is therefore crucial that dynamo simulations be set up in such a manner as to avoid large changes to the system's energy reservoir such as those that we observed and studied here.
-Some authors who study astrophysical convection \citep{featherstone&hindman2016a, strugarek&all2018, bordwell&all2018, matilsky&all2019} employ FF boundary conditions, and our results here suggest that such a choice may be ideal in those complex simulations.
+Some authors who study astrophysical convection \citep{featherstone&hindman2016a, strugarek&all2018, bordwell&all2018} employ FF boundary conditions, and our results here suggest that such a choice may be ideal in those complex simulations.
+However, some of those studies involve internal heating profiles, and it is unclear if the rapid relaxation we observe here in TT simulations would carry over to simulations of internally heated convection.
+Regardless, preliminary results in convection in 3D spherical shells suggests that FF boundaries converge faster than FT boundaries (Matilsky 2020, private communication).
 
 In conclusion, we note that our results here should provide astrophysical convection simulations with reason for optimism.
 Some problems that we encounter (e.g., long thermal rundown in FT simulations) can be completely avoided through a careful understanding of the numerical system being solved.

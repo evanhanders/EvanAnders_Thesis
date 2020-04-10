@@ -3,7 +3,7 @@
 
 \section{Preamble}
 The following work was published in Physical Review Fluids \citep{anders&all2018}.
-The text in section \ref{sec:abo18_published} is the text of the paper as it was accepted for publication.
+The text in section \ref{sec:abo18_published} is the text of the paper as it was accepted for publication, with a few added footnotes for clarification.
 Following the published work, in section \ref{sec:abo18_postscript}, I comment on a few lessons that have been learned since we published these results.
 
 This work was motivated by some preliminary simulation work that was being performed in internally heated, compressible atmospheres (see \ref{sec:internally_heated}).
@@ -342,7 +342,11 @@ All comparisons that follow for these two runs occur over the times shaded in gr
 Measurements are sampled every 0.1 freefall time units for 500 total freefall time units.
 
 As AE is fundamentally a 1D adjustment to the thermodynamic structure of the solution, we compare the horizontally- and time-averaged temperature profiles attained by AE and SE in Fig.~\ref{fig:temp_comparison}(a).  
-The boundary layer width and structure are nearly identical between the two solutions, but the the mean temperature in the isothermal interior differs by roughly 0.5\% [Fig.~\ref{fig:temp_comparison}(c)]. 
+The boundary layer width and structure are nearly identical between the two solutions, but the the mean temperature in the isothermal interior differs by roughly 0.5\% [Fig.~\ref{fig:temp_comparison}(c)]\footnote{
+Note, we expect that this 0.5\% difference is meaningful, and that these are not perfectly the ``same'' solution.
+Put differently, we expect that the AE case would evolve towards the SE case given infinite time (or an infinite number of AE kicks).
+However, we only cared about converging this profile to within $\sim 1$\%, and so this difference is within our convergence criterion.
+}. 
 
 \begin{figure}[ht!]
 \includegraphics[width=\textwidth]{./figs/temp_comparison.pdf}
@@ -360,7 +364,11 @@ The boundary layer width and structure are nearly identical between the two solu
 }
 \end{figure}
 
-The probability distribution functions (PDFs) of point-by-point temperature measurements are compared for the two runs in Fig.~\ref{fig:temp_comparison}(b). 
+The probability distribution functions (PDFs) of point-by-point temperature measurements are compared for the two runs in Fig.~\ref{fig:temp_comparison}(b)\footnote{
+While this PDF, and all PDFs in this work, are for 2D simulations, we do not expect results to be drastically different for 3D simulations.
+The tails of the temperature PDF are characterized by the boundaries and plumes, and the mode is the isothermal interior; we broadly expect the same thing in 3D.
+The extra broadness in the AE solution is because it ``overshot'' the right answer, and its broader peak is evidence of the modal temperature evolving toward the SE solution slowly.
+}. 
 To construct these PDFs, we interpolate the full temperature field at each measurement time onto an evenly spaced grid, determine the frequency distribution of all $T$ values over the duration of the 500 $t_{\text{ff}}$ measurement window, and then normalize the distribution such that its integral is unity.  
 The two PDFs have noticeably different maxima, as is expected from Fig.~\ref{fig:temp_comparison}(a). 
 Over long timescales, the 0.5\% difference between the two profiles would disappear, as the AE solution evolves to be exactly the SE solution; this is evident in the asymmetry of the AE PDF near the maxima in Fig.~\ref{fig:temp_comparison}(b) and also the trend of the mean temperature over time in Fig.~\ref{fig:time_trace}(c).

@@ -3,7 +3,7 @@
 
 \section{Preamble}
 The following work was published in the Astrophysical Journal \citep{anders&all2019}.
-The text in section \ref{sec_ro_p19_:ro_p19_published} is the text of the paper as it was accepted for publication.
+The text in section \ref{sec_ro_p19_:ro_p19_published} is the text of the paper as it was accepted for publication, with a few footnotes added throughout the text for clarification.
 Following the published work, in section \ref{sec_ro_p19_:ro_p19_postscript}, I comment on a few lessons that have been learned since we published these results.
 
 This work was motivated by a fundamental lack of understanding of how to conduct a ``proper'' experiment in rotating convection.
@@ -650,10 +650,18 @@ Essentially every paper about convective parameter space reports a value for Nu,
 Put simply -- Nu has become the measurement that we, as a community, use to tell us \emph{everything} about convection, and it's very possible that what we really need to do is study Nu, Re, Ro, and other quantities in light of each other.
 Time will tell, as will follow-up work.
 
+The results in our published work have led to some fruitful discussions with Keith Julien \& Ian Grooms.
+We are interested in understanding how Ro varies with Ra and Ek from a theoretical perspective.
+Or, put differently, we are interested in understanding how Ro scales by applying the logic that the \RB convection community has put towards understanding how e.g., the Nusselt number scales with Ra and Ek.
+I look forward to continuing discussions with them over the spring and summer.
+
+
+\subsection{Preliminary results in global simulations}
+
 The results presented here have spawned many interesting follow-up conversations and studies.
-Preliminary results (See Fig.~\ref{fig:ro_ek}) from simulations by Ben Brown shows that \pro$\,$ does a decent job of predicting the Rossby number in 3D, spherical, anelastic dynamo simulations (Brown 2020, private communication).
+Preliminary results (See Fig.~\ref{fig:ro_ek}) from simulations by Ben Brown show that \pro$\,$ does a decent job of predicting the Rossby number in 3D, spherical, anelastic dynamo simulations (Brown 2020, private communication).
 In these simulations, the Rossby number seems to be a weak function of Ek along constant \pro$\,$ paths, suggesting that \pro$\,$ is \emph{close} to the ``right'' parameter for conducting suites of simulations along constant Rossby number paths.
-This work is hugely preliminary, but Ben Brown (private communication, Mar.~25, 2020) was able to get me the exact values that went into making this figure.
+Ben Brown (private communication, Mar.~25, 2020) was able to get me the exact values that went into making this figure.
 They are presented in Table~\ref{table:rop_spheres}.
 These simulations reportedly take a very long time to converge, and these results are extremely preliminary (benchmarking, etc.~is underway to ensure that they are trustworthy).
 Ben claims that it's probably not reasonable to have faith in the runs that haven't evolved for more than 5 viscous diffusion timescales (at the top of the domain), so I'm dropping those points from further analysis.
@@ -661,7 +669,7 @@ It's unclear if the points that have run for fewer than 20 viscous timescales ar
 I've re-plotted the `trustworthy' points in the left panel of Fig.~\ref{fig:mdwarfs_rop}.
 The points with Ro$_\text{p}^2 > 20$ seem to have a sensible scaling, and the best fit law is roughly $\text{Ro} \sim \text{Ro}_\text{p}^2 \text{Ek}^\alpha$ where $\alpha \approx 0.25$ for Ro$_\text{p}^2 = 80$ and $\alpha \approx 0.22$ for Ro$_\text{p}^2 = \{20, 40\}$.
 In the right panel of Fig.~\ref{fig:mdwarfs_rop}, I've compensated this plot by an Ek$^{0.22}$ scaling law, and I've normalized all points by their value at Ek$ = 3 \times 10^{-3}$ to show the goodness of these power-law fits.
-Indeed, in these data, even at fixed Ro$_\text{p}$, the evolved Rossby number has a fairly large ($\alpha \sim 1/4$) Ek dependence remaining.
+Indeed, in these data, even at fixed Ro$_\text{p}$, the evolved Rossby number has a small but appreciable ($\alpha \sim 1/4$) Ek dependence remaining.
 It's unclear to me if this is due to geometry effects, or if it is due to the region of parameter space that these models are in.
 We previously found that Ro$_\text{p}$ behaved best for low Ro cases (at lower Ek than these runs), and the lowest Ro points here behave very strangely.
 Further data is needed to determine if Ro$_{\text{p}}$ works well in spherical domains.
@@ -721,13 +729,7 @@ Further data is needed to determine if Ro$_{\text{p}}$ works well in spherical d
 \end{figure}
 
 
-The results in our published work have led to some fruitful discussions with Keith Julien \& Ian Grooms.
-We are interested in understanding how Ro varies with Ra and Ek from a theoretical perspective.
-Or, put differently, we are interested in understanding how Ro scales by applying the logic that the \RB convection community has put towards understanding how e.g., the Nusselt number scales with Ra and Ek.
-I look forward to continuing discussions with them over the spring and summer.
-
-
-\subsection{A few further lessons learned}
+\subsection{Evolved Density Stratification}
 We find that, even in rotationally constrained systems, the initial stratification is the same as evolved stratification to within $\sim\epsilon$ (see Fig.~\ref{fig:rot_density}). 
 So the flows in our simulations here feel $\sim$3 density scale heights of stratification.
 It's surprising that the lack of vertical variation seen in the right panels of Fig.~\ref{fig:dynamics_plot} can be achieved in the presence of this stratification.
@@ -743,6 +745,7 @@ It's surprising that the lack of vertical variation seen in the right panels of 
 	\label{fig:rot_density} }
 \end{figure}
 
+\subsection{Domain aspect ratio}
 In this work, we chose to simulate in \emph{extremely} ``skinny'' domains.
 Intuitively, these boxes feel a little narrow, and it seems like they may not fully capture the convective motions.
 However, the most unstable and fastest-growing horizontal modes are certainly contained within our simulation domain -- see Fig.~\ref{fig:ta1e10_onset}. 
@@ -765,6 +768,8 @@ It's unclear if that intuition fits in stratified convection, but our highly-rot
 	For this choice, we have annotated the maximum wavenumber which is contained along a given horizontal direction ($x$ or $y$) with a line (``Minimum simulation $k_x$''), as well as the maximum wavenumber contained along a diagonal of our simulation (``Minimum simulation $k_\perp$'').
 	\label{fig:ta1e10_onset} }
 \end{figure}
+
+\subsection{Boundary layer scalings}
 
 Note that our theoretical understanding of \pro$\,$ suggests that it is boundary layer scalings which are controlling the dynamics in our simulations.
 To first order, $\delta_s \sim \text{Ra}^{-1/3}$ is a good description of what we measure for our entropy boundary layer thickness (top of domain) along our Ro$_\text{p}$ paths.
